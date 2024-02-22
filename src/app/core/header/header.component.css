@@ -1,0 +1,35 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--mainBlackColor);
+    color: var(--mainWhiteColor);
+}
+
+.logo img {
+    width: 100px; /* Adjust as needed */
+}
+
+.navigation ul {
+    list-style: none;
+    display: flex;
+}
+
+.navigation li {
+    margin-right: 20px;
+}
+
+.navigation li:last-child {
+    margin-right: 0;
+}
+
+.navigation a {
+    color: var(--mainWhiteColor);
+    text-decoration: none;
+}
+
+.user-actions a {
+    color: var(--mainWhiteColor);
+    text-decoration: none;
+}

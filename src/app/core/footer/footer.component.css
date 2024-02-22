@@ -1,0 +1,19 @@
+.footer {
+    padding: 20px;
+    background-color:  var(--mainBlackColor);
+    color: var(--mainWhiteColor);
+    text-align: center;
+}
+
+.footer a {
+    color: var(--mainWhiteColor);
+    text-decoration: none;
+}
+
+.social-icons a {
+    margin-right: 10px;
+}
+
+.social-icons i {
+    font-size: 20px;
+}
