@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [FooterComponent, HeaderComponent, NavigationComponent],
+  declarations: [FooterComponent, HeaderComponent, NavigationComponent, HomeComponent],
   imports: [CommonModule],
-  exports: [FooterComponent, HeaderComponent, NavigationComponent],
+  exports: [FooterComponent, HeaderComponent, NavigationComponent,HomeComponent],
 })
 export class CoreModule {}
