@@ -7,8 +7,9 @@
     color: var(--mainWhiteColor);
 }
 
-.logo img {
-    width: 100px; /* Adjust as needed */
+.logo  {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 32px;
 }
 
 .navigation ul {
