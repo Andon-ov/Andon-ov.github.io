@@ -3,8 +3,9 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: var(--mainBlackColor);
-    color: var(--mainWhiteColor);
+    background-color: var(--mainColor);
+    color:#40513B;
+    /* color: var(--mainWhiteColor); */
 }
 
 .logo  {
@@ -26,11 +27,13 @@
 }
 
 .navigation a {
-    color: var(--mainWhiteColor);
+    color:#40513B;
+    /* color: var(--mainWhiteColor); */
     text-decoration: none;
 }
 
 .user-actions a {
-    color: var(--mainWhiteColor);
+    color:#40513B;
+    /* color: var(--mainWhiteColor); */
     text-decoration: none;
 }

@@ -1,12 +1,16 @@
 .footer {
     padding: 20px;
-    background-color:  var(--mainBlackColor);
-    color: var(--mainWhiteColor);
+    background-color: var(--mainColor);
+
+    /* background-color:  var(--mainBlackColor); */
+    color:#40513B;
+    /* color: var(--mainWhiteColor); */
     text-align: center;
 }
 
 .footer a {
-    color: var(--mainWhiteColor);
+    color:#40513B;
+    /* color: var(--mainWhiteColor); */
     text-decoration: none;
 }
 

@@ -109,14 +109,22 @@ body {
   }
   
   :root {
+
+    /* --mainNaturalColors */
+
+    /* #EDF1D6
+    #9DC08B
+    #609966
+    #40513B */
   
-    --mainColor: #06aed5;
-    --secondColor: #086788;
-    --backgroundColor: #D5CABD;
+    --mainColor: #EDF1D6;
+    /* --secondColor: ; */
+    /* --backgroundColor: ; */
   
     --mainWhiteColor: #FFFFFF;
     --mainBlackColor: #000000;
-    --mainRedColor: red;
+    --mainGreenColor: #9DC08B;
+    /* --mainRedColor: #aa676c;
   
     --mainGreyColor: #708090;
     --mainMagnoliaColor: #F6F4F9;
@@ -124,7 +132,7 @@ body {
   
     --mainRGBColor: 6, 174, 213;
     --alpha: 0.8;
-    --animatedTitleBackground: rgba(var(--mainRGBColor), var(--alpha));
+    --animatedTitleBackground: rgba(var(--mainRGBColor), var(--alpha)); */
 
     /* --animatedTitleBackground: rgba(0, 192, 163, 0.8); */
     /* --animatedTitleBackground: rgba(255, 137, 96, 0.8); */
