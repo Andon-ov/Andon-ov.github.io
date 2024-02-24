@@ -1,5 +1,3 @@
-# Andon-ov.github.io
-
 ## The Natural Way
 
 A platform for sharing information and experiences with alternative medicine.

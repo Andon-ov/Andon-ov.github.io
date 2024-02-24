@@ -12,10 +12,12 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 import { CloudinaryModule } from '@cloudinary/ng';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,15 +26,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SharedModule,
 
     // Cloud Firestore
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    provideFirestore(() => getFirestore()),
-
+     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+     provideFirestore(() => getFirestore()),
+ 
     // Cloudinary
     CloudinaryModule,
-    // Angular Material
-    BrowserAnimationsModule,
+
+    // Bootstrap
+    NgbModule,
+
+
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
