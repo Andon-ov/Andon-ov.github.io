@@ -1,0 +1,30 @@
+.navbar {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    right: 5%;
+    z-index: 1000;
+
+    background-color: var(--mainWhiteColor);
+    padding: 20px;
+}
+
+.search {
+    border: thick double var(--mainGreenColor);
+}
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+.form-control:focus{
+    box-shadow: 0 0 0 0.25rem var(--mainGreenColor);
+}
+
+.form-control:focus{
+    border-color:var(--mainGreenColor)
+}
+
+.btn:active {
+    border-color:var(--mainGreenColor) ;
+}

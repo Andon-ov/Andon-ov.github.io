@@ -1,0 +1,20 @@
+.carousel{
+    height: 100vh;
+    overflow: hidden;
+}
+
+.carousel-caption {
+    bottom: unset;
+    top: 10%;
+
+}
+
+.test{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 50%;
+    background-color: var(--mainRGBAColor);
+    z-index: 10;
+}

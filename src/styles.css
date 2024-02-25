@@ -7,15 +7,15 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /*
     2. Remove default margin
   */
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 /*
@@ -23,7 +23,7 @@
   */
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 /*
@@ -32,8 +32,8 @@ body {
     5. Improve text rendering
   */
 body {
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
 /*
@@ -44,8 +44,8 @@ picture,
 video,
 canvas,
 svg {
-    display: block;
-    max-width: 100%;
+  display: block;
+  max-width: 100%;
 }
 
 /*
@@ -55,7 +55,7 @@ input,
 button,
 textarea,
 select {
-    font: inherit;
+  font: inherit;
 }
 
 /*
@@ -68,7 +68,7 @@ h3,
 h4,
 h5,
 h6 {
-    overflow-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /*
@@ -76,69 +76,70 @@ h6 {
   */
 #root,
 #__next {
-    isolation: isolate;
+  isolation: isolate;
 }
 
 /*
     Custom
   */
 ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 
 /* css */
 
 body {
-    height: 100vh;
-  }
-  
-  html,
-  body {
-    height: 100%;
-  }
-  
-  body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    /* font-size: clamp(0.6rem, 0.734rem + 0.8511vw, 0.9rem); */
-  }
-  
-  :root {
+  height: 100vh;
+}
 
-    /* --mainNaturalColors */
+html,
+body {
+  height: 100%;
+}
 
-    /* #EDF1D6
-    #9DC08B
-    #609966
-    #40513B */
-  
-    --mainColor: #EDF1D6;
-    /* --secondColor: ; */
-    /* --backgroundColor: ; */
-  
-    --mainWhiteColor: #FFFFFF;
-    --mainBlackColor: #000000;
-    --mainGreenColor: #9DC08B;
-    /* --mainRedColor: #aa676c;
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  /* font-size: clamp(0.6rem, 0.734rem + 0.8511vw, 0.9rem); */
+}
+
+:root {
+
+/* Natural Color Palettes */
+  --lightGrayishOrange: rgb(248, 237, 227);
+
+  --lightGrayishGreen: rgb(189, 210, 182);
+  --grayishLimeGreen: rgb(162, 178, 159);
+  --darkGrayishGreen: rgb(121, 135, 119);
+
+
+
+  --mainColor: #EDF1D6;
+  /* --secondColor: ; */
+  /* --backgroundColor: ; */
+
+  --mainWhiteColor: #FFFFFF;
+  --mainBlackColor: #000000;
+  --mainGreenColor: rgba(157, 192, 139, 0.6);
+   --mainRedColor: #aa676c;
   
     --mainGreyColor: #708090;
     --mainMagnoliaColor: #F6F4F9;
     --mainCoralColor: #FFEDCB;
   
-    --mainRGBColor: 6, 174, 213;
-    --alpha: 0.8;
-    --animatedTitleBackground: rgba(var(--mainRGBColor), var(--alpha)); */
+    --mainRGBColor: 157, 192, 139;
+    --alpha: 0.6;
+    --mainRGBAColor: rgba(var(--mainRGBColor), var(--alpha));
 
-    /* --animatedTitleBackground: rgba(0, 192, 163, 0.8); */
-    /* --animatedTitleBackground: rgba(255, 137, 96, 0.8); */
-  
-    --borderColor: #ddd;
-  
-    --titleFont: Georgia, Times, serif;
-  }
-  
+  /* --animatedTitleBackground: rgba(0, 192, 163, 0.8); */
+  /* --animatedTitleBackground: rgba(255, 137, 96, 0.8); */
+
+  --borderColor: #ddd;
+
+  --titleFont: Georgia, Times, serif;
+}
