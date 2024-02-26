@@ -133,7 +133,7 @@ body {
     --mainCoralColor: #FFEDCB;
   
     --mainRGBColor: 157, 192, 139;
-    --alpha: 0.6;
+    --alpha: 0.8;
     --mainRGBAColor: rgba(var(--mainRGBColor), var(--alpha));
 
   /* --animatedTitleBackground: rgba(0, 192, 163, 0.8); */

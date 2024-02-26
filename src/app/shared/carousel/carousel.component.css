@@ -1,4 +1,4 @@
-.carousel{
+.carousel {
     height: 100vh;
     overflow: hidden;
 }
@@ -6,15 +6,61 @@
 .carousel-caption {
     bottom: unset;
     top: 10%;
-
 }
 
-.test{
+.overlay {
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
     right: 50%;
     background-color: var(--mainRGBAColor);
-    z-index: 10;
+    z-index: 9;
+}
+
+.carousel-control-prev {
+    z-index: 9;
+}
+
+.info {
+    position: absolute;
+    left: 30%;
+    right: 10%;
+    top: 40%;
+    color: var(--mainWhiteColor);
+}
+
+.title {
+    font-size: 32px;
+    padding-bottom: 20px;
+    font-weight: 900;
+    line-height: 35px;
+}
+
+.subtitle {
+    font-style: italic;
+}
+
+.infoBtn {
+    background-color: var(--mainWhiteColor);
+    padding: 13px 35px;
+    font-size: 14px;
+    margin-top: 40px;
+    display: inline-block;
+    font-weight: bold;
+    font-family: Roboto, sans-serif;
+}
+
+.infoBtn:hover {
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid var(--mainWhiteColor);
+}
+
+.infoBtn:hover .infoLink {
+    color: var(--mainWhiteColor);
+}
+
+.infoLink {
+    color: var(--darkGrayishGreen);
 }
