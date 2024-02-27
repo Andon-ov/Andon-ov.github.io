@@ -1,18 +1,22 @@
 .navbar {
-    position: absolute;
+    /* position: absolute;
     top: 6%;
     left: 15%;
     right: 15%;
-    z-index: 1000;
+    z-index: 1000; */
+    height: 8vh;
 
     background-color: var(--mainWhiteColor);
-    padding: 12px;
+    /* padding: 12px; */
+    /* padding: 5px; */
 }
-
+.container-fluid{
+    max-width: 1440px;
+}
 .navbar-brand {
     font-family: "Dancing Script", cursive;
     font-weight: 700;
-    font-size: 42px;
+    font-size: 32px;
     color: var(--darkGrayishGreen);
 }
 

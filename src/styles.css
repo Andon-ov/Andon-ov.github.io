@@ -110,7 +110,7 @@ body {
 
 :root {
 
-/* Natural Color Palettes */
+  /* Natural Color Palettes */
   --lightGrayishOrange: rgb(248, 237, 227);
 
   --lightGrayishGreen: rgb(189, 210, 182);
@@ -126,15 +126,15 @@ body {
   --mainWhiteColor: #FFFFFF;
   --mainBlackColor: #000000;
   --mainGreenColor: rgba(157, 192, 139, 0.6);
-   --mainRedColor: #aa676c;
-  
-    --mainGreyColor: #708090;
-    --mainMagnoliaColor: #F6F4F9;
-    --mainCoralColor: #FFEDCB;
-  
-    --mainRGBColor: 157, 192, 139;
-    --alpha: 0.8;
-    --mainRGBAColor: rgba(var(--mainRGBColor), var(--alpha));
+  --mainRedColor: #aa676c;
+
+  --mainGreyColor: #708090;
+  --mainMagnoliaColor: #F6F4F9;
+  --mainCoralColor: #FFEDCB;
+
+  --mainRGBColor: 157, 192, 139;
+  --alpha: 0.8;
+  --mainRGBAColor: rgba(var(--mainRGBColor), var(--alpha));
 
   /* --animatedTitleBackground: rgba(0, 192, 163, 0.8); */
   /* --animatedTitleBackground: rgba(255, 137, 96, 0.8); */
@@ -143,3 +143,12 @@ body {
 
   --titleFont: Georgia, Times, serif;
 }
+
+
+
+
+.main-short {
+  height: 84vh;
+}
+
+/* .main-long {} */

@@ -1,15 +1,14 @@
 .footer {
-    padding: 20px;
     background-color: var(--mainColor);
-
+    height: 8vh;
     /* background-color:  var(--mainBlackColor); */
-    color:#40513B;
+    color: #40513B;
     /* color: var(--mainWhiteColor); */
     text-align: center;
 }
 
 .footer a {
-    color:#40513B;
+    color: #40513B;
     /* color: var(--mainWhiteColor); */
     text-decoration: none;
 }

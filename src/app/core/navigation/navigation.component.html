@@ -1,17 +1,3 @@
-
-<!-- <div class="head-info-area">
-  <div class="center">
-  <div class="left"> <span class="phntp">
-  <i class="fa fa-phone" aria-hidden="true"></i>12 8888 6666 </span> <span class="emltp">
-  <i class="fa fa-envelope" aria-hidden="true"></i>info@sitename.com </span> </div>
-  <div class="right"> <span class="sintp">
-  </span> <span class="suptp">
-  <div class="social-icons"><a href="#" target="_blank" class="fa fa-facebook fa-1x" title="facebook"></a><a href="#" target="_blank" class="fa fa-twitter fa-1x" title="twitter"></a><a href="#" target="_blank" class="fa fa-google-plus fa-1x" title="google-plus"></a><a href="#" target="_blank" class="fa fa-linkedin fa-1x" title="linkedin"></a><a href="#" target="_blank" class="fa fa-pinterest fa-1x" title="pinterest"></a></div> </span> </div>
-  <div class="clear"></div>
-  </div>
-  </div>
-   -->
-
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"> The Natural Way</a>
@@ -34,9 +20,9 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
-        </li>
+        </li> -->
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -45,18 +31,20 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Link
+          <i class="fa-solid fa-user"></i>
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" routerLink="/register" >Register</a></li>
+            <li><a class="dropdown-item" routerLink="/login" >Login</a></li>
+
             <li><hr class="dropdown-divider" /></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">Link</a>
-        </li>
+        </li> -->
+       
       </ul>
       <form class="d-flex" role="search">
         <input
