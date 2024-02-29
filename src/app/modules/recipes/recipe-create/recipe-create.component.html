@@ -1,0 +1,45 @@
+<main class="main-short">
+  <div class="wrapper">
+    <h1 class="title-black">Create recipe</h1>
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+      <!-- Image Upload -->
+      <app-image-upload (imageUploaded)="addImageToForm($event)" />
+
+      <div *ngIf="recipeForm.get('image')?.value !== ''">
+        <p class="hint">You added a photo</p>
+        <!-- <label for="image">Добавена снимка</label> -->
+        <input type="text" id="image" formControlName="image" />
+        <button type="button" (click)="removeImage()">
+          Remove added photo
+        </button>
+      </div>
+
+      <!-- Image -->
+
+      <label>
+        Title (required):
+        <input type="text" formControlName="name" required />
+      </label>
+
+      <div *ngIf="recipeForm.get('name')?.touched">
+        <div
+          class="errors"
+          *ngIf="recipeForm.get('name')?.errors?.['required']"
+        >
+          Please fill in the title!
+        </div>
+      </div>
+
+      <label>
+        <span class="hint">Directions</span>
+        <textarea formControlName="note"></textarea>
+      </label>
+
+      <button type="submit">Add Recipe</button>
+
+      <a class="backBtn" href="javascript:history.back()"
+        ><i class="fa-solid fa-backward fa-beat-fade"></i>&nbsp;&nbsp;Back</a
+      >
+    </form>
+  </div>
+</main>
