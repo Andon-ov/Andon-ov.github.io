@@ -32,7 +32,9 @@
 
       <label>
         <span class="hint">Directions</span>
-        <textarea formControlName="note"></textarea>
+        <editor formControlName="note" [init]="editorConfig"></editor>
+        <!-- <textarea formControlName="note">
+        </textarea> -->
       </label>
 
       <button type="submit">Add Recipe</button>

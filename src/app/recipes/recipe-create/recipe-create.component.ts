@@ -12,6 +12,12 @@ import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 
 
 export class RecipeCreateComponent {
+
+  editorConfig = {
+    base_url: '/tinymce',
+    suffix: '.min',
+    plugins: 'lists link image table wordcount'
+};
   
   recipeForm:FormGroup;
   firestore: Firestore;

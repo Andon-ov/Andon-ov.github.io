@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { ModulesModule } from './modules/modules.module';
 import { SharedModule } from './shared/shared.module';
 
 import { environment } from '../environments/environment';
@@ -13,6 +12,9 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 import { CloudinaryModule } from '@cloudinary/ng';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RecipesModule } from './recipes/recipes.module';
+import { UserModule } from './user/user.module';
+import { EditorModule, TINYMCE_SCRIPT_SRC  } from '@tinymce/tinymce-angular'
 
 @NgModule({
   declarations: [
@@ -22,8 +24,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    ModulesModule,
     SharedModule,
+
+    RecipesModule,
+    UserModule,
 
     // Cloud Firestore
      provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
@@ -34,10 +38,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
     // Bootstrap
     NgbModule,
-
+    
+    EditorModule
 
   ],
-  providers: [],
+  providers: [
+    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
