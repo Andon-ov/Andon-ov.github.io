@@ -1,5 +1,6 @@
 .carousel {
-    height: 92vh;
+    max-height: 91vh;
+    /* height: 91vh; */
     overflow: hidden;
 }
 
@@ -14,18 +15,19 @@
     top: 0;
     bottom: 0;
     right: 50%;
-    background-color: var(--mainRGBAColor);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(167, 87, 94, 0.6);
     z-index: 9;
+
 }
 
-.carousel-control-prev {
+.carousel-control-prev,
+.carousel-control-next {
     z-index: 9;
 }
 
 .info {
     position: absolute;
-    left: 25%;
+    left: 47%;
     right: 10%;
     top: 40%;
     transform: translate(2%, -27%);
@@ -37,26 +39,29 @@
     padding-bottom: 20px;
     font-weight: 900;
     line-height: 35px;
+    color: var(--backgroundColor);
 }
 
 .subtitle {
     font-style: italic;
+    color: var(--backgroundColor);
 }
 
 .infoBtn {
-    background-color: var(--mainWhiteColor);
+    background-color: var(--backgroundColor);
     padding: 13px 35px;
     font-size: 14px;
     margin-top: 40px;
     display: inline-block;
     font-weight: bold;
     font-family: Roboto, sans-serif;
+    border: 1px solid transparent;
 }
 
 .infoBtn:hover {
     cursor: pointer;
     background-color: transparent;
-    border: 1px solid var(--mainWhiteColor);
+    border: 1px solid var(--backgroundColor);
 }
 
 .infoBtn:hover .infoLink {
@@ -64,5 +69,55 @@
 }
 
 .infoLink {
-    color: var(--darkGrayishGreen);
+    color: var(--textColor);
 }
+
+
+
+@media (max-width: 460px) {
+    .overlay{
+        display: none;
+    }
+}
+
+@media (min-width: 461px) and (max-width: 767px) {
+    .overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background-color: rgba(167, 87, 94, 0.6);
+        z-index: 9;
+    
+    }
+    .info {
+        position: absolute;
+        left: 10%;
+        right: 10%;
+        top: 30%;
+        color: var(--mainWhiteColor);
+        text-align: center;
+    }
+
+    .infoBtn{
+        margin-top: 10px;
+    }
+    .title {
+        font-size: 26px;
+        padding-bottom: 10px;
+        font-weight: 900;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .info {
+        position: absolute;
+        left: 10%;
+        right: 10%;
+        top: 30%;
+        color: var(--mainWhiteColor);
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {}

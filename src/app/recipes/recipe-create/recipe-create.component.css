@@ -2,7 +2,7 @@ form {
     max-width: 600px;
     margin: 0 auto 50px auto;
     padding: 20px;
-    background-color: var(--mainMagnoliaColor);
+    background-color: var(--backgroundColor);
     border: 1px solid var(--borderColor);
     border-radius: 10px;
   }
@@ -49,7 +49,7 @@ form {
   .btn {
     padding: 10px 20px;
     display: block;
-    background-color: var(--mainColor);
+    background-color:  var(--backgroundColor);
     color: var(--mainWhiteColor);
     border: none;
     border-radius: 5px;

@@ -18,10 +18,10 @@ export class RecipeCreateComponent  implements OnInit{
     this.firestore = firestore;
     this.recipeForm = this.fb.group({
       title: ['', [Validators.required]],
-      subtitle: ['', [Validators.required]],
+      subtitle: [''],
 
+      description: ['', [Validators.required]] ,
       is_active: [false],
-      note: [''],
       image: [''],
     });
   }
@@ -42,7 +42,7 @@ export class RecipeCreateComponent  implements OnInit{
       plugins: [
         'advlist autolink lists link image charmap print preview anchor',
         'searchreplace visualblocks code fullscreen',
-        'insertdatetime media table paste code help wordcount ',
+        'insertdatetime media table paste code wordcount ',
       ],
       toolbar:
         'undo redo | formatselect | bold italic backcolor | \

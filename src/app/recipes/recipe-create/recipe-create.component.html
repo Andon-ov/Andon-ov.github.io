@@ -17,7 +17,7 @@
       </div>
 
       <label>
-        Subtitle (required):
+        Subtitle:
         <textarea
           cols="30"
           rows="3"
@@ -27,22 +27,24 @@
         <!-- <input type="text" formControlName="subtitle" required /> -->
       </label>
 
-      <div *ngIf="recipeForm.get('subtitle')?.touched">
-        <div
-          class="errors"
-          *ngIf="recipeForm.get('subtitle')?.errors?.['required']"
-        >
-          Please fill in the subtitle!
-        </div>
-      </div>
+     
 
       <label>
         
-        <span class="hint">Directions</span>
-        <editor class="tiny" formControlName="note" [init]="editorConfig">
+        <span class="hint">Description (required):</span>
+        <editor class="tiny" formControlName="description" [init]="editorConfig">
         </editor>
 
       </label>
+
+      <div *ngIf="recipeForm.get('description')?.touched">
+        <div
+          class="errors"
+          *ngIf="recipeForm.get('description')?.errors?.['required']"
+        >
+          Please fill in the description!
+        </div>
+      </div>
 
       <!-- Image Upload -->
       <app-image-upload (imageUploaded)="addImageToForm($event)" />

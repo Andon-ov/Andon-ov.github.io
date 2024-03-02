@@ -1,5 +1,5 @@
 .footer {
-    background-color: var(--mainColor);
+    background-color:  var(--backgroundColor);
     height: 8vh;
     /* background-color:  var(--mainBlackColor); */
     color: #40513B;

@@ -1,3 +1,48 @@
+
+:root {
+
+  /* Natural Color Palettes */
+  --lightGrayishOrange: rgb(248, 237, 227);
+
+  --lightGrayishGreen: rgb(189, 210, 182);
+  --grayishLimeGreen: rgb(162, 178, 159);
+  --darkGrayishGreen: rgb(121, 135, 119);
+
+
+
+  --mainColor: #EDF1D6;
+  /* --secondColor: ; */
+  /* --backgroundColor: ; */
+
+  --mainWhiteColor: #FFFFFF;
+  --mainBlackColor: #000000;
+  --mainGreenColor: rgba(157, 192, 139, 0.6);
+  --mainRedColor: #aa676c;
+
+  --mainGreyColor: #708090;
+  --mainMagnoliaColor: #F6F4F9;
+  --mainCoralColor: #FFEDCB;
+
+  --mainRGBColor: 157, 192, 139;
+  --alpha: 0.8;
+  --mainRGBAColor: rgba(var(--mainRGBColor), var(--alpha));
+
+  /* --animatedTitleBackground: rgba(0, 192, 163, 0.8); */
+  /* --animatedTitleBackground: rgba(255, 137, 96, 0.8); */
+
+  --borderColor: #A7575E;
+
+  --backgroundColor:#E5E5E5 ;
+  --textColor:#A7575E;
+
+  --titleFont: Georgia, Times, serif;
+
+
+
+
+}
+
+
 /* reset Css */
 /* https://www.joshwcomeau.com/css/custom-css-reset/ */
 
@@ -24,6 +69,7 @@
 html,
 body {
   height: 100%;
+  color: var(--textColor);
 }
 
 /*
@@ -34,6 +80,7 @@ body {
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  background-color: var(--backgroundColor);
 }
 
 /*
@@ -108,51 +155,19 @@ body {
   /* font-size: clamp(0.6rem, 0.734rem + 0.8511vw, 0.9rem); */
 }
 
-:root {
-
-  /* Natural Color Palettes */
-  --lightGrayishOrange: rgb(248, 237, 227);
-
-  --lightGrayishGreen: rgb(189, 210, 182);
-  --grayishLimeGreen: rgb(162, 178, 159);
-  --darkGrayishGreen: rgb(121, 135, 119);
-
-
-
-  --mainColor: #EDF1D6;
-  /* --secondColor: ; */
-  /* --backgroundColor: ; */
-
-  --mainWhiteColor: #FFFFFF;
-  --mainBlackColor: #000000;
-  --mainGreenColor: rgba(157, 192, 139, 0.6);
-  --mainRedColor: #aa676c;
-
-  --mainGreyColor: #708090;
-  --mainMagnoliaColor: #F6F4F9;
-  --mainCoralColor: #FFEDCB;
-
-  --mainRGBColor: 157, 192, 139;
-  --alpha: 0.8;
-  --mainRGBAColor: rgba(var(--mainRGBColor), var(--alpha));
-
-  /* --animatedTitleBackground: rgba(0, 192, 163, 0.8); */
-  /* --animatedTitleBackground: rgba(255, 137, 96, 0.8); */
-
-  --borderColor: #ddd;
-
-  --titleFont: Georgia, Times, serif;
-}
-
 
 
 
 .main-short {
   height: 84vh;
   text-align: center;
+  background-color: var(--backgroundColor);
 }
 
-/* .main-long {} */
+.main-long {
+  background-color: var(--backgroundColor);
+
+}
 
 
 

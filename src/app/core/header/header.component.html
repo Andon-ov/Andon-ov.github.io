@@ -1,6 +1,9 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-dark navbar-expand-lg">
   <div class="container-fluid">
+    <!-- Logo -->
     <a class="navbar-brand" href="#"> The Natural Way</a>
+
+    <!-- Hamburger button -->
     <button
       class="navbar-toggler"
       type="button"
@@ -12,76 +15,75 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul
         class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
-        style="--bs-scroll-height: 200px"
+        style="--bs-scroll-height: 350px"
       >
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li> -->
-        <!-- User Menu -->
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
+          <a class="nav-btn nav-link active" aria-current="page" href="#"
+            >Home</a
           >
-          <i class="fa-solid fa-user"></i>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="/register" >Register</a></li>
-            <li><a class="dropdown-item" routerLink="/login" >Login</a></li>
-
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
         </li>
-
-
-        <!-- <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Link</a>
-        </li> -->
 
         <!-- Recipe Menu -->
 
         <li class="nav-item dropdown">
           <a
-            class="nav-link dropdown-toggle"
+            class="nav-btn nav-link dropdown-toggle"
             href="#"
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-         Recipes
+            Recipes
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="/recipes-list" >Recipes list</a></li>
-            <li><a class="dropdown-item" routerLink="/recipe-create" >Recipe create</a></li>
+            <li>
+              <a class="dropdown-item" routerLink="/recipes-list"
+                >Recipes list</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/recipe-create"
+                >Recipe create</a
+              >
+            </li>
 
             <li><hr class="dropdown-divider" /></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
 
+        <!-- User Menu -->
+        <li class="nav-item dropdown">
+          <a
+            class="nav-btn nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fa-solid fa-user"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" routerLink="/register">Register</a>
+            </li>
+            <li><a class="dropdown-item" routerLink="/login">Login</a></li>
 
-       
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" aria-label="Search" />
+          <!-- placeholder="Search" -->
+          <button class="btn search" type="submit">Search</button>
+        </form>
       </ul>
-      <form class="d-flex" role="search">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button class="btn search" type="submit">Search</button>
-      </form>
     </div>
   </div>
 </nav>

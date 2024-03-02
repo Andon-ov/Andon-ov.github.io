@@ -1,31 +1,60 @@
 .navbar {
-    /* position: absolute;
-    top: 6%;
-    left: 15%;
-    right: 15%;
-    z-index: 1000; */
-    height: 8vh;
+    height: 9vh;
+    background-color: var(--backgroundColor);
+}
 
-    background-color: var(--mainWhiteColor);
-    /* padding: 12px; */
-    /* padding: 5px; */
+.navbar-nav-scroll {
+    position: relative;
+    z-index: 100;
 }
-.container-fluid{
-    max-width: 1440px;
+
+.navbar-expand-lg .navbar-nav .nav-link.nav-btn,
+.btn {
+    border: 1px solid var(--textColor);
+    padding: 5px 20px;
+    background-color: var(--textColor);
+    color: var(--backgroundColor);
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
 }
+
+.navbar-toggler {
+    background-color: var(--textColor);
+    border: 1px solid var(--backgroundColor);
+
+
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.25rem var(--textColor);
+}
+
+.navbar-nav {
+    display: flex;
+    gap: 15px;
+
+    border: 1px solid var(--backgroundColor);
+}
+
+
+.container-fluid {
+    max-width: 1024px;
+    color: var(--textColor);
+}
+
 .navbar-brand {
     font-family: "Dancing Script", cursive;
-    font-weight: 700;
+    font-weight: 900;
     font-size: 32px;
-    color: var(--darkGrayishGreen);
+    color: var(--textColor);
+    /* color: var(--darkGrayishGreen); */
 }
 
-.search {
-    border: 1px solid var(--darkGrayishGreen);
-    border-radius: unset;
-}
-.search:hover{
-    background-color:var(--mainColor) ;
+.btn:hover,
+.navbar-expand-lg .navbar-nav .nav-link.nav-btn:hover {
+    background-color: var(--backgroundColor);
+    color: var(--textColor);
 }
 
 .navbar-nav {
@@ -33,17 +62,30 @@
 }
 
 .form-control {
-    border-color: var(--darkGrayishGreen);
-    border-radius: unset;
+    border: 1px solid var(--backgroundColor);
+    border-radius: 8px;
+
+}
+
+.navbar-nav .dropdown-menu {
+    background-color: var(--backgroundColor);
+
+}
+
+.dropdown-item {
+    color: var(--textColor);
+
 }
 
 
 .form-control:focus {
-    box-shadow: 0 0 0 0.25rem var(--mainGreenColor);
+    border: 1px solid var(--textColor);
+    box-shadow: unset;
+    outline: unset;
 }
 
 .form-control:focus {
-    border-color: var(--mainGreenColor)
+    border-color: var(--textColor)
 }
 
 .btn:active {
@@ -52,11 +94,50 @@
 
 
 /* toggler */
-.navbar-toggler {
-    color: var(--darkGrayishGreen);
+
+.navbar-toggler span.navbar-toggler-icon {
+    color: var(--backgroundColor);
+    background-color: var(--textColor);
 }
 
-.navbar-toggler-icon {
-    color: var(--darkGrayishGreen);
-    ;
+.d-flex {
+    padding: 0 auto;
 }
+
+
+.dropdown-item.active, 
+.dropdown-item:hover, 
+.dropdown-item:focus {
+
+    background-color: var(--textColor);
+    color: var(--backgroundColor);
+}
+
+
+
+@media (max-width: 460px) {
+    .navbar-nav.me-auto.my-2.my-lg-0.navbar-nav-scroll {
+        background-color: var(--backgroundColor);
+        padding: 20px;
+        border-radius: 8px;
+    }
+}
+
+@media (min-width: 461px) and (max-width: 767px) {
+    .navbar-nav.me-auto.my-2.my-lg-0.navbar-nav-scroll {
+        background-color: var(--backgroundColor);
+        padding: 20px;
+        border-radius: 8px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .navbar-nav.me-auto.my-2.my-lg-0.navbar-nav-scroll {
+        background-color: var(--backgroundColor);
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {}
