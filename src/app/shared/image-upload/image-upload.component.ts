@@ -17,8 +17,6 @@ export class ImageUploadComponent {
 
   ngOnInit() {
 
-    console.log('name,',this.cloudName, this.uploadPreset);
-    
     //@ts-ignore
     this.myWidget = cloudinary.createUploadWidget(
       {

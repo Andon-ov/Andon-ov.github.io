@@ -3,7 +3,6 @@ form {
     margin: 0 auto 50px auto;
     padding: 20px;
     background-color: var(--backgroundColor);
-    border: 1px solid var(--borderColor);
     border-radius: 10px;
   }
   
@@ -44,19 +43,7 @@ form {
     border: unset;
   }
   
-  
-  button,
-  .btn {
-    padding: 10px 20px;
-    display: block;
-    background-color:  var(--backgroundColor);
-    color: var(--mainWhiteColor);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-  }
-  
+ 
   button {
     width: 100%;
     margin: 10px 10px 10px 0;
@@ -73,3 +60,5 @@ form {
     margin: 20px 0;
    
   }
+
+ 

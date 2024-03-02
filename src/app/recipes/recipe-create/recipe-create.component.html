@@ -1,6 +1,6 @@
 <main class="main-long">
   <div class="wrapper">
-    <h1 class="title-black">Create recipe</h1>
+    <h2 class="title">Create recipe</h2>
     <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
       <label>
         Title (required):
@@ -53,16 +53,16 @@
         <p class="hint">You added a photo</p>
         <!-- <label for="image">Upload image</label> -->
         <input type="text" id="image" formControlName="image" />
-        <button type="button" (click)="removeImage()">
+        <button type="button"  (click)="removeImage()">
           Remove added photo
         </button>
       </div>
 
       <!-- Image -->
 
-      <button type="submit">Add Recipe</button>
+      <button class="button" type="submit">Add Recipe</button>
 
-      <a class="backBtn" href="javascript:history.back()"
+      <a class="backBtn button" href="javascript:history.back()"
         ><i class="fa-solid fa-backward fa-beat-fade"></i>&nbsp;&nbsp;Back</a
       >
     </form>

@@ -16,11 +16,11 @@ import { RecipesModule } from './recipes/recipes.module';
 import { UserModule } from './user/user.module';
 import { EditorModule,
    TINYMCE_SCRIPT_SRC 
-   } from '@tinymce/tinymce-angular'
+   } from '@tinymce/tinymce-angular';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

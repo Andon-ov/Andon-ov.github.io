@@ -6,10 +6,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { RecipeComponent } from './recipe/recipe.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [RecipesListComponent, RecipeCreateComponent],
-  imports: [CommonModule, ReactiveFormsModule, SharedModule, EditorModule],
+  declarations: [RecipesListComponent, RecipeCreateComponent, RecipeComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    SharedModule,
+    EditorModule,
+    RouterModule,
+  ],
   exports: [RecipesListComponent, RecipeCreateComponent],
 })
 export class RecipesModule {}

@@ -5,6 +5,7 @@ import { LoginComponent } from './user/login/login.component';
 import { CarouselComponent } from './shared/carousel/carousel.component';
 import { RecipesListComponent } from './recipes/recipes-list/recipes-list.component';
 import { RecipeCreateComponent } from './recipes/recipe-create/recipe-create.component';
+import { RecipeComponent } from './recipes/recipe/recipe.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: CarouselComponent },
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: 'recipe-create',
     component: RecipeCreateComponent,
+  },
+  {
+    path: 'recipe/:id',
+    component: RecipeComponent,
   },
 ];
 

@@ -171,4 +171,31 @@ body {
 
 
 
+.button {
+  width: 100%;
+  background-color: var(--textColor);
+  color: var(--backgroundColor);
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 28px;
+  cursor: pointer;
+  font-weight: normal;
+  display:block;
+  border: 1px solid var(--textColor);
+  border-radius: 8px;
+  padding: 10px 14px;
+  box-shadow: unset;
+  text-transform: uppercase;
+}
 
+.button:hover {
+  background-color: var(--backgroundColor);
+  color: var(--textColor);
+  border: 1px solid var(--textColor);
+}
+
+
+.title{
+  text-align: center;
+  margin-top: 50px;
+}

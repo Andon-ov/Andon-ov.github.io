@@ -64,6 +64,7 @@
 .form-control {
     border: 1px solid var(--backgroundColor);
     border-radius: 8px;
+    background-color:#f6f4f9 ;
 
 }
 
