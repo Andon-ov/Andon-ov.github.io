@@ -1,13 +1,55 @@
-<main class="main-short">
+<main class="main-long">
   <div class="wrapper">
     <h1 class="title-black">Create recipe</h1>
     <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+      <label>
+        Title (required):
+        <input type="text" formControlName="title" required />
+      </label>
+
+      <div *ngIf="recipeForm.get('title')?.touched">
+        <div
+          class="errors"
+          *ngIf="recipeForm.get('title')?.errors?.['required']"
+        >
+          Please fill in the title!
+        </div>
+      </div>
+
+      <label>
+        Subtitle (required):
+        <textarea
+          cols="30"
+          rows="3"
+          formControlName="subtitle"
+          required
+        ></textarea>
+        <!-- <input type="text" formControlName="subtitle" required /> -->
+      </label>
+
+      <div *ngIf="recipeForm.get('subtitle')?.touched">
+        <div
+          class="errors"
+          *ngIf="recipeForm.get('subtitle')?.errors?.['required']"
+        >
+          Please fill in the subtitle!
+        </div>
+      </div>
+
+      <label>
+        
+        <span class="hint">Directions</span>
+        <editor class="tiny" formControlName="note" [init]="editorConfig">
+        </editor>
+
+      </label>
+
       <!-- Image Upload -->
       <app-image-upload (imageUploaded)="addImageToForm($event)" />
 
       <div *ngIf="recipeForm.get('image')?.value !== ''">
         <p class="hint">You added a photo</p>
-        <!-- <label for="image">Добавена снимка</label> -->
+        <!-- <label for="image">Upload image</label> -->
         <input type="text" id="image" formControlName="image" />
         <button type="button" (click)="removeImage()">
           Remove added photo
@@ -15,27 +57,6 @@
       </div>
 
       <!-- Image -->
-
-      <label>
-        Title (required):
-        <input type="text" formControlName="name" required />
-      </label>
-
-      <div *ngIf="recipeForm.get('name')?.touched">
-        <div
-          class="errors"
-          *ngIf="recipeForm.get('name')?.errors?.['required']"
-        >
-          Please fill in the title!
-        </div>
-      </div>
-
-      <label>
-        <span class="hint">Directions</span>
-        <editor formControlName="note" [init]="editorConfig"></editor>
-        <!-- <textarea formControlName="note">
-        </textarea> -->
-      </label>
 
       <button type="submit">Add Recipe</button>
 

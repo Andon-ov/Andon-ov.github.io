@@ -1,47 +1,63 @@
-import { Component } from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 
-
 @Component({
   selector: 'app-recipe-create',
   templateUrl: './recipe-create.component.html',
-  styleUrls: ['./recipe-create.component.css']
+  styleUrls: ['./recipe-create.component.css'],
 })
+export class RecipeCreateComponent  implements OnInit{
+  editorConfig ={}
 
-
-export class RecipeCreateComponent {
-
-  editorConfig = {
-    base_url: '/tinymce',
-    suffix: '.min',
-    plugins: 'lists link image table wordcount'
-};
-  
-  recipeForm:FormGroup;
+  recipeForm: FormGroup;
   firestore: Firestore;
 
-  constructor(
-    private fb: FormBuilder,
-    firestore: Firestore,
-  ) {
+  constructor(private fb: FormBuilder, firestore: Firestore) {
     this.firestore = firestore;
     this.recipeForm = this.fb.group({
-      name: ['', [Validators.required]],
+      title: ['', [Validators.required]],
+      subtitle: ['', [Validators.required]],
+
       is_active: [false],
       note: [''],
       image: [''],
     });
   }
+  ngOnInit(): void {
+   
+    this.editorConfig = {
 
-  onSubmit(){
+      // skin: 'oxide-dark',
+      content_style:
+        'body { background-color: #f6f4f9; }' +
+        '.tox .tox-toolbar__primary { background-color: red!important; }',
+      content_css: 'default',
+  
+      base_url: '/tinymce',
+      suffix: '.min',
+      menubar: false,
+      height: 300,
+      plugins: [
+        'advlist autolink lists link image charmap print preview anchor',
+        'searchreplace visualblocks code fullscreen',
+        'insertdatetime media table paste code help wordcount ',
+      ],
+      toolbar:
+        'undo redo | formatselect | bold italic backcolor | \
+          alignleft aligncenter alignright alignjustify | \
+          bullist numlist outdent indent | removeformat | help',
+    };
+
+  }
+
+  onSubmit() {
     const recipeData = this.recipeForm.value;
     this.addRecipe(recipeData);
     this.recipeForm.reset();
   }
-
-
+  
 
   removeImage() {
     const imageControl = this.recipeForm.get('image');
@@ -57,8 +73,6 @@ export class RecipeCreateComponent {
     return this.recipeForm.get('image');
   }
 
-
-
   addRecipe(recipeData: any) {
     const collectionName = 'Recipe';
 
@@ -70,6 +84,4 @@ export class RecipeCreateComponent {
         console.error('Error adding document: ', error);
       });
   }
-
-
 }

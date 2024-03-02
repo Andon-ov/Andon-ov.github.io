@@ -14,7 +14,9 @@ import { CloudinaryModule } from '@cloudinary/ng';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecipesModule } from './recipes/recipes.module';
 import { UserModule } from './user/user.module';
-import { EditorModule, TINYMCE_SCRIPT_SRC  } from '@tinymce/tinymce-angular'
+import { EditorModule,
+   TINYMCE_SCRIPT_SRC 
+   } from '@tinymce/tinymce-angular'
 
 @NgModule({
   declarations: [
@@ -38,11 +40,13 @@ import { EditorModule, TINYMCE_SCRIPT_SRC  } from '@tinymce/tinymce-angular'
 
     // Bootstrap
     NgbModule,
-    
+
+    // Tiny MCE
     EditorModule
 
   ],
   providers: [
+     // Tiny MCE
     { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
   ],
   bootstrap: [AppComponent]

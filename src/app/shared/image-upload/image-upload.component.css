@@ -1,0 +1,17 @@
+.cloudinary-button {
+    width: 100%;
+    background-color: var(--mainColor);
+    color: var(--mainWhiteColor);
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 28px;
+    cursor: pointer;
+    font-weight: normal;
+    display:block;
+    border-radius: 4px;
+    padding: 10px 14px;
+}
+
+.cloudinary-button:hover {
+    background-color: var(--secondColor);
+}
