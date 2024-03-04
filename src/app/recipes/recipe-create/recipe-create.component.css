@@ -1,64 +1,46 @@
 form {
-    max-width: 600px;
-    margin: 0 auto 50px auto;
-    padding: 20px;
-    background-color: var(--backgroundColor);
-    border-radius: 10px;
-  }
-  
-  label {
-    display: block;
-    margin-top: 10px;
-  }
-  
-  input[type="text"],
-  input[type="number"],
-  input[type="password"],
-  input[type="email"],
-  
-  select,
-  textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: unset;
-    border-bottom: 1px solid var(--mainColor);
-    border-color: var(--mainColor);
-    background: var(--mainMagnoliaColor);
-  }
-  
-  textarea {
-    white-space: pre-wrap;
-  }
-  
-  
-  
-  input[type="text"]:focus-visible,
-  input[type="number"]:focus-visible,
-  
-  select:focus-visible,
-  textarea:focus-visible
-  {
-    outline: 1px solid var(--secondColor);
-    border: unset;
-  }
-  
- 
-  button {
-    width: 100%;
-    margin: 10px 10px 10px 0;
-  
-  }
-  
-  button:hover,
-  .btn:hover {
-    background-color: var(--secondColor);
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
-  }
-  
-  .tiny {
-    margin: 20px 0;
-   
-  }
+  max-width: 600px;
+  margin: 0 auto 50px auto;
+  padding: 20px;
+  background-color: var(--backgroundColor);
+  border-radius: 10px;
+}
 
- 
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"],
+
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: unset;
+  border-bottom: 1px solid var(--mainColor);
+  border-color: var(--mainColor);
+  background: var(--mainMagnoliaColor);
+}
+
+textarea {
+  white-space: pre-wrap;
+}
+
+input[type="text"]:focus-visible,
+input[type="number"]:focus-visible,
+
+select:focus-visible,
+textarea:focus-visible {
+  outline: 1px solid var(--secondColor);
+  border: unset;
+}
+
+
+.tiny {
+  margin: 20px 0;
+}

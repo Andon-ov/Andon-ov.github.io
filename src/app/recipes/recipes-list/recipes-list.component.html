@@ -5,14 +5,14 @@
       <section class="wrapper">
         <ul class="cards" *ngFor="let recipe of recipes">
           <!-- card -->
-  
+
           <li class="card-item">
             <a [routerLink]="['/recipe/', recipe.id]">
               <div class="card" tabindex="0">
                 <div class="card-image">
                   <img [src]="recipe.image" alt="recipe.title" />
                 </div>
-  
+
                 <h3 class="card-title">{{ recipe.title }}</h3>
               </div>
             </a>

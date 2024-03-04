@@ -8,40 +8,25 @@
       </label>
 
       <div *ngIf="recipeForm.get('title')?.touched">
-        <div
-          class="errors"
-          *ngIf="recipeForm.get('title')?.errors?.['required']"
-        >
+        <div class="errors" *ngIf="recipeForm.get('title')?.errors?.['required']">
           Please fill in the title!
         </div>
       </div>
 
       <label>
         Subtitle:
-        <textarea
-          cols="30"
-          rows="3"
-          formControlName="subtitle"
-          required
-        ></textarea>
+        <textarea cols="30" rows="3" formControlName="subtitle" required></textarea>
         <!-- <input type="text" formControlName="subtitle" required /> -->
       </label>
 
-     
-
       <label>
-        
         <span class="hint">Description (required):</span>
         <editor class="tiny" formControlName="description" [init]="editorConfig">
         </editor>
 
       </label>
-
       <div *ngIf="recipeForm.get('description')?.touched">
-        <div
-          class="errors"
-          *ngIf="recipeForm.get('description')?.errors?.['required']"
-        >
+        <div class="errors" *ngIf="recipeForm.get('description')?.errors?.['required']">
           Please fill in the description!
         </div>
       </div>
@@ -53,18 +38,16 @@
         <p class="hint">You added a photo</p>
         <!-- <label for="image">Upload image</label> -->
         <input type="text" id="image" formControlName="image" />
-        <button type="button"  (click)="removeImage()">
+        <button type="button" (click)="removeImage()">
           Remove added photo
         </button>
       </div>
 
       <!-- Image -->
-
       <button class="button" type="submit">Add Recipe</button>
 
-      <a class="backBtn button" href="javascript:history.back()"
-        ><i class="fa-solid fa-backward fa-beat-fade"></i>&nbsp;&nbsp;Back</a
-      >
+      <a class="backBtn button" href="javascript:history.back()"><i
+          class="fa-solid fa-backward fa-beat-fade"></i>&nbsp;&nbsp;Back</a>
     </form>
   </div>
 </main>

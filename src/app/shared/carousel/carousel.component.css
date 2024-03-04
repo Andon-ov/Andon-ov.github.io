@@ -1,129 +1,126 @@
 .carousel {
-    max-height: 91vh;
-    /* height: 91vh; */
-    overflow: hidden;
+  max-height: 92vh;
+  overflow: hidden;
 }
 
-.carousel-caption {
-    bottom: unset;
-    top: 10%;
-}
-
-.overlay {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 50%;
-    background-color: rgba(167, 87, 94, 0.6);
-    z-index: 9;
-
-}
-
-.carousel-img{
-    height: 100vh;
-    object-fit: cover;
-
+.carousel-img {
+  height: 100vh;
+  object-fit: cover;
 }
 
 .carousel-control-prev,
 .carousel-control-next {
-    z-index: 9;
+  z-index: 9;
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 50%;
+  background-color: rgba(167, 87, 94, 0.6);
+  z-index: 9;
 }
 
 .info {
-    position: absolute;
-    left: 47%;
-    right: 10%;
-    top: 40%;
-    transform: translate(2%, -27%);
-    color: var(--mainWhiteColor);
+  position: absolute;
+  left: 47%;
+  right: 10%;
+  top: 40%;
+  transform: translate(2%, -27%);
+  color: var(--mainWhiteColor);
 }
 
 .title {
-    font-size: 32px;
-    padding-bottom: 20px;
-    font-weight: 900;
-    line-height: 35px;
-    color: var(--backgroundColor);
+  font-size: 32px;
+  padding-bottom: 20px;
+  font-weight: 900;
+  line-height: 35px;
+  color: var(--backgroundColor);
 }
 
 .subtitle {
-    font-style: italic;
-    color: var(--backgroundColor);
+  font-style: italic;
+  color: var(--backgroundColor);
 }
 
 .infoBtn {
-    background-color: var(--backgroundColor);
-    padding: 13px 35px;
-    font-size: 14px;
-    margin-top: 40px;
-    display: inline-block;
-    font-weight: bold;
-    font-family: Roboto, sans-serif;
-    border: 1px solid transparent;
+  background-color: var(--backgroundColor);
+  padding: 13px 35px;
+  font-size: 14px;
+  margin-top: 40px;
+  display: inline-block;
+  font-weight: bold;
+  font-family: Roboto, sans-serif;
+  border: 1px solid transparent;
 }
 
 .infoBtn:hover {
-    cursor: pointer;
-    background-color: transparent;
-    border: 1px solid var(--backgroundColor);
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid var(--backgroundColor);
 }
 
 .infoBtn:hover .infoLink {
-    color: var(--mainWhiteColor);
+  color: var(--mainWhiteColor);
 }
 
 .infoLink {
-    color: var(--textColor);
+  color: var(--textColor);
 }
 
-
+/* .carousel-caption {
+    bottom: unset;
+    top: 10%;
+} */
 
 @media (max-width: 460px) {
-    .overlay{
-        display: none;
-    }
+  .overlay {
+    display: none;
+  }
 }
 
 @media (min-width: 461px) and (max-width: 767px) {
-    .overlay {
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        background-color: rgba(167, 87, 94, 0.6);
-        z-index: 9;
-    
-    }
-    .info {
-        position: absolute;
-        left: 10%;
-        right: 10%;
-        top: 30%;
-        color: var(--mainWhiteColor);
-        text-align: center;
-    }
+  .overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(167, 87, 94, 0.6);
+    z-index: 9;
+  }
 
-    .infoBtn{
-        margin-top: 10px;
-    }
-    .title {
-        font-size: 26px;
-        padding-bottom: 10px;
-        font-weight: 900;
-    }
+  .info {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    top: 30%;
+    color: var(--mainWhiteColor);
+    text-align: center;
+  }
+
+  .infoBtn {
+    margin-top: 10px;
+  }
+
+  .title {
+    font-size: 26px;
+    padding-bottom: 10px;
+    font-weight: 900;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-    .info {
-        position: absolute;
-        left: 10%;
-        right: 10%;
-        top: 30%;
-        color: var(--mainWhiteColor);
-    }
+  .info {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    top: 30%;
+    color: var(--mainWhiteColor);
+  }
 }
 
-@media (min-width: 1024px) and (max-width: 1440px) {}
+@media (min-width: 1024px) and (max-width: 1440px) {
+}
