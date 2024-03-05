@@ -47,6 +47,7 @@
 
 .infoBtn {
   background-color: var(--backgroundColor);
+  color: var(--textColor);
   padding: 13px 35px;
   font-size: 14px;
   margin-top: 40px;
@@ -60,14 +61,7 @@
   cursor: pointer;
   background-color: transparent;
   border: 1px solid var(--backgroundColor);
-}
-
-.infoBtn:hover .infoLink {
   color: var(--mainWhiteColor);
-}
-
-.infoLink {
-  color: var(--textColor);
 }
 
 /* .carousel-caption {

@@ -9,8 +9,11 @@
           <li class="card-item">
             <a [routerLink]="['/recipe/', recipe.id]">
               <div class="card" tabindex="0">
-                <div class="card-image">
-                  <img [src]="recipe.image" alt="recipe.title" />
+                <div  class="card-image">
+                  <img
+                    [src]="recipe!.image_recipe[0]!.image_recipe"
+                    alt="recipe.title"
+                  />
                 </div>
 
                 <h3 class="card-title">{{ recipe.title }}</h3>

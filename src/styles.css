@@ -1,12 +1,12 @@
 :root {
-  --mainColor: #edf1d6;
+  --mainColor: ;
   /* --secondColor: ; */
   /* --backgroundColor: ; */
 
   --mainWhiteColor: #ffffff;
   --mainBlackColor: #000000;
-  --mainGreenColor: rgba(157, 192, 139, 0.6);
-  --mainRedColor: #aa676c;
+  --mainGreenColor: #214842;
+  --mainRedColor: ;
 
   --mainGreyColor: #708090;
   --mainMagnoliaColor: #f6f4f9;
@@ -19,10 +19,9 @@
   /* --animatedTitleBackground: rgba(0, 192, 163, 0.8); */
   /* --animatedTitleBackground: rgba(255, 137, 96, 0.8); */
 
-  --borderColor: #a7575e;
-
   --backgroundColor: #e5e5e5;
   --textColor: #a7575e;
+  --mainColor: #bd6b6f;
 
   --titleFont: Georgia, Times, serif;
 }
@@ -139,6 +138,47 @@ body {
 }
 
 /* global style */
+form {
+  max-width: 600px;
+  margin: 0 auto 50px auto;
+  padding: 20px;
+  background-color: var(--backgroundColor);
+  border-radius: 10px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: unset;
+  border-bottom: 1px solid var(--mainColor);
+  border-color: var(--mainColor);
+  background: var(--mainMagnoliaColor);
+}
+
+textarea {
+  white-space: pre-wrap;
+}
+
+input[type="text"]:focus-visible,
+input[type="number"]:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 1px solid var(--secondColor);
+  border: unset;
+}
+
+
 
 /* main */
 
@@ -152,16 +192,13 @@ body {
   background-color: var(--backgroundColor);
 }
 
-
 /* button */
 .button {
   align-items: center;
   appearance: none;
-  background-image: radial-gradient(
-    100% 100% at 100% 0,
-    var(--backgroundColor) 0,
-    var(--textColor) 100%
-  );
+  background-image: radial-gradient(100% 100% at 100% 0,
+      var(--backgroundColor) 0,
+      var(--textColor) 100%);
   border: 0;
   border-radius: 6px;
   box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
@@ -207,9 +244,158 @@ body {
   transform: translateY(2px);
 }
 
+/* back button */
+.back-button {
+  display: block;
+  position: relative;
+  width: 56px;
+  height: 56px;
+  margin: 0;
+  overflow: hidden;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  border: 0;
+}
+
+.back-button:before,
+.back-button:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  inset: 7px;
+}
+
+.back-button:before {
+  border: 4px solid var(--textColor);
+  transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+    transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+}
+
+.back-button:after {
+  border: 4px solid var(--textColor);
+  transform: scale(1.3);
+  transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0;
+}
+
+.back-button:hover:before,
+.back-button:focus:before {
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.back-button:hover:after,
+.back-button:focus:after {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+    transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+}
+
+.button-box {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.button-elem {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 17px 18px 0 18px;
+  transform: rotate(180deg);
+  fill: var(--textColor);
+}
+
+.back-button:hover .button-box,
+.back-button:focus .button-box {
+  transition: 0.4s;
+  transform: translateX(-56px);
+}
+
+
+/* btn image */
+
+
+.button-img {
+  --b: 3px;
+  /* border thickness */
+  --s: .45em;
+  /* size of the corner */
+
+
+  margin-bottom: 20px;
+  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+  color: var(--textColor);
+  --_p: var(--s);
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--textColor) 0) var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+  transition: .3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: .6em;
+  font-size: 16px;
+
+  border: 0;
+
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-img:hover,
+.button-img:focus-visible {
+  --_p: 0px;
+  outline-color: var(--textColor);
+  outline-offset: .05em;
+}
+
+.button-img:active {
+  background: var(--textColor);
+  color: #fff;
+}
+
 /* title */
 .title {
   text-align: center;
   margin-top: 50px;
 }
 
+
+/* form */
+
+.hint {
+  font-size: 12px;
+  font-style: italic;
+  color: var(--mainGreenColor);
+  display: block;
+}
+
+.errors {
+  font-style: italic;
+  color: red;
+  font-size: 12px;
+}
+
+
+
+.divider {
+  width: 100%;
+  padding: 20px 30px 0 30px;
+  display: flex;
+  /* align-items: center; */
+  font-style: italic;
+  color: var(--textColor);
+  font-weight: 800;
+
+}
+
+hr {
+  width: 100%;
+  height: 0;
+  margin-bottom: 5px;
+}

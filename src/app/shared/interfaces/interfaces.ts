@@ -1,22 +1,45 @@
-import {
-  DocumentData,
-  DocumentReference,
-  Timestamp,
-} from '@angular/fire/firestore';
-
 export interface Recipe {
   id: string;
-  image: string;
   is_active: boolean;
-  description: string;
+
+  summary: string;
+  like: number,
+  author: string,
   title: string;
   subtitle?: string;
+  description: string;
+
+  preparation_method: PreparationMethodItem[];
+  image_recipe: ImageRecipeItem[];
+  video_recipe: VideoRecipeItem[];
+  ingredients: Ingredient[];
 }
+
+
+export interface ImageRecipeItem {
+  image_recipe: string;
+}
+
+export interface VideoRecipeItem {
+  video_recipe: string;
+}
+
+export interface PreparationMethodItem {
+  preparation_method: string;
+}
+
+export interface Ingredient {
+  name: string;
+  amount: number;
+  unit: string;
+  order_index: number;
+}
+
 
 /*
 created at
 edit at
-like 
+like
 comment
 
 image can be a array of images
@@ -24,7 +47,7 @@ image can be a array of images
 
 video link
 
-fork description to 
+fork description to
 
   Necessary products
     like a ingredients
@@ -32,7 +55,7 @@ fork description to
   Method of preparation
 
 
-*/ 
+*/
 
 
 /*
@@ -52,20 +75,20 @@ change password
 remove favorite recipe
 edit and delete my recipe
 
-comments 
+comments
   edit / delete comments
 
 
 favorite recipe
 my recipe
 
-*/ 
+*/
 
 
 /*
-search 
- can searching in title and ingredient name 
+search
+ can searching in title and ingredient name
 
 
  can add drop menu with search when push the button search
-*/ 
+*/

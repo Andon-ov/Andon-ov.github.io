@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 import { Recipe } from 'src/app/shared/interfaces/interfaces';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-create',
@@ -15,22 +16,44 @@ export class RecipeCreateComponent implements OnInit {
   recipeForm: FormGroup;
   firestore: Firestore;
 
-  constructor(private fb: FormBuilder, firestore: Firestore) {
-    this.firestore = firestore;
-    this.recipeForm = this.fb.group({
-      title: ['', [Validators.required]],
-      subtitle: [''],
+  currentOrderIndex = 1;
 
-      description: ['', [Validators.required]],
+  constructor(
+    firestore: Firestore,
+    private fb: FormBuilder,
+    private router: Router
+  ) {
+    this.firestore = firestore;
+
+    this.recipeForm = this.fb.group({
       is_active: [false],
-      image: [''],
+
+      title: ['', [Validators.required]],
+      subtitle: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      summary: [''],
+      like: [0],
+      author: [''],
+
+      image_recipe: this.fb.array([]),
+      video_recipe: this.fb.array([]),
+      preparation_method: this.fb.array([]),
+
+      ingredients: this.fb.array([
+        this.fb.group({
+          name: ['', [Validators.required]],
+          amount: [null, [Validators.required]],
+          unit: ['', [Validators.required]],
+          order_index: [0],
+        }),
+      ]),
     });
   }
+
   ngOnInit(): void {
     this.editorConfig = {
       // skin: 'oxide-dark',
-      content_style:
-        'body { background-color: #f6f4f9; }',
+      content_style: 'body { background-color: #f6f4f9; }',
       content_css: 'default',
 
       base_url: '/tinymce',
@@ -49,28 +72,98 @@ export class RecipeCreateComponent implements OnInit {
     };
   }
 
-  onSubmit() {
-    if (this.recipeForm.valid) {
-      const recipeData = this.recipeForm.value;
-      this.addRecipe(recipeData);
-      this.recipeForm.reset();
-    } else {
-      alert('form is invalid');
-    }
-  }
-
-  removeImage() {
-    const imageControl = this.recipeForm.get('image');
-    imageControl?.setValue('');
-  }
-
   addImageToForm(imageUrl: string) {
-    const imageControl = this.recipeForm.get('image');
-    imageControl?.setValue(imageUrl);
+    const imageArray = this.recipeForm.get('image_recipe') as FormArray;
+    imageArray.push(
+      this.fb.group({
+        image_recipe: imageUrl,
+      })
+    );
   }
 
-  get image() {
-    return this.recipeForm.get('image');
+  removeImage(index: number) {
+    const imageArray = this.recipeForm.get('image_recipe') as FormArray;
+    imageArray.removeAt(index);
+  }
+
+  addVideo() {
+    const videoArray = this.recipeForm.get('video_recipe') as FormArray;
+    videoArray.push(
+      this.fb.group({
+        video_recipe: '',
+      })
+    );
+  }
+
+  removeVideo(index: number) {
+    const videoArray = this.recipeForm.get('video_recipe') as FormArray;
+    videoArray.removeAt(index);
+  }
+
+  addPreparation() {
+    const preparationArray = this.recipeForm.get(
+      'preparation_method'
+    ) as FormArray;
+    preparationArray.push(
+      this.fb.group({
+        preparation_method: '',
+      })
+    );
+  }
+
+  removePreparation(index: number) {
+    const preparationArray = this.recipeForm.get(
+      'preparation_method'
+    ) as FormArray;
+    preparationArray.removeAt(index);
+  }
+
+  addIngredient() {
+    const ingredientsArray = this.recipeForm.get('ingredients') as FormArray;
+    ingredientsArray.push(
+      this.fb.group({
+        name: ['', [Validators.required]],
+        amount: [null, [Validators.required]],
+        unit: ['', [Validators.required]],
+        order_index: this.currentOrderIndex,
+      })
+    );
+    this.currentOrderIndex++;
+    console.log(this.currentOrderIndex);
+  }
+
+  removeIngredient(index: number) {
+    const ingredients = this.recipeForm.get('ingredients') as FormArray;
+    ingredients.removeAt(index);
+  }
+
+  get ingredients() {
+    return this.recipeForm.get('ingredients') as FormArray;
+  }
+
+  get image_recipe() {
+    return this.recipeForm.get('image_recipe') as FormArray;
+  }
+
+  get video_recipe() {
+    return this.recipeForm.get('video_recipe') as FormArray;
+  }
+
+  get preparation_method() {
+    return this.recipeForm.get('preparation_method') as FormArray;
+  }
+
+  onSubmit() {
+    if (this.recipeForm.invalid) {
+      alert(
+        'The form is not valid. Please fill in all required fields.'
+      );
+      return;
+    }
+
+    const recipeData = this.recipeForm.value;
+    this.addRecipe(recipeData);
+    this.recipeForm.reset();
   }
 
   addRecipe(recipeData: Recipe) {
@@ -79,6 +172,7 @@ export class RecipeCreateComponent implements OnInit {
     addDoc(collection(this.firestore, collectionName), recipeData)
       .then((docRef) => {
         console.log('Document written with ID: ', docRef.id);
+        this.router.navigate(['/recipe', docRef.id]);
       })
       .catch((error) => {
         console.error('Error adding document: ', error);
