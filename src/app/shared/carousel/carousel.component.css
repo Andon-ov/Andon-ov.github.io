@@ -30,6 +30,7 @@
   top: 40%;
   transform: translate(2%, -27%);
   color: var(--mainWhiteColor);
+  text-align: left;
 }
 
 .title {
@@ -71,7 +72,34 @@
 
 @media (max-width: 460px) {
   .overlay {
-    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(167, 87, 94, 0.6);
+    z-index: 9;
+  }
+
+  .info {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    top: 30%;
+    color: var(--mainWhiteColor);
+    text-align: center;
+  }
+
+  .infoBtn {
+    margin-top: 10px;
+
+  }
+
+  .title {
+    font-size: 26px;
+    padding-bottom: 10px;
+    font-weight: 900;
+    text-align: center;
   }
 }
 
@@ -116,5 +144,7 @@
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1440px) {
-}
+
+@media (min-width: 1024px) and (max-width: 1440px) {}
+
+@media (min-width: 1441) {}

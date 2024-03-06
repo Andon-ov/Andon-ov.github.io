@@ -1,12 +1,12 @@
 :root {
-  --mainColor: ;
+  /* --mainColor: ; */
   /* --secondColor: ; */
   /* --backgroundColor: ; */
 
   --mainWhiteColor: #ffffff;
   --mainBlackColor: #000000;
-  --mainGreenColor: #214842;
-  --mainRedColor: ;
+  --mainGreenColor: #009491;
+  --mainRedColor: #D84B84;
 
   --mainGreyColor: #708090;
   --mainMagnoliaColor: #f6f4f9;
@@ -22,6 +22,7 @@
   --backgroundColor: #e5e5e5;
   --textColor: #a7575e;
   --mainColor: #bd6b6f;
+  --secondColor:#BFA5A6;
 
   --titleFont: Georgia, Times, serif;
 }
@@ -140,10 +141,9 @@ body {
 /* global style */
 form {
   max-width: 600px;
-  margin: 0 auto 50px auto;
-  padding: 20px;
   background-color: var(--backgroundColor);
   border-radius: 10px;
+  margin: 0 auto;
 }
 
 label {
@@ -197,7 +197,7 @@ textarea:focus-visible {
   align-items: center;
   appearance: none;
   background-image: radial-gradient(100% 100% at 100% 0,
-      var(--backgroundColor) 0,
+      var(--secondColor) 0,
       var(--textColor) 100%);
   border: 0;
   border-radius: 6px;
@@ -224,7 +224,10 @@ textarea:focus-visible {
 /* selected button*/
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link.show {
-  color: black;
+  color:var(--textColor);
+  background-image: radial-gradient(100% 100% at 100% 0,
+  var(--textColor) 0,
+  var(--backgroundColor) 100%);
 }
 
 .button:focus {
@@ -398,4 +401,5 @@ hr {
   width: 100%;
   height: 0;
   margin-bottom: 5px;
+  background-color: var(--textColor);
 }

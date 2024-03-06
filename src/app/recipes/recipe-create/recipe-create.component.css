@@ -19,7 +19,7 @@
 
 .addIngredient {
   all: unset;
-  color: green;
+  color: var(--mainGreenColor);
   cursor: pointer;
   margin: 0 0 20px 30px;
 }
@@ -28,4 +28,12 @@
   background-color: unset;
   color: var(--mainRedColor);
   box-shadow: unset;
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto 50px auto;
+  padding: 20px;
+  background-color: var(--backgroundColor);
+  border-radius: 10px;
 }

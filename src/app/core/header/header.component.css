@@ -34,7 +34,7 @@ ul.navbar-nav {
   z-index: 100;
 
   display: flex;
-  gap: 15px;
+  gap: 18px;
   border: 1px solid var(--backgroundColor);
   width: 100%;
   justify-content: flex-end;
@@ -46,7 +46,8 @@ a.nav-btn.nav-link.dropdown-toggle.button {
 
 ul.navbar-nav ul.dropdown-menu {
   background-color: var(--backgroundColor);
-  border: unset;
+  border: 1px solid var(--textColor);
+  margin-top: 18px;
 }
 
 a.dropdown-item {
@@ -86,6 +87,16 @@ form.d-flex {
     padding: 20px;
     border-radius: 8px;
   }
+
+  .navbar-nav .dropdown-menu.search {
+    border: unset;
+    width: 100%;
+  }
+
+  form.d-flex {
+    flex-direction: column;
+    gap: 15px;
+  }
 }
 
 @media (min-width: 461px) and (max-width: 767px) {
@@ -94,6 +105,17 @@ form.d-flex {
     padding: 20px;
     border-radius: 8px;
   }
+
+  .navbar-nav .dropdown-menu.search {
+    border: unset;
+    width: 100%;
+
+  }
+
+  .dropdown-menu.search.show form {
+    max-width: unset;
+  }
+
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -102,6 +124,14 @@ form.d-flex {
     padding: 20px;
     border-radius: 8px;
   }
+
+  .navbar-nav .dropdown-menu.search {
+    border: unset;
+  }
+
+  .dropdown-menu.search.show form {
+    max-width: unset;
+  }
 }
 
 @media (min-width: 1024px) and (max-width: 1440px) {
@@ -109,9 +139,10 @@ form.d-flex {
     left: unset;
     /* left: 0; */
     right: 0;
-    width: 500px;
+    width: 1000px;
     padding: 10px;
     margin-top: 30px;
+    border: unset;
   }
 }
 
@@ -120,8 +151,9 @@ form.d-flex {
     left: unset;
     /* left: 0; */
     right: 0;
-    width: 500px;
+    width: 1000px;
     padding: 10px;
     margin-top: 30px;
+    border: unset;
   }
 }
