@@ -4,32 +4,45 @@
     <a class="navbar-brand" href="#"> The Natural Way</a>
 
     <!-- Hamburger button -->
-    <button class="navbar-toggler button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
-      aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler button"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarScroll"
+      aria-controls="navbarScroll"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarScroll">
-      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 350px">
-        <!-- <li class="nav-item">
-          <a class="nav-btn nav-link active button" aria-current="page" href="#"
-            >Home</a
-          >
-        </li> -->
-
+      <ul
+        class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
+        style="--bs-scroll-height: 350px"
+      >
         <!-- Recipe Menu -->
 
         <li class="nav-item dropdown">
-          <a class="nav-btn nav-link dropdown-toggle button" href="#" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
+          <a
+            class="nav-btn nav-link dropdown-toggle button"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
             Recipes
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item" href="#" routerLink="/recipes-list">Recipes list</a>
+              <a class="dropdown-item" href="#" routerLink="/recipes-list"
+                >Recipes list</a
+              >
             </li>
             <li>
-              <a class="dropdown-item" routerLink="/recipe-create">Recipe create</a>
+              <a class="dropdown-item" routerLink="/recipe-create"
+                >Recipe create</a
+              >
             </li>
 
             <li>
@@ -40,11 +53,17 @@
         </li>
 
         <!-- User Menu -->
-        <li class="nav-item dropdown">
-          <a class="nav-btn nav-link dropdown-toggle button" href="#" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
+        <li class="nav-item dropdown" *ngIf="!userData">
+          <a
+            class="nav-btn nav-link dropdown-toggle button"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
             <i class="fa-solid fa-user"></i>
           </a>
+
           <ul class="dropdown-menu">
             <li>
               <a class="dropdown-item" routerLink="/register">Register</a>
@@ -58,15 +77,50 @@
           </ul>
         </li>
 
+        <li class="nav-item dropdown" *ngIf="userData">
+          <a
+            class="nav-btn nav-link dropdown-toggle button"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <span>{{ getUserDisplayName() }}</span>
+          </a>
+
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" (click)="logout()">Logout</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/dashboard">Dashboard</a>
+            </li>
+
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+
         <!-- Search Menu -->
         <li class="nav-item dropdown">
-          <a class="nav-btn nav-link dropdown-toggle button" href="#" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
+          <a
+            class="nav-btn nav-link dropdown-toggle button"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
             <i class="fa-solid fa-magnifying-glass"></i>
           </a>
           <ul class="dropdown-menu search">
             <form class="d-flex w-100" role="search">
-              <input class="form-control me-2" type="search" aria-label="Search" />
+              <input
+                class="form-control me-2"
+                type="search"
+                aria-label="Search"
+              />
               <!-- placeholder="Search" -->
               <button class="search button" type="submit">Search</button>
             </form>

@@ -69,7 +69,7 @@ export class UserService {
     try {
       await this.signOutAuth();
       await this.clearUserData();
-      this.router.navigate(['sign-in']);
+      this.router.navigate(['login']);
     } catch (error) {
       this.handleError(error);
     }
@@ -79,7 +79,7 @@ export class UserService {
     try {
       await this.sendPasswordResetEmail(passwordResetEmail);
       window.alert('Password reset email sent, check your inbox.');
-      this.router.navigate(['sign-in']);
+      this.router.navigate(['login']);
     } catch (error) {
       this.handleError(error);
       window.alert(error);

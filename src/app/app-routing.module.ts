@@ -7,6 +7,7 @@ import { CarouselComponent } from './shared/carousel/carousel.component';
 import { RecipesListComponent } from './recipes/recipes-list/recipes-list.component';
 import { RecipeCreateComponent } from './recipes/recipe-create/recipe-create.component';
 import { RecipeComponent } from './recipes/recipe/recipe.component';
+import { DashboardComponent } from './user/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: CarouselComponent },
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     component: ForgotPasswordComponent,
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
   },
   {
     path: 'recipes-list',

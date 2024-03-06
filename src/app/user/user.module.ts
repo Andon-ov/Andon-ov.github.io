@@ -5,9 +5,20 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, ForgotPasswordComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+  declarations: [
+    LoginComponent,
+    RegisterComponent,
+    ForgotPasswordComponent,
+    DashboardComponent,
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+  ],
 })
 export class UserModule {}
