@@ -35,24 +35,38 @@ export interface Ingredient {
   order_index: number;
 }
 
+export interface FirestoreUser {
+  accessToken: string;
+  displayName: string;
+  email: string;
+  emailVerified: boolean;
+  isAnonymous: boolean;
+  metadata: UserMetadata;
+  phoneNumber: string;
+  photoURL: string;
+  uid: string;
+  firstName: string;
+  lastName: string;
+  isActive: boolean;
+  isAdmin: boolean;
+}
+
+interface UserMetadata {
+  createdAt: string;
+  creationTime: string;
+  lastLoginAt: string;
+  lastSignInTime: string;
+}
+
 
 /*
 created at
 edit at
-like
 comment
 
-image can be a array of images
-  and max size 500kb when upload to cloud
+tag for a disease
 
-video link
 
-fork description to
-
-  Necessary products
-    like a ingredients
-
-  Method of preparation
 
 
 */

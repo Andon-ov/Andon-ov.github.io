@@ -1,3 +1,80 @@
-<main class="main-short">
-<h1>login</h1>
-</main>
+<div class="main-short">
+  <div class="wrapper">
+    <h1 class="title">Login</h1>
+    <form [formGroup]="logInForm" (ngSubmit)="submitLogInForm()">
+      <div class="formGroup">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          id="email"
+          formControlName="email"
+          autocomplete="email"
+        />
+
+        <div
+          *ngIf="
+            logInForm.get('email')?.invalid && logInForm.get('email')?.touched
+          "
+        >
+          <div
+            class="errors"
+            *ngIf=" logInForm.get('email')?.errors?.['required']"
+          >
+            Email is required!
+          </div>
+          <div
+            class="errors"
+            *ngIf=" logInForm.get('email')?.errors?.['email']"
+          >
+            Invalid email!
+          </div>
+        </div>
+      </div>
+      <div class="formGroup">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          autocomplete="current-password"
+        />
+
+        <div
+          *ngIf="
+            logInForm.get('password')?.invalid &&
+            logInForm.get('password')?.touched
+          "
+        >
+          <div
+            class="errors"
+            *ngIf=" logInForm.get('password')?.errors?.['required']"
+          >
+            Password is required!
+          </div>
+          <div
+            class="errors"
+            *ngIf=" logInForm.get('password')?.errors?.['minlength']"
+          >
+            Password must be at least 6 characters long!
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="formGroup">
+        <button class="button" style="width: 100%" type="submit">Submit</button>
+      </div>
+
+      <div *ngIf="loginError">{{ loginError }}</div>
+
+      <hr />
+      <div>
+        <a href="#" routerLink="/register">
+          <div class="hint">Don't have a Registration yet?</div>
+        </a>
+        <a href="#" routerLink="/forgot-password">
+          <div class="errors">Forgot your password?</div>
+        </a>
+      </div>
+    </form>
+  </div>
+</div>

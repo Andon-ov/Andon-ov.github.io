@@ -1,4 +1,4 @@
-<div class="mainLong">
+<div class="main-short">
   <div class="wrapper">
     <h1 class="title">Add a recipe</h1>
     <form [formGroup]="recipeForm">
@@ -192,6 +192,8 @@
               <option value="kg.">Kilogram</option>
               <option value="ml.">Milliliter</option>
               <option value="l.">Liter</option>
+              <option value="pieces">Pieces</option>
+
             </select>
 
             <div *ngIf="recipeForm.get('ingredients.' + i + '.unit')?.touched">

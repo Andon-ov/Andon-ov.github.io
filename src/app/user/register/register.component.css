@@ -1,0 +1,11 @@
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 460px) {
+    form {
+        background-color: var(--mainBackgroundColor);
+        border: none;
+    }
+}

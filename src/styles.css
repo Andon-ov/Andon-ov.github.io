@@ -183,8 +183,8 @@ textarea:focus-visible {
 /* main */
 
 .main-short {
-  height: 85vh;
-  text-align: center;
+  height: 91vh;
+  /* text-align: center; */
   background-color: var(--backgroundColor);
 }
 

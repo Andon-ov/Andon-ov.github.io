@@ -1,0 +1,7 @@
+@media (max-width: 460px) {
+    form{
+        background-color: var(--mainBackgroundColor);
+        border: none;
+    }
+  
+}

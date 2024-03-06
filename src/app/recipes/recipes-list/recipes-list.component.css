@@ -11,6 +11,8 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 30px;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 .cards {
@@ -26,6 +28,7 @@
 .card-item {
   display: flex;
   background-color: var(--backgroundColor);
+
 }
 
 .card {
@@ -51,14 +54,14 @@ a {
   right: 0;
   width: 90%;
   height: auto;
-  color: var(--textColor);
+  color: var(--backgroundColor) ;
   padding: 0.5rem;
   border-radius: 5px 0 0 5px;
   transform: rotate(-3.3deg);
   transform-origin: left top;
   overflow: hidden;
   z-index: 1;
-  background-color: var(--mainWhiteColor);
+  background-color:  rgba(167, 87, 94, 0.8);
   animation: 0s 0s fly-in 0 reverse both;
   font-family: var(--titleFont);
 }

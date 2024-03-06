@@ -32,6 +32,10 @@
   gap: 20px;
 }
 
+ul.recipe-image {
+  padding-left: unset;
+}
+
 .recipe-image li {
   list-style: none;
   margin-bottom: 10px;
