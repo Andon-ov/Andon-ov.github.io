@@ -144,6 +144,9 @@ form.d-flex {
     margin-top: 30px;
     border: unset;
   }
+  form{
+    max-width: unset;
+  }
 }
 
 @media (min-width: 1441px) {
@@ -155,5 +158,9 @@ form.d-flex {
     padding: 10px;
     margin-top: 30px;
     border: unset;
+  }
+
+  form{
+    max-width: unset;
   }
 }
