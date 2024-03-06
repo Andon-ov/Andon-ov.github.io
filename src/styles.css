@@ -403,3 +403,7 @@ hr {
   margin-bottom: 5px;
   background-color: var(--textColor);
 }
+
+.wrapper{
+  padding: 0 5%;
+}

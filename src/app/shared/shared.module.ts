@@ -7,8 +7,16 @@ import { RouterModule } from '@angular/router';
 import { SafeUrlPipe } from './pipe/safe-url.pipe';
 
 @NgModule({
-  declarations: [CarouselComponent, ImageUploadComponent, SafeUrlPipe],
-  imports: [CommonModule, EditorModule,RouterModule],
-  exports: [CarouselComponent, ImageUploadComponent,SafeUrlPipe],
+  declarations: [
+    CarouselComponent,
+    ImageUploadComponent,
+    SafeUrlPipe,
+  ],
+  imports: [CommonModule, EditorModule, RouterModule],
+  exports: [
+    CarouselComponent,
+    ImageUploadComponent,
+    SafeUrlPipe,
+  ],
 })
 export class SharedModule {}

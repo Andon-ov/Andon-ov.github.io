@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TimestampFormatPipe } from '../shared/pipe/timestampFormat/timestamp-format.pipe';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     RegisterComponent,
     ForgotPasswordComponent,
     DashboardComponent,
+    TimestampFormatPipe
   ],
   imports: [
     CommonModule,
