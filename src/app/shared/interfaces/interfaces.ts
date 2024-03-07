@@ -1,3 +1,7 @@
+import {
+  Timestamp,
+} from '@angular/fire/firestore';
+
 export interface Recipe {
   id: string;
   is_active: boolean;
@@ -14,7 +18,6 @@ export interface Recipe {
   video_recipe: VideoRecipeItem[];
   ingredients: Ingredient[];
 }
-
 
 export interface ImageRecipeItem {
   image_recipe: string;
@@ -58,12 +61,20 @@ interface UserMetadata {
   lastSignInTime: string;
 }
 
+export interface Comments {
+  create_time: Timestamp;
+  name: string;
+  recipeId: string;
+  text: string;
+  uid: string;
+  id: string;
+}
+
 
 /*
 created at
 edit at
 comment
-
 tag for a disease
 
 

@@ -15,7 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecipesModule } from './recipes/recipes.module';
 import { UserModule } from './user/user.module';
 import { EditorModule,
-   TINYMCE_SCRIPT_SRC 
+   TINYMCE_SCRIPT_SRC
    } from '@tinymce/tinymce-angular';
 
 @NgModule({
@@ -34,7 +34,7 @@ import { EditorModule,
     // Cloud Firestore
      provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
      provideFirestore(() => getFirestore()),
- 
+
     // Cloudinary
     CloudinaryModule,
 

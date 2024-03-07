@@ -44,13 +44,13 @@
 //   }
 // }
 
-
-import {Component, OnInit, inject} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {RecipeService} from 'src/app/shared/services/recipe.service';
-import {Firestore, doc, getDoc} from '@angular/fire/firestore';
-import {Recipe} from "../../shared/interfaces/interfaces";
-
+import { Component, OnInit, inject } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RecipeService } from 'src/app/shared/services/recipe.service';
+import { Firestore, doc, getDoc } from '@angular/fire/firestore';
+import { Comments, Recipe } from '../../shared/interfaces/interfaces';
+import { UserService } from 'src/app/shared/services/user.service';
+import { CommentService } from 'src/app/shared/services/comment.service';
 
 @Component({
   selector: 'app-recipe',
@@ -60,10 +60,15 @@ import {Recipe} from "../../shared/interfaces/interfaces";
 export class RecipeComponent implements OnInit {
   recipe: Recipe | null = null;
   recipeId: string | null = '';
+  comments: Comments[] = [];
+  showCommentForm = false;
+  userData: any;
 
   constructor(
     private route: ActivatedRoute,
     private recipeService: RecipeService,
+    private commentService: CommentService,
+    private userService: UserService,
     private firestore: Firestore,
     private router: Router
   ) {
@@ -75,11 +80,7 @@ export class RecipeComponent implements OnInit {
         try {
           this.recipe = await this.recipeService.getRecipeById(recipeId);
 
-          if (this.recipe) {
-
-          } else {
-            console.error('Recipe not found.');
-          }
+          this.comments = await commentService.getCommentsForRecipe(recipeId);
         } catch (error) {
           console.error(
             'An error occurred while retrieving the recipe:',
@@ -90,19 +91,27 @@ export class RecipeComponent implements OnInit {
         console.error('Recipe ID not provided.');
       }
     });
-  }
 
-  navigateToRecipeEdit() {
-    this.router.navigate(['/recipe-edit', this.recipeId]);
-  }
-
-  navigateToCommentEdit(commentId: string) {
-    this.router.navigate(['/comment-edit', commentId]);
+    commentService.getCommentAddedObservable().subscribe(() => {
+      console.log('Comment successfully added.');
+      this.loadCommentsForRecipe();
+    });
   }
 
   ngOnInit(): void {
-
+    this.userService.userData$.subscribe((userData) => {
+      this.userData = userData;
+    });
+  }
+  toggleCommentForm() {
+    this.showCommentForm = !this.showCommentForm;
   }
 
-
+  private async loadCommentsForRecipe() {
+    if (this.recipeId) {
+      this.comments = await this.commentService.getCommentsForRecipe(
+        this.recipeId
+      );
+    }
+  }
 }
