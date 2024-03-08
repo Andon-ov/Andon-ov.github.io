@@ -54,6 +54,13 @@ export interface FirestoreUser {
   isAdmin: boolean;
 }
 
+/*
+FirestoreUser
+
+photoURL
+favorite recipes
+*/ 
+
 interface UserMetadata {
   createdAt: string;
   creationTime: string;
