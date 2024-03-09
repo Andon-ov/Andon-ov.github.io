@@ -72,6 +72,7 @@ export interface Comments {
   create_time: Timestamp;
   name: string;
   recipeId: string;
+  // userId:string;
   text: string;
   uid: string;
   id: string;

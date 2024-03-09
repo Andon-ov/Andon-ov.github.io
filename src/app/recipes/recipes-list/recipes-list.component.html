@@ -1,24 +1,17 @@
 <main class="main-long">
   <section class="recipes-list">
     <h2 class="title">Recipes list</h2>
-    <section class="wrapper">
-      <ul class="cards" *ngFor="let recipe of recipes">
-
-        <li class="card-item">
-          <a [routerLink]="['/recipe/', recipe.id]">
-            <div class="card" tabindex="0">
-              <div class="card-image">
-                <img
-                  [src]="recipe!.image_recipe[0]!.image_recipe"
-                  alt="recipe.title"
-                />
-              </div>
-
-              <h3 class="card-title">{{ recipe.title }}</h3>
+    <div class="recipe-list">
+      <div *ngFor="let recipe of recipes">
+        <a [routerLink]="['/recipe', recipe.id]">
+          <div class="recipe-item">
+            <div class="recipe-image">
+              <img [src]="recipe!.image_recipe[0]!.image_recipe" alt="{{ recipe.title }}" />
             </div>
-          </a>
-        </li>
-      </ul>
-    </section>
+            <p class="recipe-title">{{ recipe.title }}</p>
+          </div>
+        </a>
+      </div>
+    </div>
   </section>
 </main>
