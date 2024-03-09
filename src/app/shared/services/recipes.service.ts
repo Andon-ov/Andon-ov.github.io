@@ -1,20 +1,21 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, from } from 'rxjs';
 import {
   Firestore,
   collection,
   getDocs,
   CollectionReference,
+  query,
+  where,
+  DocumentData,
 } from '@angular/fire/firestore';
 import { Recipe } from '../interfaces/interfaces';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RecipesService {
-
-  constructor(private firestore: Firestore) {
-  }
+  constructor(private firestore: Firestore) {}
 
   getRecipes(): Observable<Recipe[]> {
     const collectionName = 'Recipe';
@@ -30,7 +31,7 @@ export class RecipesService {
 
           querySnapshot.forEach((doc) => {
             const recipeData = doc.data() as Recipe;
-            const recipeWithId = {...recipeData, id: doc.id};
+            const recipeWithId = { ...recipeData, id: doc.id };
 
             data.push(recipeWithId);
           });
@@ -41,5 +42,26 @@ export class RecipesService {
           observer.error(error);
         });
     });
+  }
+
+  async getRecipeByUID(uid: string): Promise<any[]> {
+    try {
+      const recipesRef = collection(this.firestore, 'Recipe');
+      const q = query(recipesRef, where('uid', '==', uid));
+      const querySnapshot = await getDocs(q);
+
+      const recipes: Recipe[] = [];
+      querySnapshot.forEach((doc) => {
+        const recipeData = doc.data() as Recipe;
+        const recipeWithId = { ...recipeData, id: doc.id };
+
+        recipes.push(recipeWithId);
+      });
+
+      return recipes;
+    } catch (error) {
+      console.error('Error retrieving recipes:', error);
+      return [];
+    }
   }
 }

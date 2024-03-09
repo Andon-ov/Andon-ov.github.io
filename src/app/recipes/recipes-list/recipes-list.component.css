@@ -4,6 +4,7 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  /* min-height: 91vh; */
 }
 
 
@@ -39,9 +40,9 @@
   top: 70%;
   height: 30%;
   font-family: var(--titleFont);
-  
+
   /* font-family: "Dancing Script", cursive; */
-  text-transform:capitalize;
+  text-transform: capitalize;
 
   display: flex;
   align-items: center;

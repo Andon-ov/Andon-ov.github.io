@@ -1,14 +1,13 @@
-import {
-  Timestamp,
-} from '@angular/fire/firestore';
+import { Timestamp } from '@angular/fire/firestore';
 
 export interface Recipe {
   id: string;
   is_active: boolean;
 
   summary: string;
-  like: number,
-  author: string,
+  like: number;
+  uid: string;
+  author: string;
   title: string;
   subtitle?: string;
   description: string;
@@ -59,7 +58,7 @@ FirestoreUser
 
 photoURL
 favorite recipes
-*/ 
+*/
 
 interface UserMetadata {
   createdAt: string;
@@ -78,7 +77,6 @@ export interface Comments {
   id: string;
 }
 
-
 /*
 created at
 edit at
@@ -89,7 +87,6 @@ tag for a disease
 
 
 */
-
 
 /*
 user
@@ -116,7 +113,6 @@ favorite recipe
 my recipe
 
 */
-
 
 /*
 search

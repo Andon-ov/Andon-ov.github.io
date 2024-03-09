@@ -7,7 +7,8 @@ import { CarouselComponent } from './shared/carousel/carousel.component';
 import { RecipesListComponent } from './recipes/recipes-list/recipes-list.component';
 import { RecipeCreateComponent } from './recipes/recipe-create/recipe-create.component';
 import { RecipeComponent } from './recipes/recipe/recipe.component';
-import { DashboardComponent } from './user/dashboard/dashboard.component';
+import { UserInfoComponent } from './user/user-info/user-info.component';
+import { UserRecipesComponent } from './user/user-recipes/user-recipes.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: CarouselComponent },
@@ -26,7 +27,11 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent,
+    component: UserInfoComponent,
+  },
+  {
+    path: 'user-recipes',
+    component: UserRecipesComponent,
   },
   {
     path: 'recipes-list',
@@ -36,6 +41,7 @@ const routes: Routes = [
     path: 'recipe-create',
     component: RecipeCreateComponent,
   },
+
   {
     path: 'recipe/:id',
     component: RecipeComponent,

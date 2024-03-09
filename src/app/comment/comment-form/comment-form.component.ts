@@ -44,11 +44,14 @@ export class CommentFormComponent implements OnInit {
           this.fullName =
             this.userData.firstName + ' ' + this.userData.lastName;
         } else {
-          this.fullName = 'Анонимен';
+          this.fullName = 'Anonymous';
         }
       },
-      error: (err) => {},
+      error: (err) => {
+        console.log(err);
+      },
     });
+    
   }
 
   async onSubmit() {
@@ -65,7 +68,7 @@ export class CommentFormComponent implements OnInit {
           this.commentForm.value
         );
         if (result) {
-          alert('Вие успешно добавихте вашия коментар');
+          alert('You have successfully added your comment');
           this.commentForm.reset();
         } else {
           console.error('Error adding comment.');
