@@ -23,7 +23,7 @@
   --backgroundColor: #e5e5e5;
   --textColor: #a7575e;
   --mainColor: #bd6b6f;
-  --secondColor:#BFA5A6;
+  --secondColor: #BFA5A6;
 
   --titleFont: Georgia, Times, serif;
 }
@@ -225,10 +225,10 @@ textarea:focus-visible {
 /* selected button*/
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link.show {
-  color:var(--textColor);
+  color: var(--textColor);
   background-image: radial-gradient(100% 100% at 100% 0,
-  var(--textColor) 0,
-  var(--backgroundColor) 100%);
+      var(--textColor) 0,
+      var(--backgroundColor) 100%);
 }
 
 .button:focus {
@@ -324,10 +324,8 @@ textarea:focus-visible {
 
 
 /* btn image */
-
-
 .button-img {
-  --b: 3px;
+  --b: 2px;
   /* border thickness */
   --s: .45em;
   /* size of the corner */
@@ -337,6 +335,8 @@ textarea:focus-visible {
   padding: calc(.5em + var(--s)) calc(.9em + var(--s));
   color: var(--textColor);
   --_p: var(--s);
+  --_p: 10px;
+
   background:
     conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--textColor) 0) var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
   transition: .3s linear, color 0s, background-color 0s;
@@ -366,7 +366,7 @@ textarea:focus-visible {
 /* title */
 .title {
   text-align: center;
-  margin-top: 50px;
+  margin: 30px 0;
 }
 
 
@@ -405,6 +405,6 @@ hr {
   background-color: var(--textColor);
 }
 
-.wrapper{
+.wrapper {
   padding: 0 5%;
 }
