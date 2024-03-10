@@ -1,0 +1,28 @@
+.nav-tabs {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid var(--textColor); */
+  background-color: var(--mainRGBAColor);
+}
+
+a.nav-link:focus {
+  background-color: var(--backgroundColor);
+  border: 1px solid var(--textColor);
+  border-bottom: unset;
+  /* border: 1px solid var(--textColor); */
+  
+}
+
+.nav-tabs .nav-link {
+  text-transform: uppercase;
+  color: var(--backgroundColor);
+  font-weight: 900;
+
+}
+
+.nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:active {
+  color: var(--textColor);
+
+}

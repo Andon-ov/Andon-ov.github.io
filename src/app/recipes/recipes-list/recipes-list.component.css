@@ -4,12 +4,11 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  /* min-height: 91vh; */
+  row-gap: 40px;
+  margin-bottom: 100px;
 }
 
-
 .recipe-item {
-  border: 1px solid var(--mainWhiteColor);
   margin: 5px;
   position: relative;
 }
@@ -17,6 +16,7 @@
 .recipe-image {
   padding: 5px;
   position: relative;
+  transition: transform 1s ease-in-out; 
 }
 
 .recipe-image img {
@@ -29,41 +29,57 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--backgroundColor);
-  color: var(--mainBlackColor);
-  font-weight: 600;
+
+  background: var(--mainRGBAColor);
+  background: rgba(167, 87, 94, 0.8);
+
+  color: var(--backgroundColor);
+  font-size: 18px;
+
+  font-weight: 900;
   padding: 0 5px;
   margin: 0;
   text-align: center;
   width: 100%;
-  text-transform: capitalize;
-  top: 70%;
+  text-transform: uppercase;
+  /* top: 70%; */
+  top: 90%;
+
   height: 30%;
   font-family: var(--titleFont);
-
-  /* font-family: "Dancing Script", cursive; */
-  text-transform: capitalize;
+  /* letter-spacing: 2px; */
+  line-height: 20px;
+  font-family: "Caveat", cursive;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  transition: top 1s ease-in-out;
+  
 }
 
-.recipe-item:hover {
-  transform: scale(0.95);
+
+/* .recipe-item:hover {
+  transform: scale(0.90);
   transition: 1s ease-in-out;
-}
+
+} */
 
 .recipe-item:hover .recipe-title {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  top: 2%;
+  top: -10%;
   height: 30%;
-  color: var(--mainBlackColor);
-  background: var(--mainMagnoliaColor);
+  color: var(--textColor);
+  background: var(--backgroundColor);
   transition: 1s ease-in-out;
+}
+
+.recipe-item:hover .recipe-image {
+  transform: translateY(12%); 
 }
 
 @media (max-width: 460px) {

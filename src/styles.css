@@ -12,8 +12,9 @@
   --mainMagnoliaColor: #f6f4f9;
   --mainCoralColor: #ffedcb;
 
-  --mainRGBColor: 157, 192, 139;
-  --alpha: 0.8;
+
+  --mainRGBColor: 167, 87, 94;
+  --alpha: 0.6;
   --mainRGBAColor: rgba(var(--mainRGBColor), var(--alpha));
 
   /* --animatedTitleBackground: rgba(0, 192, 163, 0.8); */
