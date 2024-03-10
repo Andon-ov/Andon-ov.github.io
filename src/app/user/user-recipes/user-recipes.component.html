@@ -1,22 +1,30 @@
-<main class="main-long">
-  <section class="recipes-list">
-    <h2 class="title">
-      Recipes by {{ userData.firstName + " " + userData.lastName }}
-    </h2>
-    <div class="recipe-list">
-      <div *ngFor="let recipe of recipes">
-        <a [routerLink]="['/recipe', recipe.id]">
-          <div class="recipe-item">
-            <div class="recipe-image">
-              <img
-                [src]="recipe!.image_recipe[0]!.image_recipe"
-                alt="{{ recipe.title }}"
-              />
+<div *ngIf="recipes.length === 0; else recipesList">
+  <main class="main-short">
+    <h1 class="title">You have no recipes added yet!</h1>
+  </main>
+</div>
+
+<ng-template #recipesList>
+  <main class="main-long">
+    <section class="recipes-list">
+      <h2 class="title">
+        Recipes by {{ userData.firstName + " " + userData.lastName }}
+      </h2>
+      <div class="recipe-list">
+        <div *ngFor="let recipe of recipes">
+          <a [routerLink]="['/recipe', recipe.id]">
+            <div class="recipe-item">
+              <div class="recipe-image">
+                <img
+                  [src]="recipe!.image_recipe[0]!.image_recipe"
+                  alt="{{ recipe.title }}"
+                />
+              </div>
+              <p class="recipe-title">{{ recipe.title }}</p>
             </div>
-            <p class="recipe-title">{{ recipe.title }}</p>
-          </div>
-        </a>
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
-</main>
+    </section>
+  </main>
+</ng-template>

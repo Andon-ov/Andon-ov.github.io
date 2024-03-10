@@ -28,10 +28,10 @@ export class HeaderComponent implements OnInit {
       next: (value) => {
         if (value) {
           this.userDataSubject.next(value);
-          console.log('Имате потребител:', value);
+          console.log('You have a user:', value);
         } else {
           this.userDataSubject.next(null);
-          console.log('Нямате потребител.');
+          console.log('You have no user.');
         }
       },
       error: (err) => {

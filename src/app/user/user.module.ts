@@ -8,6 +8,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { UserInfoComponent } from './user-info/user-info.component';
 import { TimestampFormatPipe } from '../shared/pipe/timestampFormat/timestamp-format.pipe';
 import { UserRecipesComponent } from './user-recipes/user-recipes.component';
+import { RecipeCreateComponent } from '../recipes/recipe-create/recipe-create.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { UserRecipesComponent } from './user-recipes/user-recipes.component';
     ForgotPasswordComponent,
     UserInfoComponent,
     TimestampFormatPipe,
-    UserRecipesComponent
+    UserRecipesComponent,
+    DashboardComponent,
   ],
   imports: [
     CommonModule,

@@ -9,6 +9,7 @@ import { RecipeCreateComponent } from './recipes/recipe-create/recipe-create.com
 import { RecipeComponent } from './recipes/recipe/recipe.component';
 import { UserInfoComponent } from './user/user-info/user-info.component';
 import { UserRecipesComponent } from './user/user-recipes/user-recipes.component';
+import { DashboardComponent } from './user/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: CarouselComponent },
@@ -25,21 +26,30 @@ const routes: Routes = [
     path: 'forgot-password',
     component: ForgotPasswordComponent,
   },
+
   {
     path: 'dashboard',
-    component: UserInfoComponent,
+    component: DashboardComponent,
+    children: [
+      {
+        path: 'user-recipes',
+        component: UserRecipesComponent,
+      },
+
+      {
+        path: 'recipe-create',
+        component: RecipeCreateComponent,
+      },
+      {
+        path: 'user-info',
+        component: UserInfoComponent,
+      },
+    ],
   },
-  {
-    path: 'user-recipes',
-    component: UserRecipesComponent,
-  },
+
   {
     path: 'recipes-list',
     component: RecipesListComponent,
-  },
-  {
-    path: 'recipe-create',
-    component: RecipeCreateComponent,
   },
 
   {
