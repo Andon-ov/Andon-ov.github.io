@@ -98,6 +98,10 @@ export class RecipeComponent implements OnInit {
     });
   }
 
+  navigateToRecipeEdit() {
+    this.router.navigate(['/dashboard/recipe-edit', this.recipeId]);
+  }
+
   ngOnInit(): void {
     this.userService.userData$.subscribe((userData) => {
       this.userData = userData;

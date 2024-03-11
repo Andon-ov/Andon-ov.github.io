@@ -10,10 +10,11 @@ import { RouterModule } from '@angular/router';
 import { CommentModule } from '../comment/comment.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 
 
 @NgModule({
-  declarations: [RecipesListComponent, RecipeCreateComponent, RecipeComponent],
+  declarations: [RecipesListComponent, RecipeCreateComponent, RecipeComponent, RecipeEditComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

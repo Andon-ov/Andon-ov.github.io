@@ -10,6 +10,7 @@ import { RecipeComponent } from './recipes/recipe/recipe.component';
 import { UserInfoComponent } from './user/user-info/user-info.component';
 import { UserRecipesComponent } from './user/user-recipes/user-recipes.component';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: CarouselComponent },
@@ -39,6 +40,11 @@ const routes: Routes = [
       {
         path: 'recipe-create',
         component: RecipeCreateComponent,
+      },
+
+      {
+        path: 'recipe-edit/:id',
+        component: RecipeEditComponent,
       },
       {
         path: 'user-info',
