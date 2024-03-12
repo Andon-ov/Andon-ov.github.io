@@ -1,0 +1,51 @@
+.buttons {
+    display: flex;
+    gap: 10px;
+    position: fixed;
+    bottom: 120px;
+    right: 60px;
+
+
+    flex-direction: column;
+    align-items: center;
+    /* background-color: var(--mainRGBAColor); */
+
+    /* padding: 10px 0; */
+    /* border-radius: 25%; */
+    /* box-shadow:0px 0px 15px 0px rgba(167, 87, 94, 1);; */
+}
+
+.to-top {
+    background-color: var(--mainRGBAColor);
+    /* position: fixed;
+    bottom: 120px;
+    right: 60px; */
+    color: var(--backgroundColor);
+    border: 3px solid var(--backgroundColor);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+
+    color: var(--textColor);
+    background-color: var(--backgroundColor);
+    box-shadow: 0px 0px 15px 0px rgba(167, 87, 94, 1);
+
+
+
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Hide the button initially */
+button.ng-hidden {
+    display: none;
+}
+

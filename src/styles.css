@@ -252,14 +252,17 @@ textarea:focus-visible {
 .back-button {
   display: block;
   position: relative;
+  border-radius: 50%;
   width: 56px;
   height: 56px;
   margin: 0;
   overflow: hidden;
   outline: none;
-  background-color: transparent;
+  background-color: var(--mainRGBAColor);
+  /* background-color: transparent; */
   cursor: pointer;
   border: 0;
+
 }
 
 .back-button:before,
@@ -271,13 +274,13 @@ textarea:focus-visible {
 }
 
 .back-button:before {
-  border: 4px solid var(--textColor);
+  border: 4px solid var(--backgroundColor);
   transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
     transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
 }
 
 .back-button:after {
-  border: 4px solid var(--textColor);
+  border: 4px solid var(--backgroundColor);
   transform: scale(1.3);
   transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
     transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -313,7 +316,7 @@ textarea:focus-visible {
   height: 20px;
   margin: 17px 18px 0 18px;
   transform: rotate(180deg);
-  fill: var(--textColor);
+  fill: var(--backgroundColor);
 }
 
 .back-button:hover .button-box,

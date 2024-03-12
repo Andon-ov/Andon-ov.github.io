@@ -99,6 +99,29 @@
         Hide comment form
       </button>
 
+      <div *ngIf="showCommentForm">
+        <app-comment-form [recipeId]="recipeId" />
+      </div>
+
+      <div *ngIf="comments.length > 0" class="divider">
+        <hr />
+        <p>&nbsp;&nbsp;Comments&nbsp;&nbsp;</p>
+        <hr />
+      </div>
+
+      <section class="comments" *ngIf="comments.length > 0">
+        <ul *ngFor="let comment of comments">
+          <li>{{ comment.name }}</li>
+          <li>{{ comment.text }}</li>
+
+          <li class="comments-last">
+            <p>
+              {{ comment.create_time.toDate() | date : "dd/MM/yyyy HH:mm:ss" }}
+            </p>
+          </li>
+        </ul>
+      </section>
+
       <hr />
       Go Back
       <a class="back-button" href="javascript:history.back()">
@@ -122,28 +145,8 @@
 
       <button class="button-img" (click)="navigateToRecipeEdit()">Edit</button>
 
-      <div *ngIf="showCommentForm">
-        <app-comment-form [recipeId]="recipeId" />
-      </div>
+ 
 
-      <div *ngIf="comments.length > 0" class="divider">
-        <hr />
-        <p>&nbsp;&nbsp;Comments&nbsp;&nbsp;</p>
-        <hr />
-      </div>
-
-      <section class="comments" *ngIf="comments.length > 0">
-        <ul *ngFor="let comment of comments">
-          <li>{{ comment.name }}</li>
-          <li>{{ comment.text }}</li>
-
-          <li class="comments-last">
-            <p>
-              {{ comment.create_time.toDate() | date : "dd/MM/yyyy HH:mm:ss" }}
-            </p>
-          </li>
-        </ul>
-      </section>
     </div>
   </div>
 </div>
