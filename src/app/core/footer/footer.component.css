@@ -1,22 +1,39 @@
 .footer {
-    background-color:  var(--backgroundColor);
-    height: 8vh;
-    /* background-color:  var(--mainBlackColor); */
-    color: #40513B;
-    /* color: var(--mainWhiteColor); */
+    background-color: #f8f9fa;
+    padding: 20px;
+    color: #333;
+    font-size: 14px;
     text-align: center;
 }
-
-.footer a {
-    color: #40513B;
-    /* color: var(--mainWhiteColor); */
+.footer-links{
+    padding: 20px 0;
+}
+.footer-links a {
+    color: #666;
     text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-links a:hover {
+    color: #000;
 }
 
 .social-icons a {
-    margin-right: 10px;
+    color: #666;
+    text-decoration: none;
+    margin: 0 10px;
 }
 
-.social-icons i {
-    font-size: 20px;
+.social-icons a:hover {
+    color: #3b5998;
+}
+
+.copyright {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #999;
+}
+
+.projectInfo {
+    margin-bottom: 10px;
 }

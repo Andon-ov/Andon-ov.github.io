@@ -13,13 +13,14 @@ import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
     ImageUploadComponent,
     SafeUrlPipe,
     ScrollToTopComponent,
+
   ],
   imports: [CommonModule, EditorModule, RouterModule],
   exports: [
     CarouselComponent,
     ImageUploadComponent,
     SafeUrlPipe,
-    ScrollToTopComponent
-  ],
+    ScrollToTopComponent,
+     ],
 })
 export class SharedModule {}

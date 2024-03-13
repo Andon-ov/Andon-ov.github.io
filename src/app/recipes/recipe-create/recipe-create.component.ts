@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
 
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
-import { Recipe } from 'src/app/shared/interfaces/interfaces';
-import { Router } from '@angular/router';
-import { UserService } from 'src/app/shared/services/user.service';
-import { User } from 'firebase/auth';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Firestore, collection, addDoc} from '@angular/fire/firestore';
+import {Recipe} from 'src/app/shared/interfaces/interfaces';
+import {Router} from '@angular/router';
+import {UserService} from 'src/app/shared/services/user.service';
+
+import {User} from 'firebase/auth';
 
 @Component({
   selector: 'app-recipe-create',
@@ -18,16 +19,18 @@ export class RecipeCreateComponent implements OnInit {
   recipeForm: FormGroup;
   firestore: Firestore;
   userData: any | null = null;
-
   currentOrderIndex = 1;
 
   constructor(
     firestore: Firestore,
     private fb: FormBuilder,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private el: ElementRef,
+    private renderer: Renderer2
   ) {
     this.firestore = firestore;
+
 
     this.recipeForm = this.fb.group({
       is_active: [false],
@@ -67,6 +70,7 @@ export class RecipeCreateComponent implements OnInit {
       },
     });
   }
+
 
   ngOnInit(): void {
     this.editorConfig = {
@@ -180,7 +184,7 @@ export class RecipeCreateComponent implements OnInit {
     this.recipeForm.patchValue({
       author: this.userData.firstName + ' ' + this.userData.lastName,
     });
-    this.recipeForm.patchValue({ uid: this.userData.uid });
+    this.recipeForm.patchValue({uid: this.userData.uid});
     const recipeData = this.recipeForm.value;
     this.addRecipe(recipeData);
     this.recipeForm.reset();
@@ -198,4 +202,6 @@ export class RecipeCreateComponent implements OnInit {
         console.error('Error adding document: ', error);
       });
   }
+
+
 }
