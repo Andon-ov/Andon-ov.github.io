@@ -1,6 +1,8 @@
 <div class="main-long">
   <div class="headerImage"></div>
   <div class="wrapper">
+
+
     <form [formGroup]="recipeForm">
       <div class="title-wrapper">
         <h1 class="title add-recipe">Add a Recipe</h1>
@@ -11,10 +13,9 @@
       </h4>
 
       <!-- Title required-->
-      <label>
-        Recipe Title
+      <label>Recipe Title </label>
         <input type="text" id="title" formControlName="title"/>
-      </label>
+
 
       <div *ngIf="recipeForm.get('title')?.touched">
         <div
@@ -27,10 +28,9 @@
       <!-- Title -->
 
       <!-- Subtitle required-->
-      <label>
-        Subtitle
+      <label>Subtitle</label>
         <input type="text" id="subtitle" formControlName="subtitle"/>
-      </label>
+
 
       <div *ngIf="recipeForm.get('subtitle')?.touched">
         <div
@@ -43,11 +43,10 @@
       <!-- Subtitle -->
 
       <!-- Description required-->
-
       <div>
         <label for="description">Method of preparation</label>
-        <p class="hint">Explain how to make your recipe</p>
         <textarea
+          placeholder="Explain how to make your recipe ..."
           name="text"
           id="description"
           formControlName="description"
@@ -55,6 +54,7 @@
           rows="5"
         ></textarea>
       </div>
+
       <div *ngIf="recipeForm.get('description')?.touched">
         <div
           class="errors"
@@ -67,10 +67,8 @@
 
       <!-- Summary -->
       <div>
-        <label for="summary">Summary (optional):</label>
-        <p class="hint">Add any helpful tips about ingredient substitutions, serving, or storage here.
-        </p>
-        <input type="text" id="summary" formControlName="summary"/>
+        <label for="summary">Summary (optional)</label>
+        <input placeholder="Add any helpful tips about ingredient substitutions or storage here." type="text" id="summary" formControlName="summary"/>
       </div>
       <!-- Summary -->
 

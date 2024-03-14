@@ -1,7 +1,6 @@
 nav.navbar {
   min-height: 8vh;
-  background-color: var(--backgroundColor);
-  background-color: #f8f9fa;
+  background-color: var(--aliceBlueColor);
   box-shadow: 1px 5px 15px 0px rgba(167, 87, 94, 1);
 }
 

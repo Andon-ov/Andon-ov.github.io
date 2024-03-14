@@ -1,15 +1,28 @@
+<div class="headerImage"></div>
+
 <div *ngIf="recipes.length === 0; else recipesList">
   <main class="main-short">
-    <h1 class="title">You have no recipes added yet!</h1>
+    <div
+      class="title-wrapper"
+      style="box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3); align-items: center; flex-direction: column; margin-top: 50px"
+    >
+      <h1 style="text-align: center; margin-bottom: 50px;" class="title">
+        You have no recipes added yet!
+      </h1>
+      <button class="button">Add your first recipe!</button>
+    </div>
   </main>
 </div>
 
 <ng-template #recipesList>
   <main class="main-long">
     <section class="recipes-list">
-      <h2 class="title">
-        Recipes by {{ userData.firstName + " " + userData.lastName }}
-      </h2>
+      <div class="title-wrapper">
+        <h1 class="title">
+          Recipes by {{ userData.firstName + " " + userData.lastName }}
+        </h1>
+      </div>
+
       <div class="recipe-list">
         <div *ngFor="let recipe of recipes">
           <a [routerLink]="['/recipe', recipe.id]">

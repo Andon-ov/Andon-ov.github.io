@@ -1,7 +1,10 @@
-.headerImage {
-  background-image: url('https://www.sunrider.co.in/wp-content/uploads/2021/07/banner-1.png');
-  height: 150px;
-  background-position: bottom;
+form {
+  max-width: 600px;
+  margin: -50px auto 50px auto;
+  padding: 32px;
+  background-color: var(--backgroundColor);
+  border-radius: unset;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3);
 }
 
 .title-wrapper {
@@ -22,7 +25,7 @@
 
 .add-recipe {
   display: flex;
-  box-shadow: inset 0 -24px 0 0 #e7ab46;
+  box-shadow: inset 0 -24px 0 0 var(--mainYellowColor);
   padding-bottom: 10px;
   font-weight: 900;
   color: var(--mainBlackColor);
@@ -34,19 +37,32 @@
   color: var(--mainBlackColor);
 }
 
-.tiny {
-  margin: 20px 0;
+label{
+  color: var(--mainBlackColor);
+  font-weight: bold;
 }
 
+textarea::placeholder,
+input::placeholder {
+  font-weight: bold;
+  font-style: italic;
+  opacity: 0.5;
+  color: var(--textColor);
+}
 
-/*.img-video{*/
-/*  display: flex;*/
-/*  gap: 10px;*/
-/*  margin-top: 20px;*/
-/*}*/
+.input-flex input {
+  margin: unset;
+}
+
+.input-flex {
+  display: flex;
+  gap: 20px;
+  align-items: baseline;
+  margin-bottom: 20px;
+}
 
 .ingredient {
-  background-color: #f8f9fa;
+  background-color: var(--aliceBlueColor);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3);
   padding: 20px;
   margin-bottom: 30px;
@@ -71,34 +87,15 @@
   right: 16px
 }
 
-.quantity-unit-index-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 20px 0;
-  text-align: center;
-  align-items: flex-end;
-  gap: 10px;
+.removeInput {
+  all: unset;
+  color: red;
+  cursor: pointer;
+  text-align: right;
 }
 
-.quantity label,
-.order-index label,
-.box label {
-  margin: unset;
-}
-
-.quantity {
-
-  flex-basis: 50px;
-}
-
-
-.order-index {
-
-  flex-basis: 50px;
-}
-.unit{
-flex-grow:5 ;
+.removeInput:hover {
+  color: var(--secondColor);
 }
 
 .fa-xmark {
@@ -115,127 +112,32 @@ flex-grow:5 ;
   transition: 1s ease-in-out;
 }
 
+.quantity-unit-index-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20px 0;
+  text-align: center;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.quantity {
+  flex-basis: 150px;
+}
+
+.order-index {
+  flex-basis: 50px;
+}
+
+.unit {
+  flex-grow: 5;
+}
+
 .unit select {
-  background-color: var(--mainRGBAColor);
-  color: var(--backgroundColor);
-  /*width: 250px;*/
-  -webkit-appearance: button;
+  color: var(--textColor);
+  font-style: italic;
+  font-size: 14px;
   outline: none;
   height: 45px;
-  border-bottom: 1px solid var(--mainWhiteColor);
-}
-
-
-
-/* .unit select::before {
-  content: "\f078";
-  font-family: FontAwesome;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 20%;
-  height: 100%;
-  text-align: center;
-  font-size: 28px;
-  line-height: 45px;
-  color: rgba(255, 255, 255, 0.5);
-  background-color: rgba(255, 255, 255, 0.1);
-  pointer-events: none;
-} */
-
-/* .unit:hover::before {
-  color: rgba(255, 255, 255, 0.6);
-  background-color: rgba(255, 255, 255, 0.2);
-} */
-
-.removeInput {
-  all: unset;
-  color: red;
-  cursor: pointer;
-  text-align: right;
-}
-
-.removeInput:hover {
-  color: var(--secondColor);
-}
-
-
-.box select option {
-  padding: 30px;
-}
-
-
-
-
-.ingredient_order_index {
-  width: unset;
-}
-
-
-
-.addIngredient {
-  all: unset;
-  color: var(--mainGreenColor);
-  cursor: pointer;
-  margin: 0 0 20px 30px;
-}
-
-.addIngredient:hover {
-  background-color: unset;
-  color: var(--mainRedColor);
-  box-shadow: unset;
-}
-
-
-
-
-form {
-  max-width: 600px;
-  margin: -50px auto 50px auto;
-  padding: 32px;
-  background-color: var(--backgroundColor);
-  border-radius: unset;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3);
-}
-
-label {
-  font-weight: bold;
-  color: var(--mainBlackColor);
-  margin-top: 30px;
-}
-
-
-option[data-checked] {
-  background-color: blue;
-  color: white;}
-
-
-.selected {
-  background-color: red;
-}
-
-
-option {
-  padding: 20px 0;
-  background-color: var(--mainColor);
-  color: var(--mainWhiteColor);
-
-}
-
-select option:hover {
-  background-color: var(--mainColor);
-  color: red;
-}
-
-.input-flex input{
-  margin: unset;
-}
-
-.input-flex{
-  display: flex;
-  gap: 20px;
-  /* align-content: stretch; */
-  /* justify-content: center; */
-  align-items: baseline;
-  margin-bottom: 20px;
 }
