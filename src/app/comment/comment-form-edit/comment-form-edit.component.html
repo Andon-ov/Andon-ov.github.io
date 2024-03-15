@@ -1,0 +1,32 @@
+<div class="main-short">
+  <div class="headerImage"></div>
+  <div class="wrapper">
+    <h1 class="title">Edit the Comment</h1>
+    <form
+      [formGroup]="commentFormEdit"
+      id="commentFormEdit"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="form-group">
+        <label for="text">Comment (required)</label>
+        <textarea
+          cols="30"
+          rows="5"
+          id="text"
+          formControlName="text"
+          class="form-control"
+        ></textarea>
+      </div>
+      <div *ngIf="commentFormEdit.get('text')?.touched">
+        <div
+          class="errors"
+          *ngIf="commentFormEdit.get('text')?.errors?.['required']"
+        >
+          Please write a comment!
+        </div>
+      </div>
+
+      <button class="button" type="submit">Edit the Comment</button>
+    </form>
+  </div>
+</div>

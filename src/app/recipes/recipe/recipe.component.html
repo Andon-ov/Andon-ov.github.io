@@ -117,9 +117,13 @@
           </button>
         </div>
 
+
+
         <div *ngIf="showCommentForm">
           <app-comment-form [recipeId]="recipeId" />
         </div>
+
+
 
         <div *ngIf="comments.length > 0" class="divider">
           <hr />
@@ -127,7 +131,7 @@
           <hr />
         </div>
 
-        <section class="comments" *ngIf="comments.length > 0">
+        <!-- <section class="comments" *ngIf="comments.length > 0">
           <ul *ngFor="let comment of comments">
             <li>{{ comment.name }}</li>
             <li>{{ comment.text }}</li>
@@ -138,6 +142,35 @@
                   comment.create_time.toDate() | date : "dd/MM/yyyy HH:mm:ss"
                 }}
               </p>
+            </li>
+          </ul>
+        </section> -->
+
+        <section class="comments" *ngIf="comments.length > 0">
+          <ul *ngFor="let comment of comments">
+            <li>{{ comment.name }}</li>
+            <li>{{ comment.text }}</li>
+  
+            <li class="comments-last">
+              <p>
+                {{ comment.create_time.toDate() | date : "dd/MM/yyyy HH:mm:ss" }}
+              </p>
+  
+              <div class="commentBtnWrapper">
+                <span
+                  *ngIf="comment.uid == userData.uid"
+                  (click)="deleteComment(comment.id)"
+                >
+                  <i class="fa-solid fa-trash fa-shake"></i>
+                </span>
+  
+                <span
+                  *ngIf="comment.uid == userData.uid"
+                  (click)="navigateToCommentEdit(comment.id)"
+                >
+                  <i class="fa-regular fa-pen-to-square fa-flip"></i>
+                </span>
+              </div>
             </li>
           </ul>
         </section>

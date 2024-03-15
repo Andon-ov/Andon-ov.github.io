@@ -7,8 +7,15 @@
     </div>
 
     <div class="form-group">
-      <label for="text">Comment (required):</label>
-      <textarea id="text" formControlName="text" class="form-control"></textarea>
+      <label for="text">Comment (required)</label>
+      <textarea
+        placeholder="Please write your comment here!"
+        id="text"
+        formControlName="text"
+        class="form-control"
+        rows="5"
+        cols="30"
+      ></textarea>
     </div>
     <div *ngIf="commentForm.get('text')?.touched">
       <div class="errors" *ngIf="commentForm.get('text')?.errors?.['required']">

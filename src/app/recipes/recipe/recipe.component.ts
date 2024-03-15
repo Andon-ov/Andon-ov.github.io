@@ -111,6 +111,17 @@ export class RecipeComponent implements OnInit {
     this.showCommentForm = !this.showCommentForm;
   }
 
+  navigateToCommentEdit(commentId: string) {
+    this.router.navigate(['/comment-edit', commentId]);
+  }
+
+  deleteComment(id: string) {
+    this.commentService.deleteComment(id);
+    this.loadCommentsForRecipe();
+  }
+
+
+
   private async loadCommentsForRecipe() {
     if (this.recipeId) {
       this.comments = await this.commentService.getCommentsForRecipe(

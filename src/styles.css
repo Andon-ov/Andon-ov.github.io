@@ -183,6 +183,14 @@ textarea:focus-visible {
   border: unset;
 }
 
+textarea::placeholder,
+input::placeholder {
+  font-weight: bold;
+  font-style: italic;
+  opacity: 0.5;
+  color: var(--textColor);
+}
+
 
 
 /* main */
@@ -369,13 +377,6 @@ textarea:focus-visible {
   background: var(--textColor);
   color: #fff;
 }
-
-/* title */
-.title {
-  /*text-align: center;*/
-  /* margin: 30px 0; */
-}
-
 
 /* form */
 

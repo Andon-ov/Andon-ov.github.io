@@ -11,6 +11,7 @@ import { UserInfoComponent } from './user/user-info/user-info.component';
 import { UserRecipesComponent } from './user/user-recipes/user-recipes.component';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { CommentFormEditComponent } from './comment/comment-form-edit/comment-form-edit.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: CarouselComponent },
@@ -62,6 +63,8 @@ const routes: Routes = [
     path: 'recipe/:id',
     component: RecipeComponent,
   },
+
+  { path: 'comment-edit/:id', component: CommentFormEditComponent },
 ];
 
 @NgModule({
