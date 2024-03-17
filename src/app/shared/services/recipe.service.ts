@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Firestore, doc, getDoc } from '@angular/fire/firestore';
+import { Firestore, arrayUnion, doc, getDoc, updateDoc } from '@angular/fire/firestore';
 import { Recipe } from '../interfaces/interfaces';
+
+
 
 @Injectable({
   providedIn: 'root',
@@ -17,5 +19,26 @@ export class RecipeService {
     } else {
       return null;
     }
+  }
+
+  // async updateRecipeLikes(recipeId: string, userId: string) {
+  //   const collectionName = 'Recipe';
+  //   const docRef = doc(this.firestore, collectionName, recipeId);
+
+
+  //   await updateDoc(docRef, {
+      
+  //       "like":userId
+  //   });
+  // }
+
+  async updateRecipeLikes(recipeId: string, userId: string) {
+    const collectionName = 'Recipe';
+    const docRef = doc(this.firestore, collectionName, recipeId);
+
+    // Добавете нов лайк към масива
+    await updateDoc(docRef, {
+      like: arrayUnion(userId)
+    });
   }
 }

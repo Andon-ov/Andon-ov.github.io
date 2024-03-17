@@ -5,7 +5,7 @@ export interface Recipe {
   is_active: boolean;
 
   summary: string;
-  like: number;
+  like: string[];
   uid: string;
   author: string;
   title: string;

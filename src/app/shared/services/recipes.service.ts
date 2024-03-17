@@ -7,15 +7,19 @@ import {
   CollectionReference,
   query,
   where,
+  doc,
   DocumentData,
+  setDoc,
+  updateDoc,
 } from '@angular/fire/firestore';
 import { Recipe } from '../interfaces/interfaces';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RecipesService {
-  constructor(private firestore: Firestore) {}
+  constructor(private firestore: Firestore, private router: Router) {}
 
   getRecipes(): Observable<Recipe[]> {
     const collectionName = 'Recipe';

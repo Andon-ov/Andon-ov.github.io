@@ -120,7 +120,9 @@ export class RecipeComponent implements OnInit {
     this.loadCommentsForRecipe();
   }
 
-
+  updateRecipeLikes(){
+    this.recipeService.updateRecipeLikes(this.recipeId!, this.userData.uid)
+  }
 
   private async loadCommentsForRecipe() {
     if (this.recipeId) {

@@ -39,13 +39,15 @@ export class RecipeCreateComponent implements OnInit {
       subtitle: ['', [Validators.required]],
       description: ['', [Validators.required]],
       summary: [''],
-      like: [0],
+      // like: [0],
       author: [''],
       uid: [''],
 
       image_recipe: this.fb.array([]),
       video_recipe: this.fb.array([]),
       preparation_method: this.fb.array([]),
+      like: this.fb.array([]),
+
 
       ingredients: this.fb.array([
         this.fb.group({
