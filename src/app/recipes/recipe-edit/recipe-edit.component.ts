@@ -47,10 +47,10 @@ export class RecipeEditComponent implements OnInit {
       subtitle: ['', [Validators.required]],
       description: ['', [Validators.required]],
       summary: [''],
-      like: [0],
       author: [''],
       uid: [''],
-
+      
+      likes: this.fb.array([]),
       image_recipe: this.fb.array([]),
       video_recipe: this.fb.array([]),
       preparation_method: this.fb.array([]),
@@ -155,7 +155,7 @@ export class RecipeEditComponent implements OnInit {
 
         is_active: this.recipe.is_active,
         subtitle: this.recipe.subtitle,
-        like: this.recipe.like,
+        likes: this.recipe.likes,
         author: this.recipe.author,
         uid: this.recipe.uid,
       });

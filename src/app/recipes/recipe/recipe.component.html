@@ -31,8 +31,20 @@
           </li>
         </ul>
 
-        <button class="button" (click)="updateRecipeLikes()"><i class="fa-regular fa-heart fa-beat-fade"></i></button>
-        <button class="button"><i class="fa-solid fa-heart fa-beat-fade"></i></button>
+        <button class="button" (click)="updateRecipeLikes()">
+          <ng-container
+            *ngIf="
+              recipe && recipe.likes && recipe.likes.includes(userData?.uid);
+              else notLiked
+            "
+          >
+            <i class="fa-solid fa-heart fa-beat-fade"></i>
+          </ng-container>
+          <ng-template #notLiked>
+            <i class="fa-regular fa-heart fa-beat-fade"></i>
+          </ng-template>
+        </button>
+        <span>{{ recipe?.likes?.length }}</span>
 
         <div class="divider">
           <hr />
@@ -120,13 +132,9 @@
           </button>
         </div>
 
-
-
         <div *ngIf="showCommentForm">
           <app-comment-form [recipeId]="recipeId" />
         </div>
-
-
 
         <div *ngIf="comments.length > 0" class="divider">
           <hr />
@@ -153,12 +161,14 @@
           <ul *ngFor="let comment of comments">
             <li>{{ comment.name }}</li>
             <li>{{ comment.text }}</li>
-  
+
             <li class="comments-last">
               <p>
-                {{ comment.create_time.toDate() | date : "dd/MM/yyyy HH:mm:ss" }}
+                {{
+                  comment.create_time.toDate() | date : "dd/MM/yyyy HH:mm:ss"
+                }}
               </p>
-  
+
               <div class="commentBtnWrapper">
                 <span
                   *ngIf="comment.uid == userData.uid"
@@ -166,7 +176,7 @@
                 >
                   <i class="fa-solid fa-trash fa-shake"></i>
                 </span>
-  
+
                 <span
                   *ngIf="comment.uid == userData.uid"
                   (click)="navigateToCommentEdit(comment.id)"

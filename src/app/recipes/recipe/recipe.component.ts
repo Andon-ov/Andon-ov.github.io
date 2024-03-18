@@ -75,21 +75,6 @@ export class RecipeComponent implements OnInit {
     this.route.paramMap.subscribe(async (params) => {
       const recipeId = params.get('id');
       this.recipeId = recipeId;
-
-      if (recipeId) {
-        try {
-          this.recipe = await this.recipeService.getRecipeById(recipeId);
-
-          this.comments = await commentService.getCommentsForRecipe(recipeId);
-        } catch (error) {
-          console.error(
-            'An error occurred while retrieving the recipe:',
-            error
-          );
-        }
-      } else {
-        console.error('Recipe ID not provided.');
-      }
     });
 
     commentService.getCommentAddedObservable().subscribe(() => {
@@ -98,15 +83,31 @@ export class RecipeComponent implements OnInit {
     });
   }
 
+  async loadRecipeData() {
+    if (this.recipeId) {
+      try {
+        this.recipe = await this.recipeService.getRecipeById(this.recipeId);
+        this.comments = await this.commentService.getCommentsForRecipe(
+          this.recipeId
+        );
+        console.log('Recipe data loaded successfully.');
+      } catch (error) {
+        console.error('An error occurred while loading recipe data:', error);
+      }
+    }
+  }
+
   navigateToRecipeEdit() {
     this.router.navigate(['/dashboard/recipe-edit', this.recipeId]);
   }
 
   ngOnInit(): void {
+    this.loadRecipeData();
     this.userService.userData$.subscribe((userData) => {
       this.userData = userData;
     });
-  }
+     }
+
   toggleCommentForm() {
     this.showCommentForm = !this.showCommentForm;
   }
@@ -120,8 +121,30 @@ export class RecipeComponent implements OnInit {
     this.loadCommentsForRecipe();
   }
 
-  updateRecipeLikes(){
-    this.recipeService.updateRecipeLikes(this.recipeId!, this.userData.uid)
+  async updateRecipeLikes() {
+    if (!this.recipe) {
+      console.error('Recipe data is missing.');
+      return;
+    }
+
+    if (!this.userData.uid) {
+      console.error('User is not logged in.');
+      return;
+    }
+
+    let alreadyLiked = this.recipe.likes.includes(this.userData.uid);
+    console.log(`alreadyLiked ${alreadyLiked}`);
+    console.log(`likes len ${this.recipe.likes.length}`);
+    
+    
+
+    await this.recipeService.updateRecipeLikes(
+      this.recipeId!,
+      this.userData.uid,
+      alreadyLiked
+    );
+    
+    await this.loadRecipeData();
   }
 
   private async loadCommentsForRecipe() {
