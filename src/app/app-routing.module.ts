@@ -13,6 +13,8 @@ import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { CommentFormEditComponent } from './comment/comment-form-edit/comment-form-edit.component';
 import { userGuard } from './user/user.guard';
+import { UserCommentsComponent } from './user/user-comments/user-comments.component';
+import { RecipeDeleteComponent } from './recipes/recipe-delete/recipe-delete.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: CarouselComponent },
@@ -49,8 +51,16 @@ const routes: Routes = [
         component: RecipeEditComponent,
       },
       {
+        path: 'recipe-delete/:id',
+        component: RecipeDeleteComponent,
+      },
+      {
         path: 'user-info',
         component: UserInfoComponent,
+      },
+      {
+        path: 'user-comments',
+        component: UserCommentsComponent,
       },
     ],
   },
@@ -63,7 +73,7 @@ const routes: Routes = [
   {
     path: 'recipe/:id',
     component: RecipeComponent,
-    canActivate:[userGuard]
+    // canActivate:[userGuard]
   },
 
   { path: 'comment-edit/:id', component: CommentFormEditComponent },

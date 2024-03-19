@@ -105,8 +105,6 @@ change password
 remove favorite recipe
 edit and delete my recipe
 
-comments
-  edit / delete comments
 
 
 favorite recipe

@@ -10,6 +10,7 @@ import { TimestampFormatPipe } from '../shared/pipe/timestampFormat/timestamp-fo
 import { UserRecipesComponent } from './user-recipes/user-recipes.component';
 import { RecipeCreateComponent } from '../recipes/recipe-create/recipe-create.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserCommentsComponent } from './user-comments/user-comments.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     TimestampFormatPipe,
     UserRecipesComponent,
     DashboardComponent,
+    UserCommentsComponent,
   ],
   imports: [
     CommonModule,

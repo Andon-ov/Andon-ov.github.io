@@ -3,6 +3,7 @@ import {
   Firestore,
   arrayRemove,
   arrayUnion,
+  deleteDoc,
   doc,
   getDoc,
   updateDoc,
@@ -32,14 +33,13 @@ export class RecipeService {
 
     try {
       if (!add) {
-        console.log("add");
-        
+        console.log('add');
+
         await updateDoc(docRef, {
           likes: arrayUnion(userId),
         });
       } else {
-
-        console.log("remove");
+        console.log('remove');
         await updateDoc(docRef, {
           likes: arrayRemove(userId),
         });
@@ -51,5 +51,14 @@ export class RecipeService {
     }
   }
 
-
+  async deleteRecipe(recipeId: string): Promise<void> {
+    try {
+      const collectionPath = 'Recipe';
+      const docRef = doc(this.firestore, collectionPath, recipeId);
+      await deleteDoc(docRef);
+      console.log('Recipe deleted successfully:', recipeId);
+    } catch (error) {
+      console.error('Error deleting recipe:', error);
+    }
+  }
 }

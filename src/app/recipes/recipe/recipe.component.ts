@@ -101,6 +101,11 @@ export class RecipeComponent implements OnInit {
     this.router.navigate(['/dashboard/recipe-edit', this.recipeId]);
   }
 
+  navigateToRecipeDelete(){
+    this.router.navigate(['/dashboard/recipe-delete', this.recipeId]);
+
+  }
+
   ngOnInit(): void {
     this.loadRecipeData();
     this.userService.userData$.subscribe((userData) => {

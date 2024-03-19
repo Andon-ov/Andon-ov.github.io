@@ -1,0 +1,23 @@
+
+<div class="mainLong">
+    <div class="headerImage"></div>
+    <div class="wrapper-list">
+
+     <div class="wrapper">
+        <h2>Do you rely want to delete this recipe</h2>
+        
+        <h3>{{recipe?.title}}</h3>
+        <ul
+        *ngIf="recipe?.image_recipe && recipe?.image_recipe?.length! > 0"
+        class="recipe-image"
+      >
+        <li *ngFor="let img of recipe?.image_recipe">
+          <img [src]="img.image_recipe" alt="Image of a recipe" />
+        </li>
+      </ul>
+     </div>
+
+        <button class="button" (click)="deleteRecipe()">YES</button>
+    </div>
+  </div>
+  

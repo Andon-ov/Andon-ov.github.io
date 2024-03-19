@@ -57,6 +57,41 @@ export class CommentService {
     }
   }
 
+  async getCommentsForUser(uid: string): Promise<Comments[]> {
+    try {
+      const commentsUserRef = collection(this.firestore, 'Comments');
+      const q = query(commentsUserRef, where('uid', '==', uid));
+      const querySnapshot = await getDocs(q);
+
+      const comments: Comments[] = [];
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const commentId = doc.id;
+
+        const comment: any = {
+          create_time: data['create_time'],
+          name: data['name'],
+          recipeId: data['recipeId'],
+          text: data['text'],
+          uid: data['uid'],
+          id: commentId,
+        };
+        comments.push(comment);
+      });
+      comments.sort((a, b) => {
+        const dateA: any = a.create_time.toDate();
+        const dateB: any = b.create_time.toDate();
+
+        return dateB - dateA;
+      });
+
+      return comments;
+    } catch (error) {
+      console.error('Error retrieving comments:', error);
+      return [];
+    }
+  }
+
   async addComment(commentData: Comments): Promise<string | null> {
     try {
       const collectionName = 'Comments';

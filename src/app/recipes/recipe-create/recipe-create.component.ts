@@ -1,12 +1,12 @@
-import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Firestore, collection, addDoc} from '@angular/fire/firestore';
-import {Recipe} from 'src/app/shared/interfaces/interfaces';
-import {Router} from '@angular/router';
-import {UserService} from 'src/app/shared/services/user.service';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import { Recipe } from 'src/app/shared/interfaces/interfaces';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/shared/services/user.service';
 
-import {User} from 'firebase/auth';
+import { User } from 'firebase/auth';
 
 @Component({
   selector: 'app-recipe-create',
@@ -31,7 +31,6 @@ export class RecipeCreateComponent implements OnInit {
   ) {
     this.firestore = firestore;
 
-
     this.recipeForm = this.fb.group({
       is_active: [false],
 
@@ -47,7 +46,6 @@ export class RecipeCreateComponent implements OnInit {
       video_recipe: this.fb.array([]),
       preparation_method: this.fb.array([]),
       likes: this.fb.array([]),
-
 
       ingredients: this.fb.array([
         this.fb.group({
@@ -72,7 +70,6 @@ export class RecipeCreateComponent implements OnInit {
       },
     });
   }
-
 
   ngOnInit(): void {
     this.editorConfig = {
@@ -182,11 +179,19 @@ export class RecipeCreateComponent implements OnInit {
       alert('The form is not valid. Please fill in all required fields.');
       return;
     }
+    console.log(this.image_recipe);
+
+    if (this.image_recipe.length === 0) {
+      const defaultImageUrl =
+        'https://res.cloudinary.com/dsla98vyk/image/upload/v1710856403/no_image_u8yfwc.png';
+      this.addImageToForm(defaultImageUrl);
+    }
 
     this.recipeForm.patchValue({
       author: this.userData.firstName + ' ' + this.userData.lastName,
     });
-    this.recipeForm.patchValue({uid: this.userData.uid});
+
+    this.recipeForm.patchValue({ uid: this.userData.uid });
     const recipeData = this.recipeForm.value;
     this.addRecipe(recipeData);
     this.recipeForm.reset();
@@ -204,6 +209,4 @@ export class RecipeCreateComponent implements OnInit {
         console.error('Error adding document: ', error);
       });
   }
-
-
 }
