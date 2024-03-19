@@ -1,37 +1,38 @@
 <div class="main-short">
+  <div class="headerImage"></div>
   <div class="wrapper">
+    <div class="form-wrapper">
+      <div class="title-wrapper">
+        <h1 class="title-form">Info</h1>
+      </div>
 
+      <div class="user-details">
+        <div class="detail">
+          <span>Email:</span>
+          <span>{{ user.email }}</span>
+        </div>
 
-    <div class="title-wrapper">
-      <h1 class="title-form">Info</h1>
+        <div class="detail">
+          <span>First name:</span>
+          <span>{{ user.firstName }}</span>
+        </div>
+
+        <div class="detail">
+          <span>Last name:</span>
+          <span>{{ user.lastName }}</span>
+        </div>
+
+        <div class="detail">
+          <span>Created at:</span>
+          <span>{{ user.metadata.createdAt | timestampFormat }}</span>
+        </div>
+
+        <div class="detail">
+          <span>Last login:</span>
+          <span>{{ user.metadata.lastLoginAt | timestampFormat }}</span>
+        </div>
+      </div>
+      <!-- <button>Редакция</button> -->
     </div>
-    
-    <div class="user-details">
-      <div class="detail">
-        <span>Email:</span>
-        <span>{{ user.email }}</span>
-      </div>
-
-      <div class="detail">
-        <span>First name:</span>
-        <span>{{ user.firstName }}</span>
-      </div>
-
-      <div class="detail">
-        <span>Last name:</span>
-        <span>{{ user.lastName }}</span>
-      </div>
-
-      <div class="detail">
-        <span>Created at:</span>
-        <span>{{ user.metadata.createdAt | timestampFormat }}</span>
-      </div>
-
-      <div class="detail">
-        <span>Last login:</span>
-        <span>{{ user.metadata.lastLoginAt | timestampFormat }}</span>
-      </div>
-    </div>
-    <!-- <button>Редакция</button> -->
   </div>
 </div>
