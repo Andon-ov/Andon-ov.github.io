@@ -1,7 +1,11 @@
 <div class="main-short">
+  <div class="headerImage"></div>
   <div class="wrapper">
-    <h1 class="title">Login</h1>
+   
     <form [formGroup]="logInForm" (ngSubmit)="submitLogInForm()">
+      <div class="title-wrapper">
+        <h1 class="title-form">Login</h1>
+      </div>
       <div class="formGroup">
         <label for="email">Email</label>
         <input

@@ -234,6 +234,12 @@ input::placeholder {
   font-size: 18px;
 }
 
+.hamburger.button {
+  padding: 5px;
+  border-radius: 50%;
+
+}
+
 /* selected button*/
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link.show {
@@ -476,7 +482,9 @@ a.nav-link:focus {
 
 
 
-.title {
+
+
+.title-form {
   display: flex;
   box-shadow: inset 0 -24px 0 0 var(--mainYellowColor);
   padding-bottom: 10px;

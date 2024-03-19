@@ -1,7 +1,11 @@
 <div class="main-long">
+  <div class="headerImage"></div>
   <div class="wrapper">
-    <h1 class="title">Edit a recipe</h1>
     <form [formGroup]="recipeEdit">
+
+      <div class="title-wrapper">
+        <h1 class="title-form">Edit a Recipe</h1>
+      </div>
       <!-- Title required-->
       <label for="title"> Title (required): </label>
       <input type="text" id="title" formControlName="title" />

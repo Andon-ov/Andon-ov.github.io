@@ -1,22 +1,39 @@
-<div class="headerImage"></div>
-
 <div *ngIf="recipes.length === 0; else recipesList">
   <main class="main-short">
-    <div
-      class="title-wrapper"
-      style="box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3); align-items: center; flex-direction: column; margin-top: 50px"
+    <div class="headerImage"></div>
+    <div class="wrapper">
+      <div
+      style="
+        max-width: 600px;
+        margin: -50px auto 50px auto;
+        padding: 32px;
+        background-color: var(--backgroundColor);
+        border-radius: unset;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      "
     >
-      <h1 style="text-align: center; margin-bottom: 50px;" class="title">
-        You have no recipes added yet!
-      </h1>
-      <button class="button">Add your first recipe!</button>
+      <div class="title-wrapper">
+        <h1 class="title-form">You have no recipes!</h1>
+      </div>
+      <button
+        class="button"
+        style="margin-top: 50px;"
+        routerLink="/dashboard/recipe-create"
+      >
+        Add your first recipe!
+      </button>
+    </div>
     </div>
   </main>
 </div>
 
 <ng-template #recipesList>
   <main class="main-long">
-    <section class="recipes-list">
+    <div class="headerImage"></div>
+    <div class="wrapper-list">
       <div class="title-wrapper">
         <h1 class="title">
           Recipes by {{ userData.firstName + " " + userData.lastName }}
@@ -38,6 +55,36 @@
           </a>
         </div>
       </div>
-    </section>
+    </div>
   </main>
 </ng-template>
+
+<!-- 
+
+  <main class="main-long">
+  <div class="headerImage"></div>
+  <div class="wrapper-list">
+    <div class="title-wrapper">
+      <h1 class="title">Recipes by {{ userData.firstName + " " + userData.lastName }}</h1>
+    </div>
+
+    
+    <div class="recipe-list">
+      <div *ngFor="let recipe of recipes">
+        <a [routerLink]="['/recipe', recipe.id]">
+          <div class="recipe-item">
+            <div class="recipe-image">
+              <img
+                [src]="recipe!.image_recipe[0]!.image_recipe"
+                alt="{{ recipe.title }}"
+              />
+            </div>
+            <p class="recipe-title">{{ recipe.title }}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+
+ -->

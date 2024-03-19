@@ -1,7 +1,9 @@
 <div class="main-short">
   <div class="wrapper">
-    <h1 class="title">Registration</h1>
     <form [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()">
+      <div class="title-wrapper">
+        <h1 class="title-form">Registration</h1>
+      </div>
       <!-- Your authentication form fields -->
       <label for="email">Email:</label>
       <input
@@ -121,8 +123,13 @@
         </div>
       </div>
 
-
-      <button class="button" style="width: 100%; margin-top: 20px;" type="submit">Submit</button>
+      <button
+        class="button"
+        style="width: 100%; margin-top: 20px"
+        type="submit"
+      >
+        Submit
+      </button>
       <hr />
       <a href="#" routerLink="/login">
         <div class="hint">Already registered?</div>

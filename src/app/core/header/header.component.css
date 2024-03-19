@@ -9,6 +9,7 @@ nav.navbar {
   color: var(--textColor);
 }
 
+
 a.navbar-brand {
   display: flex;
   gap: 10px;
@@ -85,6 +86,9 @@ form.d-flex {
 }
 
 @media (max-width: 460px) {
+  .svg-logo{
+    display: none;
+  }
   .navbar-nav.me-auto.my-2.my-lg-0.navbar-nav-scroll {
     background-color: var(--backgroundColor);
     padding: 20px;
@@ -103,6 +107,9 @@ form.d-flex {
 }
 
 @media (min-width: 461px) and (max-width: 767px) {
+  .svg-logo{
+    display: none;
+  }
   .navbar-nav.me-auto.my-2.my-lg-0.navbar-nav-scroll {
     background-color: var(--backgroundColor);
     padding: 20px;
@@ -122,6 +129,10 @@ form.d-flex {
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
+  .svg-logo{
+    display: none;
+  }
+
   .navbar-nav.me-auto.my-2.my-lg-0.navbar-nav-scroll {
     /* background-color: var(--backgroundColor); */
     padding: 20px;
