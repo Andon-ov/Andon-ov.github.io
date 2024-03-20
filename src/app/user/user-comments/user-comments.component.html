@@ -1,8 +1,8 @@
 <div *ngIf="comments.length == 0; else commentsList">
-    <main class="main-short">
-      <div class="headerImage"></div>
-      <div class="wrapper">
-        <div
+  <main class="main-short">
+    <div class="headerImage"></div>
+    <div class="wrapper">
+      <div
         style="
           max-width: 600px;
           margin: -50px auto 50px auto;
@@ -20,60 +20,72 @@
         </div>
         <button
           class="button"
-          style="margin-top: 50px;"
+          style="margin-top: 50px"
           routerLink="/recipes-list"
         >
           Add your first comments!
         </button>
       </div>
+    </div>
+  </main>
+</div>
+
+<ng-template #commentsList>
+  <main class="main-long">
+    <div class="headerImage"></div>
+    <div
+      class="wrapper-list"
+      style="
+        max-width: 600px;
+        margin: -50px auto 50px auto;
+        padding: 32px;
+        background-color: var(--backgroundColor);
+        border-radius: unset;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      "
+    >
+      <div class="title-wrapper">
+        <h1 class="title">
+          Comments by {{ userData.firstName + " " + userData.lastName }}
+        </h1>
       </div>
-    </main>
-  </div>
-  
-  <ng-template #commentsList>
-    <main class="main-long">
-      <div class="headerImage"></div>
-      <div class="wrapper-list">
-        <div class="title-wrapper">
-          <h1 class="title">
-            Comments by {{ userData.firstName + " " + userData.lastName }}
-          </h1>
-        </div>
-  
-        <div class="recipe-list">
 
-            <ul *ngFor="let comment of comments">
 
-                <a href=""routerLink="/recipe/{{ comment.recipeId }}">see recipe</a>
-                <li>{{ comment.name }}</li>
-                <li>{{ comment.text }}</li>
-            
-                <li class="comments-last">
-                  <p>
-                    {{ comment.create_time.toDate() | date : "dd/MM/yyyy HH:mm:ss" }}
-                  </p>
-            
-                  <div class="commentBtnWrapper">
-                    <span
-                      *ngIf="comment.uid == userData.uid"
-                      (click)="deleteComment(comment.id)"
-                    >
-                      <i class="fa-solid fa-trash fa-shake"></i>
-                    </span>
-            
-                    <span
-                      *ngIf="comment.uid == userData.uid"
-                      (click)="navigateToCommentEdit(comment.id)"
-                    >
-                      <i class="fa-regular fa-pen-to-square fa-flip"></i>
-                    </span>
-                  </div>
-                </li>
-              </ul>
-        
 
-        </div>
+     <div class="comments">
+        <ul *ngFor="let comment of comments">
+          <a href="" routerLink="/recipe/{{ comment.recipeId }}">see recipe</a>
+          <li>{{ comment.name }}</li>
+          <li>{{ comment.text }}</li>
+
+          <li class="comments-last">
+            <p>
+              {{ comment.create_time.toDate() | date : "dd/MM/yyyy HH:mm:ss" }}
+            </p>
+
+            <div class="commentBtnWrapper">
+              <span
+                *ngIf="comment.uid == userData.uid"
+                (click)="deleteComment(comment.id)"
+              >
+                <i class="fa-solid fa-trash fa-shake"></i>
+              </span>
+
+              <span
+                *ngIf="comment.uid == userData.uid"
+                (click)="navigateToCommentEdit(comment.id)"
+              >
+                <i class="fa-regular fa-pen-to-square fa-flip"></i>
+              </span>
+            </div>
+          </li>
+        </ul>
       </div>
-    </main>
-  </ng-template>
 
+
+    </div>
+  </main>
+</ng-template>

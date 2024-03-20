@@ -30,9 +30,9 @@
             <img [src]="img.image_recipe" alt="Image of a recipe" />
           </li>
         </ul>
-       
 
-        <button class="button" (click)="updateRecipeLikes()">
+        <!-- like -->
+        <button class="button" *ngIf="userData" (click)="updateRecipeLikes()">
           <ng-container
             *ngIf="
               recipe && recipe.likes && recipe.likes.includes(userData?.uid);
@@ -45,7 +45,9 @@
             <i class="fa-regular fa-heart fa-beat-fade"></i>
           </ng-template>
         </button>
-        <span>{{ recipe?.likes?.length }}</span>
+        <div *ngIf="recipe?.likes?.length! > 0">
+          <span>Like: {{ recipe?.likes?.length }}</span>
+        </div>
 
         <div class="divider">
           <hr />
@@ -120,7 +122,7 @@
             Would you like to comment?
           </button>
 
-          <button 
+          <button
             *ngIf="showCommentForm"
             class="button-img"
             (click)="toggleCommentForm()"
@@ -128,11 +130,19 @@
             Hide comment form
           </button>
 
-          <button *ngIf="userData.uid == recipe?.uid" class="button-img" (click)="navigateToRecipeEdit()">
+          <button
+            *ngIf="userData.uid == recipe?.uid"
+            class="button-img"
+            (click)="navigateToRecipeEdit()"
+          >
             Edit Recipe
           </button>
 
-          <button *ngIf="userData.uid == recipe?.uid" class="button-img" (click)="navigateToRecipeDelete()">
+          <button
+            *ngIf="userData.uid == recipe?.uid"
+            class="button-img"
+            (click)="navigateToRecipeDelete()"
+          >
             Delete Recipe
           </button>
         </div>
