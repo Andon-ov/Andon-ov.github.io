@@ -157,21 +157,6 @@
           <hr />
         </div>
 
-        <!-- <section class="comments" *ngIf="comments.length > 0">
-          <ul *ngFor="let comment of comments">
-            <li>{{ comment.name }}</li>
-            <li>{{ comment.text }}</li>
-
-            <li class="comments-last">
-              <p>
-                {{
-                  comment.create_time.toDate() | date : "dd/MM/yyyy HH:mm:ss"
-                }}
-              </p>
-            </li>
-          </ul>
-        </section> -->
-
         <section class="comments" *ngIf="comments.length > 0">
           <ul *ngFor="let comment of comments">
             <li>{{ comment.name }}</li>
