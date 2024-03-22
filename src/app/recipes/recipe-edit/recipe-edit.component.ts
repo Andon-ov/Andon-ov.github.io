@@ -16,6 +16,7 @@ import {
   FormControl,
 } from '@angular/forms';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
+import { FormErrorCheckService } from 'src/app/shared/services/form-error-check.service';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -33,6 +34,7 @@ export class RecipeEditComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private recipeService: RecipeService,
+    private formErrorCheckService: FormErrorCheckService,
 
     firestore: Firestore
   ) {
@@ -49,7 +51,7 @@ export class RecipeEditComponent implements OnInit {
       summary: [''],
       author: [''],
       uid: [''],
-      
+
       likes: this.fb.array([]),
       image_recipe: this.fb.array([]),
       video_recipe: this.fb.array([]),
@@ -64,15 +66,11 @@ export class RecipeEditComponent implements OnInit {
       const recipeId = params.get('id');
       this.recipeId = recipeId!;
 
-      
-
       if (recipeId) {
         try {
           this.recipe = await this.recipeService.getRecipeById(recipeId);
 
-          
           this.patchFormWithRecipeData();
-
         } catch (error) {
           console.error(
             'An error occurred while retrieving the recipe:',
@@ -253,13 +251,12 @@ export class RecipeEditComponent implements OnInit {
     return this.recipeEdit.get('preparation_method') as FormArray;
   }
 
-
-
   onSubmit() {
+    this.formErrorCheckService.markFormGroupTouched(this.recipeEdit);
+    this.formErrorCheckService.markFormArrayControlsTouched(this.ingredients);
+
     if (this.recipeEdit.invalid) {
-      alert(
-        'The form is not valid. Please fill in all required fields.'
-      );
+      alert('The form is not valid. Please fill in all required fields.');
       return;
     }
 

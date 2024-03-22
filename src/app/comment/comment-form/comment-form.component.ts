@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Firestore } from '@angular/fire/firestore';
 import { UserService } from 'src/app/shared/services/user.service';
 import { CommentService } from 'src/app/shared/services/comment.service';
+import { FormErrorCheckService } from 'src/app/shared/services/form-error-check.service';
 
 @Component({
   selector: 'app-comment-form',
@@ -51,7 +52,6 @@ export class CommentFormComponent implements OnInit {
         console.log(err);
       },
     });
-    
   }
 
   async onSubmit() {

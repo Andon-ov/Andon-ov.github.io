@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/services/user.service';
 
 import { User } from 'firebase/auth';
+import { FormErrorCheckService } from 'src/app/shared/services/form-error-check.service';
 
 @Component({
   selector: 'app-recipe-create',
@@ -27,26 +28,23 @@ export class RecipeCreateComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private el: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private formErrorCheckService: FormErrorCheckService
   ) {
     this.firestore = firestore;
 
     this.recipeForm = this.fb.group({
       is_active: [false],
-
       title: ['', [Validators.required]],
       subtitle: ['', [Validators.required]],
       description: ['', [Validators.required]],
       summary: [''],
-      // like: [0],
       author: [''],
       uid: [''],
-
       image_recipe: this.fb.array([]),
       video_recipe: this.fb.array([]),
       preparation_method: this.fb.array([]),
       likes: this.fb.array([]),
-
       ingredients: this.fb.array([
         this.fb.group({
           name: ['', [Validators.required]],
@@ -175,6 +173,9 @@ export class RecipeCreateComponent implements OnInit {
   }
 
   onSubmit() {
+    this.formErrorCheckService.markFormGroupTouched(this.recipeForm);
+    this.formErrorCheckService.markFormArrayControlsTouched(this.ingredients);
+
     if (this.recipeForm.invalid) {
       alert('The form is not valid. Please fill in all required fields.');
       return;
