@@ -1,68 +1,62 @@
 
-
 .comments {
-    border: 1px solid var(--borderColor);
-    margin: 30px 0;
-    padding: 20px;
-  }
-  
-  .comments ul {
-    padding: 10px;
-  }
-  
-  .comments ul li {
-    margin-bottom: 10px;
-    padding-left: 5px;
-  
-  }
-  
-  .comments p {
-    font-size: 14px;
-    color: var(--mainGreyColor);
-  }
-  
-  .comments ul li:nth-child(odd) {
-    background-color: var(--backgroundColor);
-    padding-left: 5px;
-    border-radius: 5px;
-  }
-  
-  .comments ul li:nth-child(even) {
-    background-color: var(--mainMagnoliaColor);
-    font-style: italic;
-    border-radius: 5px;
-  }
-  
-  
-  .commentBtnWrapper {
-    display: flex;
-    gap: 10px;
-  }
-  
-  
-  .comments-last {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .fa-solid.fa-trash.fa-shake,
-  .fa-regular.fa-pen-to-square.fa-flip {
-    cursor: pointer;
-  
-    color: var(----mainRGBAColor);
-    background-color: var(--backgroundColor);
-    padding: 8px 10px;
-    border: 3px solid var(--mainRGBAColor);
-    border-radius: 50%;
-    transition: 1s ease-in-out;
-  
-  }
-  
-  .fa-solid.fa-trash.fa-shake:hover,
-  .fa-regular.fa-pen-to-square.fa-flip:hover {
-    color: var(--backgroundColor);
-    background-color: var(--mainRGBAColor);
-    padding: 8px 10px;
-    border: 3px solid var(--mainRGBAColor);
-    border-radius: 50%;
-  }
+  border: 1px solid var(--mainMagnoliaColor);
+  margin: 30px 0;
+  padding: 20px;
+}
+
+.comments ul {
+  padding: 10px;
+}
+
+.comments ul li {
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+
+.comments p {
+  font-size: 14px;
+  color: var(--mainGreyColor);
+}
+
+.comments ul li:nth-child(odd) {
+  background-color: var(--backgroundColor);
+  padding-left: 5px;
+  border-radius: 5px;
+}
+
+.comments ul li:nth-child(even) {
+  background-color: var(--mainMagnoliaColor);
+  font-style: italic;
+  border-radius: 5px;
+}
+
+.commentBtnWrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.comments-last {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fa-solid.fa-trash.fa-shake,
+.fa-regular.fa-pen-to-square.fa-flip {
+  cursor: pointer;
+  color: var(--mainRGBAColor);
+  background-color: var(--backgroundColor);
+  padding: 8px 10px;
+  border: 3px solid var(--mainRGBAColor);
+  border-radius: 50%;
+  transition: 1s ease-in-out;
+}
+
+.fa-solid.fa-trash.fa-shake:hover,
+.fa-regular.fa-pen-to-square.fa-flip:hover {
+  color: var(--backgroundColor);
+  background-color: var(--mainRGBAColor);
+  padding: 8px 10px;
+  border: 3px solid var(--mainRGBAColor);
+  border-radius: 50%;
+}

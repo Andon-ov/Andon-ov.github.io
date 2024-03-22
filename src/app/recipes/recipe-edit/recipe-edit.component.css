@@ -1,37 +1,40 @@
+.removeIngredient {
+  all: unset;
+  color: var(--mainRedColor);
+  cursor: pointer;
+  margin-top: 20px;
+  text-align: right;
+}
 
+.removeIngredient:hover {
+  color: var(--secondColor);
+}
 
-.tiny {
-    margin: 20px 0;
-  }
-  
-  
-  
-  
-  .addIngredient {
-    all: unset;
-    color: var(--mainGreenColor);
-    cursor: pointer;
-    margin: 0 0 20px 30px;
-  }
-  
-  .addIngredient:hover {
-    background-color: unset;
-    color: var(--mainRedColor);
-    box-shadow: unset;
-  }
-  
-  form {
-    max-width: 600px;
-    margin: 0 auto 50px auto;
-    padding: 20px;
-    background-color: var(--backgroundColor);
-    border-radius: 10px;
-  }
+.addIngredient {
+  all: unset;
+  color: var(--mainGreenColor);
+  cursor: pointer;
+  margin: 0 0 20px 30px;
+}
+
+.addIngredient:hover {
+  background-color: unset;
+  color: var(--mainRedColor);
+  box-shadow: unset;
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto 50px auto;
+  padding: 20px;
+  background-color: var(--backgroundColor);
+  border-radius: 10px;
+}
 
 @media (max-width: 460px) {
-    form {
-        background-color: var(--mainBackgroundColor);
-        border: none;
-    }
+  form {
+    background-color: var(--backgroundColor);
+    border: none;
+  }
 
 }

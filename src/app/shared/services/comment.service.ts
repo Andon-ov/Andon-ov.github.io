@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
   Firestore,
   collection,
@@ -11,8 +11,8 @@ import {
   getDoc,
   updateDoc,
 } from '@angular/fire/firestore';
-import { Comments } from '../interfaces/interfaces';
-import { Subject } from 'rxjs';
+import {Comments} from '../interfaces/interfaces';
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +20,8 @@ import { Subject } from 'rxjs';
 export class CommentService {
   private commentAddedSubject = new Subject<void>();
 
-  constructor(private firestore: Firestore) {}
+  constructor(private firestore: Firestore) {
+  }
 
   async getCommentsForRecipe(recipeId: string): Promise<Comments[]> {
     try {
@@ -125,7 +126,7 @@ export class CommentService {
     if (commentSnapshot.exists()) {
       const commentDataId = commentSnapshot.data()
       console.log(commentDataId['recipeId']);
-      
+
       return commentSnapshot.data() as Comments;
     } else {
       return null;

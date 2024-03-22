@@ -1,5 +1,5 @@
 .carousel {
-  max-height: 92vh;
+  max-height: 93vh;
   overflow: hidden;
 }
 
@@ -67,11 +67,6 @@
   color: var(--mainWhiteColor);
 }
 
-/* .carousel-caption {
-    bottom: unset;
-    top: 10%;
-} */
-
 @media (max-width: 460px) {
   .overlay {
     position: absolute;
@@ -94,7 +89,6 @@
 
   .infoBtn {
     margin-top: 10px;
-
   }
 
   .carousel-title {
@@ -146,7 +140,8 @@
   }
 }
 
+@media (min-width: 1024px) and (max-width: 1440px) {
+}
 
-@media (min-width: 1024px) and (max-width: 1440px) {}
-
-@media (min-width: 1441) {}
+@media (min-width: 1441px) {
+}

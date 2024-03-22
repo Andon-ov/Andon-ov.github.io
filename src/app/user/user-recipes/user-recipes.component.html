@@ -3,7 +3,7 @@
     <div class="headerImage"></div>
     <div class="wrapper">
       <div
-      style="
+        style="
         max-width: 600px;
         margin: -50px auto 50px auto;
         padding: 32px;
@@ -14,18 +14,18 @@
         flex-direction: column;
         align-items: center;
       "
-    >
-      <div class="title-wrapper">
-        <h1 class="title-form">You have no recipes!</h1>
-      </div>
-      <button
-        class="button"
-        style="margin-top: 50px;"
-        routerLink="/dashboard/recipe-create"
       >
-        Add your first recipe!
-      </button>
-    </div>
+        <div class="title-wrapper">
+          <h1 class="title-form">You have no recipes!</h1>
+        </div>
+        <button
+          class="button"
+          style="margin-top: 50px;"
+          routerLink="/dashboard/recipe-create"
+        >
+          Add your first recipe!
+        </button>
+      </div>
     </div>
   </main>
 </div>
@@ -59,7 +59,7 @@
   </main>
 </ng-template>
 
-<!-- 
+<!--
 
   <main class="main-long">
   <div class="headerImage"></div>
@@ -68,7 +68,7 @@
       <h1 class="title">Recipes by {{ userData.firstName + " " + userData.lastName }}</h1>
     </div>
 
-    
+
     <div class="recipe-list">
       <div *ngFor="let recipe of recipes">
         <a [routerLink]="['/recipe', recipe.id]">

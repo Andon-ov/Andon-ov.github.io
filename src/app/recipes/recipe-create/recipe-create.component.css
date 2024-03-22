@@ -37,7 +37,7 @@ form {
   color: var(--mainBlackColor);
 }
 
-label{
+label {
   color: var(--mainBlackColor);
   font-weight: bold;
 }
@@ -69,27 +69,24 @@ input::placeholder {
   position: relative;
 }
 
+.removeIngredientWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .removeIngredient {
-  all: unset;
-  color: red;
-  cursor: pointer;
-  margin-top: 20px;
-  text-align: right;
+  border: unset;
+  background-color: unset;
+
 }
 
 .removeIngredient:hover {
   color: var(--secondColor);
 }
 
-.removeIngredient {
-  position: absolute;
-  top: -5px;
-  right: 16px
-}
-
 .removeInput {
   all: unset;
-  color: red;
+  color: var(--mainRedColor);
   cursor: pointer;
   text-align: right;
 }

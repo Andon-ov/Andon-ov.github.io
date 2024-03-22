@@ -1,8 +1,6 @@
 <div class="main-long">
   <div class="headerImage"></div>
   <div class="wrapper">
-
-
     <form [formGroup]="recipeForm">
       <div class="title-wrapper">
         <h1 class="title add-recipe">Add a Recipe</h1>
@@ -14,8 +12,7 @@
 
       <!-- Title required-->
       <label>Recipe Title </label>
-        <input type="text" id="title" formControlName="title"/>
-
+      <input type="text" id="title" formControlName="title"/>
 
       <div *ngIf="recipeForm.get('title')?.touched">
         <div
@@ -29,8 +26,7 @@
 
       <!-- Subtitle required-->
       <label>Subtitle</label>
-        <input type="text" id="subtitle" formControlName="subtitle"/>
-
+      <input type="text" id="subtitle" formControlName="subtitle"/>
 
       <div *ngIf="recipeForm.get('subtitle')?.touched">
         <div
@@ -68,14 +64,22 @@
       <!-- Summary -->
       <div>
         <label for="summary">Summary (optional)</label>
-        <input placeholder="Add any helpful tips about ingredient substitutions or storage here." type="text" id="summary" formControlName="summary"/>
+        <input
+          placeholder="Add any helpful tips about ingredient substitutions or storage here."
+          type="text"
+          id="summary"
+          formControlName="summary"
+        />
       </div>
       <!-- Summary -->
 
       <div class="img-video">
         <!-- Image Upload -->
         <br/>
-        <app-image-upload *ngIf="image_recipe.length == 0" (imageUploaded)="addImageToForm($event)"/>
+        <app-image-upload
+          *ngIf="image_recipe.length == 0"
+          (imageUploaded)="addImageToForm($event)"
+        />
 
         <!-- Image Upload -->
 
@@ -102,7 +106,6 @@
               </button>
             </div>
 
-
             <!-- Image preview -->
             <img
               *ngIf="image_recipe.controls[i].get('image_recipe')?.value"
@@ -126,7 +129,6 @@
             <label for="summary">Video:</label>
             <p class="hint">Add youtube video link here</p>
             <div class="input-flex">
-
               <input
                 type="text"
                 id="video_recipe"
@@ -157,6 +159,16 @@
         >
           <div class="ingredient">
             <!-- Ingredient -->
+            <div class="removeIngredientWrapper">
+              <button
+                class="removeIngredient"
+                type="button"
+                (click)="removeIngredient(i)"
+              >
+                <i class="fa-solid fa-xmark fa-beat-fade"></i>
+              </button>
+            </div>
+
 
             <div class="divider">
               <hr/>
@@ -164,15 +176,6 @@
 
               <hr/>
             </div>
-
-            <button
-              class="removeIngredient"
-              type="button"
-              (click)="removeIngredient(i)"
-            >
-              <i class="fa-solid fa-xmark fa-beat-fade"></i>
-
-            </button>
 
             <!-- Name required-->
 
@@ -188,7 +191,6 @@
               </div>
             </div>
 
-
             <div class="quantity-unit-index-wrapper">
               <div class="quantity">
                 <!-- Amount required-->
@@ -203,8 +205,9 @@
                 <label for="ingredient_unit">Unit&nbsp;*</label>
 
                 <select id="ingredient_unit" formControlName="unit">
-
-                  <option value="" disabled selected hidden>Please Choose...</option>
+                  <option value="" disabled selected hidden>
+                    Please Choose...
+                  </option>
                   <option value="ts.">Tea spoon</option>
                   <option value="tbs.">Tablespoon</option>
                   <option value="tc.">Tea cup</option>
@@ -260,7 +263,6 @@
         </div>
       </div>
 
-
       <button type="button" class="button-img" (click)="addIngredient()">
         <i class="fa-solid fa-plus fa-beat-fade"></i>
         Add one more ingredient
@@ -273,10 +275,7 @@
       >
         Submit Recipe
       </button>
-      <!-- <a class="backBtn" href="javascript:history.back()"
-        ><i class="fa-solid fa-backward fa-beat-fade"></i>&nbsp;&nbsp;Go back</a
-      > -->
-        {{recipeForm.value | json}}
+
     </form>
   </div>
 </div>

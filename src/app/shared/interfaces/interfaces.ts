@@ -1,9 +1,8 @@
-import { Timestamp } from '@angular/fire/firestore';
+import {Timestamp} from '@angular/fire/firestore';
 
 export interface Recipe {
   id: string;
   is_active: boolean;
-
   summary: string;
   likes: string[];
   uid: string;
@@ -11,7 +10,6 @@ export interface Recipe {
   title: string;
   subtitle?: string;
   description: string;
-
   preparation_method: PreparationMethodItem[];
   image_recipe: ImageRecipeItem[];
   video_recipe: VideoRecipeItem[];

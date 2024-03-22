@@ -1,8 +1,8 @@
-import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
-import { map, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
-import { UserService } from '../shared/services/user.service';
+import {inject} from '@angular/core';
+import {CanActivateFn, Router} from '@angular/router';
+import {map, switchMap} from 'rxjs/operators';
+import {of} from 'rxjs';
+import {UserService} from '../shared/services/user.service';
 
 export const userGuard: CanActivateFn = (route, state) => {
   const auth = inject(UserService);
@@ -22,7 +22,7 @@ export const userGuard: CanActivateFn = (route, state) => {
         alert('Not authorized');
         console.log('Not authorized');
         return router.createUrlTree(['/login'], {
-          queryParams: { returnUrl: state.url },
+          queryParams: {returnUrl: state.url},
         });
       }
     })

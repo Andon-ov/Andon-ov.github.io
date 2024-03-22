@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -9,10 +9,10 @@ import {
   UserCredential,
   sendPasswordResetEmail,
 } from 'firebase/auth';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 
-import { Firestore, setDoc, doc, getDoc } from '@angular/fire/firestore';
-import { FirestoreUser } from '../interfaces/interfaces';
+import {Firestore, setDoc, doc, getDoc} from '@angular/fire/firestore';
+import {FirestoreUser} from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -139,7 +139,7 @@ export class UserService {
   ): Promise<void> {
     return new Promise((resolve, reject) => {
       if (user && additionalAuthData) {
-        const fullAuthData = { ...user, ...additionalAuthData };
+        const fullAuthData = {...user, ...additionalAuthData};
         localStorage.setItem('user', JSON.stringify(fullAuthData));
         this.userDataSubject.next(fullAuthData);
         resolve();

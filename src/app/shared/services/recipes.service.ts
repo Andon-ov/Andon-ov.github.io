@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Observable, from } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Observable, from} from 'rxjs';
 import {
   Firestore,
   collection,
@@ -12,14 +12,15 @@ import {
   setDoc,
   updateDoc,
 } from '@angular/fire/firestore';
-import { Recipe } from '../interfaces/interfaces';
-import { Router } from '@angular/router';
+import {Recipe} from '../interfaces/interfaces';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RecipesService {
-  constructor(private firestore: Firestore, private router: Router) {}
+  constructor(private firestore: Firestore, private router: Router) {
+  }
 
   getRecipes(): Observable<Recipe[]> {
     const collectionName = 'Recipe';
@@ -35,7 +36,7 @@ export class RecipesService {
 
           querySnapshot.forEach((doc) => {
             const recipeData = doc.data() as Recipe;
-            const recipeWithId = { ...recipeData, id: doc.id };
+            const recipeWithId = {...recipeData, id: doc.id};
 
             data.push(recipeWithId);
           });
@@ -57,7 +58,7 @@ export class RecipesService {
       const recipes: Recipe[] = [];
       querySnapshot.forEach((doc) => {
         const recipeData = doc.data() as Recipe;
-        const recipeWithId = { ...recipeData, id: doc.id };
+        const recipeWithId = {...recipeData, id: doc.id};
 
         recipes.push(recipeWithId);
       });

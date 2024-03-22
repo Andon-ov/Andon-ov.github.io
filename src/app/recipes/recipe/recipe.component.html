@@ -17,7 +17,7 @@
       </div>
 
       <div *ngIf="!recipe?.summary">
-        <br />
+        <br/>
       </div>
 
       <!-- image  -->
@@ -27,7 +27,7 @@
           class="recipe-image"
         >
           <li *ngFor="let img of recipe?.image_recipe">
-            <img [src]="img.image_recipe" alt="Image of a recipe" />
+            <img [src]="img.image_recipe" alt="Image of a recipe"/>
           </li>
         </ul>
 
@@ -50,24 +50,24 @@
         </div>
 
         <div class="divider">
-          <hr />
+          <hr/>
           <p>&nbsp;&nbsp;Preparation&nbsp;&nbsp;</p>
-          <hr />
+          <hr/>
         </div>
-        <br />
+        <br/>
 
         <!-- description require -->
         <p class="recipe-description-text description">
           {{ recipe?.description }}
         </p>
-        <br />
+        <br/>
 
         <div *ngIf="recipe?.ingredients" class="divider">
-          <hr />
+          <hr/>
           <p>&nbsp;&nbsp;Ingredients&nbsp;&nbsp;</p>
-          <hr />
+          <hr/>
         </div>
-        <br />
+        <br/>
 
         <ul
           class="recipe-ingredients"
@@ -87,11 +87,11 @@
           *ngIf="recipe?.video_recipe && recipe?.video_recipe?.length! > 0"
         >
           <div class="divider">
-            <hr />
+            <hr/>
             <p>&nbsp;&nbsp;Video&nbsp;&nbsp;</p>
-            <hr />
+            <hr/>
           </div>
-          <br />
+          <br/>
 
           <ul>
             <li *ngFor="let video of recipe?.video_recipe">
@@ -107,11 +107,11 @@
         </div>
 
         <div class="divider" *ngIf="userData">
-          <hr />
+          <hr/>
           <p>&nbsp;&nbsp;Buttons&nbsp;&nbsp;</p>
-          <hr />
+          <hr/>
         </div>
-        <br />
+        <br/>
 
         <div class="buttons" *ngIf="userData">
           <button
@@ -148,16 +148,17 @@
         </div>
 
         <div *ngIf="showCommentForm">
-          <app-comment-form [recipeId]="recipeId" />
+          <app-comment-form [recipeId]="recipeId"/>
         </div>
 
         <div *ngIf="comments.length > 0" class="divider">
-          <hr />
+          <hr/>
           <p>&nbsp;&nbsp;Comments&nbsp;&nbsp;</p>
-          <hr />
+          <hr/>
         </div>
 
         <section class="comments" *ngIf="comments.length > 0">
+
           <ul *ngFor="let comment of comments">
             <li>{{ comment.name }}</li>
             <li>{{ comment.text }}</li>
@@ -165,7 +166,7 @@
             <li class="comments-last">
               <p>
                 {{
-                  comment.create_time.toDate() | date : "dd/MM/yyyy HH:mm:ss"
+                comment.create_time.toDate() | date : "dd/MM/yyyy HH:mm:ss"
                 }}
               </p>
 
@@ -185,6 +186,7 @@
                 </span>
               </div>
             </li>
+            <hr>
           </ul>
         </section>
       </div>

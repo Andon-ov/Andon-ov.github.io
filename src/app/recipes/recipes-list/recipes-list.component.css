@@ -11,7 +11,6 @@
 }
 
 .recipe-list {
-  /* max-width: 1200px; */
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -40,54 +39,35 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-
-  background: var(--mainRGBAColor);
   background: rgba(167, 87, 94, 0.8);
-
   color: var(--backgroundColor);
   font-size: 18px;
-
   font-weight: 900;
   padding: 0 5px;
   margin: 0;
   text-align: center;
   width: 100%;
   text-transform: uppercase;
-  /* top: 70%; */
   top: 80%;
-
   height: 30%;
-  font-family: var(--titleFont);
-  /* letter-spacing: 2px; */
   line-height: 20px;
   font-family: "Caveat", cursive;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   transition: top 1s ease-in-out;
 }
-
-/* .recipe-item:hover {
-  transform: scale(0.90);
-  transition: 1s ease-in-out;
-
-} */
 
 .recipe-item:hover .recipe-title {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  top: 0%;
+  top: 0;
   height: 30%;
   color: var(--textColor);
   background: var(--backgroundColor);
   transition: 1s ease-in-out;
-
-  /* border-top: 1px solid var(--textColor); */
-  box-shadow: 1px 5px 15px 0px rgba(167, 87, 94, 1);
+  box-shadow: 1px 5px 15px 0 rgba(167, 87, 94, 1);
 }
 
 .recipe-item:hover .recipe-image {
@@ -100,17 +80,11 @@
     padding: 16px;
   }
 
-
   .recipe-list {
     display: flex;
     flex-direction: column;
-    /* padding: 0 4% 0 2%; */
     row-gap: 30px;
   }
-
-  /* .recipe-item {
-    width: 100%;
-  } */
 
   .recipe-image img {
     height: unset;
@@ -123,7 +97,6 @@
   }
 }
 
-
 @media (min-width: 461px) and (max-width: 767px) {
   .wrapper-list {
     margin: -50px 50px 50px 50px;
@@ -132,13 +105,8 @@
   .recipe-list {
     display: flex;
     flex-direction: column;
-    /* padding: 0 80px 0 2%; */
     row-gap: 30px;
   }
-
-  /* .recipe-item {
-    width: 100%;
-  } */
 
   .recipe-title {
     text-transform: uppercase;
@@ -159,15 +127,9 @@
   .recipe-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-
-    /* padding: 0 10% 0 1%; */
     column-gap: 10px;
     row-gap: 30px;
   }
-
-  /* .recipe-item {
-    width: 100%;
-  } */
 
   .recipe-title {
     text-transform: uppercase;
@@ -179,7 +141,6 @@
   }
 }
 
-
 @media (min-width: 1024px) and (max-width: 1440px) {
   .wrapper-list {
     margin: -50px 50px 50px 50px;
@@ -188,14 +149,9 @@
   .recipe-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* padding: 0 10% 0 1%; */
     column-gap: 10px;
     row-gap: 30px;
   }
-
-  /* .recipe-item {
-    width: 100%;
-  } */
 
   .recipe-title {
     text-transform: uppercase;

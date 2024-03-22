@@ -6,7 +6,6 @@
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3);
 }
 
-
 .title {
   font-size: 28px;
   box-shadow: unset;
@@ -14,7 +13,6 @@
   background: #e8e8e8;
   text-shadow: -1px -1px 1px rgba(255, 255, 255, .1), 1px 1px 1px rgba(0, 0, 0, .5);
 }
-
 
 .recipe-subtitle {
   font-size: 14px;
@@ -78,17 +76,14 @@ ul.recipe-image {
   height: 450px;
 }
 
-
 .buttons {
   padding: 0 32px;
   display: flex;
   justify-content: space-between;
 }
 
-
-
 .comments {
-  border: 1px solid var(--borderColor);
+  border: 1px solid var(--mainMagnoliaColor);
   margin: 30px 0;
   padding: 20px;
 }
@@ -100,7 +95,6 @@ ul.recipe-image {
 .comments ul li {
   margin-bottom: 10px;
   padding-left: 5px;
-
 }
 
 .comments p {
@@ -120,12 +114,10 @@ ul.recipe-image {
   border-radius: 5px;
 }
 
-
 .commentBtnWrapper {
   display: flex;
   gap: 10px;
 }
-
 
 .comments-last {
   display: flex;
@@ -135,14 +127,12 @@ ul.recipe-image {
 .fa-solid.fa-trash.fa-shake,
 .fa-regular.fa-pen-to-square.fa-flip {
   cursor: pointer;
-
-  color: var(----mainRGBAColor);
+  color: var(--mainRGBAColor);
   background-color: var(--backgroundColor);
   padding: 8px 10px;
   border: 3px solid var(--mainRGBAColor);
   border-radius: 50%;
   transition: 1s ease-in-out;
-
 }
 
 .fa-solid.fa-trash.fa-shake:hover,
