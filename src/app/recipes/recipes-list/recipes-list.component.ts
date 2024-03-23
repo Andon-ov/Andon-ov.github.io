@@ -15,7 +15,6 @@ export class RecipesListComponent implements OnInit {
   lastDoc: any;
   hasMoreRecipesSub: Subscription | undefined;
 
-  hasMoreRecipes$: Observable<boolean> | undefined;
   hasMoreRecipes = true;
 
   constructor(private recipeService: RecipesService) {}
@@ -32,12 +31,7 @@ export class RecipesListComponent implements OnInit {
     this.recipes.push(...data);
   }
 
-  ngOnDestroy(): void {
-    if (this.hasMoreRecipesSub) {
-      this.hasMoreRecipesSub.unsubscribe();
-    }
-  }
-}
+ }
 
 //! get all recipe functionality
 // getRecipes(): void {
