@@ -1,7 +1,6 @@
 <main class="main-long">
   <div class="headerImage"></div>
   <div class="wrapper-list">
-
     <div class="title-wrapper">
       <h1 class="title">Recipes</h1>
     </div>
@@ -22,6 +21,12 @@
       </div>
     </div>
 
-
+    <button
+      *ngIf="showLoadMoreButton"
+      (click)="getRecipesLoadMore()"
+      class="button"
+    >
+      Load More
+    </button>
   </div>
 </main>

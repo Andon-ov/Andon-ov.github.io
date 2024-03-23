@@ -142,9 +142,6 @@
 }
 
 @media (min-width: 1024px) and (max-width: 1440px) {
-  .wrapper-list {
-    margin: -50px 50px 50px 50px;
-  }
 
   .recipe-list {
     display: grid;

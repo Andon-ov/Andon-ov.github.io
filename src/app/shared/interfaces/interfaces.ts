@@ -16,6 +16,22 @@ export interface Recipe {
   ingredients: Ingredient[];
 }
 
+export interface RecipeWithId{
+  id: string;
+  is_active: boolean;
+  summary: string;
+  likes: string[];
+  uid: string;
+  author: string;
+  title: string;
+  subtitle?: string;
+  description: string;
+  preparation_method: PreparationMethodItem[];
+  image_recipe: ImageRecipeItem[];
+  video_recipe: VideoRecipeItem[];
+  ingredients: Ingredient[];
+}
+
 export interface ImageRecipeItem {
   image_recipe: string;
 }
