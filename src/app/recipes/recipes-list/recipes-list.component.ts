@@ -14,7 +14,7 @@ export class RecipesListComponent implements OnInit {
 
   constructor(private recipeService: RecipesService) {}
   ngOnInit(): void {
-    this.getRecipesLoadMore();
+    this.getRecipes();
     this.showLoadMoreButton = true;
   }
 
@@ -25,6 +25,15 @@ export class RecipesListComponent implements OnInit {
     this.showLoadMoreButton = hasMore;
     this.recipes.push(...data);
   }
+  
+  async getRecipes() {
+    const { data} = await this.recipeService.getRecipes();
+
+    this.recipes.push(...data);
+  }
+
+  
+
 }
 
 //! get all recipe functionality

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, firstValueFrom } from 'rxjs';
+import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import {
   Firestore,
   collection,
@@ -16,19 +16,17 @@ import {
   limit,
 } from '@angular/fire/firestore';
 import { Recipe } from '../interfaces/interfaces';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RecipesService {
-
   private lastDocSubject = new BehaviorSubject<
     QueryDocumentSnapshot<DocumentData> | undefined
   >(undefined);
   public lastDoc$ = this.lastDocSubject.asObservable();
 
-  constructor(private firestore: Firestore, private router: Router) {}
+  constructor(private firestore: Firestore) {}
 
   async getRecipeByUID(uid: string): Promise<any[]> {
     try {
@@ -54,7 +52,7 @@ export class RecipesService {
   async getRecipesLoadMore(): Promise<{ data: Recipe[]; hasMore: boolean }> {
     const collectionName = 'Recipe';
     const lastDoc = await firstValueFrom(this.lastDoc$);
-    const paginateNumber = 12;
+    const paginateNumber = 6;
 
     let q: Query<Recipe> = query(
       collection(this.firestore, collectionName) as CollectionReference<Recipe>,
@@ -82,6 +80,39 @@ export class RecipesService {
     this.lastDocSubject.next(lastDocFromQuery);
 
     return { data, hasMore };
+  }
+
+  async getRecipes(): Promise<{ data: Recipe[] }> {
+    const collectionName = 'Recipe';
+    // const lastDoc = await firstValueFrom(this.lastDoc$);
+    const paginateNumber = 6;
+
+    let q: Query<Recipe> = query(
+      collection(this.firestore, collectionName) as CollectionReference<Recipe>,
+      orderBy('title')
+    );
+
+    // if (lastDoc) {
+    //   q = query(q, startAfter(lastDoc));
+    // }
+
+    q = query(q, limit(paginateNumber));
+
+    const querySnapshot: QuerySnapshot<Recipe> = await getDocs(q);
+    let data: Recipe[] = [];
+
+    querySnapshot.forEach((doc) => {
+      const recipeData = doc.data();
+      const recipeWithId = { ...recipeData, id: doc.id };
+      data.push(recipeWithId);
+    });
+
+    // const hasMore = querySnapshot.size === paginateNumber;
+
+    const lastDocFromQuery = querySnapshot.docs[querySnapshot.docs.length - 1];
+    this.lastDocSubject.next(lastDocFromQuery);
+
+    return { data };
   }
 }
 
