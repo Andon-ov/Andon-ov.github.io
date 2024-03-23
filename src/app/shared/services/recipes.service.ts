@@ -22,9 +22,6 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class RecipesService {
-  private hasMoreRecipes$ = new BehaviorSubject<boolean>(true);
-
-  //! load more functionality
   private lastDocSubject = new BehaviorSubject<
     QueryDocumentSnapshot<DocumentData> | undefined
   >(undefined);
@@ -52,11 +49,6 @@ export class RecipesService {
       return [];
     }
   }
-
-  get hasMoreRecipesObservable(): Observable<boolean> {
-    return this.hasMoreRecipes$.asObservable();
-  }
-
 
   async getRecipesLoadMore(): Promise<{ data: Recipe[]; hasMore: boolean }> {
     const collectionName = 'Recipe';
@@ -118,82 +110,4 @@ export class RecipesService {
 //         observer.error(error);
 //       });
 //   });
-// }
-
-//! pagination functionality
-// loadRecipes(orderByField: string, limitNumber: number): Observable<Recipe[]> {
-//   const collectionName = 'Recipe';
-//   const q = query(
-//     collection(this.firestore, collectionName),
-//     orderBy(orderByField),
-//     limit(limitNumber)
-//   );
-
-//   return new Observable((observer) => {
-//     getDocs(q)
-//       .then((querySnapshot) => {
-//         const recipes: Recipe[] = [];
-
-//         querySnapshot.forEach((doc) => {
-//           const data = doc.data();
-//           recipes.push({
-//             id: doc.id,
-//             ...data,
-//           } as Recipe);
-//         });
-
-//         this.lastInResponse =
-//           querySnapshot.docs[querySnapshot.docs.length - 1];
-//         observer.next(recipes);
-//         observer.complete();
-//       })
-//       .catch((error) => {
-//         observer.error(error);
-//       });
-//   });
-// }
-
-// loadMoreRecipes(
-//   orderByField: string,
-//   limitNumber: number
-// ): Observable<Recipe[]> {
-//   if (this.lastInResponse && this.hasMoreRecipes$.value) {
-//     const q = query(
-//       collection(this.firestore, 'Recipe'),
-//       orderBy(orderByField),
-//       limit(limitNumber),
-//       startAfter(this.lastInResponse)
-//     );
-
-//     return new Observable((observer) => {
-//       getDocs(q)
-//         .then((querySnapshot) => {
-//           const recipes: Recipe[] = [];
-//           querySnapshot.forEach((doc) => {
-//             const data = doc.data();
-//             recipes.push({
-//               id: doc.id,
-//               ...data,
-//             } as Recipe);
-//           });
-//           this.lastInResponse =
-//             querySnapshot.docs[querySnapshot.docs.length - 1];
-//           observer.next(recipes);
-//           observer.complete();
-//           this.checkHasMoreRecipes(querySnapshot.docs.length, limitNumber);
-//         })
-//         .catch((error) => {
-//           observer.error(error);
-//         });
-//     });
-//   } else {
-//     return new Observable((observer) => {
-//       observer.next([]);
-//       observer.complete();
-//     });
-//   }
-// }
-
-// private checkHasMoreRecipes(currentCount: number, limitNumber: number): void {
-//   this.hasMoreRecipes$.next(currentCount === limitNumber);
 // }

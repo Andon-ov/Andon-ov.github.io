@@ -21,10 +21,7 @@ export class RecipesListComponent implements OnInit {
   constructor(private recipeService: RecipesService) {}
 
   ngOnInit(): void {
-    this.hasMoreRecipes$ = this.recipeService.hasMoreRecipesObservable;
-
     this.getRecipesLoadMore();
-    this.setupHasMoreRecipesSubscription();
   }
 
   async getRecipesLoadMore() {
@@ -33,13 +30,6 @@ export class RecipesListComponent implements OnInit {
 
     this.showLoadMoreButton = hasMore;
     this.recipes.push(...data);
-  }
-
-  setupHasMoreRecipesSubscription(): void {
-    this.hasMoreRecipesSub =
-      this.recipeService.hasMoreRecipesObservable.subscribe((hasMore) => {
-        this.hasMoreRecipes = hasMore;
-      });
   }
 
   ngOnDestroy(): void {
@@ -55,33 +45,6 @@ export class RecipesListComponent implements OnInit {
 //     next: (data) => {
 //       this.recipes = data.sort((a, b) => a.title.localeCompare(b.title));
 //       // .filter((a) => a.is_active);
-//     },
-//     error: (error) => {
-//       console.error('Error fetching recipes:', error);
-//     },
-//   });
-// }
-
-// ! pagination
-// haveMore(): Observable<boolean> {
-//   return this.recipeService.hasMoreRecipesObservable;
-// }
-
-// loadRecipes() {
-//   this.recipeService.loadRecipes('title', 6).subscribe({
-//     next: (data) => {
-//       this.recipes = data.sort((a, b) => a.title.localeCompare(b.title));
-//     },
-//     error: (error) => {
-//       console.error('Error fetching recipes:', error);
-//     },
-//   });
-// }
-
-// loadMoreRecipes() {
-//   this.recipeService.loadMoreRecipes('title', 6).subscribe({
-//     next: (data) => {
-//       this.recipes = data.sort((a, b) => a.title.localeCompare(b.title));
 //     },
 //     error: (error) => {
 //       console.error('Error fetching recipes:', error);
