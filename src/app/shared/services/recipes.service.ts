@@ -22,6 +22,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class RecipesService {
+
   private lastDocSubject = new BehaviorSubject<
     QueryDocumentSnapshot<DocumentData> | undefined
   >(undefined);

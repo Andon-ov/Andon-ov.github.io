@@ -15,13 +15,14 @@ export class RecipesListComponent implements OnInit {
   constructor(private recipeService: RecipesService) {}
   ngOnInit(): void {
     this.getRecipesLoadMore();
+    this.showLoadMoreButton = true;
   }
 
   async getRecipesLoadMore() {
     const { data, hasMore } = await this.recipeService.getRecipesLoadMore();
     console.log(hasMore);
 
-    // this.showLoadMoreButton = hasMore;
+    this.showLoadMoreButton = hasMore;
     this.recipes.push(...data);
   }
 }
