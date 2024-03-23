@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
 import { Recipe } from 'src/app/shared/interfaces/interfaces';
 import { RecipesService } from 'src/app/shared/services/recipes.service';
 
@@ -12,13 +11,8 @@ export class RecipesListComponent implements OnInit {
   recipes: Recipe[] = [];
 
   showLoadMoreButton = true;
-  lastDoc: any;
-  hasMoreRecipesSub: Subscription | undefined;
-
-  hasMoreRecipes = true;
 
   constructor(private recipeService: RecipesService) {}
-
   ngOnInit(): void {
     this.getRecipesLoadMore();
   }
@@ -27,11 +21,10 @@ export class RecipesListComponent implements OnInit {
     const { data, hasMore } = await this.recipeService.getRecipesLoadMore();
     console.log(hasMore);
 
-    this.showLoadMoreButton = hasMore;
+    // this.showLoadMoreButton = hasMore;
     this.recipes.push(...data);
   }
-
- }
+}
 
 //! get all recipe functionality
 // getRecipes(): void {
