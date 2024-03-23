@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { RecipesService } from 'src/app/shared/services/recipes.service';
+import { SearchDataService } from 'src/app/shared/services/search-data.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -8,6 +12,8 @@ import { UserService } from 'src/app/shared/services/user.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  searchForm: any;
+
   isMenuOpen = false;
   userData: any | null = null;
   private userDataSubject: BehaviorSubject<any | null> = new BehaviorSubject<
@@ -15,11 +21,20 @@ export class HeaderComponent implements OnInit {
   >(null);
   private userDataSubscription: Subscription;
 
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private recipesService: RecipesService,
+    private router: Router,
+    private fb: FormBuilder,
+    private searchDataService: SearchDataService
+  ) {
     this.userDataSubscription = this.userDataSubject.subscribe((value) => {
       this.userData = value;
       console.log(this.userData);
-      
+    });
+
+    this.searchForm = this.fb.group({
+      search: [''],
     });
   }
 
@@ -38,6 +53,15 @@ export class HeaderComponent implements OnInit {
         console.log(err);
       },
     });
+  }
+
+  onSubmit() {
+    if (this.searchForm.valid) {
+      let query = this.searchForm.value;
+      this.searchDataService.searchQuery = query.search.trim();
+      this.searchForm.reset()
+      this.router.navigate(['/recipe-search']);
+    }
   }
 
   toggleMenu() {

@@ -15,6 +15,7 @@ import { CommentFormEditComponent } from './comment/comment-form-edit/comment-fo
 import { userGuard } from './user/user.guard';
 import { UserCommentsComponent } from './user/user-comments/user-comments.component';
 import { RecipeDeleteComponent } from './recipes/recipe-delete/recipe-delete.component';
+import { RecipeSearchComponent } from './recipes/recipe-search/recipe-search.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: CarouselComponent },
@@ -68,6 +69,11 @@ const routes: Routes = [
   {
     path: 'recipes-list',
     component: RecipesListComponent,
+  },
+
+  {
+    path: 'recipe-search',
+    component: RecipeSearchComponent,
   },
 
   {

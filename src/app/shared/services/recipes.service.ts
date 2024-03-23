@@ -84,17 +84,12 @@ export class RecipesService {
 
   async getRecipes(): Promise<{ data: Recipe[] }> {
     const collectionName = 'Recipe';
-    // const lastDoc = await firstValueFrom(this.lastDoc$);
     const paginateNumber = 6;
 
     let q: Query<Recipe> = query(
       collection(this.firestore, collectionName) as CollectionReference<Recipe>,
       orderBy('title')
     );
-
-    // if (lastDoc) {
-    //   q = query(q, startAfter(lastDoc));
-    // }
 
     q = query(q, limit(paginateNumber));
 
@@ -107,10 +102,34 @@ export class RecipesService {
       data.push(recipeWithId);
     });
 
-    // const hasMore = querySnapshot.size === paginateNumber;
-
     const lastDocFromQuery = querySnapshot.docs[querySnapshot.docs.length - 1];
     this.lastDocSubject.next(lastDocFromQuery);
+
+    return { data };
+  }
+
+  async searchRecipesByTitle(titleQuery: string): Promise<{ data: Recipe[] }> {
+    const collectionName = 'Recipe';
+
+    let q: Query<Recipe> = query(
+      collection(this.firestore, collectionName) as CollectionReference<Recipe>,
+      orderBy('title')
+    );
+
+    const querySnapshot: QuerySnapshot<Recipe> = await getDocs(q);
+    let data: Recipe[] = [];
+
+    querySnapshot.forEach((doc) => {
+      const recipeData = doc.data();
+      const recipeWithId = { ...recipeData, id: doc.id };
+      data.push(recipeWithId);
+    });
+
+    if (titleQuery) {
+      data = data.filter((recipe) =>
+        recipe.title.toLowerCase().includes(titleQuery.toLowerCase())
+      );
+    }
 
     return { data };
   }
