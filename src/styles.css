@@ -14,13 +14,21 @@
   --aliceBlueColor: #f8f9fa;
 
   --mainRGBColor: 167, 87, 94;
-  --alpha: 0.6;
+  /* --mainRGBColor: 0, 102, 57; */
+
+  --alpha: 0.7;
   --mainRGBAColor: rgba(var(--mainRGBColor), var(--alpha));
 
   --backgroundColor: #e5e5e5;
   --textColor: #a7575e;
+  /* --textColor:#006639; */
+  
   --mainColor: #bd6b6f;
+  /* --mainColor: #00afa6; */
+
   --secondColor: #BFA5A6;
+  /* --secondColor: #007a72; */
+
 
   --titleFont: Georgia, Times, serif;
 }

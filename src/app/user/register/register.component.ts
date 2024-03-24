@@ -25,6 +25,8 @@ export class RegisterComponent {
       lastName: ['', Validators.required],
       isActive: [true, Validators.required],
       isAdmin: [false, Validators.required],
+      favoriteRecipes:this.fb.array([])
+
     });
   }
 

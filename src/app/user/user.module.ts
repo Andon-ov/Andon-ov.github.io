@@ -11,6 +11,7 @@ import { UserRecipesComponent } from './user-recipes/user-recipes.component';
 import { RecipeCreateComponent } from '../recipes/recipe-create/recipe-create.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserCommentsComponent } from './user-comments/user-comments.component';
+import { UserFavoriteRecipesComponent } from './user-favorite-recipes/user-favorite-recipes.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { UserCommentsComponent } from './user-comments/user-comments.component';
     UserRecipesComponent,
     DashboardComponent,
     UserCommentsComponent,
+    UserFavoriteRecipesComponent,
   ],
   imports: [
     CommonModule,

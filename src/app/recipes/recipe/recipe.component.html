@@ -31,9 +31,7 @@
           </li>
         </ul>
 
-        <div class="buttons">
-          
-          
+        <div *ngIf="userData" class="buttons">
           <!-- like -->
           <button class="button" *ngIf="userData" (click)="updateRecipeLikes()">
             <ng-container
@@ -50,18 +48,22 @@
           </button>
 
           <!-- favorite -->
-          <button class="button" *ngIf="userData" (click)="updateFavoriteRecipes()" >
+          <button
+            class="button"
+            *ngIf="userData"
+            (click)="updateFavoriteRecipes()"
+          >
             <ng-container
               *ngIf="
-                recipe && userData && userData.favoriteRecipes.includes(this.recipeId);
+                recipe &&
+                  userData &&
+                  userData.favoriteRecipes.includes(this.recipeId);
                 else notLiked
               "
             >
               in favorite
             </ng-container>
-            <ng-template #notLiked>
-            save to favorite
-            </ng-template>
+            <ng-template #notLiked> save to favorite </ng-template>
           </button>
 
           <!-- new -->

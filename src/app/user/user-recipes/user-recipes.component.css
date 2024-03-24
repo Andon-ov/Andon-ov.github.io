@@ -40,6 +40,7 @@
   left: 50%;
   transform: translateX(-50%);
   background: rgba(167, 87, 94, 0.8);
+  background: var(--mainRGBAColor);
   color: var(--backgroundColor);
   font-size: 18px;
   font-weight: 900;
@@ -68,6 +69,8 @@
   background: var(--backgroundColor);
   transition: 1s ease-in-out;
   box-shadow: 1px 5px 15px 0 rgba(167, 87, 94, 1);
+  box-shadow: 1px 5px 15px 0 var(--textColor);
+
 }
 
 .recipe-item:hover .recipe-image {

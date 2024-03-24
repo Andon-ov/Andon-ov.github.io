@@ -19,7 +19,8 @@
   top: 0;
   bottom: 0;
   right: 50%;
-  background-color: rgba(167, 87, 94, 0.6);
+  background-color: rgba(167, 87, 94, 0.9);
+  background-color: var(--mainRGBAColor);
   z-index: 9;
 }
 
@@ -75,6 +76,7 @@
     bottom: 0;
     right: 0;
     background-color: rgba(167, 87, 94, 0.6);
+    background-color: var(--mainRGBAColor);
     z-index: 9;
   }
 
@@ -107,6 +109,7 @@
     bottom: 0;
     right: 0;
     background-color: rgba(167, 87, 94, 0.6);
+    background-color: var(--mainRGBAColor);
     z-index: 9;
   }
 

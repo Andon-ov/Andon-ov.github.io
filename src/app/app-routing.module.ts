@@ -16,6 +16,7 @@ import { userGuard } from './user/user.guard';
 import { UserCommentsComponent } from './user/user-comments/user-comments.component';
 import { RecipeDeleteComponent } from './recipes/recipe-delete/recipe-delete.component';
 import { RecipeSearchComponent } from './recipes/recipe-search/recipe-search.component';
+import { UserFavoriteRecipesComponent } from './user/user-favorite-recipes/user-favorite-recipes.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: CarouselComponent },
@@ -36,6 +37,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [userGuard],
     children: [
       {
         path: 'user-recipes',
@@ -63,6 +65,10 @@ const routes: Routes = [
         path: 'user-comments',
         component: UserCommentsComponent,
       },
+      {
+        path: 'user-favorite-recipes',
+        component: UserFavoriteRecipesComponent,
+      },
     ],
   },
 
@@ -79,7 +85,6 @@ const routes: Routes = [
   {
     path: 'recipe/:id',
     component: RecipeComponent,
-    // canActivate:[userGuard]
   },
 
   { path: 'comment-edit/:id', component: CommentFormEditComponent },

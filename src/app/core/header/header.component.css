@@ -2,6 +2,7 @@ nav.navbar {
   min-height: 7vh;
   background-color: var(--aliceBlueColor);
   box-shadow: 1px 5px 15px 0 rgba(167, 87, 94, 1);
+  box-shadow: 1px 5px 15px 0 var(--mainRGBAColor);
 }
 
 .container-fluid {
@@ -13,6 +14,18 @@ nav.navbar {
   display: flex;
   gap: 20px;
   align-items: center;
+}
+
+.hamburger span i {
+  padding: 6px 4px 4px 4px;
+  color: #ffffff;
+  scale: 1.2;
+}
+
+.hamburger:hover {
+  transform: rotate(180deg);
+  transition: .5s ease-in-out;
+  box-shadow: 1px 1px 15px 0 var(--textColor);
 }
 
 a.navbar-brand {

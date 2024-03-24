@@ -69,7 +69,8 @@
     background: var(--backgroundColor);
     transition: 1s ease-in-out;
     box-shadow: 1px 5px 15px 0 rgba(167, 87, 94, 1);
-    box-shadow: 1px 5px 15px 0 var(--mainRGBAColor);
+    box-shadow: 1px 5px 15px 0 var(--textColor);
+  
   }
   
   .recipe-item:hover .recipe-image {
