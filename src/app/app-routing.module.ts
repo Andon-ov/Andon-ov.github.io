@@ -1,22 +1,25 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { RegisterComponent } from './user/register/register.component';
-import { LoginComponent } from './user/login/login.component';
-import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.component';
-import { CarouselComponent } from './shared/carousel/carousel.component';
-import { RecipesListComponent } from './recipes/recipes-list/recipes-list.component';
-import { RecipeCreateComponent } from './recipes/recipe-create/recipe-create.component';
-import { RecipeComponent } from './recipes/recipe/recipe.component';
-import { UserInfoComponent } from './user/user-info/user-info.component';
-import { UserRecipesComponent } from './user/user-recipes/user-recipes.component';
-import { DashboardComponent } from './user/dashboard/dashboard.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
-import { CommentFormEditComponent } from './comment/comment-form-edit/comment-form-edit.component';
-import { userGuard } from './user/user.guard';
-import { UserCommentsComponent } from './user/user-comments/user-comments.component';
-import { RecipeDeleteComponent } from './recipes/recipe-delete/recipe-delete.component';
-import { RecipeSearchComponent } from './recipes/recipe-search/recipe-search.component';
-import { UserFavoriteRecipesComponent } from './user/user-favorite-recipes/user-favorite-recipes.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+
+import {userGuard} from './user/user.guard';
+import {RegisterComponent} from './user/register/register.component';
+import {LoginComponent} from './user/login/login.component';
+import {ForgotPasswordComponent} from './user/forgot-password/forgot-password.component';
+import {UserInfoComponent} from './user/user-info/user-info.component';
+import {UserRecipesComponent} from './user/user-recipes/user-recipes.component';
+import {DashboardComponent} from './user/dashboard/dashboard.component';
+import {UserCommentsComponent} from './user/user-comments/user-comments.component';
+import {UserFavoriteRecipesComponent} from './user/user-favorite-recipes/user-favorite-recipes.component';
+
+import {RecipesListComponent} from './recipes/recipes-list/recipes-list.component';
+import {RecipeCreateComponent} from './recipes/recipe-create/recipe-create.component';
+import {RecipeComponent} from './recipes/recipe/recipe.component';
+import {RecipeEditComponent} from './recipes/recipe-edit/recipe-edit.component';
+import {RecipeDeleteComponent} from './recipes/recipe-delete/recipe-delete.component';
+import {RecipeSearchComponent} from './recipes/recipe-search/recipe-search.component';
+
+import {CarouselComponent} from './shared/carousel/carousel.component';
+import {CommentFormEditComponent} from './comment/comment-form-edit/comment-form-edit.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: CarouselComponent },

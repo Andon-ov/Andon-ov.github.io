@@ -1,4 +1,4 @@
-<div *ngIf="recipes.length === 0; else recipesList">
+<div *ngIf="!result; else recipesList">
   <main class="main-short">
     <div class="headerImage"></div>
     <div class="wrapper">
@@ -18,7 +18,6 @@
         <div class="title-wrapper">
           <h1 class="title">
             We're sorry, but we couldn't find the result you're looking for!
-
 
             <main class="logo-svg">
               <svg
@@ -40,7 +39,10 @@
                   data-fill-palette-color="background"
                   id="background"
                 ></rect>
-                <g id="tight-bounds" transform="matrix(1,0,0,1,168.6873741251188,76.4)">
+                <g
+                  id="tight-bounds"
+                  transform="matrix(1,0,0,1,168.6873741251188,76.4)"
+                >
                   <svg
                     viewBox="0 0 302.6252517497624 247.2"
                     height="247.2"
@@ -176,8 +178,6 @@
                 </g>
               </svg>
             </main>
-
-
           </h1>
         </div>
       </div>

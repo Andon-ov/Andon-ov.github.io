@@ -1,13 +1,11 @@
-import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
-import { Recipe } from 'src/app/shared/interfaces/interfaces';
-import { Router } from '@angular/router';
-import { UserService } from 'src/app/shared/services/user.service';
-
-import { User } from 'firebase/auth';
-import { FormErrorCheckService } from 'src/app/shared/services/form-error-check.service';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {addDoc, collection, Firestore} from '@angular/fire/firestore';
+import {Recipe} from 'src/app/shared/interfaces/interfaces';
+import {Router} from '@angular/router';
+import {UserService} from 'src/app/shared/services/user.service';
+import {FormErrorCheckService} from 'src/app/shared/services/form-error-check.service';
 
 @Component({
   selector: 'app-recipe-create',
@@ -27,8 +25,6 @@ export class RecipeCreateComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private userService: UserService,
-    private el: ElementRef,
-    private renderer: Renderer2,
     private formErrorCheckService: FormErrorCheckService
   ) {
     this.firestore = firestore;
@@ -70,6 +66,7 @@ export class RecipeCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.editorConfig = {
       // skin: 'oxide-dark',
       content_style: 'body { background-color: #f6f4f9; }',
@@ -119,23 +116,23 @@ export class RecipeCreateComponent implements OnInit {
     videoArray.removeAt(index);
   }
 
-  addPreparation() {
-    const preparationArray = this.recipeForm.get(
-      'preparation_method'
-    ) as FormArray;
-    preparationArray.push(
-      this.fb.group({
-        preparation_method: '',
-      })
-    );
-  }
+  // addPreparation() {
+  //   const preparationArray = this.recipeForm.get(
+  //     'preparation_method'
+  //   ) as FormArray;
+  //   preparationArray.push(
+  //     this.fb.group({
+  //       preparation_method: '',
+  //     })
+  //   );
+  // }
 
-  removePreparation(index: number) {
-    const preparationArray = this.recipeForm.get(
-      'preparation_method'
-    ) as FormArray;
-    preparationArray.removeAt(index);
-  }
+  // removePreparation(index: number) {
+  //   const preparationArray = this.recipeForm.get(
+  //     'preparation_method'
+  //   ) as FormArray;
+  //   preparationArray.removeAt(index);
+  // }
 
   addIngredient() {
     const ingredientsArray = this.recipeForm.get('ingredients') as FormArray;

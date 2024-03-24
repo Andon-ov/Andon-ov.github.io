@@ -27,6 +27,7 @@
           class="recipe-image"
         >
           <li *ngFor="let img of recipe?.image_recipe">
+
             <img [src]="img.image_recipe" alt="Image of a recipe" />
           </li>
         </ul>
@@ -36,7 +37,11 @@
           <button class="button" *ngIf="userData" (click)="updateRecipeLikes()">
             <ng-container
               *ngIf="
-                recipe && recipe.likes && recipe.likes.includes(userData?.uid);
+              userData &&
+                recipe &&
+                recipe.likes &&
+                userData?.uid &&
+                recipe.likes.includes(userData.uid)
                 else notLiked
               "
             >
@@ -55,9 +60,10 @@
           >
             <ng-container
               *ngIf="
-                recipe &&
-                  userData &&
-                  userData.favoriteRecipes.includes(this.recipeId);
+               recipe &&
+                userData &&
+                userData.favoriteRecipes &&
+                userData.favoriteRecipes.includes(this.recipeId || '')
                 else notLiked
               "
             >
@@ -66,9 +72,7 @@
             <ng-template #notLiked> save to favorite </ng-template>
           </button>
 
-          <!-- new -->
 
-          <!-- <button (click)="updateFavoriteRecipes()" class="button">Save to favorite Recipe</button> -->
           <button class="button">Rate Recipe</button>
           <button class="button">Share Recipe</button>
         </div>
@@ -128,7 +132,6 @@
                 width="560"
                 height="315"
                 [src]="video.video_recipe | safeUrl"
-                frameborder="0"
                 allowfullscreen
               ></iframe>
             </li>

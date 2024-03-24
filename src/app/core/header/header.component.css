@@ -1,7 +1,6 @@
 nav.navbar {
   min-height: 7vh;
   background-color: var(--aliceBlueColor);
-  box-shadow: 1px 5px 15px 0 rgba(167, 87, 94, 1);
   box-shadow: 1px 5px 15px 0 var(--mainRGBAColor);
 }
 
@@ -95,7 +94,7 @@ a.dropdown-item {
   border-color: var(--textColor);
 }
 
-@media (max-width: 460px) {
+@media (max-width: 460px), (min-width: 461px) and (max-width: 767px) {
   .svg-logo {
     display: none;
   }
@@ -118,35 +117,15 @@ a.dropdown-item {
     width: 100%;
   }
 
+}
+
+@media (max-width: 460px) {
   form.d-flex {
     flex-direction: column;
     gap: 15px;
   }
 }
-
 @media (min-width: 461px) and (max-width: 767px) {
-  .svg-logo {
-    display: none;
-  }
-
-  .navbar-nav.me-auto.my-2.my-lg-0.navbar-nav-scroll {
-    background-color: var(--backgroundColor);
-    padding: 20px;
-    border-radius: 8px;
-  }
-
-  .container-fluid {
-    max-width: 1200px;
-    padding: 0 3%;
-    color: var(--textColor);
-    justify-content: space-evenly;
-  }
-
-  .navbar-nav .dropdown-menu.search {
-    border: unset;
-    width: 100%;
-
-  }
 
   .dropdown-menu.search.show form {
     max-width: unset;

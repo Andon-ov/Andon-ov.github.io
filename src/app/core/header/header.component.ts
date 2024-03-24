@@ -1,18 +1,16 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { BehaviorSubject, Subscription } from 'rxjs';
-import { RecipesService } from 'src/app/shared/services/recipes.service';
-import { SearchDataService } from 'src/app/shared/services/search-data.service';
-import { UserService } from 'src/app/shared/services/user.service';
+import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
+import {NavigationEnd, Router} from '@angular/router';
+import {BehaviorSubject, Subscription} from 'rxjs';
 
+import {UserService} from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   searchForm: any;
 
   isMenuOpen = false;
@@ -24,11 +22,10 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private recipesService: RecipesService,
     private router: Router,
     private fb: FormBuilder,
-    private searchDataService: SearchDataService,
-    
+    private elementRef: ElementRef,
+
   ) {
     this.userDataSubscription = this.userDataSubject.subscribe((value) => {
       this.userData = value;
@@ -55,31 +52,32 @@ export class HeaderComponent implements OnInit {
         console.log(err);
       },
     });
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const navbarCollapse =
+          this.elementRef.nativeElement.querySelector('#navbarScroll');
+        if (navbarCollapse) {
+          navbarCollapse.classList.remove('show');
+        }
+      }
+    });
   }
 
-  onSubmit() {
+ async onSubmit() {
     if (this.searchForm.valid) {
       let query = this.searchForm.value;
-      this.searchDataService.searchQuery = query.search.trim();
-      this.searchForm.reset()
-      this.router.navigate(['/recipe-search']);
-    }
-    else{
-      alert('try again!');
+    await  this.router.navigate(['/recipe-search'], { queryParams: { search: query.search.trim() }});
+      this.searchForm.reset();
+    } else {
+      alert('Try again!');
     }
   }
-  
-
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
+  ngOnDestroy() {
+    this.userDataSubscription.unsubscribe();
   }
 
-  closeMenu() {
-    this.isMenuOpen = false;
-  }
-
-  logout() {
-    this.userService.logoutUser();
+  async logout() {
+  await  this.userService.logoutUser();
   }
 
   getUserDisplayName(): string {

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
 import { Recipe } from 'src/app/shared/interfaces/interfaces';
 import { RecipesService } from 'src/app/shared/services/recipes.service';
-import { SearchDataService } from 'src/app/shared/services/search-data.service';
+
+import { Component, OnInit, Inject } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-search',
@@ -11,14 +12,23 @@ import { SearchDataService } from 'src/app/shared/services/search-data.service';
 export class RecipeSearchComponent {
   recipes: Recipe[] = [];
   result = false;
+  searchForm: any;
 
-  constructor(private recipeService: RecipesService,private searchDataService: SearchDataService) {}
+  constructor(
+    private recipeService: RecipesService,
+    @Inject(ActivatedRoute) private route: ActivatedRoute
+  ) {}
   ngOnInit(): void {
-    this.getRecipes();
+    this.route.queryParams.subscribe((params) => {
+      const searchQuery = params['search'];
+      if (searchQuery) {
+        this.getRecipes(searchQuery);
+      }
+    });
   }
 
-  async getRecipes() {
-    const { data } = await this.recipeService.searchRecipesByTitle(this.searchDataService.searchQuery);
+  async getRecipes(searchQuery: string) {
+    const { data } = await this.recipeService.searchRecipesByTitle(searchQuery);
     console.log(data);
     if (data.length > 0) {
       this.recipes.push(...data);

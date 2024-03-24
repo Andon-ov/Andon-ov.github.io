@@ -1,12 +1,9 @@
-
-
-
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Comments } from 'src/app/shared/interfaces/interfaces';
-import { Firestore, updateDoc, doc } from '@angular/fire/firestore';
-import { CommentService } from 'src/app/shared/services/comment.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Comments} from 'src/app/shared/interfaces/interfaces';
+import {doc, Firestore, updateDoc} from '@angular/fire/firestore';
+import {CommentService} from 'src/app/shared/services/comment.service';
 
 
 @Component({
@@ -78,22 +75,21 @@ export class CommentFormEditComponent  implements OnInit {
     });
   }
 
-  onSubmit() {
+ async onSubmit() {
     if (this.commentFormEdit.valid) {
       const commentData = this.commentFormEdit.value;
 
-      this.editComment(commentData);
+     await this.editComment(commentData);
       this.commentFormEdit.reset();
     } else {
       console.log('form invalid');
     }
   }
 
-  editComment(commentData: any) {
+  async editComment(commentData: any) {
     const collectionName = 'Comments';
-
     const docRef = doc(this.firestore, collectionName, this.commentId);
-    updateDoc(docRef, commentData);
-    this.router.navigate(['/recipe', this.comment?.recipeId]);
+    await updateDoc(docRef, commentData);
+    await this.router.navigate(['/recipe', this.comment?.recipeId]);
   }
 }

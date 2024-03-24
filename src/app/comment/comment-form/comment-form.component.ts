@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Firestore } from '@angular/fire/firestore';
-import { UserService } from 'src/app/shared/services/user.service';
-import { CommentService } from 'src/app/shared/services/comment.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Firestore} from '@angular/fire/firestore';
+import {UserService} from 'src/app/shared/services/user.service';
+import {CommentService} from 'src/app/shared/services/comment.service';
+import {FirestoreUser} from "../../shared/interfaces/interfaces";
 
 @Component({
   selector: 'app-comment-form',
@@ -15,7 +16,8 @@ export class CommentFormComponent implements OnInit {
   firestore: Firestore;
   timestamp = new Date();
   fullName = '';
-  userData: any | null = null;
+  // userData: any | null = null;
+  userData: FirestoreUser | undefined;
 
   @Input() recipeId!: string | null;
 
@@ -60,7 +62,9 @@ export class CommentFormComponent implements OnInit {
       this.commentForm.patchValue({ name: this.fullName });
       this.commentForm.patchValue({ recipeId: this.recipeId });
       this.commentForm.patchValue({ create_time: this.timestamp });
-      this.commentForm.patchValue({ uid: this.userData.uid });
+      if (this.userData){
+        this.commentForm.patchValue({ uid: this.userData.uid });
+      }
 
       try {
         const result = await this.commentService.addComment(
