@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -9,19 +9,27 @@ import {
   UserCredential,
   sendPasswordResetEmail,
 } from 'firebase/auth';
-import {BehaviorSubject, Observable} from 'rxjs';
+import { BehaviorSubject, Observable, take } from 'rxjs';
 
-import {Firestore, setDoc, doc, getDoc} from '@angular/fire/firestore';
-import {FirestoreUser} from '../interfaces/interfaces';
+import {
+  Firestore,
+  setDoc,
+  doc,
+  getDoc,
+  arrayRemove,
+  updateDoc,
+  arrayUnion,
+} from '@angular/fire/firestore';
+import { FirestoreUser } from '../interfaces/interfaces';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
   private userDataSubject: BehaviorSubject<FirestoreUser | null> =
     new BehaviorSubject<FirestoreUser | null>(null);
-  userData$: Observable<FirestoreUser | null> = this.userDataSubject.asObservable();
+  userData$: Observable<FirestoreUser | null> =
+    this.userDataSubject.asObservable();
 
   constructor(private firestore: Firestore, public router: Router) {
     const savedUserData = localStorage.getItem('user');
@@ -86,6 +94,43 @@ export class UserService {
     }
   }
 
+  async updateFavoriteRecipes(recipeId: string, userId: string, add: boolean) {
+    const collectionName = 'Auth';
+    const docRef = doc(this.firestore, collectionName, userId);
+
+    try {
+      if (!add) {
+        console.log('add');
+
+        await updateDoc(docRef, {
+          favoriteRecipes: arrayUnion(recipeId),
+        });
+      } else {
+        console.log('remove');
+        await updateDoc(docRef, {
+          favoriteRecipes: arrayRemove(recipeId),
+        });
+      }
+
+      console.log('Favorite recipes updated successfully');
+
+      const additionalAuthData = await this.getAdditionalAuthDataById(userId);
+
+      this.userData$.pipe(take(1)).subscribe((user) => {
+        if (user) {
+          const castedUser = user as unknown as User;
+          this.saveUserData(castedUser, additionalAuthData)
+            .then(() => console.log('User data saved successfully'))
+            .catch(() => console.error('Failed to save user data'));
+        } else {
+          console.error('User is null');
+        }
+      });
+    } catch (error) {
+      console.error('Error updating favorite recipes: ', error);
+    }
+  }
+
   private sendPasswordResetEmail(passwordResetEmail: string): Promise<void> {
     const auth = getAuth();
     return sendPasswordResetEmail(auth, passwordResetEmail);
@@ -139,7 +184,7 @@ export class UserService {
   ): Promise<void> {
     return new Promise((resolve, reject) => {
       if (user && additionalAuthData) {
-        const fullAuthData = {...user, ...additionalAuthData};
+        const fullAuthData = { ...user, ...additionalAuthData };
         localStorage.setItem('user', JSON.stringify(fullAuthData));
         this.userDataSubject.next(fullAuthData);
         resolve();

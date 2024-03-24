@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { RecipesService } from 'src/app/shared/services/recipes.service';
 import { SearchDataService } from 'src/app/shared/services/search-data.service';
 import { UserService } from 'src/app/shared/services/user.service';
+
 
 @Component({
   selector: 'app-header',
@@ -26,7 +27,8 @@ export class HeaderComponent implements OnInit {
     private recipesService: RecipesService,
     private router: Router,
     private fb: FormBuilder,
-    private searchDataService: SearchDataService
+    private searchDataService: SearchDataService,
+    
   ) {
     this.userDataSubscription = this.userDataSubject.subscribe((value) => {
       this.userData = value;
@@ -62,7 +64,11 @@ export class HeaderComponent implements OnInit {
       this.searchForm.reset()
       this.router.navigate(['/recipe-search']);
     }
+    else{
+      alert('try again!');
+    }
   }
+  
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;

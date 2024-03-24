@@ -1,10 +1,9 @@
-
 <div *ngIf="recipes.length === 0; else recipesList">
-    <main class="main-short">
-      <div class="headerImage"></div>
-      <div class="wrapper">
-        <div
-          style="
+  <main class="main-short">
+    <div class="headerImage"></div>
+    <div class="wrapper">
+      <div
+        style="
           max-width: 600px;
           margin: -50px auto 50px auto;
           padding: 32px;
@@ -15,47 +14,40 @@
           flex-direction: column;
           align-items: center;
         "
-        >
-          <div class="title-wrapper">
-            <h1 class="title-form">You have no recipes!</h1>
-          </div>
-          <button
-            class="button"
-            style="margin-top: 50px;"
-            routerLink="/dashboard/recipe-create"
-          >
-            Add your first recipe!
-          </button>
-        </div>
-      </div>
-    </main>
-  </div>
-  
-  <ng-template #recipesList>
-    <main class="main-long">
-      <div class="headerImage"></div>
-      <div class="wrapper-list">
+      >
         <div class="title-wrapper">
           <h1 class="title">
-            Result
+            We're sorry, but we couldn't find the result you're looking for!
           </h1>
         </div>
-  
-        <div class="recipe-list">
-          <div *ngFor="let recipe of recipes">
-            <a [routerLink]="['/recipe', recipe.id]">
-              <div class="recipe-item">
-                <div class="recipe-image">
-                  <img
-                    [src]="recipe!.image_recipe[0]!.image_recipe"
-                    alt="{{ recipe.title }}"
-                  />
-                </div>
-                <p class="recipe-title">{{ recipe.title }}</p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<ng-template #recipesList>
+  <main class="main-long">
+    <div class="headerImage"></div>
+    <div class="wrapper-list">
+      <div class="title-wrapper">
+        <h1 class="title">Result</h1>
+      </div>
+
+      <div class="recipe-list">
+        <div *ngFor="let recipe of recipes">
+          <a [routerLink]="['/recipe', recipe.id]">
+            <div class="recipe-item">
+              <div class="recipe-image">
+                <img
+                  [src]="recipe!.image_recipe[0]!.image_recipe"
+                  alt="{{ recipe.title }}"
+                />
               </div>
-            </a>
-          </div>
+              <p class="recipe-title">{{ recipe.title }}</p>
+            </div>
+          </a>
         </div>
       </div>
-    </main>
-  </ng-template>
+    </div>
+  </main>
+</ng-template>

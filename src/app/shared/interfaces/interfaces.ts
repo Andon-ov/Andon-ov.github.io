@@ -1,4 +1,4 @@
-import {Timestamp} from '@angular/fire/firestore';
+import { Timestamp } from '@angular/fire/firestore';
 
 export interface Recipe {
   id: string;
@@ -16,7 +16,7 @@ export interface Recipe {
   ingredients: Ingredient[];
 }
 
-export interface RecipeWithId{
+export interface RecipeWithId {
   id: string;
   is_active: boolean;
   summary: string;
@@ -65,6 +65,7 @@ export interface FirestoreUser {
   lastName: string;
   isActive: boolean;
   isAdmin: boolean;
+  favoriteRecipes: string[];
 }
 
 /*

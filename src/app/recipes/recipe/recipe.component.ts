@@ -101,9 +101,8 @@ export class RecipeComponent implements OnInit {
     this.router.navigate(['/dashboard/recipe-edit', this.recipeId]);
   }
 
-  navigateToRecipeDelete(){
+  navigateToRecipeDelete() {
     this.router.navigate(['/dashboard/recipe-delete', this.recipeId]);
-
   }
 
   ngOnInit(): void {
@@ -111,7 +110,7 @@ export class RecipeComponent implements OnInit {
     this.userService.userData$.subscribe((userData) => {
       this.userData = userData;
     });
-     }
+  }
 
   toggleCommentForm() {
     this.showCommentForm = !this.showCommentForm;
@@ -140,15 +139,36 @@ export class RecipeComponent implements OnInit {
     let alreadyLiked = this.recipe.likes.includes(this.userData.uid);
     console.log(`alreadyLiked ${alreadyLiked}`);
     console.log(`likes len ${this.recipe.likes.length}`);
-    
-    
 
     await this.recipeService.updateRecipeLikes(
       this.recipeId!,
       this.userData.uid,
       alreadyLiked
     );
-    
+
+    await this.loadRecipeData();
+  }
+
+  async updateFavoriteRecipes() {
+    if (!this.recipe) {
+      console.error('Recipe data is missing.');
+      return;
+    }
+
+    if (!this.userData.uid) {
+      console.error('User is not logged in.');
+      return;
+    }
+    let alreadyInFavorite = this.userData.favoriteRecipes.includes(
+      this.recipeId
+    );
+
+    await this.userService.updateFavoriteRecipes(
+      this.recipeId!,
+      this.userData.uid,
+      alreadyInFavorite
+    );
+
     await this.loadRecipeData();
   }
 

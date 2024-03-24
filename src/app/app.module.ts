@@ -14,14 +14,10 @@ import { CloudinaryModule } from '@cloudinary/ng';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecipesModule } from './recipes/recipes.module';
 import { UserModule } from './user/user.module';
-import { EditorModule,
-   TINYMCE_SCRIPT_SRC
-   } from '@tinymce/tinymce-angular';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -32,8 +28,8 @@ import { EditorModule,
     UserModule,
 
     // Cloud Firestore
-     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-     provideFirestore(() => getFirestore()),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirestore(() => getFirestore()),
 
     // Cloudinary
     CloudinaryModule,
@@ -42,13 +38,12 @@ import { EditorModule,
     NgbModule,
 
     // Tiny MCE
-    EditorModule
-
+    EditorModule,
   ],
   providers: [
-     // Tiny MCE
-    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+    // Tiny MCE
+    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

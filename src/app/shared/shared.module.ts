@@ -13,7 +13,6 @@ import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
     ImageUploadComponent,
     SafeUrlPipe,
     ScrollToTopComponent,
-
   ],
   imports: [CommonModule, EditorModule, RouterModule],
   exports: [
@@ -21,6 +20,6 @@ import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
     ImageUploadComponent,
     SafeUrlPipe,
     ScrollToTopComponent,
-     ],
+  ],
 })
 export class SharedModule {}
