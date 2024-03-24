@@ -45,9 +45,10 @@ body {
 }
 
 body {
+  min-width:300px;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  font-size: clamp(0.6rem, 0.734rem + 0.8511vw, 0.9rem);
+  /* font-size: clamp(0.6rem, 0.734rem + 0.8511vw, 0.9rem); */
 }
 
 form {

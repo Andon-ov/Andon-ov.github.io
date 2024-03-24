@@ -1,9 +1,10 @@
-import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
-import {NavigationEnd, Router} from '@angular/router';
-import {BehaviorSubject, Subscription} from 'rxjs';
+import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { NavigationEnd, Router } from '@angular/router';
+import { BehaviorSubject, Subscription } from 'rxjs';
 
-import {UserService} from 'src/app/shared/services/user.service';
+import { UserService } from 'src/app/shared/services/user.service';
+import { FirestoreUser } from '../../shared/interfaces/interfaces';
 
 @Component({
   selector: 'app-header',
@@ -11,10 +12,12 @@ import {UserService} from 'src/app/shared/services/user.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  searchForm: any;
+  searchForm = this.fb.group({
+    search: [''],
+  });
 
   isMenuOpen = false;
-  userData: any | null = null;
+  userData: FirestoreUser | undefined | null;
   private userDataSubject: BehaviorSubject<any | null> = new BehaviorSubject<
     any | null
   >(null);
@@ -24,17 +27,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private router: Router,
     private fb: FormBuilder,
-    private elementRef: ElementRef,
-
+    private elementRef: ElementRef
   ) {
     this.userDataSubscription = this.userDataSubject.subscribe((value) => {
       this.userData = value;
       console.log(this.userData);
     });
 
-    this.searchForm = this.fb.group({
-      search: [''],
-    });
+    // this.searchForm = this.fb.group({
+    //   search: [''],
+    // });
   }
 
   ngOnInit(): void {
@@ -63,21 +65,38 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
- async onSubmit() {
+  // async onSubmit() {
+  //   if (this.searchForm.valid) {
+  //     let query = this.searchForm.value;
+  //     await this.router.navigate(['/recipe-search'], {queryParams: {search: query.search.trim()}});
+  //     this.searchForm.reset();
+  //   } else {
+  //     alert('Try again!');
+  //   }
+  // }
+
+  async onSubmit() {
     if (this.searchForm.valid) {
       let query = this.searchForm.value;
-    await  this.router.navigate(['/recipe-search'], { queryParams: { search: query.search.trim() }});
-      this.searchForm.reset();
+      if (query && query.search) {
+        await this.router.navigate(['/recipe-search'], {
+          queryParams: { search: query.search.trim() },
+        });
+        this.searchForm.reset();
+      } else {
+        console.error('Query search value is null or undefined.');
+      }
     } else {
       alert('Try again!');
     }
   }
+
   ngOnDestroy() {
     this.userDataSubscription.unsubscribe();
   }
 
   async logout() {
-  await  this.userService.logoutUser();
+    await this.userService.logoutUser();
   }
 
   getUserDisplayName(): string {

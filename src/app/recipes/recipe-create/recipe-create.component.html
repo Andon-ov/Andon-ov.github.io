@@ -3,7 +3,7 @@
   <div class="wrapper">
     <form [formGroup]="recipeForm">
       <div class="title-wrapper">
-        <h1 class="title add-recipe">Add a Recipe</h1>
+        <h1 class="add-recipe">Add a Recipe</h1>
       </div>
       <h4 class="subtitle">
         Uploading personal recipes is easy! Add yours to your favorites, share
@@ -12,7 +12,7 @@
 
       <!-- Title required-->
       <label>Recipe Title </label>
-      <input type="text" id="title" formControlName="title"/>
+      <input type="text" id="title" formControlName="title" />
 
       <div *ngIf="recipeForm.get('title')?.touched">
         <div
@@ -26,7 +26,7 @@
 
       <!-- Subtitle required-->
       <label>Subtitle</label>
-      <input type="text" id="subtitle" formControlName="subtitle"/>
+      <input type="text" id="subtitle" formControlName="subtitle" />
 
       <div *ngIf="recipeForm.get('subtitle')?.touched">
         <div
@@ -75,7 +75,7 @@
 
       <div class="img-video">
         <!-- Image Upload -->
-        <br/>
+        <br />
         <app-image-upload
           *ngIf="image_recipe.length == 0"
           (imageUploaded)="addImageToForm($event)"
@@ -113,9 +113,9 @@
               alt="Image Preview"
               class="image-preview"
             />
-            <br/>
+            <br />
 
-            <br/>
+            <br />
           </div>
         </div>
         <!-- Image -->
@@ -169,18 +169,17 @@
               </button>
             </div>
 
-
             <div class="divider">
-              <hr/>
+              <hr />
               <p>&nbsp;&nbsp;Ingredient&nbsp;{{ i + 1 }}&nbsp;</p>
 
-              <hr/>
+              <hr />
             </div>
 
             <!-- Name required-->
 
             <label for="name">Name</label>
-            <input type="text" id="name" formControlName="name"/>
+            <input type="text" id="name" formControlName="name" />
 
             <div *ngIf="recipeForm.get('ingredients.' + i + '.name')?.touched">
               <div
@@ -196,7 +195,7 @@
                 <!-- Amount required-->
 
                 <label for="amount">Quantity</label>
-                <input type="number" id="amount" formControlName="amount"/>
+                <input type="number" id="amount" formControlName="amount" />
               </div>
 
               <div class="unit">
@@ -275,7 +274,6 @@
       >
         Submit Recipe
       </button>
-
     </form>
   </div>
 </div>

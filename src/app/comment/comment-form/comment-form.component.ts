@@ -16,8 +16,7 @@ export class CommentFormComponent implements OnInit {
   firestore: Firestore;
   timestamp = new Date();
   fullName = '';
-  // userData: any | null = null;
-  userData: FirestoreUser | undefined;
+  userData: FirestoreUser | null | undefined;
 
   @Input() recipeId!: string | null;
 
@@ -59,11 +58,11 @@ export class CommentFormComponent implements OnInit {
     this.timestamp = new Date();
 
     if (this.commentForm.valid) {
-      this.commentForm.patchValue({ name: this.fullName });
-      this.commentForm.patchValue({ recipeId: this.recipeId });
-      this.commentForm.patchValue({ create_time: this.timestamp });
-      if (this.userData){
-        this.commentForm.patchValue({ uid: this.userData.uid });
+      this.commentForm.patchValue({name: this.fullName});
+      this.commentForm.patchValue({recipeId: this.recipeId});
+      this.commentForm.patchValue({create_time: this.timestamp});
+      if (this.userData) {
+        this.commentForm.patchValue({uid: this.userData.uid});
       }
 
       try {

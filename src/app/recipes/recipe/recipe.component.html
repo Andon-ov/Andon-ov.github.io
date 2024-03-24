@@ -67,14 +67,14 @@
                 else notLiked
               "
             >
-              in favorite
+            Save it!
             </ng-container>
-            <ng-template #notLiked> save to favorite </ng-template>
+            <ng-template #notLiked>Save Recipe</ng-template>
           </button>
 
 
-          <button class="button">Rate Recipe</button>
-          <button class="button">Share Recipe</button>
+          <!-- <button class="button">Rate Recipe</button>
+          <button class="button">Share Recipe</button> -->
         </div>
         <!-- new -->
 
@@ -145,25 +145,22 @@
         </div>
         <br />
 
-        <div class="buttons" *ngIf="userData">
+        <div class=" buttons buttons-img" *ngIf="userData">
           <button
             *ngIf="!showCommentForm"
             class="button-img"
             (click)="toggleCommentForm()"
-          >
-            Would you like to comment?
+          >Comment?
           </button>
 
           <button
             *ngIf="showCommentForm"
             class="button-img"
             (click)="toggleCommentForm()"
-          >
-            Hide comment form
-          </button>
+          >Hide Form</button>
 
           <button
-            *ngIf="userData.uid == recipe?.uid"
+            *ngIf="userData && userData.uid == recipe?.uid"
             class="button-img"
             (click)="navigateToRecipeEdit()"
           >
@@ -171,7 +168,7 @@
           </button>
 
           <button
-            *ngIf="userData.uid == recipe?.uid"
+            *ngIf="userData && userData.uid == recipe?.uid"
             class="button-img"
             (click)="navigateToRecipeDelete()"
           >

@@ -138,3 +138,10 @@ input::placeholder {
   outline: none;
   height: 45px;
 }
+
+
+@media (max-width: 640px) {
+  .button-img {
+    width: 100%;
+  }
+}

@@ -143,3 +143,9 @@ ul.recipe-image {
   border: 3px solid var(--mainRGBAColor);
   border-radius: 50%;
 }
+
+@media (max-width: 640px) {
+  .buttons-img {
+    flex-direction: column-reverse;
+  }
+}

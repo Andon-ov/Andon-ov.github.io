@@ -6,8 +6,26 @@
   padding: 32px;
 }
 
+.empty {
+  max-width: 600px;
+  margin: -50px auto 50px auto;
+  padding: 32px;
+  background-color: var(--backgroundColor);
+  border-radius: unset;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.emptyInfo {
+  display: flex;
+  flex-direction: column;
+}
+
 .title-wrapper {
   margin-left: 10px;
+
 }
 
 .recipe-list {
@@ -68,7 +86,6 @@
   color: var(--textColor);
   background: var(--backgroundColor);
   transition: 1s ease-in-out;
-  box-shadow: 1px 5px 15px 0 rgba(167, 87, 94, 1);
   box-shadow: 1px 5px 15px 0 var(--textColor);
 
 }
@@ -77,7 +94,87 @@
   transform: translateY(12%);
 }
 
+/* @media only screen {
+
+  .logo-svg {
+    display: block;
+  }
+
+  .empty,
+  .wrapper-list {
+    margin: -50px 20px 50px 20px;
+    padding: 16px;
+  }
+
+  .recipe-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+  }
+
+  .recipe-image img {
+    height: unset;
+  }
+
+  .recipe-title {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 461px) {
+
+  .logo-svg {
+    display: none;
+  }
+
+  .recipe-title {
+    font-size: 18px;
+  }
+
+  @media only screen and (min-width: 768px) {
+
+    .wrapper-list {
+      margin: -50px 50px 50px 50px;
+    }
+
+    .recipe-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 10px;
+    }
+
+    .recipe-image img {
+      height: 250px;
+    }
+
+    @media only screen and (min-width: 1024px) {
+
+      .wrapper-list {
+        margin: -50px auto 50px auto;
+      }
+
+      .recipe-list {
+        grid-template-columns: repeat(4, 1fr);
+
+      }
+    }
+  }
+} */
+
 @media only screen and (max-width: 460px) {
+  .logo-svg {
+    display: none;
+  }
+
+  .empty {
+    margin: -50px 20px 50px 20px;
+  }
+
+  .emptyInfo {
+    padding: 16px;
+  }
+
+
   .wrapper-list {
     margin: -50px 20px 50px 20px;
     padding: 16px;
@@ -101,6 +198,11 @@
 }
 
 @media (min-width: 461px) and (max-width: 767px) {
+
+  .logo-svg {
+    display: none;
+  }
+
   .wrapper-list {
     margin: -50px 50px 50px 50px;
   }
@@ -121,6 +223,9 @@
     height: unset;
   }
 }
+
+
+
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .wrapper-list {

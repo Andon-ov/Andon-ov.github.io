@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {addDoc, collection, Firestore} from '@angular/fire/firestore';
-import {Recipe} from 'src/app/shared/interfaces/interfaces';
-import {Router} from '@angular/router';
-import {UserService} from 'src/app/shared/services/user.service';
-import {FormErrorCheckService} from 'src/app/shared/services/form-error-check.service';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { addDoc, collection, Firestore } from '@angular/fire/firestore';
+import { FirestoreUser, Recipe } from 'src/app/shared/interfaces/interfaces';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/shared/services/user.service';
+import { FormErrorCheckService } from 'src/app/shared/services/form-error-check.service';
 
 @Component({
   selector: 'app-recipe-create',
@@ -17,7 +17,7 @@ export class RecipeCreateComponent implements OnInit {
   fullName = '';
   recipeForm: FormGroup;
   firestore: Firestore;
-  userData: any | null = null;
+  userData: FirestoreUser | null | undefined;
   currentOrderIndex = 1;
 
   constructor(
@@ -56,7 +56,7 @@ export class RecipeCreateComponent implements OnInit {
         if (value) {
           this.userData = value;
         } else {
-          console.log(`Cant found user with this UID ${value!.uid}`);
+          console.log(`Cant found user with this UID`);
         }
       },
       error: (err) => {
@@ -66,7 +66,6 @@ export class RecipeCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.editorConfig = {
       // skin: 'oxide-dark',
       content_style: 'body { background-color: #f6f4f9; }',
@@ -184,12 +183,13 @@ export class RecipeCreateComponent implements OnInit {
         'https://res.cloudinary.com/dsla98vyk/image/upload/v1710856403/no_image_u8yfwc.png';
       this.addImageToForm(defaultImageUrl);
     }
+    if (this.userData) {
+      this.recipeForm.patchValue({
+        author: this.userData.firstName + ' ' + this.userData.lastName,
+      });
+      this.recipeForm.patchValue({ uid: this.userData.uid });
+    }
 
-    this.recipeForm.patchValue({
-      author: this.userData.firstName + ' ' + this.userData.lastName,
-    });
-
-    this.recipeForm.patchValue({ uid: this.userData.uid });
     const recipeData = this.recipeForm.value;
     this.addRecipe(recipeData);
     this.recipeForm.reset();

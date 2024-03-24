@@ -1,0 +1,12 @@
+@media (max-width: 640px) {
+
+    .upload-widget {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    .buttons-img {
+        width: 100%;
+    }
+}

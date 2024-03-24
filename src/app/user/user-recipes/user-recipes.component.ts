@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from 'src/app/shared/interfaces/interfaces';
+import { FirestoreUser, Recipe } from 'src/app/shared/interfaces/interfaces';
 import { UserService } from 'src/app/shared/services/user.service';
 import { Firestore } from '@angular/fire/firestore';
 
@@ -11,7 +11,7 @@ import { RecipesService } from 'src/app/shared/services/recipes.service';
   styleUrls: ['./user-recipes.component.css'],
 })
 export class UserRecipesComponent implements OnInit {
-  userData: any | null = null;
+  userData: FirestoreUser | null | undefined;
   recipes: Recipe[] = [];
   emptyRecipes = true;
 
@@ -26,13 +26,9 @@ export class UserRecipesComponent implements OnInit {
       next: (value) => {
         if (value) {
           this.userData = value;
-          console.log(value.uid);
-
           this.loadRecipesByUID(value.uid);
-          console.log(this.emptyRecipes);
-          
         } else {
-          console.log(`Cant found user with this UID ${value!.uid}`);
+          console.log(`Cant found user with this UID`);
         }
       },
       error: (err) => {
@@ -46,9 +42,9 @@ export class UserRecipesComponent implements OnInit {
       const recipes = await this.recipeService.getRecipeByUID(uid);
       console.log(recipes);
       this.recipes = recipes;
-      
-      if(recipes){
-        this.emptyRecipes = false
+
+      if (recipes) {
+        this.emptyRecipes = false;
       }
     } catch (error) {
       console.error('Error fetching recipes:', error);

@@ -84,10 +84,11 @@ export class RecipeComponent implements OnInit {
       return;
     }
 
-    // if (!this.userData.uid) {
-    //   console.error('User is not logged in.');
-    //   return;
-    // }
+    if (!this.userData) {
+      console.error('User is not logged in.');
+      return;
+    }
+    
     if (this.userData) {
 
       let alreadyLiked = this.recipe.likes.includes(this.userData.uid);
