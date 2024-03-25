@@ -87,11 +87,11 @@
 
         <li class="nav-item">
           <a
+            appResponsiveClass
             routerLink="/recipes-list"
-            class="nav-btn nav-link button"
+            class=""
             href="#"
             role="button"
-            style="padding: 10px 32px"
             aria-expanded="false"
           >
             Recipes
@@ -100,8 +100,9 @@
 
         <!-- User Menu -->
         <li class="nav-item dropdown" *ngIf="!userData">
-          <a appResponsiveClass
-            class="nav-btn nav-link dropdown-toggle button"
+          <a
+            appResponsiveClass
+            class="dropdown-toggle"
             href="#"
             role="button"
             data-bs-toggle="dropdown"
@@ -124,8 +125,10 @@
         </li>
 
         <li class="nav-item dropdown" *ngIf="userData">
-          <a appResponsiveClass
-            class="nav-btn nav-link dropdown-toggle button"
+          <a
+            appResponsiveClass
+            class="dropdown-toggle"
+            
             href="#"
             role="button"
             data-bs-toggle="dropdown"
@@ -176,7 +179,8 @@
         <!-- Search Menu -->
         <li class="nav-item dropdown">
           <a
-            class="nav-btn nav-link dropdown-toggle button"
+            appResponsiveClass
+            class="dropdown-toggle"
             href="#"
             role="button"
             data-bs-toggle="dropdown"

@@ -63,6 +63,12 @@ a.nav-btn.nav-link.dropdown-toggle.button {
   min-width: 150px;
 }
 
+.navigation{
+  color: var(--textColor);
+}
+
+
+
 ul.navbar-nav ul.dropdown-menu {
   background-color: var(--backgroundColor);
   border: 1px solid var(--textColor);
