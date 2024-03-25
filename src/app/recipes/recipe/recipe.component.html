@@ -52,6 +52,10 @@
             </ng-template>
           </button>
 
+          <div *ngIf="recipe?.likes?.length! > 0">
+            <span>Like: {{ recipe?.likes?.length }}</span>
+          </div>
+
           <!-- favorite -->
           <button
             class="button"
@@ -78,9 +82,7 @@
         </div>
         <!-- new -->
 
-        <div *ngIf="recipe?.likes?.length! > 0">
-          <span>Like: {{ recipe?.likes?.length }}</span>
-        </div>
+
 
         <div class="divider">
           <hr />
@@ -90,9 +92,7 @@
         <br />
 
         <!-- description require -->
-        <p class="recipe-description-text description">
-          {{ recipe?.description }}
-        </p>
+        <p class="recipe-description-text description">{{ recipe?.description }}</p>
         <br />
 
         <div *ngIf="recipe?.ingredients" class="divider">
@@ -101,6 +101,7 @@
           <hr />
         </div>
         <br />
+
 
         <ul
           class="recipe-ingredients"
@@ -113,7 +114,9 @@
 
             <!-- <hr *ngIf="ingredient.name || ingredient.amount || ingredient.unit" /> -->
           </li>
+
         </ul>
+<!--        <a class="hint" href="">* measures and quantities</a>-->
 
         <div
           class="recipe-videos"

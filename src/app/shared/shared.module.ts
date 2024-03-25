@@ -6,6 +6,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { RouterModule } from '@angular/router';
 import { SafeUrlPipe } from './pipe/safe-url.pipe';
 import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
+import { ResponsiveClassDirective } from './directive/responsive-class.directive';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
     ImageUploadComponent,
     SafeUrlPipe,
     ScrollToTopComponent,
+    ResponsiveClassDirective,
   ],
   imports: [CommonModule, EditorModule, RouterModule],
   exports: [
@@ -20,6 +22,7 @@ import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
     ImageUploadComponent,
     SafeUrlPipe,
     ScrollToTopComponent,
+    ResponsiveClassDirective,
   ],
 })
 export class SharedModule {}
