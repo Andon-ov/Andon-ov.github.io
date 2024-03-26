@@ -1,25 +1,25 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {userGuard} from './user/user.guard';
-import {RegisterComponent} from './user/register/register.component';
-import {LoginComponent} from './user/login/login.component';
-import {ForgotPasswordComponent} from './user/forgot-password/forgot-password.component';
-import {UserInfoComponent} from './user/user-info/user-info.component';
-import {UserRecipesComponent} from './user/user-recipes/user-recipes.component';
-import {DashboardComponent} from './user/dashboard/dashboard.component';
-import {UserCommentsComponent} from './user/user-comments/user-comments.component';
-import {UserFavoriteRecipesComponent} from './user/user-favorite-recipes/user-favorite-recipes.component';
+import {userGuard} from './private/user.guard';
+import {RegisterComponent} from './public/register/register.component';
+import {LoginComponent} from './public/login/login.component';
+import {ForgotPasswordComponent} from './private/forgot-password/forgot-password.component';
+import {UserInfoComponent} from './private/user-info/user-info.component';
+import {UserRecipesComponent} from './private/user-recipes/user-recipes.component';
+import {DashboardComponent} from './private/dashboard/dashboard.component';
+import {UserCommentsComponent} from './private/user-comments/user-comments.component';
+import {UserFavoriteRecipesComponent} from './private/user-favorite-recipes/user-favorite-recipes.component';
 
-import {RecipesListComponent} from './recipes/recipes-list/recipes-list.component';
-import {RecipeCreateComponent} from './recipes/recipe-create/recipe-create.component';
-import {RecipeComponent} from './recipes/recipe/recipe.component';
-import {RecipeEditComponent} from './recipes/recipe-edit/recipe-edit.component';
-import {RecipeDeleteComponent} from './recipes/recipe-delete/recipe-delete.component';
-import {RecipeSearchComponent} from './recipes/recipe-search/recipe-search.component';
+import {RecipesListComponent} from './public/recipes-list/recipes-list.component';
+import {RecipeCreateComponent} from './private/recipe-create/recipe-create.component';
+import {RecipeComponent} from './public/recipe/recipe.component';
+import {RecipeEditComponent} from './private/recipe-edit/recipe-edit.component';
+import {RecipeDeleteComponent} from './private/recipe-delete/recipe-delete.component';
+import {RecipeSearchComponent} from './public/recipe-search/recipe-search.component';
 
-import {CarouselComponent} from './shared/carousel/carousel.component';
-import {CommentFormEditComponent} from './comment/comment-form-edit/comment-form-edit.component';
+import {CarouselComponent} from './public/carousel/carousel.component';
+import {CommentFormEditComponent} from './private/comment-form-edit/comment-form-edit.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: CarouselComponent },
@@ -40,6 +40,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+
     canActivate: [userGuard],
     children: [
       {
