@@ -6,13 +6,6 @@ form {
   border-radius: unset;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3);
 }
-
-.title-wrapper {
-  display: flex;
-  justify-content: flex-start;
-  padding-bottom: 10px;
-}
-
 .add-recipe:before {
   background: linear-gradient(to bottom, transparent 35%, var(--textColor) 35%, var(--textColor) 65%, transparent 65%), linear-gradient(to right, transparent 35%, var(--textColor) 35%, var(--textColor) 65%, transparent 65%);
   content: "";
@@ -22,7 +15,6 @@ form {
   flex-wrap: nowrap;
   flex-direction: row;
 }
-
 .add-recipe {
   display: flex;
   box-shadow: inset 0 -24px 0 0 var(--mainYellowColor);
@@ -30,18 +22,15 @@ form {
   font-weight: 900;
   color: var(--mainBlackColor);
 }
-
 .subtitle {
   font: normal 400 16px / 24px "Source Sans Pro", sans-serif;
   letter-spacing: 0;
   color: var(--mainBlackColor);
 }
-
 label {
   color: var(--mainBlackColor);
   font-weight: bold;
 }
-
 textarea::placeholder,
 input::placeholder {
   font-weight: bold;
@@ -49,18 +38,15 @@ input::placeholder {
   opacity: 0.5;
   color: var(--textColor);
 }
-
 .input-flex input {
   margin: unset;
 }
-
 .input-flex {
   display: flex;
   gap: 20px;
   align-items: baseline;
   margin-bottom: 20px;
 }
-
 .ingredient {
   background-color: var(--aliceBlueColor);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3);
@@ -68,47 +54,38 @@ input::placeholder {
   margin-bottom: 30px;
   position: relative;
 }
-
 .removeIngredientWrapper {
   display: flex;
   justify-content: flex-end;
 }
-
 .removeIngredient {
   border: unset;
   background-color: unset;
-
 }
-
 .removeIngredient:hover {
   color: var(--secondColor);
 }
-
 .removeInput {
   all: unset;
   color: var(--mainRedColor);
   cursor: pointer;
   text-align: right;
 }
-
 .removeInput:hover {
   color: var(--secondColor);
 }
-
 .fa-xmark {
   color: var(--textColor);
   border-radius: 50%;
   border: 2px solid var(--textColor);
   padding: 4px 6px;
 }
-
 .fa-xmark:hover {
   background-color: var(--textColor);
   color: var(--backgroundColor);
   border-color: var(--backgroundColor);
   transition: 1s ease-in-out;
 }
-
 .quantity-unit-index-wrapper {
   display: flex;
   flex-direction: row;
@@ -118,19 +95,15 @@ input::placeholder {
   align-items: flex-end;
   gap: 10px;
 }
-
 .quantity {
   flex-basis: 150px;
 }
-
 .order-index {
   flex-basis: 50px;
 }
-
 .unit {
   flex-grow: 5;
 }
-
 .unit select {
   color: var(--textColor);
   font-style: italic;
@@ -138,8 +111,6 @@ input::placeholder {
   outline: none;
   height: 45px;
 }
-
-
 @media (max-width: 640px) {
   .button-img {
     width: 100%;
