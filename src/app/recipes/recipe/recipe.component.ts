@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {RecipeService} from 'src/app/shared/services/recipe.service';
+import {RecipeService} from 'src/app/shared/services/recipe/recipe.service';
 import {Comments, FirestoreUser, Recipe} from '../../shared/interfaces/interfaces';
 import {UserService} from 'src/app/shared/services/user.service';
-import {CommentService} from 'src/app/shared/services/comment.service';
+import {CommentService} from 'src/app/shared/services/comment/comment.service';
 
 @Component({
   selector: 'app-recipe',
@@ -88,7 +88,7 @@ export class RecipeComponent implements OnInit {
       console.error('User is not logged in.');
       return;
     }
-    
+
     if (this.userData) {
 
       let alreadyLiked = this.recipe.likes.includes(this.userData.uid);

@@ -5,7 +5,7 @@ import { addDoc, collection, Firestore } from '@angular/fire/firestore';
 import { FirestoreUser, Recipe } from 'src/app/shared/interfaces/interfaces';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/services/user.service';
-import { FormErrorCheckService } from 'src/app/shared/services/form-error-check.service';
+import { FormErrorCheckService } from 'src/app/shared/services/formErrorCheck/form-error-check.service';
 
 @Component({
   selector: 'app-recipe-create',

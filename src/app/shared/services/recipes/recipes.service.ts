@@ -15,7 +15,7 @@ import {
   startAfter,
   limit,
 } from '@angular/fire/firestore';
-import { Recipe } from '../interfaces/interfaces';
+import { Recipe } from '../../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root',

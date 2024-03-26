@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from 'src/app/shared/interfaces/interfaces';
-import { RecipeService } from 'src/app/shared/services/recipe.service';
+import { RecipeService } from 'src/app/shared/services/recipe/recipe.service';
 
 @Component({
   selector: 'app-recipe-delete',
@@ -11,7 +11,7 @@ import { RecipeService } from 'src/app/shared/services/recipe.service';
 export class RecipeDeleteComponent {
   recipeId: string | null = '';
   recipe: Recipe | null = null;
-  
+
 
   constructor(
     private recipeService: RecipeService,

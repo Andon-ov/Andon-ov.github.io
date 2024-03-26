@@ -3,7 +3,7 @@ import { FirestoreUser, Recipe } from 'src/app/shared/interfaces/interfaces';
 import { UserService } from 'src/app/shared/services/user.service';
 import { Firestore } from '@angular/fire/firestore';
 
-import { RecipesService } from 'src/app/shared/services/recipes.service';
+import { RecipesService } from 'src/app/shared/services/recipes/recipes.service';
 
 @Component({
   selector: 'app-user-recipes',

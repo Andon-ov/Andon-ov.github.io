@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
 import { FirestoreUser, Recipe } from 'src/app/shared/interfaces/interfaces';
-import { RecipeService } from 'src/app/shared/services/recipe.service';
+import { RecipeService } from 'src/app/shared/services/recipe/recipe.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({

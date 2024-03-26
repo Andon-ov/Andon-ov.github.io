@@ -15,8 +15,8 @@ import {
   FormArray,
   FormControl,
 } from '@angular/forms';
-import { RecipeService } from 'src/app/shared/services/recipe.service';
-import { FormErrorCheckService } from 'src/app/shared/services/form-error-check.service';
+import { RecipeService } from 'src/app/shared/services/recipe/recipe.service';
+import { FormErrorCheckService } from 'src/app/shared/services/formErrorCheck/form-error-check.service';
 
 @Component({
   selector: 'app-recipe-edit',

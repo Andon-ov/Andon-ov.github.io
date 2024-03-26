@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { UserInfoComponent } from './user-info/user-info.component';
-import { TimestampFormatPipe } from '../shared/pipe/timestampFormat/timestamp-format.pipe';
+import { TimestampFormatPipe } from '../shared/pipes/timestampFormat/timestamp-format.pipe';
 import { UserRecipesComponent } from './user-recipes/user-recipes.component';
 import { RecipeCreateComponent } from '../recipes/recipe-create/recipe-create.component';
 import { DashboardComponent } from './dashboard/dashboard.component';

@@ -11,7 +11,7 @@ import {
   getDoc,
   updateDoc,
 } from '@angular/fire/firestore';
-import {Comments} from '../interfaces/interfaces';
+import {Comments} from '../../interfaces/interfaces';
 import {Subject} from 'rxjs';
 
 @Injectable({

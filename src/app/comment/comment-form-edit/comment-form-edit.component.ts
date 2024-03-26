@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Comments} from 'src/app/shared/interfaces/interfaces';
 import {doc, Firestore, updateDoc} from '@angular/fire/firestore';
-import {CommentService} from 'src/app/shared/services/comment.service';
+import {CommentService} from 'src/app/shared/services/comment/comment.service';
 
 
 @Component({

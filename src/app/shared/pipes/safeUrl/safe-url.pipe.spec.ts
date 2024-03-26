@@ -1,9 +1,9 @@
-// import { SafeUrlPipe } from './safe-url.pipe';
+// import { SafeUrlPipe } from './safe-url.pipes';
 //
 // describe('SafeUrlPipe', () => {
 //   it('create an instance', () => {
-//     const pipe = new SafeUrlPipe();
-//     expect(pipe).toBeTruthy();
+//     const pipes = new SafeUrlPipe();
+//     expect(pipes).toBeTruthy();
 //   });
 // });
 import { SafeUrlPipe } from './safe-url.pipe';

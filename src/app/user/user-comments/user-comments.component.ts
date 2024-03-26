@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Comments } from 'src/app/shared/interfaces/interfaces';
-import { CommentService } from 'src/app/shared/services/comment.service';
+import { CommentService } from 'src/app/shared/services/comment/comment.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({

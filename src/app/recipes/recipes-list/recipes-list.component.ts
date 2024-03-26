@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/shared/interfaces/interfaces';
-import { RecipesService } from 'src/app/shared/services/recipes.service';
+import { RecipesService } from 'src/app/shared/services/recipes/recipes.service';
 
 @Component({
   selector: 'app-recipes-list',
@@ -25,14 +25,14 @@ export class RecipesListComponent implements OnInit {
     this.showLoadMoreButton = hasMore;
     this.recipes.push(...data);
   }
-  
+
   async getRecipes() {
     const { data} = await this.recipeService.getRecipes();
 
     this.recipes.push(...data);
   }
 
-  
+
 
 }
 

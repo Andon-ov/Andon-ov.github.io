@@ -3,7 +3,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Firestore} from '@angular/fire/firestore';
 import {UserService} from 'src/app/shared/services/user.service';
-import {CommentService} from 'src/app/shared/services/comment.service';
+import {CommentService} from 'src/app/shared/services/comment/comment.service';
 import {FirestoreUser} from "../../shared/interfaces/interfaces";
 
 @Component({
