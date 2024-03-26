@@ -13,7 +13,6 @@ import { FormErrorCheckService } from 'src/app/shared/services/form-error-check.
   styleUrls: ['./recipe-create.component.css'],
 })
 export class RecipeCreateComponent implements OnInit {
-  editorConfig = {};
   fullName = '';
   recipeForm: FormGroup;
   firestore: Firestore;
@@ -65,27 +64,7 @@ export class RecipeCreateComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.editorConfig = {
-      // skin: 'oxide-dark',
-      content_style: 'body { background-color: #f6f4f9; }',
-      content_css: 'default',
-
-      base_url: '/tinymce',
-      suffix: '.min',
-      menubar: false,
-      height: 300,
-      // plugins: [
-      //   'advlist autolink lists link image charmap print preview anchor',
-      //   'searchreplace visualblocks code fullscreen',
-      //   'insertdatetime media table paste code wordcount ',
-      // ],
-      toolbar:
-        'undo redo | formatselect | bold italic backcolor | \
-          alignleft aligncenter alignright alignjustify | \
-          bullist numlist outdent indent | removeformat ',
-    };
-  }
+  ngOnInit(): void {}
 
   addImageToForm(imageUrl: string) {
     const imageArray = this.recipeForm.get('image_recipe') as FormArray;
@@ -114,24 +93,6 @@ export class RecipeCreateComponent implements OnInit {
     const videoArray = this.recipeForm.get('video_recipe') as FormArray;
     videoArray.removeAt(index);
   }
-
-  // addPreparation() {
-  //   const preparationArray = this.recipeForm.get(
-  //     'preparation_method'
-  //   ) as FormArray;
-  //   preparationArray.push(
-  //     this.fb.group({
-  //       preparation_method: '',
-  //     })
-  //   );
-  // }
-
-  // removePreparation(index: number) {
-  //   const preparationArray = this.recipeForm.get(
-  //     'preparation_method'
-  //   ) as FormArray;
-  //   preparationArray.removeAt(index);
-  // }
 
   addIngredient() {
     const ingredientsArray = this.recipeForm.get('ingredients') as FormArray;

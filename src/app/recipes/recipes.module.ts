@@ -4,7 +4,6 @@ import { RecipesListComponent } from './recipes-list/recipes-list.component';
 import { RecipeCreateComponent } from './recipe-create/recipe-create.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-import { EditorModule } from '@tinymce/tinymce-angular';
 import { RecipeComponent } from './recipe/recipe.component';
 import { RouterModule } from '@angular/router';
 import { CommentModule } from '../comment/comment.module';
@@ -23,7 +22,6 @@ import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
     FormsModule,
 
     SharedModule,
-    EditorModule,
     RouterModule,
     CommentModule,
     

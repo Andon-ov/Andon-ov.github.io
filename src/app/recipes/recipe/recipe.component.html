@@ -27,7 +27,6 @@
           class="recipe-image"
         >
           <li *ngFor="let img of recipe?.image_recipe">
-
             <img [src]="img.image_recipe" alt="Image of a recipe" />
           </li>
         </ul>
@@ -37,11 +36,11 @@
           <button class="button" *ngIf="userData" (click)="updateRecipeLikes()">
             <ng-container
               *ngIf="
-              userData &&
-                recipe &&
-                recipe.likes &&
-                userData?.uid &&
-                recipe.likes.includes(userData.uid)
+                userData &&
+                  recipe &&
+                  recipe.likes &&
+                  userData?.uid &&
+                  recipe.likes.includes(userData.uid);
                 else notLiked
               "
             >
@@ -64,25 +63,18 @@
           >
             <ng-container
               *ngIf="
-               recipe &&
-                userData &&
-                userData.favoriteRecipes &&
-                userData.favoriteRecipes.includes(this.recipeId || '')
+                recipe &&
+                  userData &&
+                  userData.favoriteRecipes &&
+                  userData.favoriteRecipes.includes(this.recipeId || '');
                 else notLiked
               "
             >
-            Save it!
+              Save it!
             </ng-container>
             <ng-template #notLiked>Save Recipe</ng-template>
           </button>
-
-
-          <!-- <button class="button">Rate Recipe</button>
-          <button class="button">Share Recipe</button> -->
         </div>
-        <!-- new -->
-
-
 
         <div class="divider">
           <hr />
@@ -92,7 +84,9 @@
         <br />
 
         <!-- description require -->
-        <p class="recipe-description-text description">{{ recipe?.description }}</p>
+        <p class="recipe-description-text description">
+          {{ recipe?.description }}
+        </p>
         <br />
 
         <div *ngIf="recipe?.ingredients" class="divider">
@@ -102,7 +96,6 @@
         </div>
         <br />
 
-
         <ul
           class="recipe-ingredients"
           *ngFor="let ingredient of recipe?.ingredients"
@@ -111,12 +104,8 @@
             <!-- name, amount, unit require -->
             {{ ingredient.name }}
             - {{ ingredient.amount }} {{ ingredient.unit }}
-
-            <!-- <hr *ngIf="ingredient.name || ingredient.amount || ingredient.unit" /> -->
           </li>
-
         </ul>
-<!--        <a class="hint" href="">* measures and quantities</a>-->
 
         <div
           class="recipe-videos"
@@ -148,19 +137,22 @@
         </div>
         <br />
 
-        <div class=" buttons buttons-img" *ngIf="userData">
+        <div class="buttons buttons-img" *ngIf="userData">
           <button
             *ngIf="!showCommentForm"
             class="button-img"
             (click)="toggleCommentForm()"
-          >Comment?
+          >
+            Comment?
           </button>
 
           <button
             *ngIf="showCommentForm"
             class="button-img"
             (click)="toggleCommentForm()"
-          >Hide Form</button>
+          >
+            Hide Form
+          </button>
 
           <button
             *ngIf="userData && userData.uid == recipe?.uid"
