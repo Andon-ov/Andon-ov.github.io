@@ -39,6 +39,7 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () =>
       import('./private/private.module').then((m) => m.PrivateModule),
+    canActivate:[userGuard]
   },
 ];
 

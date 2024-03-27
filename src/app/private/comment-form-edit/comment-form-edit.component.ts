@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Comments} from 'src/app/public/interfaces/interfaces';
 import {doc, Firestore, updateDoc} from '@angular/fire/firestore';
 import {CommentService} from 'src/app/public/services/comment/comment.service';
+import { Timestamp } from '@angular/fire/firestore';
 
 
 @Component({
@@ -78,15 +79,17 @@ export class CommentFormEditComponent  implements OnInit {
  async onSubmit() {
     if (this.commentFormEdit.valid) {
       const commentData = this.commentFormEdit.value;
+      console.log(commentData);
+      
 
-     await this.editComment(commentData);
+     await this.editComment(commentData as Comments);
       this.commentFormEdit.reset();
     } else {
       console.log('form invalid');
     }
   }
 
-  async editComment(commentData: any) {
+  async editComment(commentData:any) {
     const collectionName = 'Comments';
     const docRef = doc(this.firestore, collectionName, this.commentId);
     await updateDoc(docRef, commentData);
