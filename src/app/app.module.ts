@@ -11,7 +11,6 @@ import {getFirestore, provideFirestore} from '@angular/fire/firestore';
 import {CloudinaryModule} from '@cloudinary/ng';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {PublicModule} from "./public/public.module";
-import {PrivateModule} from './private/private.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +18,6 @@ import {PrivateModule} from './private/private.module';
     BrowserModule,
     AppRoutingModule,
     PublicModule,
-    PrivateModule,
 
     // Cloud Firestore
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),

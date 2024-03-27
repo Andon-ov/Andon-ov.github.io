@@ -15,6 +15,7 @@ import {UserFavoriteRecipesComponent} from "./user-favorite-recipes/user-favorit
 import {UserInfoComponent} from "./user-info/user-info.component";
 import {UserRecipesComponent} from "./user-recipes/user-recipes.component";
 import {PublicModule} from "../public/public.module";
+import { PrivateRoutingModule } from './private-routing.module';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import {PublicModule} from "../public/public.module";
     UserInfoComponent,
     UserRecipesComponent
   ],
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule, PublicModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule, PublicModule, PrivateRoutingModule],
   exports: [
 
     CommentFormEditComponent,
