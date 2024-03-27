@@ -70,7 +70,7 @@ export class RecipeComponent implements OnInit {
   }
 
   async navigateToCommentEdit(commentId: string) {
-   await this.router.navigate(['/comment-edit', commentId]);
+   await this.router.navigate(['/dashboard/comment-edit', commentId]);
   }
 
   async deleteComment(id: string) {

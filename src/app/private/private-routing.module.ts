@@ -12,55 +12,80 @@ import { UserFavoriteRecipesComponent } from './user-favorite-recipes/user-favor
 import { CommentFormEditComponent } from './comment-form-edit/comment-form-edit.component';
 
 const routes: Routes = [
-
   {
-    path: 'forgot-password',
-    component: ForgotPasswordComponent,
-  },
-
-  {
-    path: 'dashboard',
+    path: '',
     component: DashboardComponent,
-
     children: [
-      {
-        path: 'user-recipes',
-        component: UserRecipesComponent,
-      },
+      { path: 'user-recipes', component: UserRecipesComponent },
+      { path: 'recipe-create', component: RecipeCreateComponent },
+      { path: 'user-favorite-recipes', component: UserFavoriteRecipesComponent },
+      { path: 'user-comments', component: UserCommentsComponent },
+      { path: 'user-info', component: UserInfoComponent },
+      { path: 'recipe-edit/:id', component: RecipeEditComponent },
+      { path: 'recipe-delete/:id', component: RecipeDeleteComponent },
 
+      { path: 'comment-edit/:id', component: CommentFormEditComponent },
       {
-        path: 'recipe-create',
-        component: RecipeCreateComponent,
+        path: 'forgot-password',
+        component: ForgotPasswordComponent,
       },
-
-      {
-        path: 'recipe-edit/:id',
-        component: RecipeEditComponent,
-      },
-      {
-        path: 'recipe-delete/:id',
-        component: RecipeDeleteComponent,
-      },
-      {
-        path: 'user-info',
-        component: UserInfoComponent,
-      },
-      {
-        path: 'user-comments',
-        component: UserCommentsComponent,
-      },
-      {
-        path: 'user-favorite-recipes',
-        component: UserFavoriteRecipesComponent,
-      },
-    ],
+    ]
   },
 
-  { path: 'comment-edit/:id', component: CommentFormEditComponent },
+  //
+  // {
+  //   path: 'forgot-password',
+  //   component: ForgotPasswordComponent,
+  // },
+  //
+  // {
+  //   path: 'dashboard',
+  //   component: DashboardComponent,
+  //
+  //   children: [
+  //     {
+  //       path: 'user-recipes',
+  //       component: UserRecipesComponent,
+  //     },
+  //
+  //     {
+  //       path: 'recipe-create',
+  //       component: RecipeCreateComponent,
+  //     },
+  //
+  //     {
+  //       path: 'recipe-edit/:id',
+  //       component: RecipeEditComponent,
+  //     },
+  //     {
+  //       path: 'recipe-delete/:id',
+  //       component: RecipeDeleteComponent,
+  //     },
+  //     {
+  //       path: 'user-info',
+  //       component: UserInfoComponent,
+  //     },
+  //     {
+  //       path: 'user-comments',
+  //       component: UserCommentsComponent,
+  //     },
+  //     {
+  //       path: 'user-favorite-recipes',
+  //       component: UserFavoriteRecipesComponent,
+  //     },
+  //   ],
+  // },
+  //
+  // { path: 'comment-edit/:id', component: CommentFormEditComponent },
 ];
+
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
 export class PrivateRoutingModule {}
+
+
+

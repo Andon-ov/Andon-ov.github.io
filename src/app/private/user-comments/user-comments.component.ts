@@ -41,7 +41,7 @@ export class UserCommentsComponent implements OnInit{
   }
 
   navigateToCommentEdit(commentId: string) {
-    this.router.navigate(['/comment-edit', commentId]);
+    this.router.navigate(['/dashboard/comment-edit', commentId]);
   }
 
   deleteComment(id: string) {
