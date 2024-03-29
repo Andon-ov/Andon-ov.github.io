@@ -8,7 +8,10 @@ import { RecipesListComponent } from './public/recipes-list/recipes-list.compone
 import { RecipeComponent } from './public/recipe/recipe.component';
 import { RecipeSearchComponent } from './public/recipe-search/recipe-search.component';
 import { CarouselComponent } from './public/carousel/carousel.component';
-import {publicGuard} from "./public/public.guard";
+import { publicGuard } from './public/public.guard';
+import { AboutUsComponent } from './public/about-us/about-us.component';
+import { PrivacyPolicyComponent } from './public/privacy-policy/privacy-policy.component';
+import { ContactUsComponent } from './public/contact-us/contact-us.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: CarouselComponent },
@@ -16,12 +19,12 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
-    canActivate:[publicGuard]
+    canActivate: [publicGuard],
   },
   {
     path: 'login',
     component: LoginComponent,
-    canActivate:[publicGuard]
+    canActivate: [publicGuard],
   },
   {
     path: 'recipes-list',
@@ -39,10 +42,23 @@ const routes: Routes = [
   },
 
   {
+    path: 'about',
+    component: AboutUsComponent,
+  },
+  {
+    path: 'privacy-policy',
+    component: PrivacyPolicyComponent
+  },
+  {
+    path: 'contact',
+    component:ContactUsComponent
+  },
+
+  {
     path: 'dashboard',
     loadChildren: () =>
       import('./private/private.module').then((m) => m.PrivateModule),
-    canActivate:[privateGuard]
+    canActivate: [privateGuard],
   },
 ];
 

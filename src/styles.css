@@ -107,6 +107,15 @@ input::placeholder {
   color: var(--textColor);
 }
 
+.form-wrapper {
+  max-width: 600px;
+  margin: -50px auto 50px auto;
+  padding: 32px;
+  background-color: var(--backgroundColor);
+  border-radius: unset;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3);
+}
+
 /* main */
 
 .main-short {

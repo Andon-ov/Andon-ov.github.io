@@ -18,6 +18,9 @@ import {ScrollToTopComponent} from "./scroll-to-top/scroll-to-top.component";
 import {PrivateModule} from "../private/private.module";
 import {CommentFormComponent} from "./comment-form/comment-form.component";
 import { ResponsiveClassDirective } from './header/responsive-class.directive';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 @NgModule({
@@ -37,6 +40,9 @@ import { ResponsiveClassDirective } from './header/responsive-class.directive';
     RegisterComponent,
     ScrollToTopComponent,
     ResponsiveClassDirective,
+    AboutUsComponent,
+    PrivacyPolicyComponent,
+    ContactUsComponent,
 
   ],
   imports: [
