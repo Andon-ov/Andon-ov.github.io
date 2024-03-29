@@ -17,6 +17,7 @@ import {RegisterComponent} from "./register/register.component";
 import {ScrollToTopComponent} from "./scroll-to-top/scroll-to-top.component";
 import {PrivateModule} from "../private/private.module";
 import {CommentFormComponent} from "./comment-form/comment-form.component";
+import { ResponsiveClassDirective } from './header/responsive-class.directive';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import {CommentFormComponent} from "./comment-form/comment-form.component";
     RecipeSearchComponent,
     RegisterComponent,
     ScrollToTopComponent,
+    ResponsiveClassDirective,
 
   ],
   imports: [

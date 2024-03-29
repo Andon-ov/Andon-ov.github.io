@@ -28,8 +28,6 @@ a.navbar-brand {
 }
 
 .hamburger:hover {
-  transform: rotate(180deg);
-  transition: .5s ease-in-out;
   box-shadow: 1px 1px 15px 0 var(--textColor);
 }
 

@@ -3,6 +3,7 @@
     <div class="header-wrapper">
       <!-- Hamburger button -->
       <button
+        [@rotate]="state"
         class="navbar-toggler hamburger"
         type="button"
         data-bs-toggle="collapse"
@@ -10,6 +11,9 @@
         aria-controls="navbarScroll"
         aria-expanded="false"
         aria-label="Toggle navigation"
+
+        (mouseover)="onMouseOver()"
+        (mouseout)="onMouseOut()"
       >
         <span>
           <!-- <i class="fa-solid fa-burger fa-beat-fade"></i> -->
@@ -21,6 +25,7 @@
       <!-- Logo -->
       <a class="navbar-brand" href="#">
         <svg
+
           viewBox="0 0 200.92045542674032 200.92045542674032"
           height="50"
           width="50"
@@ -86,9 +91,9 @@
         <!-- Recipe Menu -->
 
         <li class="nav-item">
-          <a
+          <a appResponsiveClass
             routerLink="/recipes-list"
-            class="nav-btn nav-link button"
+            class="navigation"
             href="#"
             role="button"
             aria-expanded="false"
@@ -99,8 +104,8 @@
 
         <!-- User Menu -->
         <li class="nav-item dropdown" *ngIf="!userData">
-          <a
-            class="nav-btn nav-link dropdown-toggle button"
+          <a appResponsiveClass
+            class="dropdown-toggle"
             href="#"
             role="button"
             data-bs-toggle="dropdown"
@@ -115,16 +120,12 @@
             </li>
             <li><a class="dropdown-item" routerLink="/login">Login</a></li>
 
-            <li>
-              <hr class="dropdown-divider"/>
-            </li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
 
         <li class="nav-item dropdown" *ngIf="userData">
-          <a
-            class="nav-btn nav-link dropdown-toggle button"
+          <a appResponsiveClass
+            class="dropdown-toggle"
 
             href="#"
             role="button"
@@ -175,8 +176,8 @@
 
         <!-- Search Menu -->
         <li class="nav-item dropdown">
-          <a
-            class="nav-btn nav-link dropdown-toggle button"
+          <a appResponsiveClass
+            class="dropdown-toggle"
             href="#"
             role="button"
             data-bs-toggle="dropdown"

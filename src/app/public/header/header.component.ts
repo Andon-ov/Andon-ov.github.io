@@ -3,6 +3,8 @@ import { FormBuilder } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 
+import { trigger, state, style, animate, transition } from '@angular/animations';
+
 import { UserService } from 'src/app/public/services/user.service';
 import { FirestoreUser } from '../interfaces/interfaces';
 
@@ -10,8 +12,23 @@ import { FirestoreUser } from '../interfaces/interfaces';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
+  animations: [
+    trigger('rotate', [
+      state('normal', style({
+        transform: 'rotate(0deg)'
+      })),
+      state('hovered', style({
+        transform: 'rotate(180deg)'
+      })),
+      transition('normal => hovered', animate('0.5s ease-in-out')),
+      transition('hovered => normal', animate('0.5s ease-in-out'))
+    ])
+  ]
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+
+  state = 'normal';
+
   searchForm = this.fb.group({
     search: [''],
   });
@@ -39,7 +56,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     // });
   }
 
+  onMouseOver() {
+    this.state = 'hovered';
+  }
+
+  onMouseOut() {
+    this.state = 'normal';
+  }
+
   ngOnInit(): void {
+
     this.userService.userData$.subscribe({
       next: (value) => {
         if (value) {
@@ -54,6 +80,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         console.log(err);
       },
     });
+
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const navbarCollapse =
@@ -63,6 +90,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }
       }
     });
+
+
+
   }
 
   // async onSubmit() {
