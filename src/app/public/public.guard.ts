@@ -2,29 +2,30 @@ import {inject} from '@angular/core';
 import {CanActivateFn, Router} from '@angular/router';
 import {map, switchMap} from 'rxjs/operators';
 import {of} from 'rxjs';
-import {UserService} from '../public/services/user.service';
+import {UserService} from './services/user.service';
 
-export const userGuard: CanActivateFn = (route, state) => {
+export const publicGuard: CanActivateFn = (route, state) => {
+
+
   const auth = inject(UserService);
-  const router = inject(Router);
   return auth.userData$.pipe(
     switchMap((user) => {
-      if (user) {
-        return of(user.isActive);
+      if (!user) {
+        return of(true);
       } else {
         return of(false);
+
       }
     }),
     map((verified) => {
       if (verified) {
         return true;
       } else {
-        alert('Not authorized');
-        console.log('Not authorized');
-        return router.createUrlTree(['/login'], {
-          queryParams: {returnUrl: state.url},
-        });
+
+        window.alert('You are already logged in. Please log out to access this functionality.');
+        return false;
       }
     })
   );
+
 };
