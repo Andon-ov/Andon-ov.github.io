@@ -8,7 +8,7 @@
         <div class="title-wrapper">
           <h1 class="title">No favorite recipes yet!</h1>
         </div>
-<!-- 
+        <!-- 
         <main class="logo-svg">
           <svg
             viewBox="0 0 640 400"
@@ -192,6 +192,9 @@
 
       <div class="recipe-list">
         <div *ngFor="let recipe of recipes">
+          <button (click)="updateFavoriteRecipes(recipe.id)" class="button">
+            <i class="fa-solid fa-trash"></i>
+          </button>
           <a [routerLink]="['/recipe', recipe.id]">
             <div class="recipe-item">
               <div class="recipe-image">

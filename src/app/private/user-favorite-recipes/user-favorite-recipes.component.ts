@@ -20,32 +20,12 @@ export class UserFavoriteRecipesComponent implements OnInit {
     private recipeService: RecipeService
   ) {}
 
-  // ngOnInit(): void {
-  //   this.userService.userData$.subscribe({
-  //     next: (value) => {
-  //       if (value) {
-  //         this.userData = value;
-  //       } else {
-  //         console.log(`Cant found user with this UID ${value!.uid}`);
-  //       }
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //     },
-  //   });
-  //   if (this.userData) {
-  //     this.userData.favoriteRecipes.forEach(async (recipeId: string) => {
-  //       if (recipeId) {
-  //         const recipe = await this.recipeService.getRecipeById(recipeId);
-  //         if (recipe) {
-  //           this.recipes.push(recipe);
-  //         }
-  //       }
-  //     });
-  //   }
-  // }
-
   ngOnInit(): void {
+    this.loadFavoriteRecipes()
+  }
+
+
+  loadFavoriteRecipes() {
     this.userService.userData$.subscribe({
       next: async (value) => {
         if (value) {
@@ -69,5 +49,21 @@ export class UserFavoriteRecipesComponent implements OnInit {
         console.log(err);
       },
     });
+  }
+
+  async updateFavoriteRecipes(recipeId: string) {
+    if (!recipeId) {
+      console.error('Recipe data is missing.');
+      return;
+    }
+
+    if (this.userData && recipeId) {
+      await this.userService.updateFavoriteRecipes(
+        recipeId,
+        this.userData.uid,
+        true
+      );
+      this.loadFavoriteRecipes()
+    }
   }
 }
