@@ -31,6 +31,8 @@
           <span>Last login:</span>
           <span>{{ user.metadata.lastLoginAt | timestampFormat }}</span>
         </div>
+
+        <button (click)="deleteUser()" class="button">Delete</button>
       </div>
     </div>
   </div>

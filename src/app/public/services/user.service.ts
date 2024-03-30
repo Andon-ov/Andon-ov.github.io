@@ -8,6 +8,7 @@ import {
   User,
   UserCredential,
   sendPasswordResetEmail,
+  deleteUser,
 } from 'firebase/auth';
 import { BehaviorSubject, Observable, take } from 'rxjs';
 
@@ -78,6 +79,22 @@ export class UserService {
       await this.signOutAuth();
       await this.clearUserData();
       this.router.navigate(['login']);
+    } catch (error) {
+      this.handleError(error);
+    }
+  }
+
+  async deleteUserAccount(): Promise<void> {
+    try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      if (user) {
+        await deleteUser(user);
+        await this.clearUserData();
+        this.router.navigate(['login']);
+      } else {
+        throw new Error('No user found to delete.');
+      }
     } catch (error) {
       this.handleError(error);
     }

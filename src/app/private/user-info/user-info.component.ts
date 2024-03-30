@@ -16,4 +16,13 @@ export class UserInfoComponent implements OnInit {
       this.user = userData;
     });
   }
+
+  deleteUser() {
+    const isConfirmed = window.confirm(
+      'Are you sure you want to delete your account?'
+    );
+    if (isConfirmed) {
+      this.userService.deleteUserAccount();
+    }
+  }
 }
