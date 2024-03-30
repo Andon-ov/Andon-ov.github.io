@@ -26,8 +26,8 @@
   margin: 0 10px;
 }
 
-.social-icons a:hover {
-  color: #3b5998;
+.social-icons a i:hover {
+  color: var(--textColor);
 }
 
 .copyright {
