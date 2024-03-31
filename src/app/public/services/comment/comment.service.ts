@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   Firestore,
   collection,
@@ -11,8 +11,8 @@ import {
   getDoc,
   updateDoc,
 } from '@angular/fire/firestore';
-import {Comments} from '../../interfaces/interfaces';
-import {Subject} from 'rxjs';
+import { Comments } from '../../interfaces/interfaces';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -20,8 +20,7 @@ import {Subject} from 'rxjs';
 export class CommentService {
   private commentAddedSubject = new Subject<void>();
 
-  constructor(private firestore: Firestore) {
-  }
+  constructor(private firestore: Firestore) {}
 
   async getCommentsForRecipe(recipeId: string): Promise<Comments[]> {
     try {
@@ -34,7 +33,7 @@ export class CommentService {
         const data = doc.data();
         const commentId = doc.id;
 
-        const comment: any = {
+        const comment: Comments = {
           create_time: data['create_time'],
           name: data['name'],
           recipeId: data['recipeId'],
@@ -44,11 +43,11 @@ export class CommentService {
         };
         comments.push(comment);
       });
-      comments.sort((a, b) => {
-        const dateA: any = a.create_time.toDate();
-        const dateB: any = b.create_time.toDate();
 
-        return dateB - dateA;
+      comments.sort((a, b) => {
+        const dateA: Date = a.create_time.toDate();
+        const dateB: Date = b.create_time.toDate();
+        return dateB.getTime() - dateA.getTime();
       });
 
       return comments;
@@ -69,7 +68,7 @@ export class CommentService {
         const data = doc.data();
         const commentId = doc.id;
 
-        const comment: any = {
+        const comment: Comments = {
           create_time: data['create_time'],
           name: data['name'],
           recipeId: data['recipeId'],
@@ -80,10 +79,9 @@ export class CommentService {
         comments.push(comment);
       });
       comments.sort((a, b) => {
-        const dateA: any = a.create_time.toDate();
-        const dateB: any = b.create_time.toDate();
-
-        return dateB - dateA;
+        const dateA: Date = a.create_time.toDate();
+        const dateB: Date = b.create_time.toDate();
+        return dateB.getTime() - dateA.getTime();
       });
 
       return comments;
@@ -124,7 +122,7 @@ export class CommentService {
     const commentSnapshot = await getDoc(commentDocRef);
 
     if (commentSnapshot.exists()) {
-      const commentDataId = commentSnapshot.data()
+      const commentDataId = commentSnapshot.data();
       console.log(commentDataId['recipeId']);
 
       return commentSnapshot.data() as Comments;
@@ -133,7 +131,10 @@ export class CommentService {
     }
   }
 
-  async editComment(commentId: string, updatedCommentData: Partial<Comments>): Promise<void> {
+  async editComment(
+    commentId: string,
+    updatedCommentData: Partial<Comments>
+  ): Promise<void> {
     try {
       const collectionPath = 'Comments';
       const docRef = doc(this.firestore, collectionPath, commentId);

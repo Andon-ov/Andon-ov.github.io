@@ -28,7 +28,7 @@ export class RecipesService {
 
   constructor(private firestore: Firestore) {}
 
-  async getRecipeByUID(uid: string): Promise<any[]> {
+  async getRecipeByUID(uid: string): Promise<Recipe[]> {
     try {
       const recipesRef = collection(this.firestore, 'Recipe');
       const q = query(recipesRef, where('uid', '==', uid));

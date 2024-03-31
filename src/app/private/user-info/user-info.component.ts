@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FirestoreUser } from 'src/app/public/interfaces/interfaces';
 import { UserService } from 'src/app/public/services/user.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { UserService } from 'src/app/public/services/user.service';
   styleUrls: ['./user-info.component.css'],
 })
 export class UserInfoComponent implements OnInit {
-  user: any;
+  user: FirestoreUser | null | undefined;
 
   constructor(private userService: UserService) {}
 

@@ -1,18 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Comments} from 'src/app/public/interfaces/interfaces';
-import {doc, Firestore, updateDoc} from '@angular/fire/firestore';
-import {CommentService} from 'src/app/public/services/comment/comment.service';
-import { Timestamp } from '@angular/fire/firestore';
-
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Comments } from 'src/app/public/interfaces/interfaces';
+import { doc, Firestore, updateDoc } from '@angular/fire/firestore';
+import { CommentService } from 'src/app/public/services/comment/comment.service';
 
 @Component({
   selector: 'app-comment-form-edit',
   templateUrl: './comment-form-edit.component.html',
-  styleUrls: ['./comment-form-edit.component.css']
+  styleUrls: ['./comment-form-edit.component.css'],
 })
-export class CommentFormEditComponent  implements OnInit {
+export class CommentFormEditComponent implements OnInit {
   comment: Comments | null = null;
   commentId = '';
   commentFormEdit!: FormGroup;
@@ -76,23 +74,25 @@ export class CommentFormEditComponent  implements OnInit {
     });
   }
 
- async onSubmit() {
+  async onSubmit() {
     if (this.commentFormEdit.valid) {
       const commentData = this.commentFormEdit.value;
       console.log(commentData);
-      
 
-     await this.editComment(commentData as Comments);
+      await this.editComment(commentData as Comments);
       this.commentFormEdit.reset();
     } else {
       console.log('form invalid');
     }
   }
 
-  async editComment(commentData:any) {
+  async editComment(commentData: Comments) {
     const collectionName = 'Comments';
     const docRef = doc(this.firestore, collectionName, this.commentId);
-    await updateDoc(docRef, commentData);
+
+    const dataToUpdate: Record<string, any> = { ...commentData };
+
+    await updateDoc(docRef, dataToUpdate);
     await this.router.navigate(['/recipe', this.comment?.recipeId]);
   }
 }

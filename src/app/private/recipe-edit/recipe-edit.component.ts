@@ -7,7 +7,13 @@ import {
   Recipe,
   VideoRecipeItem,
 } from '../../public/interfaces/interfaces';
-import { Firestore, updateDoc, doc } from '@angular/fire/firestore';
+import {
+  Firestore,
+  updateDoc,
+  doc,
+  collection,
+  setDoc,
+} from '@angular/fire/firestore';
 import {
   FormBuilder,
   FormGroup,
@@ -265,10 +271,19 @@ export class RecipeEditComponent implements OnInit {
     this.recipeEdit.reset();
   }
 
-  addRecipe(recipeData: any) {
+  addRecipe(recipeData: Recipe) {
     const collectionName = 'Recipe';
     const docRef = doc(this.firestore, collectionName, this.recipeId);
-    updateDoc(docRef, recipeData);
-    this.router.navigate(['/recipe', this.recipeId]);
+
+    const dataToUpdate: Record<string, any> = { ...recipeData };
+
+    updateDoc(docRef, dataToUpdate)
+      .then(() => {
+        console.log('Document successfully updated');
+        this.router.navigate(['/recipe', this.recipeId]);
+      })
+      .catch((error) => {
+        console.error('Error updating document: ', error);
+      });
   }
 }

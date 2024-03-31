@@ -1,5 +1,5 @@
-import {Component, Output, EventEmitter} from '@angular/core';
-import {environment} from "../../../environments/environment";
+import { Component, Output, EventEmitter } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-image-upload',
@@ -7,16 +7,14 @@ import {environment} from "../../../environments/environment";
   styleUrls: ['./image-upload.component.css'],
 })
 export class ImageUploadComponent {
+  cloudName = environment.cloudinaryConfig.cloudName;
 
-  cloudName = environment.cloudinaryConfig.cloudName
-  
-  uploadPreset = environment.cloudinaryConfig.uploadPreset
+  uploadPreset = environment.cloudinaryConfig.uploadPreset;
   myWidget: any;
-  
+
   @Output() imageUploaded = new EventEmitter<string>();
 
   ngOnInit() {
-
     //@ts-ignore
     this.myWidget = cloudinary.createUploadWidget(
       {
@@ -34,7 +32,10 @@ export class ImageUploadComponent {
         maxImageWidth: 500, //Scales the image down to a width of 2000 pixels before uploading
         // theme: 'purple', //change to a purple theme
       },
-      (error: any, result: { event: string; info: { secure_url: string } }) => {
+      (
+        error: Error,
+        result: { event: string; info: { secure_url: string } }
+      ) => {
         if (!error && result && result.event === 'success') {
           console.log('Done! Here is the image info: ', result.info);
           // const uploadedImageElement = document.getElementById('uploadedimage');
@@ -60,4 +61,3 @@ export class ImageUploadComponent {
     this.myWidget.open();
   }
 }
-

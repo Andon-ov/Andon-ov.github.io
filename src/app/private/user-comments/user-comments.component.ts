@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Comments } from 'src/app/public/interfaces/interfaces';
+import { Comments, FirestoreUser } from 'src/app/public/interfaces/interfaces';
 import { CommentService } from 'src/app/public/services/comment/comment.service';
 import { UserService } from 'src/app/public/services/user.service';
 
@@ -9,9 +9,9 @@ import { UserService } from 'src/app/public/services/user.service';
   templateUrl: './user-comments.component.html',
   styleUrls: ['./user-comments.component.css'],
 })
-export class UserCommentsComponent implements OnInit{
+export class UserCommentsComponent implements OnInit {
   comments: Comments[] = [];
-  userData: any;
+  userData: FirestoreUser | null | undefined;
 
   constructor(
     private commentService: CommentService,
@@ -23,7 +23,7 @@ export class UserCommentsComponent implements OnInit{
     });
   }
   ngOnInit(): void {
-    this.loadData()
+    this.loadData();
   }
 
   async loadData() {
@@ -46,6 +46,6 @@ export class UserCommentsComponent implements OnInit{
 
   deleteComment(id: string) {
     this.commentService.deleteComment(id);
-    this.loadData()
+    this.loadData();
   }
 }

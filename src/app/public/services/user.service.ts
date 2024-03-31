@@ -221,7 +221,7 @@ export class UserService {
     });
   }
 
-  private handleError(error: any): void {
+  private handleError(error: Error | unknown): void {
     if (error instanceof Error) {
       const errorCode = (error as Error).name;
       const errorMessage = (error as Error).message;

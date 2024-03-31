@@ -208,7 +208,7 @@
         align-items: center;
       "
     >
-      <div class="title-wrapper">
+      <div *ngIf="userData" class="title-wrapper">
         <h1 class="title">
           Comments by {{ userData.firstName + " " + userData.lastName }}
         </h1>
@@ -227,14 +227,14 @@
 
             <div class="commentBtnWrapper">
               <span
-                *ngIf="comment.uid == userData.uid"
+                *ngIf="userData && comment.uid == userData.uid"
                 (click)="deleteComment(comment.id)"
               >
                 <i class="fa-solid fa-trash fa-shake"></i>
               </span>
 
               <span
-                *ngIf="comment.uid == userData.uid"
+                *ngIf="userData && comment.uid == userData.uid"
                 (click)="navigateToCommentEdit(comment.id)"
               >
                 <i class="fa-regular fa-pen-to-square fa-flip"></i>

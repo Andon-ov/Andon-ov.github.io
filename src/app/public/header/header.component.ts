@@ -3,7 +3,13 @@ import { FormBuilder } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 
 import { UserService } from 'src/app/public/services/user.service';
 import { FirestoreUser } from '../interfaces/interfaces';
@@ -14,19 +20,24 @@ import { FirestoreUser } from '../interfaces/interfaces';
   styleUrls: ['./header.component.css'],
   animations: [
     trigger('rotate', [
-      state('normal', style({
-        transform: 'rotate(0deg)'
-      })),
-      state('hovered', style({
-        transform: 'rotate(180deg)'
-      })),
+      state(
+        'normal',
+        style({
+          transform: 'rotate(0deg)',
+        })
+      ),
+      state(
+        'hovered',
+        style({
+          transform: 'rotate(180deg)',
+        })
+      ),
       transition('normal => hovered', animate('0.5s ease-in-out')),
-      transition('hovered => normal', animate('0.5s ease-in-out'))
-    ])
-  ]
+      transition('hovered => normal', animate('0.5s ease-in-out')),
+    ]),
+  ],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-
   state = 'normal';
 
   searchForm = this.fb.group({
@@ -34,11 +45,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   });
 
   isMenuOpen = false;
-  userData: FirestoreUser | undefined | null;
-  private userDataSubject: BehaviorSubject<any | null> = new BehaviorSubject<
-    any | null
-  >(null);
-  private userDataSubscription: Subscription;
+
+  userData: FirestoreUser | null | undefined;
+  private userDataSubject: BehaviorSubject<FirestoreUser | null> =
+    new BehaviorSubject<FirestoreUser | null>(null);
+  private userDataSubscription: Subscription | undefined;
 
   constructor(
     private userService: UserService,
@@ -65,7 +76,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
     this.userService.userData$.subscribe({
       next: (value) => {
         if (value) {
@@ -90,9 +100,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }
       }
     });
-
-
-
   }
 
   // async onSubmit() {
@@ -122,7 +129,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.userDataSubscription.unsubscribe();
+    if (this.userDataSubscription) {
+      this.userDataSubscription.unsubscribe();
+    }
   }
 
   async logout() {

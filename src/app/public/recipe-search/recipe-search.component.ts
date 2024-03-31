@@ -3,6 +3,7 @@ import { RecipesService } from 'src/app/public/services/recipes/recipes.service'
 
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-recipe-search',
@@ -12,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class RecipeSearchComponent {
   recipes: Recipe[] = [];
   result = false;
-  searchForm: any;
+  searchForm: FormGroup | undefined;
 
   constructor(
     private recipeService: RecipesService,
