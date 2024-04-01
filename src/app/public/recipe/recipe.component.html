@@ -33,31 +33,36 @@
 
         <div *ngIf="userData" class="buttons">
           <!-- like -->
-          <button class="button" *ngIf="userData" (click)="updateRecipeLikes()">
-            <ng-container
-              *ngIf="
-                userData &&
-                  recipe &&
-                  recipe.likes &&
-                  userData?.uid &&
-                  recipe.likes.includes(userData.uid);
-                else notLiked
-              "
+          <div class="like-wrapper">
+            <button
+              class="button"
+              *ngIf="userData"
+              (click)="updateRecipeLikes()"
             >
-              <i class="fa-solid fa-heart fa-beat-fade"></i>
-            </ng-container>
-            <ng-template #notLiked>
-              <i class="fa-regular fa-heart fa-beat-fade"></i>
-            </ng-template>
-          </button>
+              <ng-container
+                *ngIf="
+                  userData &&
+                    recipe &&
+                    recipe.likes &&
+                    userData?.uid &&
+                    recipe.likes.includes(userData.uid);
+                  else notLiked
+                "
+              >
+                <i class="fa-solid fa-heart fa-beat-fade"></i>
+              </ng-container>
+              <ng-template #notLiked>
+                <i class="fa-regular fa-heart fa-beat-fade"></i>
+              </ng-template>
+            </button>
 
-          <div *ngIf="recipe?.likes?.length! > 0">
-            <span>Like: {{ recipe?.likes?.length }}</span>
+            <div *ngIf="recipe?.likes?.length! > 0">
+              <span>Like: {{ recipe?.likes?.length }}</span>
+            </div>
           </div>
-
           <!-- favorite -->
           <button
-            class="button"
+            class="button-img"
             *ngIf="userData"
             (click)="updateFavoriteRecipes()"
           >

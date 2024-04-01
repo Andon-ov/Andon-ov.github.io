@@ -304,6 +304,33 @@ input::placeholder {
   color: #fff;
 }
 
+/* X button */
+.removeIngredientWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+.removeIngredient {
+  border: unset;
+  background-color: unset;
+}
+.removeIngredient:hover {
+  color: var(--secondColor);
+}
+
+.fa-xmark {
+  color: var(--textColor);
+  border-radius: 50%;
+  border: 2px solid var(--textColor);
+  padding: 4px 6px;
+}
+
+.fa-xmark:hover {
+  background-color: var(--textColor);
+  color: var(--backgroundColor);
+  border-color: var(--backgroundColor);
+  transition: 1s ease-in-out;
+}
+
 /* header image */
 .headerImage {
   background-image: url('https://www.sunrider.co.in/wp-content/uploads/2021/07/banner-1.png');

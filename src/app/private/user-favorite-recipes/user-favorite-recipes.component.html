@@ -38,10 +38,10 @@
       </div>
 
       <div class="recipe-list">
-        <div *ngFor="let recipe of recipes">
-          <button (click)="updateFavoriteRecipes(recipe.id)" class="button">
-            <i class="fa-solid fa-trash"></i>
-          </button>
+        <div class="recipe-list-wrapper" *ngFor="let recipe of recipes">
+
+          <div (click)="updateFavoriteRecipes(recipe.id)" class="removeIngredientWrapper"><button  type="button" class="removeIngredient"><i class="fa-solid fa-xmark fa-beat-fade"></i></button></div>
+         
           <a [routerLink]="['/recipe', recipe.id]">
             <div class="recipe-item">
               <div class="recipe-image">

@@ -76,6 +76,13 @@ ul.recipe-image {
   padding: 0 32px;
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
+}
+
+.like-wrapper {
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }
 
 .comments {
@@ -143,5 +150,21 @@ ul.recipe-image {
 @media (max-width: 640px) {
   .buttons-img {
     flex-direction: column-reverse;
+  }
+
+  .buttons {
+    display: flex;
+    padding: unset;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-around;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .like-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
   }
 }

@@ -77,6 +77,8 @@ export class RecipeComponent implements OnInit {
     try {
       await this.commentService.deleteComment(id);
       console.log('Comment deleted successfully.');
+      await this.loadRecipeData();
+
     } catch (error) {
       console.error('Error deleting comment:', error);
     }
