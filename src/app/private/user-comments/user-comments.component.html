@@ -1,30 +1,37 @@
-<div *ngIf="comments.length == 0; else commentsList">
-  <main class="main-short">
-    <div class="headerImage"></div>
-    <div class="wrapper">
-      <div class="empty">
-        <div class="title-wrapper">
-          <h1 class="title">You have no comments!</h1>
-        </div>
-        <div class="logo-svg">
-          <app-logo-svg />
-        </div>
+<main
+  class="main"
+  [ngClass]="{
+    'main-short': comments.length === 0 && !isLoadingComments,
+    'main-long': comments.length > 0
+  }"
+>
+  <div class="headerImage"></div>
+  <div class="wrapper" *ngIf="comments.length >= 0">
+    <div class="empty" *ngIf="comments.length === 0 && !isLoadingComments">
+      <div class="title-wrapper">
+        <h1 class="title">You have no comments!</h1>
+      </div>
+      <div class="logo-svg">
+        <app-logo-svg />
+      </div>
 
-        <div class="emptyInfo">
-          <p>
-            You can view our recipe and write your first comment &nbsp;&nbsp;
-          </p>
-          <a routerLink="/recipes-list" class="button" href="">Recipes</a>
-        </div>
+      <div class="emptyInfo">
+        <p>You can view our recipe and write your first comment &nbsp;&nbsp;</p>
+        <a routerLink="/recipes-list" class="button" href="">Recipes</a>
       </div>
     </div>
-  </main>
-</div>
 
-<ng-template #commentsList>
-  <main class="main-long" style="min-height: 93%">
-    <div class="headerImage"></div>
+    <div class="empty" *ngIf="isLoadingComments">
+      <div class="title-wrapper">
+        <h1 class="title">Loading!!!</h1>
+      </div>
+      <div class="logo-svg">
+        <app-logo-svg />
+      </div>
+    </div>
+
     <div
+      *ngIf="comments.length > 0 && !isLoadingComments"
       class="wrapper-list"
       style="
         max-width: 600px;
@@ -35,7 +42,6 @@
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
         display: flex;
         flex-direction: column;
-        align-items: center;
       "
     >
       <div *ngIf="userData" class="title-wrapper">
@@ -46,7 +52,6 @@
 
       <div class="comments">
         <ul *ngFor="let comment of comments">
-          <a href="" routerLink="/recipe/{{ comment.recipeId }}">see recipe</a>
           <li>{{ comment.name }}</li>
           <li>{{ comment.text }}</li>
 
@@ -58,7 +63,7 @@
             <div class="commentBtnWrapper">
               <span
                 *ngIf="userData && comment.uid == userData.uid"
-                (click)="confirmDelete(comment.id)"
+                (click)="deleteComment(comment.id)"
               >
                 <i class="fa-solid fa-trash fa-shake"></i>
               </span>
@@ -71,8 +76,11 @@
               </span>
             </div>
           </li>
+          <a class="btn btn-outline-light" style="color: var(--textColor);" routerLink="/recipe/{{ comment.recipeId }}"
+            >Go to recipe</a
+          >
         </ul>
       </div>
     </div>
-  </main>
-</ng-template>
+  </div>
+</main>

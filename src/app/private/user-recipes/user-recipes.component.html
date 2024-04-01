@@ -1,35 +1,39 @@
-<div *ngIf="recipes.length === 0; else recipesList">
-  <main class="main-short">
-    <div class="headerImage"></div>
-    <div class="wrapper">
-      <div class="empty">
-        <div class="title-wrapper">
-          <h1 class="title">You have no recipes!</h1>
-        </div>
+<main
+  class="main"
+  [ngClass]="{
+    'main-short': recipes.length === 0 && !isLoadingComments,
+    'main-long': recipes.length > 0
+  }"
+>
+  <div class="headerImage"></div>
+  <div class="wrapper" *ngIf="recipes.length >= 0">
+    <div class="empty" *ngIf="recipes.length === 0 && !isLoadingComments">
+      <div class="title-wrapper">
+        <h1 class="title">You have no recipes!</h1>
+      </div>
+      <div class="logo-svg">
+        <app-logo-svg />
+      </div>
 
-        <div class="logo-svg">
-          <app-logo-svg />
-        </div>
-    
-        <div class="emptyInfo">
-          <p>You can write your first recipe &nbsp;&nbsp;</p>
-
-          <button class="button" routerLink="/dashboard/recipe-create">
-            Create recipe
-          </button>
-        </div>
+      <div class="emptyInfo">
+        <p>You can view our recipe and save your favorite &nbsp;&nbsp;</p>
+        <a routerLink="/recipes-list" class="button" href="">Recipes</a>
       </div>
     </div>
-  </main>
-</div>
 
-<ng-template #recipesList>
-  <main class="main-long">
-    <div class="headerImage"></div>
-    <div class="wrapper-list">
+    <div class="empty" *ngIf="isLoadingComments">
       <div class="title-wrapper">
-        <h1 *ngIf="userData" class="title">
-          Recipes by {{ userData.firstName + " " + userData.lastName }}
+        <h1 class="title">Loading!!!</h1>
+      </div>
+      <div class="logo-svg">
+        <app-logo-svg />
+      </div>
+    </div>
+
+    <div *ngIf="recipes.length > 0 && !isLoadingComments" class="wrapper-list">
+      <div *ngIf="userData" class="title-wrapper">
+        <h1 class="title">
+          {{ userData.firstName + " " + userData.lastName }} favorite recipes
         </h1>
       </div>
 
@@ -49,35 +53,5 @@
         </div>
       </div>
     </div>
-  </main>
-</ng-template>
-
-<!--
-
-  <main class="main-long">
-  <div class="headerImage"></div>
-  <div class="wrapper-list">
-    <div class="title-wrapper">
-      <h1 class="title">Recipes by {{ userData.firstName + " " + userData.lastName }}</h1>
-    </div>
-
-
-    <div class="recipe-list">
-      <div *ngFor="let recipe of recipes">
-        <a [routerLink]="['/recipe', recipe.id]">
-          <div class="recipe-item">
-            <div class="recipe-image">
-              <img
-                [src]="recipe!.image_recipe[0]!.image_recipe"
-                alt="{{ recipe.title }}"
-              />
-            </div>
-            <p class="recipe-title">{{ recipe.title }}</p>
-          </div>
-        </a>
-      </div>
-    </div>
   </div>
 </main>
-
- -->

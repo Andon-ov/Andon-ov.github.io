@@ -13,6 +13,8 @@ export class UserCommentsComponent implements OnInit {
   comments: Comments[] = [];
   userData: FirestoreUser | null | undefined;
 
+  isLoadingComments: boolean = true;
+
   constructor(
     private commentService: CommentService,
     private userService: UserService,
@@ -24,6 +26,8 @@ export class UserCommentsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.isLoadingComments);
+
     this.loadData();
   }
 
@@ -34,6 +38,10 @@ export class UserCommentsComponent implements OnInit {
           this.userData.uid
         );
         console.log('Comments loaded successfully.');
+        this.isLoadingComments = false;
+        console.log(this.comments);
+
+        console.log(this.isLoadingComments);
       } catch (error) {
         console.error('An error occurred while loading Comments data:', error);
       }
@@ -51,15 +59,6 @@ export class UserCommentsComponent implements OnInit {
       this.loadData();
     } catch (error) {
       console.error('Error deleting comment:', error);
-    }
-  }
-
-  confirmDelete(commentId: string) {
-    const confirmation = confirm(
-      'Are you sure you want to delete this comment?'
-    );
-    if (confirmation) {
-      this.deleteComment(commentId);
     }
   }
 }

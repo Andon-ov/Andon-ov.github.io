@@ -13,7 +13,7 @@ import { RecipesService } from 'src/app/public/services/recipes/recipes.service'
 export class UserRecipesComponent implements OnInit {
   userData: FirestoreUser | null | undefined;
   recipes: Recipe[] = [];
-  emptyRecipes = true;
+  isLoadingComments: boolean = true;
 
   constructor(
     private userService: UserService,
@@ -44,7 +44,7 @@ export class UserRecipesComponent implements OnInit {
       this.recipes = recipes;
 
       if (recipes) {
-        this.emptyRecipes = false;
+        this.isLoadingComments = false;
       }
     } catch (error) {
       console.error('Error fetching recipes:', error);

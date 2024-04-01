@@ -16,7 +16,7 @@
   --mainRGBColor: 167, 87, 94;
   /* --mainRGBColor: 0, 102, 57; */
 
-  --alpha: 0.7;
+  --alpha: 0.8;
   --mainRGBAColor: rgba(var(--mainRGBColor), var(--alpha));
 
   --backgroundColor: #e5e5e5;
@@ -359,9 +359,7 @@ a.nav-link:focus {
 }
 
 .nav-tabs .nav-link {
-  text-transform: uppercase;
   color: var(--backgroundColor);
-  font-weight: 900;
 }
 
 .nav-tabs .nav-link:focus,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
+import { BehaviorSubject } from 'rxjs';
 import { FirestoreUser, Recipe } from 'src/app/public/interfaces/interfaces';
 import { RecipeService } from 'src/app/public/services/recipe/recipe.service';
 import { UserService } from 'src/app/public/services/user.service';
@@ -11,19 +12,22 @@ import { UserService } from 'src/app/public/services/user.service';
 })
 export class UserFavoriteRecipesComponent implements OnInit {
   userData: FirestoreUser | null | undefined;
-  recipes: Recipe[] = [];
-  emptyRecipes = true;
+  recipesSubject: BehaviorSubject<Recipe[]> = new BehaviorSubject<Recipe[]>([]);
+
+  isLoadingComments: boolean = true;
 
   constructor(
     private userService: UserService,
-    private firestore: Firestore,
     private recipeService: RecipeService
   ) {}
 
   ngOnInit(): void {
-    this.loadFavoriteRecipes()
+    this.loadFavoriteRecipes();
   }
 
+  get recipes(): Recipe[] {
+    return this.recipesSubject.value;
+  }
 
   loadFavoriteRecipes() {
     this.userService.userData$.subscribe({
@@ -31,15 +35,17 @@ export class UserFavoriteRecipesComponent implements OnInit {
         if (value) {
           this.userData = value;
           if (this.userData) {
+            const recipes: Recipe[] = [];
             for (const recipeId of this.userData.favoriteRecipes) {
               if (recipeId) {
                 const recipe = await this.recipeService.getRecipeById(recipeId);
                 if (recipe) {
-                  this.recipes.push(recipe);
+                  recipes.push(recipe);
                 }
               }
             }
-            this.emptyRecipes = this.recipes.length === 0;
+            this.recipesSubject.next(recipes);
+            this.isLoadingComments = false;
           }
         } else {
           console.log(`Cant found user with this UID`);
@@ -63,7 +69,7 @@ export class UserFavoriteRecipesComponent implements OnInit {
         this.userData.uid,
         true
       );
-      this.loadFavoriteRecipes()
+      this.loadFavoriteRecipes();
     }
   }
 }

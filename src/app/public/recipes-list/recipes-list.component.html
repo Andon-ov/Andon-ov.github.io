@@ -21,12 +21,14 @@
       </div>
     </div>
 
-    <button
-      *ngIf="showLoadMoreButton"
-      (click)="getRecipesLoadMore()"
-      class="button"
-    >
-      Load More
-    </button>
+    <div *ngIf="showLoadMoreButton; else allRecipesShown">
+      <button (click)="getRecipesLoadMore()" class="button">Load More</button>
+    </div>
+
+    <ng-template #allRecipesShown>
+      <p>
+        <i> All recipes are now displayed! </i>
+      </p>
+    </ng-template>
   </div>
 </main>

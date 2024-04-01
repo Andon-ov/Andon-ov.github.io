@@ -196,7 +196,7 @@
               <div class="commentBtnWrapper">
                 <span
                   *ngIf="userData && comment.uid == userData.uid"
-                  (click)="confirmDelete(comment.id)"
+                  (click)="deleteComment(comment.id)"
                 >
                   <i class="fa-solid fa-trash fa-shake"></i>
                 </span>

@@ -11,7 +11,6 @@
         aria-controls="navbarScroll"
         aria-expanded="false"
         aria-label="Toggle navigation"
-
         (mouseover)="onMouseOver()"
         (mouseout)="onMouseOut()"
       >
@@ -25,7 +24,6 @@
       <!-- Logo -->
       <a class="navbar-brand" href="#">
         <svg
-
           viewBox="0 0 200.92045542674032 200.92045542674032"
           height="50"
           width="50"
@@ -84,14 +82,12 @@
     </div>
 
     <div class="collapse navbar-collapse" id="navbarScroll">
-      <ul
-        class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
-
-      >
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
         <!-- Recipe Menu -->
 
         <li class="nav-item">
-          <a appResponsiveClass
+          <a
+            appResponsiveClass
             routerLink="/recipes-list"
             class="navigation"
             href="#"
@@ -104,7 +100,8 @@
 
         <!-- User Menu -->
         <li class="nav-item dropdown" *ngIf="!userData">
-          <a appResponsiveClass
+          <a
+            appResponsiveClass
             class="dropdown-toggle"
             href="#"
             role="button"
@@ -119,14 +116,13 @@
               <a class="dropdown-item" routerLink="/register">Register</a>
             </li>
             <li><a class="dropdown-item" routerLink="/login">Login</a></li>
-
           </ul>
         </li>
 
         <li class="nav-item dropdown" *ngIf="userData">
-          <a appResponsiveClass
+          <a
+            appResponsiveClass
             class="dropdown-toggle"
-
             href="#"
             role="button"
             data-bs-toggle="dropdown"
@@ -141,12 +137,12 @@
                 class="dropdown-item"
                 routerLink="/dashboard/user-recipes"
                 href="#"
-              >My recipes</a
+                >My recipes</a
               >
             </li>
             <li>
               <a class="dropdown-item" routerLink="/dashboard/recipe-create"
-              >Create recipe</a
+                >Create recipe</a
               >
             </li>
             <li>
@@ -154,7 +150,7 @@
                 class="dropdown-item"
                 routerLink="/dashboard/user-favorite-recipes"
                 href="#"
-              >Favorite recipes</a
+                >Favorite recipes</a
               >
             </li>
             <li>
@@ -162,12 +158,12 @@
                 class="dropdown-item"
                 routerLink="/dashboard/user-comments"
                 href="#"
-              >My comments</a
+                >My comments</a
               >
             </li>
             <li>
               <a class="dropdown-item" routerLink="/dashboard/user-info"
-              >Profile</a
+                >Profile</a
               >
             </li>
             <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
@@ -176,13 +172,15 @@
 
         <!-- Search Menu -->
         <li class="nav-item dropdown">
-          <a appResponsiveClass
+          <a
+            appResponsiveClass
             class="dropdown-toggle"
             href="#"
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
+            Search&nbsp;
             <i class="fa-solid fa-magnifying-glass"></i>
           </a>
           <ul class="dropdown-menu search">

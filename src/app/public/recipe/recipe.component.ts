@@ -73,21 +73,12 @@ export class RecipeComponent implements OnInit {
     await this.router.navigate(['/dashboard/comment-edit', commentId]);
   }
 
-async deleteComment(id: string) {
+  async deleteComment(id: string) {
     try {
       await this.commentService.deleteComment(id);
       console.log('Comment deleted successfully.');
     } catch (error) {
       console.error('Error deleting comment:', error);
-    }
-  }
-
-  confirmDelete(commentId: string) {
-    const confirmation = confirm(
-      'Are you sure you want to delete this comment?'
-    );
-    if (confirmation) {
-      this.deleteComment(commentId);
     }
   }
 
