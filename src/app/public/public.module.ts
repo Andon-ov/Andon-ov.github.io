@@ -22,6 +22,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { CustomAlertComponent } from './custom-alert/custom-alert.component';
+import { LogoSvgComponent } from './logo-svg/logo-svg.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { CustomAlertComponent } from './custom-alert/custom-alert.component';
     ContactUsComponent,
     ForgotPasswordComponent,
     CustomAlertComponent,
+    LogoSvgComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [
@@ -64,6 +66,7 @@ import { CustomAlertComponent } from './custom-alert/custom-alert.component';
     ScrollToTopComponent,
     ForgotPasswordComponent,
     CustomAlertComponent,
+    LogoSvgComponent
   ],
 })
 export class PublicModule {}

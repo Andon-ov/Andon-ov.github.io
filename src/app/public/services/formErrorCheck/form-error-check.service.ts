@@ -21,4 +21,31 @@ export class FormErrorCheckService {
       this.markFormGroupTouched(formGroup);
     }
   }
+
+
+  getFormGroupErrors(formGroup: FormGroup): string {
+    let errorMessage = '';
+    Object.keys(formGroup.controls).forEach(key => {
+      const controlErrors = formGroup.get(key)?.errors;
+      if (controlErrors) {
+        Object.keys(controlErrors).forEach(keyError => {
+          errorMessage += `${key} ${this.getControlErrorMessage(keyError, controlErrors[keyError])}\n`;
+        });
+      }
+    });
+    return errorMessage;
+  }
+
+  private getControlErrorMessage(errorKey: string, errorValue: any): string {
+    switch (errorKey) {
+      case 'required':
+        return '-> this field is required.';
+      case 'minlength':
+        return `-> Minimum length is ${errorValue.requiredLength}.`;
+      case 'maxlength':
+        return `-> Maximum length is ${errorValue.requiredLength}.`;
+      default:
+        return '';
+    }
+  }
 }

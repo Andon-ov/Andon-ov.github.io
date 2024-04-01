@@ -19,13 +19,12 @@ export class RecipeDeleteComponent {
     private router: Router
   ) {
     this.route.paramMap.subscribe(async (params) => {
-      const recipeId = params.get('id');
-      this.recipeId = recipeId;
+      this.recipeId  = params.get('id');
       this.recipe = await this.recipeService.getRecipeById(this.recipeId!);
     });
   }
-  deleteRecipe() {
-    this.recipeService.deleteRecipe(this.recipeId!);
-    this.router.navigate(['/recipes-list']);
+ async deleteRecipe() {
+   await this.recipeService.deleteRecipe(this.recipeId!);
+   await this.router.navigate(['/recipes-list']);
   }
 }

@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { addDoc, collection, Firestore } from '@angular/fire/firestore';
-import { FirestoreUser, Recipe } from 'src/app/public/interfaces/interfaces';
-import { Router } from '@angular/router';
-import { UserService } from 'src/app/public/services/user.service';
-import { FormErrorCheckService } from 'src/app/public/services/formErrorCheck/form-error-check.service';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {addDoc, collection, Firestore} from '@angular/fire/firestore';
+import {FirestoreUser, Recipe} from 'src/app/public/interfaces/interfaces';
+import {Router} from '@angular/router';
+import {UserService} from 'src/app/public/services/user.service';
+import {FormErrorCheckService} from 'src/app/public/services/formErrorCheck/form-error-check.service';
 import {CustomAlertService} from "../../public/custom-alert/custom-alert.service";
+import {italic} from "@cloudinary/url-gen/qualifiers/fontStyle";
 
 @Component({
   selector: 'app-recipe-create',
@@ -26,7 +27,7 @@ export class RecipeCreateComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private formErrorCheckService: FormErrorCheckService,
-    private modalService: CustomAlertService
+    private alertService: CustomAlertService
   ) {
     this.firestore = firestore;
 
@@ -66,7 +67,8 @@ export class RecipeCreateComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   addImageToForm(imageUrl: string) {
     const imageArray = this.recipeForm.get('image_recipe') as FormArray;
@@ -132,18 +134,13 @@ export class RecipeCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.formErrorCheckService.markFormGroupTouched(this.recipeForm);
-    // this.formErrorCheckService.markFormArrayControlsTouched(this.ingredients);
-
-    // if (this.recipeForm.invalid) {
-    //   alert('The form is not valid. Please fill in all required fields.');
-    //   return;
-    // }
+    this.formErrorCheckService.markFormGroupTouched(this.recipeForm);
+    this.formErrorCheckService.markFormArrayControlsTouched(this.ingredients);
 
     if (this.recipeForm.invalid) {
-      this.modalService.sendModalMessage("error");
-      console.log('1');
-
+      const errorMessage = this.formErrorCheckService.getFormGroupErrors(this.recipeForm);
+      this.alertService.sendModalMessage(`The form is not valid. Please fix the following errors:
+      \n${errorMessage}`);
       return;
     }
 
@@ -158,7 +155,7 @@ export class RecipeCreateComponent implements OnInit {
       this.recipeForm.patchValue({
         author: this.userData.firstName + ' ' + this.userData.lastName,
       });
-      this.recipeForm.patchValue({ uid: this.userData.uid });
+      this.recipeForm.patchValue({uid: this.userData.uid});
     }
 
     const recipeData = this.recipeForm.value;

@@ -22,6 +22,7 @@ export class UserCommentsComponent implements OnInit {
       this.userData = userData;
     });
   }
+
   ngOnInit(): void {
     this.loadData();
   }
@@ -29,13 +30,12 @@ export class UserCommentsComponent implements OnInit {
   async loadData() {
     if (this.userData) {
       try {
-        // this.recipe = await this.recipeService.getRecipeById(this.recipeId);
         this.comments = await this.commentService.getCommentsForUser(
           this.userData.uid
         );
-        console.log('Recipe data loaded successfully.');
+        console.log('Comments loaded successfully.');
       } catch (error) {
-        console.error('An error occurred while loading recipe data:', error);
+        console.error('An error occurred while loading Comments data:', error);
       }
     }
   }
@@ -44,8 +44,22 @@ export class UserCommentsComponent implements OnInit {
     this.router.navigate(['/dashboard/comment-edit', commentId]);
   }
 
-  deleteComment(id: string) {
-    this.commentService.deleteComment(id);
-    this.loadData();
+  async deleteComment(id: string) {
+    try {
+      await this.commentService.deleteComment(id);
+      console.log('Comment deleted successfully.');
+      this.loadData();
+    } catch (error) {
+      console.error('Error deleting comment:', error);
+    }
+  }
+
+  confirmDelete(commentId: string) {
+    const confirmation = confirm(
+      'Are you sure you want to delete this comment?'
+    );
+    if (confirmation) {
+      this.deleteComment(commentId);
+    }
   }
 }

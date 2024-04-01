@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {
   ImageRecipeItem,
   Ingredient,
@@ -7,22 +7,11 @@ import {
   Recipe,
   VideoRecipeItem,
 } from '../../public/interfaces/interfaces';
-import {
-  Firestore,
-  updateDoc,
-  doc,
-  collection,
-  setDoc,
-} from '@angular/fire/firestore';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormArray,
-  FormControl,
-} from '@angular/forms';
-import { RecipeService } from 'src/app/public/services/recipe/recipe.service';
-import { FormErrorCheckService } from 'src/app/public/services/formErrorCheck/form-error-check.service';
+import {doc, Firestore, updateDoc,} from '@angular/fire/firestore';
+import {FormArray, FormBuilder, FormGroup, Validators,} from '@angular/forms';
+import {RecipeService} from 'src/app/public/services/recipe/recipe.service';
+import {FormErrorCheckService} from 'src/app/public/services/formErrorCheck/form-error-check.service';
+import {CustomAlertService} from "../../public/custom-alert/custom-alert.service";
 
 @Component({
   selector: 'app-recipe-edit',
@@ -31,7 +20,7 @@ import { FormErrorCheckService } from 'src/app/public/services/formErrorCheck/fo
 })
 export class RecipeEditComponent implements OnInit {
   recipe: Recipe | null = null;
-  recipeId = '';
+  recipeId: string | null = '';
   recipeEdit!: FormGroup;
   firestore: Firestore;
 
@@ -41,7 +30,7 @@ export class RecipeEditComponent implements OnInit {
     private fb: FormBuilder,
     private recipeService: RecipeService,
     private formErrorCheckService: FormErrorCheckService,
-
+    private alertService: CustomAlertService,
     firestore: Firestore
   ) {
     this.firestore = firestore;
@@ -69,12 +58,11 @@ export class RecipeEditComponent implements OnInit {
 
   private async loadData() {
     this.route.paramMap.subscribe(async (params) => {
-      const recipeId = params.get('id');
-      this.recipeId = recipeId!;
+      this.recipeId = params.get('id');
 
-      if (recipeId) {
+      if (this.recipeId) {
         try {
-          this.recipe = await this.recipeService.getRecipeById(recipeId);
+          this.recipe = await this.recipeService.getRecipeById(this.recipeId);
 
           this.patchFormWithRecipeData();
         } catch (error) {
@@ -202,6 +190,7 @@ export class RecipeEditComponent implements OnInit {
     const videoArray = this.recipeEdit.get('video_recipe') as FormArray;
     videoArray.removeAt(index);
   }
+
   // preparation
 
   addPreparation() {
@@ -262,7 +251,10 @@ export class RecipeEditComponent implements OnInit {
     this.formErrorCheckService.markFormArrayControlsTouched(this.ingredients);
 
     if (this.recipeEdit.invalid) {
-      alert('The form is not valid. Please fill in all required fields.');
+      const errorMessage = this.formErrorCheckService.getFormGroupErrors(this.recipeEdit);
+      this.alertService.sendModalMessage(`The form is not valid. Please fix the following errors:
+      \n${errorMessage}`);
+
       return;
     }
 
@@ -273,17 +265,19 @@ export class RecipeEditComponent implements OnInit {
 
   addRecipe(recipeData: Recipe) {
     const collectionName = 'Recipe';
-    const docRef = doc(this.firestore, collectionName, this.recipeId);
-
-    const dataToUpdate: Record<string, any> = { ...recipeData };
-
-    updateDoc(docRef, dataToUpdate)
-      .then(() => {
-        console.log('Document successfully updated');
-        this.router.navigate(['/recipe', this.recipeId]);
-      })
-      .catch((error) => {
-        console.error('Error updating document: ', error);
-      });
+    if (this.recipeId) {
+      const docRef = doc(this.firestore, collectionName, this.recipeId);
+      const dataToUpdate: Record<string, any> = {...recipeData};
+      updateDoc(docRef, dataToUpdate)
+        .then(() => {
+          console.log('Document successfully updated');
+          this.router.navigate(['/recipe', this.recipeId]);
+        })
+        .catch((error) => {
+          console.error('Error updating document: ', error);
+        });
+    }else {
+      console.error('Error: Invalid recipe id.');
+    }
   }
 }

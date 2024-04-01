@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Comments } from 'src/app/public/interfaces/interfaces';
-import { doc, Firestore, updateDoc } from '@angular/fire/firestore';
-import { CommentService } from 'src/app/public/services/comment/comment.service';
-import { FormErrorCheckService } from 'src/app/public/services/formErrorCheck/form-error-check.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Comments} from 'src/app/public/interfaces/interfaces';
+import {doc, Firestore, updateDoc} from '@angular/fire/firestore';
+import {CommentService} from 'src/app/public/services/comment/comment.service';
+import {FormErrorCheckService} from 'src/app/public/services/formErrorCheck/form-error-check.service';
+import {CustomAlertService} from "../../public/custom-alert/custom-alert.service";
 
 @Component({
   selector: 'app-comment-form-edit',
@@ -16,16 +17,19 @@ export class CommentFormEditComponent implements OnInit {
   commentId = '';
   commentFormEdit!: FormGroup;
   firestore: Firestore;
+
   constructor(
     private route: ActivatedRoute,
     private commentService: CommentService,
     private fb: FormBuilder,
     private router: Router,
     private formErrorCheckService: FormErrorCheckService,
+    private alertService: CustomAlertService,
     firestore: Firestore
   ) {
     this.firestore = firestore;
   }
+
   async ngOnInit() {
     this.initializeForm();
     await this.loadData();
@@ -58,7 +62,7 @@ export class CommentFormEditComponent implements OnInit {
   private initializeForm() {
     this.commentFormEdit = this.fb.group({
       name: [''],
-      text: ['',[ Validators.required, Validators.minLength(10), Validators.maxLength(500)]],
+      text: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(500)]],
       recipeId: [''],
       create_time: [''],
       uid: [''],
@@ -89,14 +93,16 @@ export class CommentFormEditComponent implements OnInit {
         console.error('An error occurred while editing the comment:', error);
       }
     } else {
-      console.log('Form is invalid');
+      const errorMessage = this.formErrorCheckService.getFormGroupErrors(this.commentFormEdit);
+      this.alertService.sendModalMessage(`The form is not valid. Please fix the following errors:
+      \n${errorMessage}`);
     }
   }
 
   async editComment(commentData: Comments) {
     const collectionName = 'Comments';
     const docRef = doc(this.firestore, collectionName, this.commentId);
-    const dataToUpdate: Record<string, any> = { ...commentData };
+    const dataToUpdate: Record<string, any> = {...commentData};
     try {
       await updateDoc(docRef, dataToUpdate);
       await this.router.navigate(['/recipe', this.comment?.recipeId]);

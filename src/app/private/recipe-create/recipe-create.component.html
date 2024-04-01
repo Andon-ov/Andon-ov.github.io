@@ -11,7 +11,7 @@
       </h4>
 
       <!-- Title required-->
-      <label>Recipe Title </label>
+      <label>Title </label>
       <input type="text" id="title" formControlName="title" />
 
       <div *ngIf="recipeForm.get('title')?.touched">
@@ -40,7 +40,7 @@
 
       <!-- Description required-->
       <div>
-        <label for="description">Method of preparation</label>
+        <label for="description">Description</label>
         <textarea
           placeholder="Explain how to make your recipe ..."
           name="text"

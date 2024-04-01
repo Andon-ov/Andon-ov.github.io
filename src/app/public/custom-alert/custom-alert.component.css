@@ -14,3 +14,7 @@
   display: block;
   background-color: var(--mainRGBAColor);
 }
+
+.modal-body{
+  white-space: pre-wrap;
+}

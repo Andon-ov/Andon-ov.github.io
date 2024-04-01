@@ -70,6 +70,7 @@ export class CommentFormComponent implements OnInit {
           this.commentForm.value
         );
         if (result) {
+          
           alert('You have successfully added your comment');
           this.commentForm.reset();
         } else {
