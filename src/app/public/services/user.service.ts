@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -10,7 +10,7 @@ import {
   sendPasswordResetEmail,
   deleteUser,
 } from 'firebase/auth';
-import { BehaviorSubject, Observable, take } from 'rxjs';
+import {BehaviorSubject, Observable, take} from 'rxjs';
 
 import {
   Firestore,
@@ -21,7 +21,7 @@ import {
   updateDoc,
   arrayUnion,
 } from '@angular/fire/firestore';
-import { FirestoreUser } from '../interfaces/interfaces';
+import {FirestoreUser} from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -104,7 +104,7 @@ export class UserService {
     try {
       await this.sendPasswordResetEmail(passwordResetEmail);
       window.alert('Password reset email sent, check your inbox.');
-      this.router.navigate(['login']);
+      await this.router.navigate(['login']);
     } catch (error) {
       this.handleError(error);
       window.alert(error);
@@ -201,7 +201,7 @@ export class UserService {
   ): Promise<void> {
     return new Promise((resolve, reject) => {
       if (user && additionalAuthData) {
-        const fullAuthData = { ...user, ...additionalAuthData };
+        const fullAuthData = {...user, ...additionalAuthData};
         localStorage.setItem('user', JSON.stringify(fullAuthData));
         this.userDataSubject.next(fullAuthData);
         resolve();

@@ -12,6 +12,7 @@ import { publicGuard } from './public/public.guard';
 import { AboutUsComponent } from './public/about-us/about-us.component';
 import { PrivacyPolicyComponent } from './public/privacy-policy/privacy-policy.component';
 import { ContactUsComponent } from './public/contact-us/contact-us.component';
+import {ForgotPasswordComponent} from "./public/forgot-password/forgot-password.component";
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: CarouselComponent },
@@ -25,6 +26,10 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
     canActivate: [publicGuard],
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
   },
   {
     path: 'recipes-list',

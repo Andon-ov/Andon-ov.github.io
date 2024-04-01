@@ -6,6 +6,7 @@ import { FirestoreUser, Recipe } from 'src/app/public/interfaces/interfaces';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/public/services/user.service';
 import { FormErrorCheckService } from 'src/app/public/services/formErrorCheck/form-error-check.service';
+import {CustomAlertService} from "../../public/custom-alert/custom-alert.service";
 
 @Component({
   selector: 'app-recipe-create',
@@ -24,7 +25,8 @@ export class RecipeCreateComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private userService: UserService,
-    private formErrorCheckService: FormErrorCheckService
+    private formErrorCheckService: FormErrorCheckService,
+    private modalService: CustomAlertService
   ) {
     this.firestore = firestore;
 
@@ -130,13 +132,21 @@ export class RecipeCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    this.formErrorCheckService.markFormGroupTouched(this.recipeForm);
-    this.formErrorCheckService.markFormArrayControlsTouched(this.ingredients);
+    // this.formErrorCheckService.markFormGroupTouched(this.recipeForm);
+    // this.formErrorCheckService.markFormArrayControlsTouched(this.ingredients);
+
+    // if (this.recipeForm.invalid) {
+    //   alert('The form is not valid. Please fill in all required fields.');
+    //   return;
+    // }
 
     if (this.recipeForm.invalid) {
-      alert('The form is not valid. Please fill in all required fields.');
+      this.modalService.sendModalMessage("error");
+      console.log('1');
+
       return;
     }
+
     console.log(this.image_recipe);
 
     if (this.image_recipe.length === 0) {

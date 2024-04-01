@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Comments } from 'src/app/public/interfaces/interfaces';
 import { doc, Firestore, updateDoc } from '@angular/fire/firestore';
 import { CommentService } from 'src/app/public/services/comment/comment.service';
+import { FormErrorCheckService } from 'src/app/public/services/formErrorCheck/form-error-check.service';
 
 @Component({
   selector: 'app-comment-form-edit',
@@ -20,6 +21,7 @@ export class CommentFormEditComponent implements OnInit {
     private commentService: CommentService,
     private fb: FormBuilder,
     private router: Router,
+    private formErrorCheckService: FormErrorCheckService,
     firestore: Firestore
   ) {
     this.firestore = firestore;
@@ -56,7 +58,7 @@ export class CommentFormEditComponent implements OnInit {
   private initializeForm() {
     this.commentFormEdit = this.fb.group({
       name: [''],
-      text: ['', Validators.required],
+      text: ['',[ Validators.required, Validators.minLength(10), Validators.maxLength(500)]],
       recipeId: [''],
       create_time: [''],
       uid: [''],
@@ -75,24 +77,32 @@ export class CommentFormEditComponent implements OnInit {
   }
 
   async onSubmit() {
+
+    this.formErrorCheckService.markFormGroupTouched(this.commentFormEdit);
     if (this.commentFormEdit.valid) {
       const commentData = this.commentFormEdit.value;
-      console.log(commentData);
 
-      await this.editComment(commentData as Comments);
-      this.commentFormEdit.reset();
+      try {
+        await this.editComment(commentData as Comments);
+        this.commentFormEdit.reset();
+      } catch (error) {
+        console.error('An error occurred while editing the comment:', error);
+      }
     } else {
-      console.log('form invalid');
+      console.log('Form is invalid');
     }
   }
 
   async editComment(commentData: Comments) {
     const collectionName = 'Comments';
     const docRef = doc(this.firestore, collectionName, this.commentId);
-
     const dataToUpdate: Record<string, any> = { ...commentData };
-
-    await updateDoc(docRef, dataToUpdate);
-    await this.router.navigate(['/recipe', this.comment?.recipeId]);
+    try {
+      await updateDoc(docRef, dataToUpdate);
+      await this.router.navigate(['/recipe', this.comment?.recipeId]);
+    } catch (error) {
+      console.error('An error occurred while editing the comment:', error);
+      throw error;
+    }
   }
 }

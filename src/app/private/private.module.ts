@@ -9,7 +9,6 @@ import {RecipeCreateComponent} from "./recipe-create/recipe-create.component";
 import {RecipeDeleteComponent} from "./recipe-delete/recipe-delete.component";
 import {ImageUploadComponent} from "./image-upload/image-upload.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
-import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component";
 import {UserCommentsComponent} from "./user-comments/user-comments.component";
 import {UserFavoriteRecipesComponent} from "./user-favorite-recipes/user-favorite-recipes.component";
 import {UserInfoComponent} from "./user-info/user-info.component";
@@ -23,7 +22,6 @@ import { PrivateRoutingModule } from './private-routing.module';
 
     CommentFormEditComponent,
     DashboardComponent,
-    ForgotPasswordComponent,
     ImageUploadComponent,
     RecipeEditComponent,
     RecipeCreateComponent,
@@ -38,7 +36,6 @@ import { PrivateRoutingModule } from './private-routing.module';
 
     CommentFormEditComponent,
     DashboardComponent,
-    ForgotPasswordComponent,
     ImageUploadComponent,
     RecipeEditComponent,
     RecipeCreateComponent,

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ForgotPasswordComponent } from '../public/forgot-password/forgot-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserRecipesComponent } from './user-recipes/user-recipes.component';
 import { RecipeCreateComponent } from './recipe-create/recipe-create.component';
@@ -25,10 +25,7 @@ const routes: Routes = [
       { path: 'recipe-delete/:id', component: RecipeDeleteComponent },
 
       { path: 'comment-edit/:id', component: CommentFormEditComponent },
-      {
-        path: 'forgot-password',
-        component: ForgotPasswordComponent,
-      },
+
     ]
   },
 
