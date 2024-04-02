@@ -12,7 +12,8 @@ import { publicGuard } from './public/public.guard';
 import { AboutUsComponent } from './public/about-us/about-us.component';
 import { PrivacyPolicyComponent } from './public/privacy-policy/privacy-policy.component';
 import { ContactUsComponent } from './public/contact-us/contact-us.component';
-import {ForgotPasswordComponent} from "./public/forgot-password/forgot-password.component";
+import { ForgotPasswordComponent } from './public/forgot-password/forgot-password.component';
+import { PageNotFoundComponent } from './public/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: CarouselComponent },
@@ -52,11 +53,11 @@ const routes: Routes = [
   },
   {
     path: 'privacy-policy',
-    component: PrivacyPolicyComponent
+    component: PrivacyPolicyComponent,
   },
   {
     path: 'contact',
-    component:ContactUsComponent
+    component: ContactUsComponent,
   },
 
   {
@@ -64,6 +65,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./private/private.module').then((m) => m.PrivateModule),
     canActivate: [privateGuard],
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
   },
 ];
 

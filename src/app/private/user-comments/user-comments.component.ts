@@ -26,8 +26,6 @@ export class UserCommentsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.isLoadingComments);
-
     this.loadData();
   }
 

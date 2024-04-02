@@ -23,6 +23,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { CustomAlertComponent } from './custom-alert/custom-alert.component';
 import { LogoSvgComponent } from './logo-svg/logo-svg.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { LogoSvgComponent } from './logo-svg/logo-svg.component';
     ForgotPasswordComponent,
     CustomAlertComponent,
     LogoSvgComponent,
+    PageNotFoundComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [

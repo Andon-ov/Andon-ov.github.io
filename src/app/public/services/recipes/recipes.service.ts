@@ -52,7 +52,7 @@ export class RecipesService {
   async getRecipesLoadMore(): Promise<{ data: Recipe[]; hasMore: boolean }> {
     const collectionName = 'Recipe';
     const lastDoc = await firstValueFrom(this.lastDoc$);
-    const paginateNumber = 6;
+    const paginateNumber = 12;
 
     let q: Query<Recipe> = query(
       collection(this.firestore, collectionName) as CollectionReference<Recipe>,
@@ -84,7 +84,7 @@ export class RecipesService {
 
   async getRecipes(): Promise<{ data: Recipe[] }> {
     const collectionName = 'Recipe';
-    const paginateNumber = 6;
+    const paginateNumber = 12;
 
     let q: Query<Recipe> = query(
       collection(this.firestore, collectionName) as CollectionReference<Recipe>,

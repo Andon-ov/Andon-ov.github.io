@@ -13,6 +13,8 @@ import {
 
 import { UserService } from 'src/app/public/services/user.service';
 import { FirestoreUser } from '../interfaces/interfaces';
+import { CustomAlertService } from '../custom-alert/custom-alert.service';
+import { FormErrorCheckService } from '../services/formErrorCheck/form-error-check.service';
 
 @Component({
   selector: 'app-header',
@@ -55,16 +57,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private router: Router,
     private fb: FormBuilder,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    private alertService: CustomAlertService,
+    private formErrorCheckService: FormErrorCheckService
   ) {
     this.userDataSubscription = this.userDataSubject.subscribe((value) => {
       this.userData = value;
       console.log(this.userData);
     });
-
-    // this.searchForm = this.fb.group({
-    //   search: [''],
-    // });
   }
 
   onMouseOver() {
@@ -87,7 +87,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }
       },
       error: (err) => {
-        console.log(err);
+        console.error(err);
       },
     });
 
@@ -102,16 +102,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
-  // async onSubmit() {
-  //   if (this.searchForm.valid) {
-  //     let query = this.searchForm.value;
-  //     await this.router.navigate(['/recipe-search'], {queryParams: {search: query.search.trim()}});
-  //     this.searchForm.reset();
-  //   } else {
-  //     alert('Try again!');
-  //   }
-  // }
-
   async onSubmit() {
     if (this.searchForm.valid) {
       let query = this.searchForm.value;
@@ -124,7 +114,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
         console.error('Query search value is null or undefined.');
       }
     } else {
-      alert('Try again!');
+      const errorMessage = this.formErrorCheckService.getFormGroupErrors(
+        this.searchForm
+      );
+      this.alertService
+        .sendModalMessage(`The form is not valid. Please fix the following errors:
+      \n${errorMessage}`);
     }
   }
 

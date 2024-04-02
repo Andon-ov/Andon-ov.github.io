@@ -30,7 +30,6 @@ export class RecipeSearchComponent {
 
   async getRecipes(searchQuery: string) {
     const { data } = await this.recipeService.searchRecipesByTitle(searchQuery);
-    console.log(data);
     if (data.length > 0) {
       this.recipes.push(...data);
       this.result = true;

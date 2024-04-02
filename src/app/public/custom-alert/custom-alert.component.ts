@@ -19,7 +19,7 @@ export class CustomAlertComponent implements OnInit, OnDestroy {
       console.log(3)
       this.modalMessage = message;
       console.log(message)
-      this.showModal = true; // Показване на модалния прозорец
+      this.showModal = true;
     });
   }
 

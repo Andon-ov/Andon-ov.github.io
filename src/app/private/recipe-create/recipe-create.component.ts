@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {addDoc, collection, Firestore} from '@angular/fire/firestore';
@@ -7,14 +7,13 @@ import {Router} from '@angular/router';
 import {UserService} from 'src/app/public/services/user.service';
 import {FormErrorCheckService} from 'src/app/public/services/formErrorCheck/form-error-check.service';
 import {CustomAlertService} from "../../public/custom-alert/custom-alert.service";
-import {italic} from "@cloudinary/url-gen/qualifiers/fontStyle";
 
 @Component({
   selector: 'app-recipe-create',
   templateUrl: './recipe-create.component.html',
   styleUrls: ['./recipe-create.component.css'],
 })
-export class RecipeCreateComponent implements OnInit {
+export class RecipeCreateComponent  {
   fullName = '';
   recipeForm: FormGroup;
   firestore: Firestore;
@@ -67,8 +66,6 @@ export class RecipeCreateComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
 
   addImageToForm(imageUrl: string) {
     const imageArray = this.recipeForm.get('image_recipe') as FormArray;

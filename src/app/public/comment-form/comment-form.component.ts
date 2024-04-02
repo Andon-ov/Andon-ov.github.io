@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Firestore} from '@angular/fire/firestore';
-import {UserService} from 'src/app/public/services/user.service';
-import {CommentService} from 'src/app/public/services/comment/comment.service';
-import {FirestoreUser} from "../interfaces/interfaces";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Firestore } from '@angular/fire/firestore';
+import { UserService } from 'src/app/public/services/user.service';
+import { CommentService } from 'src/app/public/services/comment/comment.service';
+import { FirestoreUser } from '../interfaces/interfaces';
 
 @Component({
   selector: 'app-comment-form',
@@ -58,11 +58,11 @@ export class CommentFormComponent implements OnInit {
     this.timestamp = new Date();
 
     if (this.commentForm.valid) {
-      this.commentForm.patchValue({name: this.fullName});
-      this.commentForm.patchValue({recipeId: this.recipeId});
-      this.commentForm.patchValue({create_time: this.timestamp});
+      this.commentForm.patchValue({ name: this.fullName });
+      this.commentForm.patchValue({ recipeId: this.recipeId });
+      this.commentForm.patchValue({ create_time: this.timestamp });
       if (this.userData) {
-        this.commentForm.patchValue({uid: this.userData.uid});
+        this.commentForm.patchValue({ uid: this.userData.uid });
       }
 
       try {
@@ -70,9 +70,9 @@ export class CommentFormComponent implements OnInit {
           this.commentForm.value
         );
         if (result) {
-          
-          alert('You have successfully added your comment');
+          console.log('You have successfully added your comment');
           this.commentForm.reset();
+          
         } else {
           console.error('Error adding comment.');
         }
