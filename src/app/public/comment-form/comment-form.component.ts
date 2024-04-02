@@ -5,6 +5,7 @@ import { Firestore } from '@angular/fire/firestore';
 import { UserService } from 'src/app/public/services/user.service';
 import { CommentService } from 'src/app/public/services/comment/comment.service';
 import { FirestoreUser } from '../interfaces/interfaces';
+import { GlobalErrorHandlerService } from '../services/globalErrorHandler/global-error-handler.service';
 
 @Component({
   selector: 'app-comment-form',
@@ -24,7 +25,8 @@ export class CommentFormComponent implements OnInit {
     private fb: FormBuilder,
     firestore: Firestore,
     private commentService: CommentService,
-    private userService: UserService
+    private userService: UserService,
+    private globalErrorHandler: GlobalErrorHandlerService
   ) {
     this.firestore = firestore;
   }
@@ -32,7 +34,7 @@ export class CommentFormComponent implements OnInit {
   ngOnInit() {
     this.commentForm = this.fb.group({
       name: [''],
-      text: ['', Validators.required],
+      comment: ['',[ Validators.required, Validators.minLength(10), Validators.maxLength(500)]],
       recipeId: [this.recipeId],
       create_time: [this.timestamp],
       uid: [''],
@@ -48,8 +50,8 @@ export class CommentFormComponent implements OnInit {
           this.fullName = 'Anonymous';
         }
       },
-      error: (err) => {
-        console.log(err);
+      error: (error) => {
+        this.globalErrorHandler.handleError(error);
       },
     });
   }
@@ -70,14 +72,13 @@ export class CommentFormComponent implements OnInit {
           this.commentForm.value
         );
         if (result) {
-          console.log('You have successfully added your comment');
           this.commentForm.reset();
-          
         } else {
-          console.error('Error adding comment.');
+          const errorMessage = 'Error adding comment.';
+          this.globalErrorHandler.handleError(errorMessage);
         }
       } catch (error) {
-        console.error('An error occurred while submitting the comment:', error);
+        this.globalErrorHandler.handleError(error);
       }
     }
   }

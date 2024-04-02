@@ -1,19 +1,19 @@
 import {Component} from '@angular/core';
 
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {addDoc, collection, Firestore} from '@angular/fire/firestore';
-import {FirestoreUser, Recipe} from 'src/app/public/interfaces/interfaces';
-import {Router} from '@angular/router';
+import {Firestore} from '@angular/fire/firestore';
+import {FirestoreUser} from 'src/app/public/interfaces/interfaces';
 import {UserService} from 'src/app/public/services/user.service';
 import {FormErrorCheckService} from 'src/app/public/services/formErrorCheck/form-error-check.service';
-import {CustomAlertService} from "../../public/custom-alert/custom-alert.service";
+import {GlobalErrorHandlerService} from 'src/app/public/services/globalErrorHandler/global-error-handler.service';
+import {RecipeService} from "../../public/services/recipe/recipe.service";
 
 @Component({
   selector: 'app-recipe-create',
   templateUrl: './recipe-create.component.html',
   styleUrls: ['./recipe-create.component.css'],
 })
-export class RecipeCreateComponent  {
+export class RecipeCreateComponent {
   fullName = '';
   recipeForm: FormGroup;
   firestore: Firestore;
@@ -23,10 +23,10 @@ export class RecipeCreateComponent  {
   constructor(
     firestore: Firestore,
     private fb: FormBuilder,
-    private router: Router,
+    private recipeService: RecipeService,
     private userService: UserService,
     private formErrorCheckService: FormErrorCheckService,
-    private alertService: CustomAlertService
+    private globalErrorHandler: GlobalErrorHandlerService,
   ) {
     this.firestore = firestore;
 
@@ -57,15 +57,15 @@ export class RecipeCreateComponent  {
         if (value) {
           this.userData = value;
         } else {
-          console.log(`Cant found user with this UID`);
+          const errorMessage = `Cant found user with this UID`;
+          this.globalErrorHandler.handleError(errorMessage);
         }
       },
-      error: (err) => {
-        console.log(err);
+      error: (error) => {
+        this.globalErrorHandler.handleError(error);
       },
     });
   }
-
 
   addImageToForm(imageUrl: string) {
     const imageArray = this.recipeForm.get('image_recipe') as FormArray;
@@ -106,7 +106,6 @@ export class RecipeCreateComponent  {
       })
     );
     this.currentOrderIndex++;
-    console.log(this.currentOrderIndex);
   }
 
   removeIngredient(index: number) {
@@ -135,41 +134,30 @@ export class RecipeCreateComponent  {
     this.formErrorCheckService.markFormArrayControlsTouched(this.ingredients);
 
     if (this.recipeForm.invalid) {
-      const errorMessage = this.formErrorCheckService.getFormGroupErrors(this.recipeForm);
-      this.alertService.sendModalMessage(`The form is not valid. Please fix the following errors:
-      \n${errorMessage}`);
+      const errorMessage = this.formErrorCheckService.getFormGroupErrors(
+        this.recipeForm
+      );
+      this.globalErrorHandler.handleError(errorMessage);
       return;
     }
-
-    console.log(this.image_recipe);
 
     if (this.image_recipe.length === 0) {
       const defaultImageUrl =
         'https://res.cloudinary.com/dsla98vyk/image/upload/v1710856403/no_image_u8yfwc.png';
       this.addImageToForm(defaultImageUrl);
     }
+
     if (this.userData) {
       this.recipeForm.patchValue({
         author: this.userData.firstName + ' ' + this.userData.lastName,
       });
-      this.recipeForm.patchValue({uid: this.userData.uid});
+      this.recipeForm.patchValue({ uid: this.userData.uid });
     }
 
     const recipeData = this.recipeForm.value;
-    this.addRecipe(recipeData);
+    this.recipeService.addRecipe(recipeData);
     this.recipeForm.reset();
   }
 
-  addRecipe(recipeData: Recipe) {
-    const collectionName = 'Recipe';
 
-    addDoc(collection(this.firestore, collectionName), recipeData)
-      .then((docRef) => {
-        console.log('Document written with ID: ', docRef.id);
-        this.router.navigate(['/recipe', docRef.id]);
-      })
-      .catch((error) => {
-        console.error('Error adding document: ', error);
-      });
-  }
 }

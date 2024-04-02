@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Comments, FirestoreUser } from 'src/app/public/interfaces/interfaces';
 import { CommentService } from 'src/app/public/services/comment/comment.service';
+import { GlobalErrorHandlerService } from 'src/app/public/services/globalErrorHandler/global-error-handler.service';
 import { UserService } from 'src/app/public/services/user.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class UserCommentsComponent implements OnInit {
   constructor(
     private commentService: CommentService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private globalErrorHandler: GlobalErrorHandlerService
   ) {
     this.userService.userData$.subscribe((userData) => {
       this.userData = userData;
@@ -26,7 +28,10 @@ export class UserCommentsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadData();
+    this.loadData().then(() => {
+    }).catch((error) => {
+      this.globalErrorHandler.handleError(error);
+    });
   }
 
   async loadData() {
@@ -35,28 +40,25 @@ export class UserCommentsComponent implements OnInit {
         this.comments = await this.commentService.getCommentsForUser(
           this.userData.uid
         );
-        console.log('Comments loaded successfully.');
-        this.isLoadingComments = false;
-        console.log(this.comments);
 
-        console.log(this.isLoadingComments);
+        this.isLoadingComments = false;
       } catch (error) {
-        console.error('An error occurred while loading Comments data:', error);
+        this.globalErrorHandler.handleError(error);
       }
     }
   }
 
-  navigateToCommentEdit(commentId: string) {
-    this.router.navigate(['/dashboard/comment-edit', commentId]);
+ async navigateToCommentEdit(commentId: string) {
+  await  this.router.navigate(['/dashboard/comment-edit', commentId]);
   }
 
   async deleteComment(id: string) {
     try {
       await this.commentService.deleteComment(id);
       console.log('Comment deleted successfully.');
-      this.loadData();
+      await this.loadData();
     } catch (error) {
-      console.error('Error deleting comment:', error);
+      this.globalErrorHandler.handleError(error);
     }
   }
 }

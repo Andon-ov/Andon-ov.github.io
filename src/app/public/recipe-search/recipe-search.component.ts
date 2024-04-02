@@ -1,9 +1,9 @@
-import { Recipe } from 'src/app/public/interfaces/interfaces';
-import { RecipesService } from 'src/app/public/services/recipes/recipes.service';
+import {Recipe} from 'src/app/public/interfaces/interfaces';
 
-import { Component, OnInit, Inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup } from '@angular/forms';
+import {Component, Inject} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {FormGroup} from '@angular/forms';
+import { RecipeService } from '../services/recipe/recipe.service';
 
 @Component({
   selector: 'app-recipe-search',
@@ -16,7 +16,7 @@ export class RecipeSearchComponent {
   searchForm: FormGroup | undefined;
 
   constructor(
-    private recipeService: RecipesService,
+    private recipeService: RecipeService,
     @Inject(ActivatedRoute) private route: ActivatedRoute
   ) {}
   ngOnInit(): void {

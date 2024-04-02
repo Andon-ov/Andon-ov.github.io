@@ -13,8 +13,8 @@ import {
 
 import { UserService } from 'src/app/public/services/user.service';
 import { FirestoreUser } from '../interfaces/interfaces';
-import { CustomAlertService } from '../custom-alert/custom-alert.service';
 import { FormErrorCheckService } from '../services/formErrorCheck/form-error-check.service';
+import { GlobalErrorHandlerService } from '../services/globalErrorHandler/global-error-handler.service';
 
 @Component({
   selector: 'app-header',
@@ -51,15 +51,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userData: FirestoreUser | null | undefined;
   private userDataSubject: BehaviorSubject<FirestoreUser | null> =
     new BehaviorSubject<FirestoreUser | null>(null);
-  private userDataSubscription: Subscription | undefined;
+   userDataSubscription: Subscription | undefined;
 
   constructor(
     private userService: UserService,
     private router: Router,
     private fb: FormBuilder,
     private elementRef: ElementRef,
-    private alertService: CustomAlertService,
-    private formErrorCheckService: FormErrorCheckService
+    private formErrorCheckService: FormErrorCheckService,
+    private globalErrorHandler: GlobalErrorHandlerService
   ) {
     this.userDataSubscription = this.userDataSubject.subscribe((value) => {
       this.userData = value;
@@ -86,8 +86,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
           console.log('You have no user.');
         }
       },
-      error: (err) => {
-        console.error(err);
+      error: (error) => {
+        this.globalErrorHandler.handleError(error);
       },
     });
 
@@ -111,15 +111,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
         });
         this.searchForm.reset();
       } else {
-        console.error('Query search value is null or undefined.');
+        const errorMessage = 'Query search value is null or undefined.';
+        this.globalErrorHandler.handleError(errorMessage);
       }
     } else {
       const errorMessage = this.formErrorCheckService.getFormGroupErrors(
         this.searchForm
       );
-      this.alertService
-        .sendModalMessage(`The form is not valid. Please fix the following errors:
-      \n${errorMessage}`);
+      this.globalErrorHandler.handleError(errorMessage);
     }
   }
 

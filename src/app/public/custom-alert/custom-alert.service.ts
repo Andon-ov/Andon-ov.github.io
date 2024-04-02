@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CustomAlertService {
   private modalMessageSource = new Subject<string>();
@@ -11,7 +11,5 @@ export class CustomAlertService {
 
   sendModalMessage(message: string) {
     this.modalMessageSource.next(message);
-    console.log(2)
-    console.log(this.modalMessage$)
   }
 }

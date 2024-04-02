@@ -12,6 +12,7 @@ import { CloudinaryModule } from '@cloudinary/ng';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PublicModule } from './public/public.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GlobalErrorHandlerService } from './public/services/globalErrorHandler/global-error-handler.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +20,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     PublicModule,
-
 
     BrowserAnimationsModule,
 

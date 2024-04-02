@@ -4,6 +4,7 @@ import { RecipeService } from 'src/app/public/services/recipe/recipe.service';
 import { Comments, FirestoreUser, Recipe } from '../interfaces/interfaces';
 import { UserService } from 'src/app/public/services/user.service';
 import { CommentService } from 'src/app/public/services/comment/comment.service';
+import { GlobalErrorHandlerService } from '../services/globalErrorHandler/global-error-handler.service';
 
 @Component({
   selector: 'app-recipe',
@@ -22,7 +23,8 @@ export class RecipeComponent implements OnInit {
     private recipeService: RecipeService,
     private commentService: CommentService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private globalErrorHandler: GlobalErrorHandlerService
   ) {
     this.route.paramMap.subscribe(async (params) => {
       this.recipeId = params.get('id');
@@ -41,9 +43,8 @@ export class RecipeComponent implements OnInit {
         this.comments = await this.commentService.getCommentsForRecipe(
           this.recipeId
         );
-        console.log('Recipe data loaded successfully.');
       } catch (error) {
-        console.error('An error occurred while loading recipe data:', error);
+        this.globalErrorHandler.handleError(error);
       }
     }
   }
@@ -76,41 +77,41 @@ export class RecipeComponent implements OnInit {
   async deleteComment(id: string) {
     try {
       await this.commentService.deleteComment(id);
-      console.log('Comment deleted successfully.');
       await this.loadRecipeData();
-
     } catch (error) {
-      console.error('Error deleting comment:', error);
+      this.globalErrorHandler.handleError(error);
     }
   }
 
   async updateRecipeLikes() {
     if (!this.recipe) {
-      console.error('Recipe data is missing.');
+      const errorMessage = 'Recipe data is missing.';
+      this.globalErrorHandler.handleError(errorMessage);
+
       return;
     }
 
     if (!this.userData) {
-      console.error('User is not logged in.');
+      const errorMessage = 'User is not logged in.';
+      this.globalErrorHandler.handleError(errorMessage);
       return;
     }
 
-    if (this.userData) {
-      let alreadyLiked = this.recipe.likes.includes(this.userData.uid);
+    let alreadyLiked = this.recipe.likes.includes(this.userData.uid);
 
-      await this.recipeService.updateRecipeLikes(
-        this.recipeId!,
-        this.userData.uid,
-        alreadyLiked
-      );
-    }
+    await this.recipeService.updateRecipeLikes(
+      this.recipeId!,
+      this.userData.uid,
+      alreadyLiked
+    );
 
     await this.loadRecipeData();
   }
 
   async updateFavoriteRecipes() {
     if (!this.recipe) {
-      console.error('Recipe data is missing.');
+      const errorMessage = 'Recipe data is missing.';
+      this.globalErrorHandler.handleError(errorMessage);
       return;
     }
 

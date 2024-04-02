@@ -13,6 +13,7 @@ import {
 } from '@angular/fire/firestore';
 import { Comments } from '../../interfaces/interfaces';
 import { Subject } from 'rxjs';
+import { GlobalErrorHandlerService } from '../globalErrorHandler/global-error-handler.service';
 
 @Injectable({
   providedIn: 'root',
@@ -20,28 +21,37 @@ import { Subject } from 'rxjs';
 export class CommentService {
   private commentAddedSubject = new Subject<void>();
 
-  constructor(private firestore: Firestore) {}
+  constructor(
+    private firestore: Firestore,
+    private globalErrorHandler: GlobalErrorHandlerService
+  ) {}
 
-  async getCommentsForRecipe(recipeId: string): Promise<Comments[]> {
+  async getCommentsByQuery(
+    queryField: string,
+    queryValue: string
+  ): Promise<Comments[]> {
     try {
-      const commentsRecipesRef = collection(this.firestore, 'Comments');
-      const q = query(commentsRecipesRef, where('recipeId', '==', recipeId));
+      const commentsCollectionRef = collection(this.firestore, 'Comments');
+      const q = query(
+        commentsCollectionRef,
+        where(queryField, '==', queryValue)
+      );
       const querySnapshot = await getDocs(q);
 
       const comments: Comments[] = [];
       querySnapshot.forEach((doc) => {
-        const data = doc.data();
+        const { create_time, name, recipeId, comment, uid } = doc.data();
         const commentId = doc.id;
 
-        const comment: Comments = {
-          create_time: data['create_time'],
-          name: data['name'],
-          recipeId: data['recipeId'],
-          text: data['text'],
-          uid: data['uid'],
+        const commentObj: Comments = {
+          create_time,
+          name,
+          recipeId,
+          comment,
+          uid,
           id: commentId,
         };
-        comments.push(comment);
+        comments.push(commentObj);
       });
 
       comments.sort((a, b) => {
@@ -52,43 +62,17 @@ export class CommentService {
 
       return comments;
     } catch (error) {
-      console.error('Error retrieving comments:', error);
+      this.globalErrorHandler.handleError(error);
       return [];
     }
   }
 
+  async getCommentsForRecipe(recipeId: string): Promise<Comments[]> {
+    return this.getCommentsByQuery('recipeId', recipeId);
+  }
+
   async getCommentsForUser(uid: string): Promise<Comments[]> {
-    try {
-      const commentsUserRef = collection(this.firestore, 'Comments');
-      const q = query(commentsUserRef, where('uid', '==', uid));
-      const querySnapshot = await getDocs(q);
-
-      const comments: Comments[] = [];
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        const commentId = doc.id;
-
-        const comment: Comments = {
-          create_time: data['create_time'],
-          name: data['name'],
-          recipeId: data['recipeId'],
-          text: data['text'],
-          uid: data['uid'],
-          id: commentId,
-        };
-        comments.push(comment);
-      });
-      comments.sort((a, b) => {
-        const dateA: Date = a.create_time.toDate();
-        const dateB: Date = b.create_time.toDate();
-        return dateB.getTime() - dateA.getTime();
-      });
-
-      return comments;
-    } catch (error) {
-      console.error('Error retrieving comments:', error);
-      return [];
-    }
+    return this.getCommentsByQuery('uid', uid);
   }
 
   async addComment(commentData: Comments): Promise<string | null> {
@@ -101,7 +85,7 @@ export class CommentService {
       this.commentAddedSubject.next();
       return docRef.id;
     } catch (error) {
-      console.error('Error adding comment:', error);
+      this.globalErrorHandler.handleError(error);
       return null;
     }
   }
@@ -113,7 +97,8 @@ export class CommentService {
       await deleteDoc(docRef);
       console.log('Comment deleted successfully:', commentId);
     } catch (error) {
-      console.error('Error deleting comment:', error);
+      this.globalErrorHandler.handleError(error);
+      throw error;
     }
   }
 
@@ -131,17 +116,15 @@ export class CommentService {
     }
   }
 
-  async editComment(
-    commentId: string,
-    updatedCommentData: Partial<Comments>
-  ): Promise<void> {
+  async editComment(commentData: Comments, commentId: string) {
+    const collectionName = 'Comments';
+    const docRef = doc(this.firestore, collectionName, commentId);
+    const dataToUpdate: Record<string, any> = { ...commentData };
     try {
-      const collectionPath = 'Comments';
-      const docRef = doc(this.firestore, collectionPath, commentId);
-      await updateDoc(docRef, updatedCommentData);
-      console.log('Comment edited successfully:', commentId);
+      await updateDoc(docRef, dataToUpdate);
     } catch (error) {
-      console.error('Error editing comment:', error);
+      this.globalErrorHandler.handleError(error);
+      throw error;
     }
   }
 

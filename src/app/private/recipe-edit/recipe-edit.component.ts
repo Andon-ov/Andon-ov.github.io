@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {
   ImageRecipeItem,
   Ingredient,
@@ -7,11 +7,11 @@ import {
   Recipe,
   VideoRecipeItem,
 } from '../../public/interfaces/interfaces';
-import {doc, Firestore, updateDoc,} from '@angular/fire/firestore';
-import {FormArray, FormBuilder, FormGroup, Validators,} from '@angular/forms';
+import {Firestore} from '@angular/fire/firestore';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RecipeService} from 'src/app/public/services/recipe/recipe.service';
 import {FormErrorCheckService} from 'src/app/public/services/formErrorCheck/form-error-check.service';
-import {CustomAlertService} from "../../public/custom-alert/custom-alert.service";
+import {GlobalErrorHandlerService} from 'src/app/public/services/globalErrorHandler/global-error-handler.service';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -26,11 +26,10 @@ export class RecipeEditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private fb: FormBuilder,
     private recipeService: RecipeService,
     private formErrorCheckService: FormErrorCheckService,
-    private alertService: CustomAlertService,
+    private globalErrorHandler: GlobalErrorHandlerService,
     firestore: Firestore
   ) {
     this.firestore = firestore;
@@ -66,14 +65,13 @@ export class RecipeEditComponent implements OnInit {
 
           this.patchFormWithRecipeData();
         } catch (error) {
-          console.error(
-            'An error occurred while retrieving the recipe:',
-            error
-          );
+          this.globalErrorHandler.handleError(error);
+
           throw error;
         }
       } else {
-        console.error('Recipe ID not provided.');
+        const errorMessage = 'Recipe ID not provided.';
+        this.globalErrorHandler.handleError(errorMessage);
       }
     });
   }
@@ -191,25 +189,6 @@ export class RecipeEditComponent implements OnInit {
     videoArray.removeAt(index);
   }
 
-  // preparation
-
-  addPreparation() {
-    const preparationArray = this.recipeEdit.get(
-      'preparation_method'
-    ) as FormArray;
-    preparationArray.push(
-      this.fb.group({
-        preparation_method: '',
-      })
-    );
-  }
-
-  removePreparation(index: number) {
-    const preparationArray = this.recipeEdit.get(
-      'preparation_method'
-    ) as FormArray;
-    preparationArray.removeAt(index);
-  }
 
   // ingredient
   addIngredient() {
@@ -251,33 +230,22 @@ export class RecipeEditComponent implements OnInit {
     this.formErrorCheckService.markFormArrayControlsTouched(this.ingredients);
 
     if (this.recipeEdit.invalid) {
-      const errorMessage = this.formErrorCheckService.getFormGroupErrors(this.recipeEdit);
-      this.alertService.sendModalMessage(`The form is not valid. Please fix the following errors:
-      \n${errorMessage}`);
+      const errorMessage = this.formErrorCheckService.getFormGroupErrors(
+        this.recipeEdit
+      );
+      this.globalErrorHandler.handleError(errorMessage);
 
       return;
     }
 
     const recipeData = this.recipeEdit.value;
-    this.addRecipe(recipeData);
+    this.updateRecipe(recipeData);
     this.recipeEdit.reset();
   }
 
-  addRecipe(recipeData: Recipe) {
-    const collectionName = 'Recipe';
-    if (this.recipeId) {
-      const docRef = doc(this.firestore, collectionName, this.recipeId);
-      const dataToUpdate: Record<string, any> = {...recipeData};
-      updateDoc(docRef, dataToUpdate)
-        .then(() => {
-          console.log('Document successfully updated');
-          this.router.navigate(['/recipe', this.recipeId]);
-        })
-        .catch((error) => {
-          console.error('Error updating document: ', error);
-        });
-    }else {
-      console.error('Error: Invalid recipe id.');
+  updateRecipe(recipeData: Recipe) {
+    if (this.recipeId){
+      this.recipeService.updateRecipe(recipeData,this.recipeId)
     }
   }
 }

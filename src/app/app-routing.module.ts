@@ -9,6 +9,7 @@ import { RecipeComponent } from './public/recipe/recipe.component';
 import { RecipeSearchComponent } from './public/recipe-search/recipe-search.component';
 import { CarouselComponent } from './public/carousel/carousel.component';
 import { publicGuard } from './public/public.guard';
+
 import { AboutUsComponent } from './public/about-us/about-us.component';
 import { PrivacyPolicyComponent } from './public/privacy-policy/privacy-policy.component';
 import { ContactUsComponent } from './public/contact-us/contact-us.component';

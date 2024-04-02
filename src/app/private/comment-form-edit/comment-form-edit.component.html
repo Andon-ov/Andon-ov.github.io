@@ -10,34 +10,34 @@
       (ngSubmit)="onSubmit()"
     >
       <div class="form-group">
-        <label for="text">Comment (required)</label>
+        <label for="comment">Comment (required)</label>
         <textarea
           cols="30"
           rows="5"
-          id="text"
-          formControlName="text"
+          id="comment"
+          formControlName="comment"
           class="form-control"
         ></textarea>
         <br>
       </div>
-      <div *ngIf="commentFormEdit.get('text')?.touched">
+      <div *ngIf="commentFormEdit.get('comment')?.touched">
         <div
           class="errors"
-          *ngIf="commentFormEdit.get('text')?.errors?.['required']"
+          *ngIf="commentFormEdit.get('comment')?.errors?.['required']"
         >
           Please write a comment!
         </div>
         
         <div
           class="errors"
-          *ngIf="commentFormEdit.get('text')?.errors?.['minlength']"
+          *ngIf="commentFormEdit.get('comment')?.errors?.['minlength']"
         >
           Comment must be at least 10 characters long.
         </div>
 
         <div
           class="errors"
-          *ngIf="commentFormEdit.get('text')?.errors?.['maxlength']"
+          *ngIf="commentFormEdit.get('comment')?.errors?.['maxlength']"
         >
           Comment cannot exceed 500 characters.
         </div>

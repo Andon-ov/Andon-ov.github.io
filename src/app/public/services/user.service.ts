@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -10,7 +10,7 @@ import {
   sendPasswordResetEmail,
   deleteUser,
 } from 'firebase/auth';
-import {BehaviorSubject, Observable, take} from 'rxjs';
+import { BehaviorSubject, Observable, take } from 'rxjs';
 
 import {
   Firestore,
@@ -21,7 +21,8 @@ import {
   updateDoc,
   arrayUnion,
 } from '@angular/fire/firestore';
-import {FirestoreUser} from '../interfaces/interfaces';
+import { FirestoreUser } from '../interfaces/interfaces';
+import { CustomAlertService } from '../custom-alert/custom-alert.service';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +33,11 @@ export class UserService {
   userData$: Observable<FirestoreUser | null> =
     this.userDataSubject.asObservable();
 
-  constructor(private firestore: Firestore, public router: Router) {
+  constructor(
+    private firestore: Firestore,
+    public router: Router,
+    private alertService: CustomAlertService
+  ) {
     const savedUserData = localStorage.getItem('user');
     if (savedUserData) {
       const parsedUserData = JSON.parse(savedUserData);
@@ -68,7 +73,7 @@ export class UserService {
       const uid = userCredential.user.uid;
       const additionalAuthData = await this.getAdditionalAuthDataById(uid);
       await this.saveUserData(userCredential.user, additionalAuthData);
-      this.router.navigate(['recipes-list']);
+      await this.router.navigate(['recipes-list']);
     } catch (error) {
       this.handleError(error);
     }
@@ -103,11 +108,15 @@ export class UserService {
   async forgotPassword(passwordResetEmail: string) {
     try {
       await this.sendPasswordResetEmail(passwordResetEmail);
-      window.alert('Password reset email sent, check your inbox.');
+
+      this.alertService.sendModalMessage(
+        'Password reset email sent, check your inbox.'
+      );
+
       await this.router.navigate(['login']);
     } catch (error) {
       this.handleError(error);
-      window.alert(error);
+      this.alertService.sendModalMessage(`Error: ${error}`);
     }
   }
 
@@ -201,7 +210,7 @@ export class UserService {
   ): Promise<void> {
     return new Promise((resolve, reject) => {
       if (user && additionalAuthData) {
-        const fullAuthData = {...user, ...additionalAuthData};
+        const fullAuthData = { ...user, ...additionalAuthData };
         localStorage.setItem('user', JSON.stringify(fullAuthData));
         this.userDataSubject.next(fullAuthData);
         resolve();
@@ -226,10 +235,13 @@ export class UserService {
       const errorCode = (error as Error).name;
       const errorMessage = (error as Error).message;
       console.error(`Error (${errorCode}): ${errorMessage}`);
-      alert(errorMessage);
+      this.alertService.sendModalMessage(
+        `Error (${errorCode}): \n
+         ${errorMessage}`
+      );
     } else {
-      console.error('Unknown error:', error);
-      alert(error);
+      this.alertService.sendModalMessage(`Unknown error occurred:
+      \n${error}`);
     }
   }
 }

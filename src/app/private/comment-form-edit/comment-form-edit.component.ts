@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Comments} from 'src/app/public/interfaces/interfaces';
-import {doc, Firestore, updateDoc} from '@angular/fire/firestore';
-import {CommentService} from 'src/app/public/services/comment/comment.service';
-import {FormErrorCheckService} from 'src/app/public/services/formErrorCheck/form-error-check.service';
-import {CustomAlertService} from "../../public/custom-alert/custom-alert.service";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Comments } from 'src/app/public/interfaces/interfaces';
+import { doc, Firestore, updateDoc } from '@angular/fire/firestore';
+import { CommentService } from 'src/app/public/services/comment/comment.service';
+import { FormErrorCheckService } from 'src/app/public/services/formErrorCheck/form-error-check.service';
+import { GlobalErrorHandlerService } from 'src/app/public/services/globalErrorHandler/global-error-handler.service';
 
 @Component({
   selector: 'app-comment-form-edit',
@@ -24,7 +24,7 @@ export class CommentFormEditComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private formErrorCheckService: FormErrorCheckService,
-    private alertService: CustomAlertService,
+    private globalErrorHandler: GlobalErrorHandlerService,
     firestore: Firestore
   ) {
     this.firestore = firestore;
@@ -38,23 +38,19 @@ export class CommentFormEditComponent implements OnInit {
   private async loadData() {
     this.route.paramMap.subscribe(async (params) => {
       const commentId = params.get('id');
-
       this.commentId = commentId!;
-
       if (commentId) {
         try {
           this.comment = await this.commentService.getCommentById(commentId);
 
           this.patchFormWithCommentData();
         } catch (error) {
-          console.error(
-            'An error occurred while retrieving the comment:',
-            error
-          );
+          this.globalErrorHandler.handleError(error);
           throw error;
         }
       } else {
-        console.error('Comment ID not provided.');
+        const errorMessage = 'Comment ID not provided.';
+        this.globalErrorHandler.handleError(errorMessage);
       }
     });
   }
@@ -62,7 +58,14 @@ export class CommentFormEditComponent implements OnInit {
   private initializeForm() {
     this.commentFormEdit = this.fb.group({
       name: [''],
-      text: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(500)]],
+      comment: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(500),
+        ],
+      ],
       recipeId: [''],
       create_time: [''],
       uid: [''],
@@ -72,7 +75,7 @@ export class CommentFormEditComponent implements OnInit {
   patchFormWithCommentData() {
     this.commentFormEdit.patchValue({
       name: this.comment?.name,
-      text: this.comment?.text,
+      comment: this.comment?.comment,
       recipeId: this.comment?.recipeId,
       create_time: this.comment?.create_time,
       uid: this.comment?.uid,
@@ -81,7 +84,6 @@ export class CommentFormEditComponent implements OnInit {
   }
 
   async onSubmit() {
-
     this.formErrorCheckService.markFormGroupTouched(this.commentFormEdit);
     if (this.commentFormEdit.valid) {
       const commentData = this.commentFormEdit.value;
@@ -90,25 +92,18 @@ export class CommentFormEditComponent implements OnInit {
         await this.editComment(commentData as Comments);
         this.commentFormEdit.reset();
       } catch (error) {
-        console.error('An error occurred while editing the comment:', error);
+        this.globalErrorHandler.handleError(error);
       }
     } else {
-      const errorMessage = this.formErrorCheckService.getFormGroupErrors(this.commentFormEdit);
-      this.alertService.sendModalMessage(`The form is not valid. Please fix the following errors:
-      \n${errorMessage}`);
+      const errorMessage = this.formErrorCheckService.getFormGroupErrors(
+        this.commentFormEdit
+      );
+      this.globalErrorHandler.handleError(errorMessage);
     }
   }
 
   async editComment(commentData: Comments) {
-    const collectionName = 'Comments';
-    const docRef = doc(this.firestore, collectionName, this.commentId);
-    const dataToUpdate: Record<string, any> = {...commentData};
-    try {
-      await updateDoc(docRef, dataToUpdate);
-      await this.router.navigate(['/recipe', this.comment?.recipeId]);
-    } catch (error) {
-      console.error('An error occurred while editing the comment:', error);
-      throw error;
-    }
+    await this.commentService.editComment(commentData, this.commentId);
+    await this.router.navigate(['/recipe', this.comment?.recipeId]);
   }
 }

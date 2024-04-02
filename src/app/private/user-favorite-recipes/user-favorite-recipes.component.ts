@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Firestore } from '@angular/fire/firestore';
-import { BehaviorSubject } from 'rxjs';
-import { FirestoreUser, Recipe } from 'src/app/public/interfaces/interfaces';
-import { RecipeService } from 'src/app/public/services/recipe/recipe.service';
-import { UserService } from 'src/app/public/services/user.service';
+import {Component, OnInit} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
+import {FirestoreUser, Recipe} from 'src/app/public/interfaces/interfaces';
+import {GlobalErrorHandlerService} from 'src/app/public/services/globalErrorHandler/global-error-handler.service';
+import {RecipeService} from 'src/app/public/services/recipe/recipe.service';
+import {UserService} from 'src/app/public/services/user.service';
 
 @Component({
   selector: 'app-user-favorite-recipes',
@@ -18,7 +18,8 @@ export class UserFavoriteRecipesComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private recipeService: RecipeService
+    private recipeService: RecipeService,
+    private globalErrorHandler: GlobalErrorHandlerService
   ) {}
 
   ngOnInit(): void {
@@ -48,18 +49,20 @@ export class UserFavoriteRecipesComponent implements OnInit {
             this.isLoadingComments = false;
           }
         } else {
-          console.log(`Cant found user with this UID`);
+          const errorMessage = `Cant found user with this UID`;
+          this.globalErrorHandler.handleError(errorMessage);
         }
       },
-      error: (err) => {
-        console.log(err);
+      error: (error) => {
+        this.globalErrorHandler.handleError(error);
       },
     });
   }
 
   async updateFavoriteRecipes(recipeId: string) {
     if (!recipeId) {
-      console.error('Recipe data is missing.');
+      const errorMessage = 'Recipe data is missing.';
+      this.globalErrorHandler.handleError(errorMessage);
       return;
     }
 

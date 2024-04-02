@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FirestoreUser } from 'src/app/public/interfaces/interfaces';
-import { UserService } from 'src/app/public/services/user.service';
+import {Component, OnInit} from '@angular/core';
+import {FirestoreUser} from 'src/app/public/interfaces/interfaces';
+import {UserService} from 'src/app/public/services/user.service';
 
 @Component({
   selector: 'app-user-info',
@@ -18,12 +18,12 @@ export class UserInfoComponent implements OnInit {
     });
   }
 
-  deleteUser() {
+async  deleteUser() {
     const isConfirmed = window.confirm(
       'Are you sure you want to delete your account?'
     );
     if (isConfirmed) {
-      this.userService.deleteUserAccount();
+    await  this.userService.deleteUserAccount();
     }
   }
 }

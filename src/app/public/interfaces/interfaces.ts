@@ -68,13 +68,6 @@ export interface FirestoreUser {
   favoriteRecipes: string[];
 }
 
-/*
-FirestoreUser
-
-photoURL
-favorite recipes
-*/
-
 interface UserMetadata {
   createdAt: string;
   creationTime: string;
@@ -86,51 +79,7 @@ export interface Comments {
   create_time: Timestamp;
   name: string;
   recipeId: string;
-  // userId:string;
-  text: string;
+  comment: string;
   uid: string;
   id: string;
 }
-
-/*
-created at
-edit at
-comment
-tag for a disease
-
-
-
-
-*/
-
-/*
-user
-
-username / email
-password
-
-login wit facebook or google
-
-acc info
-edit my acc
-
-forgot password
-change password
-
-remove favorite recipe
-edit and delete my recipe
-
-
-
-favorite recipe
-my recipe
-
-*/
-
-/*
-search
- can searching in title and ingredient name
-
-
- can add drop menu with search when push the button search
-*/

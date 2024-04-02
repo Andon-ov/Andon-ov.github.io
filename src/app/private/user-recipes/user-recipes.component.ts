@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FirestoreUser, Recipe } from 'src/app/public/interfaces/interfaces';
-import { UserService } from 'src/app/public/services/user.service';
-import { Firestore } from '@angular/fire/firestore';
+import {Component, OnInit} from '@angular/core';
+import {FirestoreUser, Recipe} from 'src/app/public/interfaces/interfaces';
+import {UserService} from 'src/app/public/services/user.service';
 
-import { RecipesService } from 'src/app/public/services/recipes/recipes.service';
+import {GlobalErrorHandlerService} from 'src/app/public/services/globalErrorHandler/global-error-handler.service';
+import { RecipeService } from 'src/app/public/services/recipe/recipe.service';
 
 @Component({
   selector: 'app-user-recipes',
@@ -17,8 +17,8 @@ export class UserRecipesComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private firestore: Firestore,
-    private recipeService: RecipesService
+    private recipeService: RecipeService,
+    private globalErrorHandler: GlobalErrorHandlerService
   ) {}
 
   ngOnInit(): void {
@@ -28,11 +28,12 @@ export class UserRecipesComponent implements OnInit {
           this.userData = value;
           this.loadRecipesByUID(value.uid);
         } else {
-          console.log(`Cant found user with this UID`);
+          const errorMessage = `Cant found user with this User ID`;
+          this.globalErrorHandler.handleError(errorMessage);
         }
       },
-      error: (err) => {
-        console.log(err);
+      error: (error) => {
+        this.globalErrorHandler.handleError(error);
       },
     });
   }
@@ -40,14 +41,13 @@ export class UserRecipesComponent implements OnInit {
   async loadRecipesByUID(uid: string): Promise<void> {
     try {
       const recipes = await this.recipeService.getRecipeByUID(uid);
-      console.log(recipes);
       this.recipes = recipes;
 
       if (recipes) {
         this.isLoadingComments = false;
       }
     } catch (error) {
-      console.error('Error fetching recipes:', error);
+      this.globalErrorHandler.handleError(error);
     }
   }
 }

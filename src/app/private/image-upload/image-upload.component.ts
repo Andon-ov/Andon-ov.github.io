@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { GlobalErrorHandlerService } from 'src/app/public/services/globalErrorHandler/global-error-handler.service';
 
 @Component({
   selector: 'app-image-upload',
@@ -13,6 +14,8 @@ export class ImageUploadComponent {
   myWidget: any;
 
   @Output() imageUploaded = new EventEmitter<string>();
+
+  constructor(private globalErrorHandler: GlobalErrorHandlerService) {}
 
   ngOnInit() {
     //@ts-ignore
@@ -41,10 +44,7 @@ export class ImageUploadComponent {
             console.log('Done! Here is the image info: ', result.info);
             this.onImagesUploaded(result.info.secure_url);
           } catch (error) {
-            console.error(
-              'An error occurred while uploading the image:',
-              error
-            );
+            this.globalErrorHandler.handleError(error);
           }
         }
       }

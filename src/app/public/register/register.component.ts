@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { UserService } from 'src/app/public/services/user.service';
+import { CustomAlertService } from '../custom-alert/custom-alert.service';
+import { GlobalErrorHandlerService } from '../services/globalErrorHandler/global-error-handler.service';
+import { FormErrorCheckService } from '../services/formErrorCheck/form-error-check.service';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +16,8 @@ export class RegisterComponent {
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
-    private router: Router
+    private formErrorCheckService: FormErrorCheckService,
+    private globalErrorHandler: GlobalErrorHandlerService
   ) {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -25,18 +28,19 @@ export class RegisterComponent {
       lastName: ['', Validators.required],
       isActive: [true, Validators.required],
       isAdmin: [false, Validators.required],
-      favoriteRecipes:this.fb.array([])
-
+      favoriteRecipes: this.fb.array([]),
     });
   }
 
   async submitRegisterForm() {
     if (this.registerForm.valid) {
+      this.formErrorCheckService.markFormGroupTouched(this.registerForm);
       const { email, password, repeatPassword, ...additionalAuthData } =
         this.registerForm.value;
 
       if (password !== repeatPassword) {
-        alert('Password do not match!');
+        const errorMessage = 'Password do not match!';
+        this.globalErrorHandler.handleError(errorMessage);
         return;
       }
 
@@ -47,8 +51,13 @@ export class RegisterComponent {
           additionalAuthData
         );
       } catch (error) {
-        alert(error);
+        this.globalErrorHandler.handleError(error);
       }
+    } else {
+      const errorMessage = this.formErrorCheckService.getFormGroupErrors(
+        this.registerForm
+      );
+      this.globalErrorHandler.handleError(errorMessage);
     }
   }
 }

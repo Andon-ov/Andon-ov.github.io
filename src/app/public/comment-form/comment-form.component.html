@@ -7,19 +7,36 @@
     </div>
 
     <div class="form-group">
-      <label for="text">Comment (required)</label>
+      <label for="comment">Comment (required)</label>
       <textarea
         placeholder="Please write your comment here!"
-        id="text"
-        formControlName="text"
+        id="comment"
+        formControlName="comment"
         class="form-control"
         rows="5"
         cols="30"
       ></textarea>
     </div>
-    <div *ngIf="commentForm.get('text')?.touched">
-      <div class="errors" *ngIf="commentForm.get('text')?.errors?.['required']">
-        Please write your comment here!
+    <div *ngIf="commentForm.get('comment')?.touched">
+      <div
+        class="errors"
+        *ngIf="commentForm.get('comment')?.errors?.['required']"
+      >
+        Please write a comment!
+      </div>
+
+      <div
+        class="errors"
+        *ngIf="commentForm.get('comment')?.errors?.['minlength']"
+      >
+        Comment must be at least 10 characters long.
+      </div>
+
+      <div
+        class="errors"
+        *ngIf="commentForm.get('comment')?.errors?.['maxlength']"
+      >
+        Comment cannot exceed 500 characters.
       </div>
     </div>
     <br/>
