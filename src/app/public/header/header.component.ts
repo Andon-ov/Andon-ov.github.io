@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userData: FirestoreUser | null | undefined;
   private userDataSubject: BehaviorSubject<FirestoreUser | null> =
     new BehaviorSubject<FirestoreUser | null>(null);
-   userDataSubscription: Subscription | undefined;
+  userDataSubscription: Subscription | undefined;
 
   constructor(
     private userService: UserService,
@@ -63,7 +63,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {
     this.userDataSubscription = this.userDataSubject.subscribe((value) => {
       this.userData = value;
-      console.log(this.userData);
     });
   }
 
@@ -80,10 +79,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       next: (value) => {
         if (value) {
           this.userDataSubject.next(value);
-          console.log('You have a user:', value);
+          console.log('You have a user!');
         } else {
           this.userDataSubject.next(null);
-          console.log('You have no user.');
+          console.log('You have no user!');
         }
       },
       error: (error) => {

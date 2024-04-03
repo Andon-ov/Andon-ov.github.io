@@ -88,7 +88,7 @@ export class UserService {
       await this.clearUserData();
       this.router.navigate(['login']);
     } catch (error) {
-      this.globalErrorHandler.handleError(error);
+      console.error(error);
     }
   }
 
@@ -187,7 +187,10 @@ export class UserService {
     uid: string,
     additionalAuthData: FirestoreUser
   ): Promise<void> {
-    return setDoc(doc(this.firestore, this.collectionName, uid), additionalAuthData);
+    return setDoc(
+      doc(this.firestore, this.collectionName, uid),
+      additionalAuthData
+    );
   }
 
   private async getAdditionalAuthDataById(
@@ -229,8 +232,6 @@ export class UserService {
     });
   }
 }
-
-
 
 /*
 User Service Documentation
@@ -332,4 +333,4 @@ Methods
 - Description: Clears user data stored locally in local storage and emits null through the userData$ observable.
 - Returns: Promise<void>.
 
-*/ 
+*/
