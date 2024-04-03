@@ -23,12 +23,12 @@ export class RecipeSearchComponent {
     this.route.queryParams.subscribe((params) => {
       const searchQuery = params['search'];
       if (searchQuery) {
-        this.getRecipes(searchQuery);
+        this.searchRecipesByTitle(searchQuery);
       }
     });
   }
 
-  async getRecipes(searchQuery: string) {
+  async searchRecipesByTitle(searchQuery: string) {
     const { data } = await this.recipeService.searchRecipesByTitle(searchQuery);
     if (data.length > 0) {
       this.recipes.push(...data);

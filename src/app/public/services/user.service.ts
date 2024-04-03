@@ -23,6 +23,7 @@ import {
 } from '@angular/fire/firestore';
 import { FirestoreUser } from '../interfaces/interfaces';
 import { CustomAlertService } from '../custom-alert/custom-alert.service';
+import { GlobalErrorHandlerService } from './globalErrorHandler/global-error-handler.service';
 
 @Injectable({
   providedIn: 'root',
@@ -33,10 +34,12 @@ export class UserService {
   userData$: Observable<FirestoreUser | null> =
     this.userDataSubject.asObservable();
 
+  collectionName = 'Auth';
+
   constructor(
     private firestore: Firestore,
     public router: Router,
-    private alertService: CustomAlertService
+    private globalErrorHandler: GlobalErrorHandlerService
   ) {
     const savedUserData = localStorage.getItem('user');
     if (savedUserData) {
@@ -60,7 +63,7 @@ export class UserService {
       await this.saveUserData(userCredential.user, additionalAuthData);
       this.router.navigate(['recipes-list']);
     } catch (error) {
-      this.handleError(error);
+      this.globalErrorHandler.handleError(error);
     }
   }
 
@@ -75,7 +78,7 @@ export class UserService {
       await this.saveUserData(userCredential.user, additionalAuthData);
       await this.router.navigate(['recipes-list']);
     } catch (error) {
-      this.handleError(error);
+      this.globalErrorHandler.handleError(error);
     }
   }
 
@@ -85,7 +88,7 @@ export class UserService {
       await this.clearUserData();
       this.router.navigate(['login']);
     } catch (error) {
-      this.handleError(error);
+      this.globalErrorHandler.handleError(error);
     }
   }
 
@@ -101,28 +104,25 @@ export class UserService {
         throw new Error('No user found to delete.');
       }
     } catch (error) {
-      this.handleError(error);
+      this.globalErrorHandler.handleError(error);
     }
   }
 
   async forgotPassword(passwordResetEmail: string) {
     try {
       await this.sendPasswordResetEmail(passwordResetEmail);
+      const errorMessage = 'Password reset email sent, check your inbox.';
 
-      this.alertService.sendModalMessage(
-        'Password reset email sent, check your inbox.'
-      );
+      this.globalErrorHandler.handleError(errorMessage);
 
       await this.router.navigate(['login']);
     } catch (error) {
-      this.handleError(error);
-      this.alertService.sendModalMessage(`Error: ${error}`);
+      this.globalErrorHandler.handleError(error);
     }
   }
 
   async updateFavoriteRecipes(recipeId: string, userId: string, add: boolean) {
-    const collectionName = 'Auth';
-    const docRef = doc(this.firestore, collectionName, userId);
+    const docRef = doc(this.firestore, this.collectionName, userId);
 
     try {
       if (!add) {
@@ -153,7 +153,7 @@ export class UserService {
         }
       });
     } catch (error) {
-      console.error('Error updating favorite recipes: ', error);
+      this.globalErrorHandler.handleError(error);
     }
   }
 
@@ -187,8 +187,7 @@ export class UserService {
     uid: string,
     additionalAuthData: FirestoreUser
   ): Promise<void> {
-    const collectionName = 'Auth';
-    return setDoc(doc(this.firestore, collectionName, uid), additionalAuthData);
+    return setDoc(doc(this.firestore, this.collectionName, uid), additionalAuthData);
   }
 
   private async getAdditionalAuthDataById(
@@ -229,19 +228,108 @@ export class UserService {
       resolve();
     });
   }
-
-  private handleError(error: Error | unknown): void {
-    if (error instanceof Error) {
-      const errorCode = (error as Error).name;
-      const errorMessage = (error as Error).message;
-      console.error(`Error (${errorCode}): ${errorMessage}`);
-      this.alertService.sendModalMessage(
-        `Error (${errorCode}): \n
-         ${errorMessage}`
-      );
-    } else {
-      this.alertService.sendModalMessage(`Unknown error occurred:
-      \n${error}`);
-    }
-  }
 }
+
+
+
+/*
+User Service Documentation
+
+Overview
+The UserService provides functionality for user authentication, including user registration,
+ login, logout, password reset, and account deletion. It also manages user data storage in Firestore and local storage.
+
+Properties
+
+- `userData$: Observable<FirestoreUser | null>`: An observable that emits the user data stored locally.
+
+Methods
+
+ registerUser(email: string, password: string, additionalAuthData: FirestoreUser)
+- Description: Registers a new user with the provided email, password, and additional authentication data.
+- Parameters:
+  - email: The email of the user.
+  - password: The password of the user.
+  - additionalAuthData: Additional user authentication data.
+- Returns: void.
+
+ loginUser(email: string, password: string)
+- Description: Logs in an existing user with the provided email and password.
+- Parameters:
+  - email: The email of the user.
+  - password: The password of the user.
+- Returns: void.
+
+ logoutUser()
+- Description: Logs out the current user.
+- Returns: void.
+
+ deleteUserAccount()
+- Description: Deletes the account of the current user.
+- Returns: Promise<void>.
+
+ forgotPassword(passwordResetEmail: string)
+- Description: Sends a password reset email to the provided email address.
+- Parameters:
+  - passwordResetEmail: The email address to send the password reset email to.
+- Returns: void.
+
+ updateFavoriteRecipes(recipeId: string, userId: string, add: boolean)
+- Description: Updates the list of favorite recipes for the specified user.
+- Parameters:
+  - recipeId: The ID of the recipe to add or remove from favorites.
+  - userId: The ID of the user.
+  - add: A boolean indicating whether to add or remove the recipe from favorites.
+- Returns: void.
+
+ Private Methods
+
+ sendPasswordResetEmail(passwordResetEmail: string)
+- Description: Sends a password reset email using Firebase Authentication.
+- Parameters:
+  - passwordResetEmail: The email address to send the password reset email to.
+- Returns: Promise<void>.
+
+ createUserWithEmailAndPassword(email: string, password: string)
+- Description: Creates a new user account using email and password authentication.
+- Parameters:
+  - email: The email address of the new user.
+  - password: The password of the new user.
+- Returns: Promise<UserCredential>.
+
+ signInWithEmailAndPassword(email: string, password: string)
+- Description: Signs in an existing user with email and password authentication.
+- Parameters:
+  - email: The email address of the user.
+  - password: The password of the user.
+- Returns: Promise<UserCredential>.
+
+ signOutAuth()
+- Description: Signs out the current user.
+- Returns: Promise<void>.
+
+ addAdditionalAuthData(uid: string, additionalAuthData: FirestoreUser)
+- Description: Adds additional authentication data to the Firestore document of the specified user.
+- Parameters:
+  - uid: The ID of the user.
+  - additionalAuthData: Additional authentication data to be added.
+- Returns: Promise<void>.
+
+ getAdditionalAuthDataById(uid: string)
+- Description: Retrieves additional authentication data from Firestore based on the user ID.
+- Parameters:
+  - uid: The ID of the user.
+- Returns: Promise<FirestoreUser | null>.
+
+ saveUserData(user: User, additionalAuthData: FirestoreUser | null)
+- Description: Saves user data locally in local storage and emits it through the userData$ observable.
+- Parameters:
+  - user: The user object obtained from Firebase Authentication.
+  - additionalAuthData: Additional authentication data retrieved from Firestore.
+- Returns: Promise<void>.
+
+ clearUserData()
+- Description: Clears user data stored locally in local storage and emits null through the userData$ observable.
+- Returns: Promise<void>.
+
+*/ 
