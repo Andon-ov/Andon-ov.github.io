@@ -18,15 +18,33 @@ import { GlobalErrorHandlerService } from '../globalErrorHandler/global-error-ha
 @Injectable({
   providedIn: 'root',
 })
+
+/**
+ * The CommentService provides methods for interacting with comment data in the Firestore database.
+ * It includes functions for retrieving comments, adding, updating, and deleting comments,
+ * as well as getting comments by specific queries.
+ */
 export class CommentService {
+  // Subject to notify subscribers when a comment is added
   private commentAddedSubject = new Subject<void>();
+  // Firestore collection name
   collectionName = 'Comments';
 
+  /**
+   * @param firestore Firestore instance for database interactions
+   * @param globalErrorHandler Service to handle global errors
+   */
   constructor(
     private firestore: Firestore,
     private globalErrorHandler: GlobalErrorHandlerService
   ) {}
 
+  /**
+   * Retrieves comments from the Firestore database based on a specific query field and value.
+   * @param queryField The field to query comments by (e.g., 'recipeId', 'uid')
+   * @param queryValue The value to search for in the specified field
+   * @returns A Promise that resolves to an array of comments matching the query
+   */
   async getCommentsByQuery(
     queryField: string,
     queryValue: string
@@ -71,14 +89,29 @@ export class CommentService {
     }
   }
 
+  /**
+   * Retrieves comments associated with a specific recipe from the Firestore database.
+   * @param recipeId The ID of the recipe to retrieve comments for
+   * @returns A Promise that resolves to an array of comments for the specified recipe
+   */
   async getCommentsForRecipe(recipeId: string): Promise<Comments[]> {
     return this.getCommentsByQuery('recipeId', recipeId);
   }
 
+  /**
+   * Retrieves comments associated with a specific user from the Firestore database.
+   * @param uid The ID of the user to retrieve comments for
+   * @returns A Promise that resolves to an array of comments for the specified user
+   */
   async getCommentsForUser(uid: string): Promise<Comments[]> {
     return this.getCommentsByQuery('uid', uid);
   }
 
+  /**
+   * Adds a new comment to the Firestore database.
+   * @param commentData The data of the comment to be added
+   * @returns A Promise that resolves to the ID of the newly added comment, or null if an error occurs
+   */
   async addComment(commentData: Comments): Promise<string | null> {
     try {
       const docRef = await addDoc(
@@ -93,6 +126,12 @@ export class CommentService {
     }
   }
 
+  /**
+   * Deletes a comment from the Firestore database.
+   * @param commentId The ID of the comment to be deleted
+   * @returns A Promise that resolves when the comment is successfully deleted
+   * @throws Throws an error if deletion fails
+   */
   async deleteComment(commentId: string): Promise<void> {
     try {
       const docRef = doc(this.firestore, this.collectionName, commentId);
@@ -104,6 +143,11 @@ export class CommentService {
     }
   }
 
+  /**
+   * Retrieves a comment from the Firestore database by its ID.
+   * @param commentId The ID of the comment to retrieve
+   * @returns A Promise that resolves to the comment data, or null if the comment does not exist
+   */
   async getCommentById(commentId: string): Promise<Comments | null> {
     const commentDocRef = doc(this.firestore, this.collectionName, commentId);
     const commentSnapshot = await getDoc(commentDocRef);
@@ -118,6 +162,12 @@ export class CommentService {
     }
   }
 
+  /**
+   * Updates an existing comment in the Firestore database.
+   * @param commentData The updated data of the comment
+   * @param commentId The ID of the comment to be updated
+   * @throws Throws an error if the update fails
+   */
   async editComment(commentData: Comments, commentId: string) {
     const collectionName = 'Comments';
     const docRef = doc(this.firestore, collectionName, commentId);
@@ -130,69 +180,12 @@ export class CommentService {
     }
   }
 
+  /**
+   * Returns an observable that emits a value whenever a comment is added.
+   * Subscribers can listen to this observable to be notified when a comment is added.
+   * @returns An observable of type void
+   */
   getCommentAddedObservable() {
     return this.commentAddedSubject.asObservable();
   }
 }
-
-
-/*
-Comment Service Documentation
-
-Overview
-The CommentService provides methods for interacting with comment data in the Firestore database.
- It includes functions for retrieving comments, adding, updating, and deleting comments,
-  as well as getting comments by specific queries.
-
-Methods
-
- getCommentsByQuery(queryField: string, queryValue: string)
-- Description: Retrieves comments from the Firestore database based on a specified query field and value.
-- Parameters: 
-    - queryField: The field to query comments by (e.g., 'recipeId', 'uid').
-    - queryValue: The value to match the query field.
-- Returns: Promise<Comments[]> - An array of comment objects matching the specified query.
-- Throws: Error if unable to retrieve comments.
-
- getCommentsForRecipe(recipeId: string)
-- Description: Retrieves comments associated with a specific recipe ID from the Firestore database.
-- Parameters: recipeId - The ID of the recipe to retrieve comments for.
-- Returns: Promise<Comments[]> - An array of comment objects associated with the specified recipe ID.
-- Throws: Error if unable to retrieve comments.
-
- getCommentsForUser(uid: string)
-- Description: Retrieves comments associated with a specific user ID from the Firestore database.
-- Parameters: uid - The ID of the user to retrieve comments for.
-- Returns: Promise<Comments[]> - An array of comment objects associated with the specified user ID.
-- Throws: Error if unable to retrieve comments.
-
- addComment(commentData: Comments)
-- Description: Adds a new comment to the Firestore database.
-- Parameters: commentData - The data of the comment to add.
-- Returns: Promise<string | null> - The ID of the newly added comment, or null if unsuccessful.
-- Throws: Error if unable to add the comment.
-
- deleteComment(commentId: string)
-- Description: Deletes a comment from the Firestore database.
-- Parameters: commentId - The ID of the comment to delete.
-- Returns: Promise<void>
-- Throws: Error if unable to delete the comment.
-
- getCommentById(commentId: string)
-- Description: Retrieves a single comment by its ID from the Firestore database.
-- Parameters: commentId - The ID of the comment to retrieve.
-- Returns: Promise<Comments | null> - The comment object if found, or null if not found.
-- Throws: Error if unable to retrieve the comment.
-
- editComment(commentData: Comments, commentId: string)
-- Description: Updates an existing comment in the Firestore database.
-- Parameters: 
-    - commentData: The updated data of the comment.
-    - commentId: The ID of the comment to update.
-- Throws: Error if unable to update the comment.
-
- getCommentAddedObservable()
-- Description: Returns an observable that emits a void value whenever a new comment is added.
-- Returns: Observable<void>
-
-*/ 

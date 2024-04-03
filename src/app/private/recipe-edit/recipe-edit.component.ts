@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {
   ImageRecipeItem,
   Ingredient,
@@ -7,23 +7,40 @@ import {
   Recipe,
   VideoRecipeItem,
 } from '../../public/interfaces/interfaces';
-import {Firestore} from '@angular/fire/firestore';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {RecipeService} from 'src/app/public/services/recipe/recipe.service';
-import {FormErrorCheckService} from 'src/app/public/services/formErrorCheck/form-error-check.service';
-import {GlobalErrorHandlerService} from 'src/app/public/services/globalErrorHandler/global-error-handler.service';
+import { Firestore } from '@angular/fire/firestore';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RecipeService } from 'src/app/public/services/recipe/recipe.service';
+import { FormErrorCheckService } from 'src/app/public/services/formErrorCheck/form-error-check.service';
+import { GlobalErrorHandlerService } from 'src/app/public/services/globalErrorHandler/global-error-handler.service';
 
+/**
+ * Component for editing recipes.
+ * This component provides functionality for editing existing recipes.
+ */
 @Component({
   selector: 'app-recipe-edit',
   templateUrl: './recipe-edit.component.html',
   styleUrls: ['./recipe-edit.component.css'],
 })
 export class RecipeEditComponent implements OnInit {
+  // Current recipe being edited
   recipe: Recipe | null = null;
+  // ID of the recipe being edited
   recipeId: string | null = '';
+  // Form group for editing the recipe
   recipeEdit!: FormGroup;
+  // Firestore instance
   firestore: Firestore;
 
+  /**
+   * Constructor for RecipeEditComponent.
+   * @param route Angular ActivatedRoute for retrieving route parameters
+   * @param fb FormBuilder service for creating reactive forms
+   * @param recipeService Service for interacting with recipes
+   * @param formErrorCheckService Service for handling form errors
+   * @param globalErrorHandler Service for handling global errors
+   * @param firestore Instance of Firestore for database interactions
+   */
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
@@ -35,6 +52,9 @@ export class RecipeEditComponent implements OnInit {
     this.firestore = firestore;
   }
 
+  /**
+   * Initializes the recipe edit form.
+   */
   private initializeForm() {
     this.recipeEdit = this.fb.group({
       is_active: [false],
@@ -55,6 +75,9 @@ export class RecipeEditComponent implements OnInit {
     });
   }
 
+  /**
+   * Loads data for editing the recipe.
+   */
   private async loadData() {
     this.route.paramMap.subscribe(async (params) => {
       this.recipeId = params.get('id');
@@ -76,6 +99,9 @@ export class RecipeEditComponent implements OnInit {
     });
   }
 
+  /**
+   * Patches the form with data from the fetched recipe.
+   */
   patchFormWithRecipeData() {
     if (this.recipe && this.recipeEdit) {
       const ingredientsFormArray = this.recipeEdit.get(
@@ -152,13 +178,18 @@ export class RecipeEditComponent implements OnInit {
     }
   }
 
-  // start here
+  /**
+   * Initializes the recipe edit form and loads data.
+   */
   async ngOnInit() {
     this.initializeForm();
     await this.loadData();
   }
 
-  // image
+  /**
+   * Adds image URL to the image recipe form array.
+   * @param imageUrl The URL of the image to be added
+   */
   addImageToForm(imageUrl: string) {
     const imageArray = this.recipeEdit.get('image_recipe') as FormArray;
     imageArray.push(
@@ -168,12 +199,18 @@ export class RecipeEditComponent implements OnInit {
     );
   }
 
+  /**
+   * Removes image from the image recipe form array.
+   * @param index Index of the image to be removed
+   */
   removeImage(index: number) {
     const imageArray = this.recipeEdit.get('image_recipe') as FormArray;
     imageArray.removeAt(index);
   }
 
-  // video
+  /**
+   * Adds a video to the video recipe form array.
+   */
   addVideo() {
     const videoArray = this.recipeEdit.get('video_recipe') as FormArray;
 
@@ -184,13 +221,18 @@ export class RecipeEditComponent implements OnInit {
     );
   }
 
+  /**
+   * Removes a video from the video recipe form array.
+   * @param index Index of the video to be removed
+   */
   removeVideo(index: number) {
     const videoArray = this.recipeEdit.get('video_recipe') as FormArray;
     videoArray.removeAt(index);
   }
 
-
-  // ingredient
+  /**
+   * Adds a new ingredient to the ingredients form array.
+   */
   addIngredient() {
     const ingredients = this.recipeEdit.get('ingredients') as FormArray;
 
@@ -204,27 +246,42 @@ export class RecipeEditComponent implements OnInit {
     );
   }
 
+  /**
+   * Removes an ingredient from the ingredients form array.
+   * @param index Index of the ingredient to be removed
+   */
   removeIngredient(index: number) {
     const ingredients = this.recipeEdit.get('ingredients') as FormArray;
     ingredients.removeAt(index);
   }
 
+  /**
+   * Returns the ingredients form array.
+   */
   get ingredients() {
     return this.recipeEdit.get('ingredients') as FormArray;
   }
 
+  /**
+   * Returns the image recipe form array.
+   */
   get image_recipe() {
     return this.recipeEdit.get('image_recipe') as FormArray;
   }
 
+  /**
+   * Returns the video recipe form array.
+   */
   get video_recipe() {
     return this.recipeEdit.get('video_recipe') as FormArray;
   }
 
-  get preparation_method() {
-    return this.recipeEdit.get('preparation_method') as FormArray;
-  }
-
+  /**
+   * Handles form submission.
+   * Marks the form as touched and checks for validity.
+   * Submits the updated recipe data to the recipe service for updating.
+   * Resets the recipe edit form after submission.
+   */
   onSubmit() {
     this.formErrorCheckService.markFormGroupTouched(this.recipeEdit);
     this.formErrorCheckService.markFormArrayControlsTouched(this.ingredients);
@@ -244,8 +301,8 @@ export class RecipeEditComponent implements OnInit {
   }
 
   updateRecipe(recipeData: Recipe) {
-    if (this.recipeId){
-      this.recipeService.updateRecipe(recipeData,this.recipeId)
+    if (this.recipeId) {
+      this.recipeService.updateRecipe(recipeData, this.recipeId);
     }
   }
 }

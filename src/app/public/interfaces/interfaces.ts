@@ -1,5 +1,8 @@
 import { Timestamp } from '@angular/fire/firestore';
 
+/**
+ * Represents a recipe item.
+ */
 export interface Recipe {
   id: string;
   is_active: boolean;
@@ -16,34 +19,30 @@ export interface Recipe {
   ingredients: Ingredient[];
 }
 
-export interface RecipeWithId {
-  id: string;
-  is_active: boolean;
-  summary: string;
-  likes: string[];
-  uid: string;
-  author: string;
-  title: string;
-  subtitle?: string;
-  description: string;
-  preparation_method: PreparationMethodItem[];
-  image_recipe: ImageRecipeItem[];
-  video_recipe: VideoRecipeItem[];
-  ingredients: Ingredient[];
-}
-
+/**
+ * Represents an item in the image_recipe array of a recipe.
+ */
 export interface ImageRecipeItem {
   image_recipe: string;
 }
 
+/**
+ * Represents an item in the video_recipe array of a recipe.
+ */
 export interface VideoRecipeItem {
   video_recipe: string;
 }
 
+/**
+ * Represents an item in the preparation_method array of a recipe.
+ */
 export interface PreparationMethodItem {
   preparation_method: string;
 }
 
+/**
+ * Represents an ingredient required for a recipe.
+ */
 export interface Ingredient {
   name: string;
   amount: number;
@@ -51,6 +50,9 @@ export interface Ingredient {
   order_index: number;
 }
 
+/**
+ * Represents a user object stored in Firestore.
+ */
 export interface FirestoreUser {
   accessToken: string;
   displayName: string;
@@ -68,6 +70,9 @@ export interface FirestoreUser {
   favoriteRecipes: string[];
 }
 
+/**
+ * Represents metadata associated with a user.
+ */
 interface UserMetadata {
   createdAt: string;
   creationTime: string;
@@ -75,6 +80,9 @@ interface UserMetadata {
   lastSignInTime: string;
 }
 
+/**
+ * Represents a comment made on a recipe.
+ */
 export interface Comments {
   create_time: Timestamp;
   name: string;

@@ -5,6 +5,10 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
   providedIn: 'root',
 })
 export class FormErrorCheckService {
+  /**
+   * Marks all controls within a form group as touched recursively.
+   * @param formGroup The form group to mark as touched
+   */
   markFormGroupTouched(formGroup: FormGroup): void {
     Object.values(formGroup.controls).forEach((control) => {
       if (control instanceof FormControl) {
@@ -15,6 +19,10 @@ export class FormErrorCheckService {
     });
   }
 
+  /**
+   * Marks all controls within form array as touched.
+   * @param formArray The form array to mark as touched
+   */
   markFormArrayControlsTouched(formArray: FormArray) {
     for (let i = 0; i < formArray.length; i++) {
       const formGroup = formArray.at(i) as FormGroup;
@@ -22,6 +30,11 @@ export class FormErrorCheckService {
     }
   }
 
+  /**
+   * Retrieves error messages for all controls within a form group.
+   * @param formGroup The form group to check for errors
+   * @returns A string containing all error messages
+   */
   getFormGroupErrors(formGroup: FormGroup): string {
     let errorMessage = '';
     Object.keys(formGroup.controls).forEach((key) => {
@@ -38,6 +51,12 @@ export class FormErrorCheckService {
     return errorMessage;
   }
 
+  /**
+   * Retrieves the error message for a specific control error.
+   * @param errorKey The key of the error
+   * @param errorValue The value of the error
+   * @returns The error message corresponding to the error key and value
+   */
   private getControlErrorMessage(errorKey: string, errorValue: any): string {
     switch (errorKey) {
       case 'required':
@@ -51,48 +70,3 @@ export class FormErrorCheckService {
     }
   }
 }
-
-/*
-Form Error Check Service Documentation
-
-Overview
-The FormErrorCheckService provides methods for handling form errors in Angular applications.
- It includes functions for marking form controls as touched, retrieving error messages for form controls,
-  and marking form array controls as touched.
-
-Methods
-
- markFormGroupTouched(formGroup: FormGroup)
-- Description: Marks all controls within a FormGroup as touched.
-- Parameters:
-    - formGroup: The FormGroup to mark as touched.
-
- markFormArrayControlsTouched(formArray: FormArray)
-- Description: Marks all controls within each FormGroup in a FormArray as touched.
-- Parameters:
-    - formArray: The FormArray containing FormGroup instances.
-
- getFormGroupErrors(formGroup: FormGroup)
-- Description: Retrieves error messages for all controls within a FormGroup.
-- Parameters:
-    - formGroup: The FormGroup to retrieve errors for.
-- Returns: string - A concatenated string of error messages for the FormGroup controls.
-
-
-Private Methods
-
- getControlErrorMessage(errorKey: string, errorValue: any)
-- Description: Returns a formatted error message based on the error key and value.
-- Parameters:
-    - errorKey: The key of the error.
-    - errorValue: The value of the error.
-- Returns: string - The formatted error message.
-
-Error Messages
-The following error messages are supported:
-- 'required': Indicates that the field is required.
-- 'minlength': Indicates the minimum length required for the field.
-- 'maxlength': Indicates the maximum length allowed for the field.
-
-
-*/

@@ -29,19 +29,43 @@ import { GlobalErrorHandlerService } from '../globalErrorHandler/global-error-ha
 @Injectable({
   providedIn: 'root',
 })
+
+/**
+ * The RecipeService provides methods for interacting with recipe data in the Firestore database.
+ * It includes functions for retrieving recipes, adding, updating, and deleting recipes,
+ * as well as getting recipes by specific queries.
+ */
 export class RecipeService {
+  /**
+   * BehaviorSubject holding the last document snapshot in the pagination query result.
+   * Used for loading more recipes.
+   */
   private lastDocSubject = new BehaviorSubject<
     QueryDocumentSnapshot<DocumentData> | undefined
   >(undefined);
+  // Observable representing the last document snapshot in the pagination query result.
   public lastDoc$ = this.lastDocSubject.asObservable();
+  // The name of the Firestore collection where recipe documents are stored.
   collectionName = 'Recipe';
+  // The number of recipes to paginate in a single query.
   paginateNumber = 12;
+
+  /**
+   * Creates an instance of RecipeService.
+   * @param firestore The Angular Firestore service for interacting with Firestore database.
+   * @param router The Angular Router service for navigation.
+   * @param globalErrorHandler The custom global error handler service.
+   */
   constructor(
     private firestore: Firestore,
     private router: Router,
     private globalErrorHandler: GlobalErrorHandlerService
   ) {}
 
+  /**
+   * Retrieves recipes from the Firestore database.
+   * @returns A promise that resolves to an object containing the retrieved recipes.
+   */
   async getRecipes(): Promise<{ data: Recipe[] }> {
     try {
       let q: Query<Recipe> = query(
@@ -74,6 +98,10 @@ export class RecipeService {
     }
   }
 
+  /**
+   * Retrieves additional recipes from the Firestore database for pagination.
+   * @returns A promise that resolves to an object containing the retrieved recipes and a flag indicating if there are more recipes to load.
+   */
   async getRecipesLoadMore(): Promise<{ data: Recipe[]; hasMore: boolean }> {
     try {
       const lastDoc = await firstValueFrom(this.lastDoc$);
@@ -114,6 +142,11 @@ export class RecipeService {
     }
   }
 
+  /**
+   * Retrieves a recipe by its ID from the Firestore database.
+   * @param recipeId The ID of the recipe to retrieve.
+   * @returns A promise that resolves to the retrieved recipe or null if not found.
+   */
   async getRecipeById(recipeId: string): Promise<Recipe | null> {
     try {
       const recipeDocRef = doc(this.firestore, this.collectionName, recipeId);
@@ -134,6 +167,11 @@ export class RecipeService {
     }
   }
 
+  /**
+   * Retrieves recipes by the user ID from the Firestore database.
+   * @param uid The ID of the user whose recipes to retrieve.
+   * @returns A promise that resolves to an array of retrieved recipes.
+   */
   async getRecipeByUID(uid: string): Promise<Recipe[]> {
     try {
       const recipesRef = collection(this.firestore, this.collectionName);
@@ -155,6 +193,11 @@ export class RecipeService {
     }
   }
 
+  /**
+   * Searches for recipes by title in the Firestore database.
+   * @param titleQuery The query string to search for in recipe titles.
+   * @returns A promise that resolves to an object containing the retrieved recipes.
+   */
   async searchRecipesByTitle(titleQuery: string): Promise<{ data: Recipe[] }> {
     try {
       let q: Query<Recipe> = query(
@@ -187,6 +230,12 @@ export class RecipeService {
     }
   }
 
+  /**
+   * Updates the likes of a recipe in the Firestore database.
+   * @param recipeId The ID of the recipe to update.
+   * @param userId The ID of the user who liked or unliked the recipe.
+   * @param add A boolean flag indicating whether to add or remove the like.
+   */
   async updateRecipeLikes(recipeId: string, userId: string, add: boolean) {
     const docRef = doc(this.firestore, this.collectionName, recipeId);
 
@@ -211,6 +260,10 @@ export class RecipeService {
     }
   }
 
+  /**
+   * Deletes a recipe from the Firestore database.
+   * @param recipeId The ID of the recipe to delete.
+   */
   async deleteRecipe(recipeId: string): Promise<void> {
     try {
       const docRef = doc(this.firestore, this.collectionName, recipeId);
@@ -222,6 +275,10 @@ export class RecipeService {
     }
   }
 
+  /**
+   * Adds a new recipe to the Firestore database.
+   * @param recipeData The data of the recipe to add.
+   */
   addRecipe(recipeData: Recipe) {
     addDoc(collection(this.firestore, this.collectionName), recipeData)
       .then((docRef) => {
@@ -234,6 +291,11 @@ export class RecipeService {
       });
   }
 
+  /**
+   * Updates an existing recipe in the Firestore database.
+   * @param recipeData The updated data of the recipe.
+   * @param recipeId The ID of the recipe to update.
+   */
   updateRecipe(recipeData: Recipe, recipeId: string) {
     if (recipeId) {
       const docRef = doc(this.firestore, this.collectionName, recipeId);
@@ -252,67 +314,3 @@ export class RecipeService {
     }
   }
 }
-
-/*
-Recipe Service Documentation
-
-Overview
-The RecipeService provides methods for interacting with recipe data in the Firestore database. 
-It includes functions for retrieving recipes, adding, updating, and deleting recipes,
-as well as searching recipes by title and updating recipe likes.
-
-Methods
-
- getRecipes()
-- Description: Retrieves a list of recipes from the Firestore database.
-- Returns: Promise<{ data: Recipe[] }>
-- Throws: Error if unable to retrieve recipes.
-
- getRecipesLoadMore()
-- Description: Retrieves additional recipes from the Firestore database to load more recipes.
-- Returns: Promise<{ data: Recipe[]; hasMore: boolean }>
-- Throws: Error if unable to retrieve recipes.
-
- getRecipeById(recipeId: string)
-- Description: Retrieves a single recipe by its ID from the Firestore database.
-- Parameters: recipeId - The ID of the recipe to retrieve.
-- Returns: Promise<Recipe | null> - The recipe object if found, or null if not found.
-- Throws: Error if unable to retrieve the recipe.
-
- getRecipeByUID(uid: string)
-- Description: Retrieves recipes associated with a specific user ID from the Firestore database.
-- Parameters: uid - The user ID to filter recipes by.
-- Returns: Promise<Recipe[]> - An array of recipe objects associated with the specified user ID.
-- Throws: Error if unable to retrieve recipes.
-
- searchRecipesByTitle(titleQuery: string)
-- Description: Searches for recipes by title in the Firestore database.
-- Parameters: titleQuery - The search query string.
-- Returns: Promise<{ data: Recipe[] }> - An array of recipe objects matching the search query.
-- Throws: Error if unable to retrieve recipes.
-
- updateRecipeLikes(recipeId: string, userId: string, add: boolean)
-- Description: Updates the likes for a specific recipe in the Firestore database.
-- Parameters: recipeId - The ID of the recipe to update likes for.
-              userId - The ID of the user whose like is being added or removed.
-              add - A boolean value indicating whether to add or remove the like.
-- Throws: Error if unable to update recipe likes.
-
- deleteRecipe(recipeId: string)
-- Description: Deletes a recipe from the Firestore database.
-- Parameters: recipeId - The ID of the recipe to delete.
-- Returns: Promise<void>
-- Throws: Error if unable to delete the recipe.
-
- addRecipe(recipeData: Recipe)
-- Description: Adds a new recipe to the Firestore database.
-- Parameters: recipeData - The data of the recipe to add.
-- Throws: Error if unable to add the recipe.
-
- updateRecipe(recipeData: Recipe, recipeId: string)
-- Description: Updates an existing recipe in the Firestore database.
-- Parameters: recipeData - The updated data of the recipe.
-              recipeId - The ID of the recipe to update.
-- Throws: Error if unable to update the recipe.
-
-*/

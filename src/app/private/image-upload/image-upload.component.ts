@@ -2,21 +2,36 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { GlobalErrorHandlerService } from 'src/app/public/services/globalErrorHandler/global-error-handler.service';
 
+/**
+ * Component for uploading images using Cloudinary.
+ * This component provides functionality for uploading images to Cloudinary.
+ */
 @Component({
   selector: 'app-image-upload',
   templateUrl: './image-upload.component.html',
   styleUrls: ['./image-upload.component.css'],
 })
 export class ImageUploadComponent {
+  // Cloudinary cloud name from environment configuration
   cloudName = environment.cloudinaryConfig.cloudName;
-
+  // Cloudinary upload preset from environment configuration
   uploadPreset = environment.cloudinaryConfig.uploadPreset;
+  // Cloudinary upload widget instance
   myWidget: any;
 
+  // Output event emitter for emitted image URL
   @Output() imageUploaded = new EventEmitter<string>();
 
+  /**
+   * Constructor for ImageUploadComponent.
+   * @param globalErrorHandler Service for handling global errors
+   */
   constructor(private globalErrorHandler: GlobalErrorHandlerService) {}
 
+  /**
+   * Lifecycle hook called when the component is initialized.
+   * Initializes Cloudinary upload widget.
+   */
   ngOnInit() {
     //@ts-ignore
     this.myWidget = cloudinary.createUploadWidget(
@@ -51,10 +66,18 @@ export class ImageUploadComponent {
     );
   }
 
+  /**
+   * Handles image uploaded event.
+   * Emits the uploaded image URL.
+   * @param imageUrl The URL of the uploaded image
+   */
   onImagesUploaded(imageUrl: string) {
     this.imageUploaded.emit(imageUrl);
   }
 
+  /**
+   * Opens Cloudinary upload widget.
+   */
   openWidget() {
     this.myWidget.open();
   }
