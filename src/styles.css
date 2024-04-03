@@ -14,21 +14,15 @@
   --aliceBlueColor: #f8f9fa;
 
   --mainRGBColor: 167, 87, 94;
-  /* --mainRGBColor: 0, 102, 57; */
-
   --alpha: 0.8;
   --mainRGBAColor: rgba(var(--mainRGBColor), var(--alpha));
 
   --backgroundColor: #e5e5e5;
   --textColor: #a7575e;
-  /* --textColor:#006639; */
 
   --mainColor: #bd6b6f;
-  /* --mainColor: #00afa6; */
 
   --secondColor: #BFA5A6;
-  /* --secondColor: #007a72; */
-
 
   --titleFont: Georgia, Times, serif;
 }
@@ -167,7 +161,7 @@ input::placeholder {
 }
 
 .button:focus {
-  box-shadow: var(--textColor) 0 0 0 1.5px inset,
+  box-shadow: var(--textColor) 0 0 0 1px inset,
     rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
     var(--textColor) 0 -3px 0 inset;
 }
