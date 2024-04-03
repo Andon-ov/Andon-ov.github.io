@@ -1,7 +1,6 @@
 <div class="main-short">
   <div class="headerImage"></div>
   <div class="wrapper">
-
     <form [formGroup]="logInForm" (ngSubmit)="submitLogInForm()">
       <div class="title-wrapper">
         <h1 class="title-form">Login</h1>
@@ -63,14 +62,14 @@
           </div>
         </div>
       </div>
-      <br/>
+      <br />
       <div class="formGroup">
         <button class="button" style="width: 100%" type="submit">Submit</button>
       </div>
 
       <div *ngIf="loginError">{{ loginError }}</div>
 
-      <hr/>
+      <hr class="hr" />
       <div>
         <a href="#" routerLink="/register">
           <div class="hint">Don't have a Registration yet?</div>

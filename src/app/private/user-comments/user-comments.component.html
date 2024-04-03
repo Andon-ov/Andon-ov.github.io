@@ -52,7 +52,14 @@
 
       <div class="comments">
         <ul *ngFor="let comment of comments">
-          <li>{{ comment.name }}</li>
+          <li>
+            <a
+              class="btn btn-outline-light"
+              style="color: var(--textColor)"
+              routerLink="/recipe/{{ comment.recipeId }}"
+              >Go to recipe</a
+            >
+          </li>
           <li>{{ comment.comment }}</li>
 
           <li class="comments-last">
@@ -76,9 +83,9 @@
               </span>
             </div>
           </li>
-          <a class="btn btn-outline-light" style="color: var(--textColor);" routerLink="/recipe/{{ comment.recipeId }}"
-            >Go to recipe</a
-          >
+          <hr class="hr" />
+
+          <!-- <hr class="hr"> -->
         </ul>
       </div>
     </div>

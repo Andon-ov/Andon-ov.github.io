@@ -58,13 +58,13 @@ input::placeholder {
   display: flex;
   justify-content: flex-end;
 }
-.removeIngredient {
-  border: unset;
-  background-color: unset;
-}
-.removeIngredient:hover {
-  color: var(--secondColor);
-}
+/*.removeIngredient {*/
+/*  border: unset;*/
+/*  background-color: unset;*/
+/*}*/
+/*.removeIngredient:hover {*/
+/*  color: var(--secondColor);*/
+/*}*/
 .removeInput {
   all: unset;
   color: var(--mainRedColor);
@@ -74,18 +74,7 @@ input::placeholder {
 .removeInput:hover {
   color: var(--secondColor);
 }
-.fa-xmark {
-  color: var(--textColor);
-  border-radius: 50%;
-  border: 2px solid var(--textColor);
-  padding: 4px 6px;
-}
-.fa-xmark:hover {
-  background-color: var(--textColor);
-  color: var(--backgroundColor);
-  border-color: var(--backgroundColor);
-  transition: 1s ease-in-out;
-}
+
 .quantity-unit-index-wrapper {
   display: flex;
   flex-direction: row;

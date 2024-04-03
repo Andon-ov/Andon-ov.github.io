@@ -133,10 +133,10 @@ export class UserService {
         await this.clearUserData();
         this.router.navigate(['login']);
       } else {
-        throw new Error('No user found to delete.');
+        console.error('No user found to delete.');
       }
     } catch (error) {
-      this.globalErrorHandler.handleError(error);
+      console.error('No user found to delete.', error);
     }
   }
 

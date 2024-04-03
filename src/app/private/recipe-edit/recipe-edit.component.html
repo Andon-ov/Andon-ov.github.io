@@ -2,7 +2,6 @@
   <div class="headerImage"></div>
   <div class="wrapper">
     <form [formGroup]="recipeEdit">
-
       <div class="title-wrapper">
         <h1 class="title-form">Edit a Recipe</h1>
       </div>
@@ -78,9 +77,9 @@
             *ngFor="let image of image_recipe.controls; let i = index"
             [formGroupName]="i"
           >
-            <p class="hint">Added image</p>
             <!-- Name required-->
-            <label [for]="'image_recipe' + i">Снимка</label>
+            <label [for]="'image_recipe' + i">Added image</label>
+            <p class="hint">You can add more images</p>
             <input
               type="text"
               [id]="'image_recipe' + i"
@@ -99,9 +98,10 @@
               class="removeIngredient"
               (click)="removeImage(i)"
             >
-              <i class="fa-solid fa-trash fa-shake"></i>&nbsp;Remove added
-              image
+              <i class="fa-solid fa-trash fa-shake"></i>&nbsp;Remove added image
             </button>
+            <br />
+            <hr class="hr">
           </div>
         </div>
 
@@ -253,7 +253,7 @@
               [id]="'order_index' + i"
               formControlName="order_index"
             />
-            <hr />
+
             <!-- Add a button to remove the ingredient -->
             <button
               class="removeIngredient"
@@ -263,6 +263,8 @@
               <i class="fa-solid fa-trash fa-shake"></i>&nbsp;Remove the
               ingredient
             </button>
+
+            <hr class="hr" />
           </div>
         </div>
       </div>
@@ -275,9 +277,14 @@
       </button>
 
       <!-- Submit button -->
-      <button type="button" class="button" style="width: 100%;" (click)="onSubmit()">Save the changes</button>
-
-    
+      <button
+        type="button"
+        class="button"
+        style="width: 100%"
+        (click)="onSubmit()"
+      >
+        Save the changes
+      </button>
     </form>
   </div>
 </div>
