@@ -78,7 +78,8 @@ export class RecipeCreateComponent {
           this.userData = value;
         } else {
           const errorMessage = `Cant found user with this UID`;
-          this.globalErrorHandler.handleError(errorMessage);
+          // this.globalErrorHandler.handleError(errorMessage);
+          console.error(errorMessage);
         }
       },
       error: (error) => {
