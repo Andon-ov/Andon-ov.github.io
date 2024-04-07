@@ -117,35 +117,11 @@ ul.recipe-image {
   border-radius: 5px;
 }
 
-.commentBtnWrapper {
-  display: flex;
-  gap: 10px;
-}
-
 .comments-last {
   display: flex;
   justify-content: space-between;
 }
 
-.fa-solid.fa-trash.fa-shake,
-.fa-regular.fa-pen-to-square.fa-flip {
-  cursor: pointer;
-  color: var(--mainRGBAColor);
-  background-color: var(--backgroundColor);
-  padding: 8px 10px;
-  border: 3px solid var(--mainRGBAColor);
-  border-radius: 50%;
-  transition: 1s ease-in-out;
-}
-
-.fa-solid.fa-trash.fa-shake:hover,
-.fa-regular.fa-pen-to-square.fa-flip:hover {
-  color: var(--backgroundColor);
-  background-color: var(--mainRGBAColor);
-  padding: 8px 10px;
-  border: 3px solid var(--mainRGBAColor);
-  border-radius: 50%;
-}
 
 @media (max-width: 640px) {
   .buttons-img {

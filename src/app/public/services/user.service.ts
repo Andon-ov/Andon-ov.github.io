@@ -20,6 +20,7 @@ import {
   arrayRemove,
   updateDoc,
   arrayUnion,
+  deleteDoc,
 } from '@angular/fire/firestore';
 import { FirestoreUser } from '../interfaces/interfaces';
 import { GlobalErrorHandlerService } from './globalErrorHandler/global-error-handler.service';
@@ -130,6 +131,7 @@ export class UserService {
       const user = auth.currentUser;
       if (user) {
         await deleteUser(user);
+        await this.deleteAdditionalAuthData(user.uid);
         await this.clearUserData();
         this.router.navigate(['login']);
       } else {
@@ -277,6 +279,65 @@ export class UserService {
       return authSnapshot.data() as FirestoreUser;
     } else {
       return null;
+    }
+  }
+
+  /**
+   * Updates additional authentication data for a user in Firestore.
+   * @param additionalAuthData The updated additional authentication data.
+   * @param uid The user ID for which the additional authentication data will be updated.
+   */
+  updateAdditionalAuthData(additionalAuthData: FirestoreUser, uid: string) {
+    if (uid) {
+      // Get the document reference for the user in the Firestore collection
+      const docRef = doc(this.firestore, this.collectionName, uid);
+
+      // Create an object containing data to update
+      const dataToUpdate: Record<string, any> = { ...additionalAuthData };
+
+      // Update the document
+      updateDoc(docRef, dataToUpdate)
+        .then(() => {
+          console.log('Document successfully updated');
+          this.router.navigate(['/dashboard/user-info']);
+        })
+        .then(() => {
+          // Get the current user data from userData$ observable
+          this.userData$.pipe(take(1)).subscribe((user) => {
+            if (user) {
+              const castedUser = user as unknown as User;
+              // Save updated user data
+              this.saveUserData(castedUser, additionalAuthData)
+                .then(() => console.log('User data saved successfully'))
+                .catch(() => console.error('Failed to save user data'));
+            } else {
+              console.error('User is null');
+            }
+          });
+        })
+        .catch((error) => {
+          this.globalErrorHandler.handleError(error);
+        });
+    } else {
+      const errorMessage = 'Invalid uid.';
+      this.globalErrorHandler.handleError(errorMessage);
+    }
+  }
+
+  /**
+   * Deletes additional authentication data for a user from Firestore.
+   *
+   * @param uid The user ID for which the additional authentication data will be deleted.
+   * @returns A Promise that resolves when the data is deleted successfully or rejects with an error.
+   */
+  async deleteAdditionalAuthData(uid: string): Promise<void> {
+    try {
+      const docRef = doc(this.firestore, this.collectionName, uid);
+      await deleteDoc(docRef);
+      console.log('Recipe deleted successfully:', uid);
+    } catch (error) {
+      this.globalErrorHandler.handleError(error);
+      throw error;
     }
   }
 

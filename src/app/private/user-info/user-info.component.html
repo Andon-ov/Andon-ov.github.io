@@ -32,7 +32,72 @@
           <span>{{ user.metadata.lastLoginAt | timestampFormat }}</span>
         </div>
 
-        <button (click)="deleteUser()" class="button">Delete</button>
+        <span
+          class="btn btn-outline-light"
+          style="color: var(--textColor)"
+          *ngIf="showAuthFormEdit"
+          (click)="toggleAuthFormEdit()"
+        >
+          Hide Form
+        </span>
+
+        <form
+          *ngIf="showAuthFormEdit"
+          [formGroup]="authFormEdit"
+          (ngSubmit)="onSubmit()"
+        >
+          <label for="firstName">First name:</label>
+          <input type="text" id="firstName" formControlName="firstName" />
+
+          <div
+            *ngIf="
+              authFormEdit.get('firstName')?.invalid &&
+              authFormEdit.get('firstName')?.touched
+            "
+          >
+            <div
+              class="errors"
+              *ngIf=" authFormEdit.get('firstName')?.errors?.['required']"
+            >
+              First name is required!
+            </div>
+          </div>
+
+          <label for="lastName">Last Name:</label>
+          <input type="text" id="lastName" formControlName="lastName" />
+
+          <div
+            *ngIf="
+              authFormEdit.get('lastName')?.invalid &&
+              authFormEdit.get('lastName')?.touched
+            "
+          >
+            <div
+              class="errors"
+              *ngIf=" authFormEdit.get('lastName')?.errors?.['required']"
+            >
+              Last name is required!
+            </div>
+          </div>
+
+          <button
+            class="button"
+            style="width: 100%; margin-top: 20px"
+            type="submit"
+          >
+            Submit
+          </button>
+        </form>
+
+        <div class="commentBtnWrapper">
+          <span (click)="deleteUser()" *ngIf="!showAuthFormEdit">
+            <i class="fa-solid fa-trash fa-shake"></i>
+          </span>
+
+          <span *ngIf="!showAuthFormEdit" (click)="toggleAuthFormEdit()">
+            <i class="fa-regular fa-pen-to-square fa-flip"></i>
+          </span>
+        </div>
       </div>
     </div>
   </div>
