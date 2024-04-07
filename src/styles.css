@@ -12,14 +12,21 @@
   --mainYellowColor: #e7ab46;
 
   --mainRGBColor: 167, 87, 94;
+  --mainRGBColor:66, 110, 85;
+
   --alpha: 0.8;
   --mainRGBAColor: rgba(var(--mainRGBColor), var(--alpha));
 
   --aliceBlueColor: #f8f9fa;
   --backgroundColor: #e5e5e5;
   --textColor: #a7575e;
+  --textColor: #426e55;
   --mainColor: #bd6b6f;
+  --mainColor: #00a764;
+
+
   --secondColor: #BFA5A6;
+  --secondColor:#c8cfbf;
 
   --titleFont: Georgia, Times, serif;
 }
