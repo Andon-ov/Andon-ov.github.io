@@ -16,8 +16,10 @@
       </div>
 
       <div class="emptyInfo">
-        <p>You can view our recipe and save your favorite &nbsp;&nbsp;</p>
-        <a routerLink="/recipes-list" class="button" href="">Recipes</a>
+        <p>You can add your first recipe &nbsp;&nbsp;</p>
+        <a routerLink="/dashboard/recipe-create" class="button" href=""
+          >Add Recipe</a
+        >
       </div>
     </div>
 
@@ -33,7 +35,7 @@
     <div *ngIf="recipes.length > 0 && !isLoadingComments" class="wrapper-list">
       <div *ngIf="userData" class="title-wrapper">
         <h1 class="title">
-          {{ userData.firstName + " " + userData.lastName }} favorite recipes
+          {{ userData.firstName + " " + userData.lastName }} recipes
         </h1>
       </div>
 

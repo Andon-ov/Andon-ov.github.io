@@ -101,7 +101,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (value) {
           // If user data is available, update userDataSubject
           this.userDataSubject.next(value);
-          console.log('You have a user!');
+          console.log('You have a user!', value);
         } else {
           // If user data is null, update userDataSubject with null
           this.userDataSubject.next(null);

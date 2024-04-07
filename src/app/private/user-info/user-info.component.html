@@ -22,6 +22,25 @@
           <span>{{ user.lastName }}</span>
         </div>
 
+        <!-- new -->
+        <div class="detail">
+          <span>Display name:</span>
+          <span>{{ user.displayName }}</span>
+        </div>
+
+  
+        <div class="detail">
+          <span>Phone Number:</span>
+          <span>{{ user.phoneNumber }}</span>
+        </div>
+
+        <div class="detail">
+          <span>Photo:</span>
+          <span>{{ user.photoURL }}</span>
+        </div>
+
+
+        <!-- new -->
         <div class="detail">
           <span>Created at:</span>
           <span>{{ user.metadata.createdAt | timestampFormat }}</span>
