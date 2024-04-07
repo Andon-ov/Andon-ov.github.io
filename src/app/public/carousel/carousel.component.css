@@ -63,7 +63,7 @@
 
 .infoBtn:hover {
   cursor: pointer;
-  background: linear-gradient(90deg, rgba(166,87,93,1) 50%, rgba(189,158,159,1) 100%); 
+  background: linear-gradient(90deg, var(--mainRGBAColor) 50%, rgba(248, 249, 250, 1) 100%);
   border: 1px solid var(--backgroundColor);
   color: var(--mainWhiteColor);
 }
