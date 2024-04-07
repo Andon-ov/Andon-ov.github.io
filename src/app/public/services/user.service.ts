@@ -250,31 +250,6 @@ export class UserService {
   }
 
   /**
-   * Updates the user profile information such as display name and photo URL.
-   * @param displayName The new display name for the user.
-   * @param photoURL The new photo URL for the user.
-   */
-  updateUserProfile(displayName: string, photoURL: string): void {
-    const auth = getAuth();
-
-    // Check if there is a current user authenticated
-    if (auth.currentUser) {
-      // Update the profile with the provided display name and photo URL
-      updateProfile(auth.currentUser, {
-        displayName: displayName,
-        photoURL: photoURL,
-      })
-        .then(() => {
-          console.log('Profile updated successfully');
-        })
-        .catch((error) => {
-          // Handle and log any errors that occur during the profile update
-          console.error('Error updating profile:', error);
-        });
-    }
-  }
-
-  /**
    * Adds additional authentication data to the Firestore document corresponding to the user.
    * @param uid A string representing the unique identifier (UID) of the user.
    * @param additionalAuthData An object containing additional authentication data to be added to the user document.

@@ -1,4 +1,4 @@
-<div class="main-short">
+<div class="main-long">
   <div class="headerImage"></div>
   <div class="wrapper">
     <div class="form-wrapper">
@@ -7,6 +7,17 @@
       </div>
 
       <div *ngIf="user" class="user-details">
+
+        <div *ngIf="user.photoURL"   class="detail">
+          <img src="{{user.photoURL}}" alt="">
+        </div>
+
+        <div *ngIf="user.displayName" class="detail">
+          <span>Display name:</span>
+          <span>{{ user.displayName }}</span>
+        </div>
+
+
         <div class="detail">
           <span>Email:</span>
           <span>{{ user.email }}</span>
@@ -22,25 +33,9 @@
           <span>{{ user.lastName }}</span>
         </div>
 
-        <!-- new -->
-        <div class="detail">
-          <span>Display name:</span>
-          <span>{{ user.displayName }}</span>
-        </div>
-
-  
-        <div class="detail">
-          <span>Phone Number:</span>
-          <span>{{ user.phoneNumber }}</span>
-        </div>
-
-        <div class="detail">
-          <span>Photo:</span>
-          <span>{{ user.photoURL }}</span>
-        </div>
 
 
-        <!-- new -->
+
         <div class="detail">
           <span>Created at:</span>
           <span>{{ user.metadata.createdAt | timestampFormat }}</span>
@@ -98,6 +93,42 @@
               Last name is required!
             </div>
           </div>
+
+
+          <label for="displayName">Display Name:</label>
+          <input type="text" id="displayName" formControlName="displayName" />
+
+          <div
+            *ngIf="
+              authFormEdit.get('displayName')?.invalid &&
+              authFormEdit.get('displayName')?.touched
+            "
+          >
+            <div
+              class="errors"
+              *ngIf=" authFormEdit.get('displayName')?.errors?.['required']"
+            >
+              Display name is required!
+            </div>
+          </div>
+
+          <label for="photoURL">Photo URL:</label>
+          <input type="text" id="photoURL" formControlName="photoURL" />
+
+          <div
+            *ngIf="
+              authFormEdit.get('photoURL')?.invalid &&
+              authFormEdit.get('photoURL')?.touched
+            "
+          >
+            <div
+              class="errors"
+              *ngIf=" authFormEdit.get('photoURL')?.errors?.['required']"
+            >
+              Photo URL is required!
+            </div>
+          </div>
+
 
           <button
             class="button"

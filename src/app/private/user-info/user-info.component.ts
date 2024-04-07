@@ -38,6 +38,7 @@ export class UserInfoComponent implements OnInit {
       this.user = userData;
     });
     this.initializeForm();
+    this.patchFormWithCommentData()
   }
 
   /**
@@ -48,6 +49,8 @@ export class UserInfoComponent implements OnInit {
     this.authFormEdit = this.fb.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
+      displayName: ['', [Validators.required]],
+      photoURL: ['', [Validators.required]],
     });
   }
 
@@ -58,6 +61,8 @@ export class UserInfoComponent implements OnInit {
     this.authFormEdit.patchValue({
       firstName: this.user?.firstName,
       lastName: this.user?.lastName,
+      displayName: this.user?.displayName,
+      photoURL: this.user?.photoURL,
     });
   }
 

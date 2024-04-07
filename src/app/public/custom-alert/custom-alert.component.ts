@@ -22,7 +22,6 @@ export class CustomAlertComponent implements OnInit, OnDestroy {
     this.modalMessageSubscription = this.modalService.modalMessage$.subscribe(
       // When a new message is received, update the modalMessage and show the modal
       (message) => {
-        console.log(3);
         this.modalMessage = message;
         console.log(message);
         this.showModal = true;
