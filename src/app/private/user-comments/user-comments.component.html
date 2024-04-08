@@ -17,7 +17,13 @@
 
       <div class="emptyInfo">
         <p>You can view our recipe and write your first comment &nbsp;&nbsp;</p>
-        <a routerLink="/recipes-list" class="btn btn-outline-light" style="color: var(--textColor);" href="">Recipes</a>
+        <a
+          routerLink="/recipes-list"
+          class="btn btn-outline-light"
+          style="color: var(--textColor)"
+          href=""
+          >Recipes</a
+        >
       </div>
     </div>
 
@@ -69,17 +75,19 @@
 
             <div class="commentBtnWrapper">
               <span
+                class="button-img"
                 *ngIf="userData && comment.uid == userData.uid"
                 (click)="deleteComment(comment.id)"
               >
-                <i class="fa-solid fa-trash fa-shake"></i>
+                <i class="fa-solid fa-trash"></i>
               </span>
 
               <span
+                class="button-img"
                 *ngIf="userData && comment.uid == userData.uid"
                 (click)="navigateToCommentEdit(comment.id)"
               >
-                <i class="fa-regular fa-pen-to-square fa-flip"></i>
+                <i class="fa-regular fa-pen-to-square"></i>
               </span>
             </div>
           </li>

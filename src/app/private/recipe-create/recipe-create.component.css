@@ -38,15 +38,7 @@ input::placeholder {
   opacity: 0.5;
   color: var(--textColor);
 }
-.input-flex input {
-  margin: unset;
-}
-.input-flex {
-  display: flex;
-  gap: 20px;
-  align-items: baseline;
-  margin-bottom: 20px;
-}
+
 .ingredient {
   background-color: var(--aliceBlueColor);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3);
@@ -65,15 +57,7 @@ input::placeholder {
 /*.removeIngredient:hover {*/
 /*  color: var(--secondColor);*/
 /*}*/
-.removeInput {
-  all: unset;
-  color: var(--mainRedColor);
-  cursor: pointer;
-  text-align: right;
-}
-.removeInput:hover {
-  color: var(--secondColor);
-}
+
 
 .quantity-unit-index-wrapper {
   display: flex;

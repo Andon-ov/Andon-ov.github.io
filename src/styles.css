@@ -12,7 +12,8 @@
   --mainYellowColor: #e7ab46;
 
   --mainRGBColor: 167, 87, 94;
-  --mainRGBColor:66, 110, 85;
+  --mainRGBColor: 66, 110, 85;
+  --mainRGBColor: 33, 72, 66 ;
 
   --alpha: 0.8;
   --mainRGBAColor: rgba(var(--mainRGBColor), var(--alpha));
@@ -26,7 +27,7 @@
 
 
   --secondColor: #BFA5A6;
-  --secondColor:#c8cfbf;
+  --secondColor: #c8cfbf;
 
   --titleFont: Georgia, Times, serif;
 }
@@ -301,10 +302,12 @@ input::placeholder {
   display: flex;
   justify-content: flex-end;
 }
+
 .removeIngredient {
   border: unset;
   background-color: unset;
 }
+
 .removeIngredient:hover {
   color: var(--secondColor);
 }
@@ -387,15 +390,15 @@ hr {
   background-color: var(--textColor);
 }
 
-.hr{
+.hr {
   --size: 10px;
 
   border: 0;
   height: var(--size);
   background-color: var(--mainWhiteColor);
-box-shadow:
-  0 4px 0 var(--textColor),
-  0 8px 0 var(--mainColor);
+  box-shadow:
+    0 4px 0 var(--textColor),
+    0 8px 0 var(--mainColor);
   margin-bottom: 20px;
 
 }
@@ -501,6 +504,33 @@ a.nav-link:focus {
   display: flex;
   flex-direction: column;
 }
+
+
+/* new */
+
+.input-flex input {
+  margin: unset;
+}
+
+.input-flex {
+  display: flex;
+  gap: 20px;
+  align-items: baseline;
+  margin-bottom: 20px;
+}
+
+.removeInput {
+  all: unset;
+  color: var(--mainRedColor);
+  cursor: pointer;
+  text-align: right;
+}
+
+.removeInput:hover {
+  color: var(--secondColor);
+}
+
+
 
 @media only screen and (max-width: 460px) {
   .recipe-title {

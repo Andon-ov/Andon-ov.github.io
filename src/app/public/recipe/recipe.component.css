@@ -82,7 +82,8 @@ ul.recipe-image {
 .like-wrapper {
   display: flex;
   gap: 20px;
-  align-items: center;
+  align-items: baseline;
+  /* align-items: center; */
 }
 
 .comments {

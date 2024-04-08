@@ -18,7 +18,6 @@ export class UserInfoComponent implements OnInit {
   // Flag to toggle display of authFormEdit form
   showAuthFormEdit = false;
 
-
   /**
    * @param userService Service for interacting with user data
    * @param fb FormBuilder service for creating reactive forms
@@ -38,7 +37,7 @@ export class UserInfoComponent implements OnInit {
       this.user = userData;
     });
     this.initializeForm();
-    this.patchFormWithCommentData()
+    this.patchFormWithCommentData();
   }
 
   /**
@@ -63,6 +62,27 @@ export class UserInfoComponent implements OnInit {
       lastName: this.user?.lastName,
       displayName: this.user?.displayName,
       photoURL: this.user?.photoURL,
+    });
+  }
+
+  /**
+   * Adds an image URL to the form.
+   * @param imageUrl The URL of the image to add.
+   */
+  addImageToForm(imageUrl: string) {
+    // Updates the photoURL control in the form with the provided imageUrl.
+    this.authFormEdit.patchValue({
+      photoURL: imageUrl,
+    });
+  }
+
+  /**
+   * Removes the image URL from the form.
+   */
+  removeImage() {
+    // Clears the photoURL control in the form by setting it to null.
+    this.authFormEdit.patchValue({
+      photoURL: null,
     });
   }
 
