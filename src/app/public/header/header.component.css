@@ -77,6 +77,8 @@ a.dropdown-item {
 .dropdown-item:focus {
   background-color: var(--textColor);
   color: var(--backgroundColor);
+  border-radius: 4px;
+  transition: 0.5s ease-in-out
 }
 
 form {

@@ -9,9 +9,11 @@
   z-index: 10;
 }
 
-.to-top {
+/* .to-top {
   background-color: var(--mainRGBAColor);
+  background-color: var(--mainYellowColor);
   color: var(--backgroundColor);
+  color: var(--textColor);
   border: 3px solid var(--backgroundColor);
   border-radius: 50%;
   width: 60px;
@@ -19,13 +21,15 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
+} */
 
-button:hover {
+/* button:hover {
   color: var(--textColor);
   background-color: var(--backgroundColor);
-  box-shadow:  0 0 15px 0 var(--textColor);
-}
+  color: var(--mainYellowColor);
+  background-color: var(--textColor);
+  box-shadow: 0 0 15px 0 var(--textColor);
+} */
 
 button:focus {
   outline: none;
@@ -35,4 +39,3 @@ button:focus {
 button.ng-hidden {
   display: none;
 }
-

@@ -144,4 +144,8 @@ ul.recipe-image {
     width: 100%;
     justify-content: space-between;
   }
+
+  .comments-last {
+    flex-direction: column;
+  }
 }

@@ -1,8 +1,9 @@
 <main class="main-long">
   <div class="headerImage"></div>
   <div class="wrapper-list">
-    <div class="title-wrapper">
-      <h1 class="title">Recipes</h1>
+    <div style="text-align: center" class="header-wrapper">
+      <h1 style="font-size: 36px; line-height: 1.2" class="title">Recipes</h1>
+      <p>Explore our herbal recipes for vitality and well-being.</p>
     </div>
 
     <div class="recipe-list">
@@ -22,7 +23,9 @@
     </div>
 
     <div *ngIf="showLoadMoreButton; else allRecipesShown">
-      <button (click)="getRecipesLoadMore()" class="button-img">Load More</button>
+      <button (click)="getRecipesLoadMore()" class="button-img">
+        Load More
+      </button>
     </div>
 
     <ng-template #allRecipesShown>

@@ -1,17 +1,23 @@
 .footer {
   background-color: var(--aliceBlueColor);
-  padding: 20px;
   color: #333;
   font-size: 14px;
   text-align: center;
 }
 
+.footer-main {
+  background-color: var(--textColor);
+  color: var(--mainWhiteColor);
+  padding: 20px;
+}
+
 .footer-links {
   padding: 20px 0;
+  text-align: center;
 }
 
 .footer-links a {
-  color: #666;
+  color: var(--mainWhiteColor);
   text-decoration: none;
   margin: 0 10px;
 }
@@ -21,17 +27,19 @@
 }
 
 .social-icons a {
-  color: #666;
+  color: var(--mainYellowColor);
   text-decoration: none;
   margin: 0 10px;
+  font-size: 22px;
 }
 
 .social-icons a i:hover {
-  color: var(--textColor);
+  transform: scale(1.3);
+  transition: 0.3s ease-in-out;
 }
 
 .copyright {
-  margin-top: 20px;
+  padding: 20px;
   font-size: 12px;
   color: #999;
 }
