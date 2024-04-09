@@ -9,19 +9,23 @@
   --mainDarkRedColor: #FF5733;
   --mainGreyColor: #708090;
   --mainMagnoliaColor: #f6f4f9;
-  --mainYellowColor: #e7ab46;
+  --mainYellowColor: #efc368;
 
   --mainRGBColor: 167, 87, 94;
   --mainRGBColor: 66, 110, 85;
-  --mainRGBColor: 33, 72, 66 ;
+  --mainRGBColor: 33, 72, 66;
 
   --alpha: 0.8;
   --mainRGBAColor: rgba(var(--mainRGBColor), var(--alpha));
 
   --aliceBlueColor: #f8f9fa;
+
   --backgroundColor: #e5e5e5;
+  --backgroundColor: #fafaf5;
+
   --textColor: #a7575e;
   --textColor: #426e55;
+
   --mainColor: #bd6b6f;
   --mainColor: #00a764;
 
@@ -47,6 +51,7 @@ body {
   min-width: 300px;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 form {

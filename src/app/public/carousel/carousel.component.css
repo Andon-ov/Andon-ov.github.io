@@ -34,10 +34,9 @@
 }
 
 .carousel-title {
-  font-size: 32px;
+  font-size: 30px;
   padding-bottom: 20px;
-  font-weight: 900;
-  line-height: 35px;
+  font-weight: 800;
   color: var(--backgroundColor);
   text-align: left;
   box-shadow: unset;
@@ -45,27 +44,28 @@
 
 .subtitle {
   font-size: 18px;
-  font-weight: 300;
+  font-weight: 400;
+  margin-bottom: 25px;
 }
 
 .infoBtn {
-  background-color: var(--backgroundColor);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--mainYellowColor);
   color: var(--textColor);
-  padding: 13px 35px;
-  font-size: 14px;
-  margin-top: 40px;
-  display: inline-block;
-  font-weight: bold;
-  font-family: Roboto, sans-serif;
-  border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: 24px;
+  padding: 0 25px;
+  font-weight: 700;
+  font-size: 17px;
+  height: 48px;
+  transition: .3s ease-in-out;
 }
 
 .infoBtn:hover {
   cursor: pointer;
-  background: linear-gradient(90deg, var(--mainRGBAColor) 50%, rgba(248, 249, 250, 1) 100%);
-  border: 1px solid var(--backgroundColor);
-  color: var(--mainWhiteColor);
+  transform: scale(1.1);
 }
 
 @media (max-width: 460px) {
