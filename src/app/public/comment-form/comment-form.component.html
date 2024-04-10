@@ -1,22 +1,19 @@
 <div class="commentWrapper">
   <form [formGroup]="commentForm" id="commentForm" (ngSubmit)="onSubmit()">
-    <div class="divider">
-      <hr/>
-      <p>&nbsp;&nbsp;Comment&nbsp;&nbsp;</p>
-      <hr/>
-    </div>
-
+    <br />
     <div class="form-group">
-      <label for="comment">Comment (required)</label>
-      <textarea
-        placeholder="Please write your comment here!"
+      <input
+        placeholder="Write your comment ..."
         id="comment"
         formControlName="comment"
-        class="form-control"
-        rows="5"
-        cols="30"
-      ></textarea>
+        class="header-user-search"
+      />
+
+      <button class="header-user-action header-user-action-btn" type="submit">
+        <i class="fa-regular fa-paper-plane"></i>
+      </button>
     </div>
+
     <div *ngIf="commentForm.get('comment')?.touched">
       <div
         class="errors"
@@ -39,9 +36,6 @@
         Comment cannot exceed 500 characters.
       </div>
     </div>
-    <br/>
-    <button class="button" style="width: 100%" type="submit">Submit</button>
+    <br />
   </form>
-
 </div>
-

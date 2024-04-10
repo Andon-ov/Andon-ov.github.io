@@ -11,11 +11,12 @@ nav.navbar {
 
 .hamburger span i {
   padding: 4px 2px;
+  color: var(--textColor);
 }
 
-.hamburger:hover {
+/* .hamburger:hover {
   box-shadow: 1px 1px 15px 0 var(--textColor);
-}
+} */
 
 .header-wrapper {
   display: flex;
@@ -38,7 +39,7 @@ a.navbar-brand {
 }
 
 button.navbar-toggler {
-  background-color: var(--textColor);
+  background-color: var(--mainYellowColor);
   border: 1px solid var(--backgroundColor);
 }
 

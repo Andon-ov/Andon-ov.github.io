@@ -1,5 +1,35 @@
 form#commentForm {
   background-color: var(--backgroundColor);
   max-width: 100%;
+  margin-top: 10px;
+}
+
+
+.form-group {
+  position: relative;
+}
+
+.header-user-search {
+  width: 100%;
+  padding: 0 20px;
+  height: 40px;
+  border: 1px solid #c6c6c6;
+  border-radius: 20px;
+  background: var(--mainWhiteColor);
+  resize: none;
+}
+
+.header-user-action {
+  border-radius: 50%;
+  background: var(--mainYellowColor);
+  width: 40px;
+  height: 40px;
   border: unset;
+}
+
+.header-user-action-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }

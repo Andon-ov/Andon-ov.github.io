@@ -72,11 +72,36 @@ ul.recipe-image {
   height: 450px;
 }
 
-.buttons {
-  padding: 0 32px;
+.recipe-info {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3);
+  overflow: hidden;
+}
+
+.buttons-grid button {
+  border: unset;
+  background-color: var(--backgroundColor);
+  transition: 0.5s ease-in-out;
+}
+
+.buttons-grid button:hover {
+  background-color: var(--mainMagnoliaColor);
+}
+
+.buttons-grid button:active {
+  background-color: var(--backgroundColor);
+}
+
+.buttons-grid i {
+  color: var(--textColor);
 }
 
 .like-wrapper {
@@ -124,6 +149,10 @@ ul.recipe-image {
 }
 
 
+
+
+
+
 @media (max-width: 640px) {
   .buttons-img {
     flex-direction: column-reverse;
@@ -132,7 +161,7 @@ ul.recipe-image {
   .buttons {
     display: flex;
     padding: unset;
-    flex-direction: column;
+    /* flex-direction: column; */
     width: 100%;
     justify-content: space-around;
     align-items: stretch;
@@ -145,7 +174,7 @@ ul.recipe-image {
     justify-content: space-between;
   }
 
-  .comments-last {
+  /* .comments-last {
     flex-direction: column;
-  }
+  } */
 }

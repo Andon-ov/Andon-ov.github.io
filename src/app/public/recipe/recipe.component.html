@@ -31,42 +31,39 @@
           </li>
         </ul>
 
-        <div *ngIf="userData" class="buttons">
-          <!-- like -->
-          <div class="like-wrapper">
-            <button
-              class="button-img"
-              *ngIf="userData"
-              (click)="updateRecipeLikes()"
+        <div class="recipe-info">
+          <div *ngIf="recipe?.likes?.length! > 0">
+            <span>
+              <i class="fa-regular fa-thumbs-up"></i>
+              {{ recipe?.likes?.length }}</span
             >
-              <ng-container
-                *ngIf="
-                  userData &&
-                    recipe &&
-                    recipe.likes &&
-                    userData?.uid &&
-                    recipe.likes.includes(userData.uid);
-                  else notLiked
-                "
-              >
-                <i class="fa-solid fa-heart fa-beat-fade"></i>
-              </ng-container>
-              <ng-template #notLiked>
-                <i class="fa-regular fa-heart fa-beat-fade"></i>
-              </ng-template>
-              
-            </button>
-
-            <div *ngIf="recipe?.likes?.length! > 0">
-              <span>Like: {{ recipe?.likes?.length }}</span>
-            </div>
           </div>
-          <!-- favorite -->
-          <button
-            class="button-img"
-            *ngIf="userData"
-            (click)="updateFavoriteRecipes()"
-          >
+
+          <div *ngIf="comments && comments.length > 0">
+            <span>{{ comments.length }} comments</span>
+          </div>
+        </div>
+
+        <div *ngIf="userData" class="buttons-grid">
+          <button class="" *ngIf="userData" (click)="updateRecipeLikes()">
+            <ng-container
+              *ngIf="
+                userData &&
+                  recipe &&
+                  recipe.likes &&
+                  userData?.uid &&
+                  recipe.likes.includes(userData.uid);
+                else notLiked
+              "
+            >
+              <i class="fa-solid fa-thumbs-up"></i>
+            </ng-container>
+            <ng-template #notLiked>
+              <i class="fa-regular fa-thumbs-up"></i>
+            </ng-template>
+          </button>
+
+          <button class="" *ngIf="userData" (click)="updateFavoriteRecipes()">
             <ng-container
               *ngIf="
                 recipe &&
@@ -76,10 +73,32 @@
                 else notLiked
               "
             >
-              Save it!
+              <i class="fa-solid fa-heart"></i>
             </ng-container>
-            <ng-template #notLiked>Save Recipe</ng-template>
+            <ng-template #notLiked
+              ><i class="fa-regular fa-heart"></i
+            ></ng-template>
           </button>
+
+          <button
+            *ngIf="!showCommentForm"
+            class=""
+            (click)="toggleCommentForm()"
+          >
+            <i class="fa-regular fa-comment"></i>
+          </button>
+
+          <button
+            *ngIf="showCommentForm"
+            class=""
+            (click)="toggleCommentForm()"
+          >
+            <i class="fa-solid fa-comment"></i>
+          </button>
+        </div>
+
+        <div *ngIf="showCommentForm">
+          <app-comment-form [recipeId]="recipeId" />
         </div>
 
         <div class="divider">
@@ -90,8 +109,9 @@
         <br />
 
         <!-- description require -->
-        <p class="recipe-description-text description"
-        >{{ recipe?.description }}</p>
+        <p class="recipe-description-text description">
+          {{ recipe?.description }}
+        </p>
         <br />
 
         <div *ngIf="recipe?.ingredients" class="divider">
@@ -144,22 +164,6 @@
 
         <div class="buttons buttons-img" *ngIf="userData">
           <button
-            *ngIf="!showCommentForm"
-            class="button-img"
-            (click)="toggleCommentForm()"
-          >
-            Comment?
-          </button>
-
-          <button
-            *ngIf="showCommentForm"
-            class="button-img"
-            (click)="toggleCommentForm()"
-          >
-            Hide Form
-          </button>
-
-          <button
             *ngIf="userData && userData.uid == recipe?.uid"
             class="button-img"
             (click)="navigateToRecipeEdit()"
@@ -174,10 +178,6 @@
           >
             Delete Recipe
           </button>
-        </div>
-
-        <div *ngIf="showCommentForm">
-          <app-comment-form [recipeId]="recipeId" />
         </div>
 
         <div *ngIf="comments.length > 0" class="divider">
@@ -200,7 +200,7 @@
 
               <div class="commentBtnWrapper">
                 <span
-                class="button-img"
+                  class="button-img"
                   *ngIf="userData && comment.uid == userData.uid"
                   (click)="deleteComment(comment.id)"
                 >
@@ -208,7 +208,7 @@
                 </span>
 
                 <span
-                class="button-img"
+                  class="button-img"
                   *ngIf="userData && comment.uid == userData.uid"
                   (click)="navigateToCommentEdit(comment.id)"
                 >
