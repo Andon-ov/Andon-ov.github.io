@@ -4,20 +4,41 @@
     <div class="recipe-container">
       <!-- title require -->
 
-      <div class="title-wrapper">
-        <h1 class="title">{{ recipe?.title }}</h1>
-      </div>
+      <div>
+        <div class="title-wrapper">
+          <h1 class="title">{{ recipe?.title }}</h1>
+        </div>
 
-      <!-- subtitle require -->
-      <h3 class="recipe-subtitle">{{ recipe?.subtitle }}</h3>
+        <!-- subtitle require -->
+        <h3 class="recipe-subtitle">{{ recipe?.subtitle }}</h3>
 
-      <!-- summary -->
-      <div *ngIf="recipe?.summary" class="recipe-summary">
-        {{ recipe?.summary }}
-      </div>
+        <br *ngIf="!recipe?.summary" />
 
-      <div *ngIf="!recipe?.summary">
-        <br />
+        <!-- summary -->
+        <div *ngIf="recipe?.summary" class="recipe-summary">
+          {{ recipe?.summary }}
+          <div *ngIf="!recipe?.summary">
+            <br />
+          </div>
+        </div>
+
+        <div style="justify-content: flex-end" class="commentBtnWrapper">
+          <span
+            *ngIf="userData && userData.uid == recipe?.uid"
+            class="button-img"
+            (click)="navigateToRecipeDelete()"
+          >
+            <i class="fa-solid fa-trash"></i>
+          </span>
+
+          <span
+            *ngIf="userData && userData.uid == recipe?.uid"
+            class="button-img"
+            (click)="navigateToRecipeEdit()"
+          >
+            <i class="fa-regular fa-pen-to-square"></i>
+          </span>
+        </div>
       </div>
 
       <!-- image  -->
@@ -34,7 +55,8 @@
         <div class="recipe-info">
           <div *ngIf="recipe?.likes?.length! > 0">
             <span>
-              <i class="fa-regular fa-thumbs-up"></i>
+              <!-- <i class="fa-regular fa-thumbs-up"></i> -->
+              <i class="fa-solid fa-thumbs-up"></i>
               {{ recipe?.likes?.length }}</span
             >
           </div>
@@ -153,31 +175,6 @@
               ></iframe>
             </li>
           </ul>
-        </div>
-
-        <div class="divider" *ngIf="userData">
-          <hr />
-          <p>&nbsp;&nbsp;Buttons&nbsp;&nbsp;</p>
-          <hr />
-        </div>
-        <br />
-
-        <div class="buttons buttons-img" *ngIf="userData">
-          <button
-            *ngIf="userData && userData.uid == recipe?.uid"
-            class="button-img"
-            (click)="navigateToRecipeEdit()"
-          >
-            Edit Recipe
-          </button>
-
-          <button
-            *ngIf="userData && userData.uid == recipe?.uid"
-            class="button-img"
-            (click)="navigateToRecipeDelete()"
-          >
-            Delete Recipe
-          </button>
         </div>
 
         <div *ngIf="comments.length > 0" class="divider">

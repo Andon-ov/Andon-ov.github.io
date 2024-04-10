@@ -441,7 +441,7 @@ hr {
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  background-color: var(--mainRGBAColor);
+  background-color: var(--textColor);
   border-bottom: var(--mainRGBAColor);
 }
 
