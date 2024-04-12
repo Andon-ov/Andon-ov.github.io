@@ -5,7 +5,7 @@ import { Timestamp } from '@angular/fire/firestore';
  */
 export interface Recipe {
   id: string;
-  is_active: boolean;
+  public: boolean;
   summary: string;
   likes: string[];
   uid: string;

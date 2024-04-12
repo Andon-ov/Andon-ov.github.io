@@ -50,7 +50,7 @@ export class RecipeCreateComponent {
 
     // Initialize the recipe creation form
     this.recipeForm = this.fb.group({
-      is_active: [false],
+      public: [true],
       title: ['', [Validators.required]],
       subtitle: ['', [Validators.required]],
       description: ['', [Validators.required]],

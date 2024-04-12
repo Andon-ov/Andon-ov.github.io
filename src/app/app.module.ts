@@ -12,6 +12,7 @@ import { CloudinaryModule } from '@cloudinary/ng';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PublicModule } from './public/public.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +32,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
     // Bootstrap
     NgbModule,
+
+    // NgRx
+    StoreModule.forRoot({}, {}),
   ],
   bootstrap: [AppComponent],
 })

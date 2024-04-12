@@ -57,7 +57,7 @@ export class RecipeEditComponent implements OnInit {
    */
   private initializeForm() {
     this.recipeEdit = this.fb.group({
-      is_active: [false],
+      public: [true],
 
       title: ['', [Validators.required]],
       subtitle: ['', [Validators.required]],
@@ -169,7 +169,7 @@ export class RecipeEditComponent implements OnInit {
         summary: this.recipe.summary,
         description: this.recipe.description,
 
-        is_active: this.recipe.is_active,
+        public: this.recipe.public,
         subtitle: this.recipe.subtitle,
         likes: this.recipe.likes,
         author: this.recipe.author,
