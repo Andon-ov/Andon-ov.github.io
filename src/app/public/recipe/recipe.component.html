@@ -50,6 +50,7 @@
           <li *ngFor="let img of recipe?.image_recipe">
             <img [src]="img.image_recipe" alt="Image of a recipe" />
           </li>
+          <div style="font-size: 12px;" >Added by {{ recipe?.author }}</div>
         </ul>
 
         <div class="recipe-info">
@@ -131,8 +132,8 @@
         <br />
 
         <!-- description require -->
-        <p class="recipe-description-text description">
-          {{ recipe?.description }}
+        <p class="recipe-description-text description"
+        >{{ recipe?.description }}
         </p>
         <br />
 

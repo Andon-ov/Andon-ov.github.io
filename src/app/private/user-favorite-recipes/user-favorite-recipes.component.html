@@ -1,7 +1,7 @@
 <main
   class="main"
   [ngClass]="{
-    'main-short': recipes.length === 0 && !isLoadingComments,
+    'main-short': recipes.length === 0,
     'main-long': recipes.length > 0
   }"
 >
@@ -17,17 +17,18 @@
 
       <div class="emptyInfo">
         <p>You can view our recipe and save your favorite &nbsp;&nbsp;</p>
-        <a routerLink="/recipes-list" class="btn btn-outline-light" style="color: var(--textColor);" href="">Recipes</a>
+        <a
+          routerLink="/recipes-list"
+          class="btn btn-outline-light"
+          style="color: var(--textColor)"
+          href=""
+          >Recipes</a
+        >
       </div>
     </div>
 
     <div class="empty" *ngIf="isLoadingComments">
-      <div class="title-wrapper">
-        <h1 class="title">Loading!!!</h1>
-      </div>
-      <div class="logo-svg">
-        <app-logo-svg />
-      </div>
+      <div class="loader"></div>
     </div>
 
     <div *ngIf="recipes.length > 0 && !isLoadingComments" class="wrapper-list">
@@ -39,9 +40,15 @@
 
       <div class="recipe-list">
         <div class="recipe-list-wrapper" *ngFor="let recipe of recipes">
+          <div
+            (click)="updateFavoriteRecipes(recipe.id)"
+            class="removeIngredientWrapper"
+          >
+            <button type="button" class="removeIngredient">
+              <i class="fa-solid fa-xmark fa-beat-fade"></i>
+            </button>
+          </div>
 
-          <div (click)="updateFavoriteRecipes(recipe.id)" class="removeIngredientWrapper"><button  type="button" class="removeIngredient"><i class="fa-solid fa-xmark fa-beat-fade"></i></button></div>
-         
           <a [routerLink]="['/recipe', recipe.id]">
             <div class="recipe-item">
               <div class="recipe-image">

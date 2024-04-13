@@ -7,8 +7,11 @@
     </div>
 
     <div class="recipe-list">
+
+
+
       <div *ngFor="let recipe of recipes">
-        <a [routerLink]="['/recipe', recipe.id]">
+        <a *ngIf="recipe.public" [routerLink]="['/recipe', recipe.id]">
           <div class="recipe-item">
             <div class="recipe-image">
               <img
@@ -20,6 +23,10 @@
           </div>
         </a>
       </div>
+
+
+
+      
     </div>
 
     <div *ngIf="showLoadMoreButton; else allRecipesShown">

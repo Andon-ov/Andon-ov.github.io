@@ -1,10 +1,11 @@
 <main
   class="main"
   [ngClass]="{
-    'main-short': comments.length === 0 && !isLoadingComments,
+    'main-short': comments.length === 0,
     'main-long': comments.length > 0
   }"
 >
+  <!-- 'main-short': comments.length === 0 && !isLoadingComments, -->
   <div class="headerImage"></div>
   <div class="wrapper" *ngIf="comments.length >= 0">
     <div class="empty" *ngIf="comments.length === 0 && !isLoadingComments">
@@ -28,12 +29,7 @@
     </div>
 
     <div class="empty" *ngIf="isLoadingComments">
-      <div class="title-wrapper">
-        <h1 class="title">Loading!!!</h1>
-      </div>
-      <div class="logo-svg">
-        <app-logo-svg />
-      </div>
+      <div class="loader"></div>
     </div>
 
     <div

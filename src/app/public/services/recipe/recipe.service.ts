@@ -73,7 +73,8 @@ export class RecipeService {
           this.firestore,
           this.collectionName
         ) as CollectionReference<Recipe>,
-        orderBy('title')
+        orderBy('title'),
+        where('public', '==', true)
       );
 
       q = query(q, limit(this.paginateNumber));
@@ -84,7 +85,9 @@ export class RecipeService {
       querySnapshot.forEach((doc) => {
         const recipeData = doc.data();
         const recipeWithId = { ...recipeData, id: doc.id };
-        data.push(recipeWithId);
+        if (recipeWithId.public) {
+          data.push(recipeWithId);
+        }
       });
 
       const lastDocFromQuery =
@@ -111,7 +114,8 @@ export class RecipeService {
           this.firestore,
           this.collectionName
         ) as CollectionReference<Recipe>,
-        orderBy('title')
+        orderBy('title'),
+        where('public', '==', true)
       );
 
       if (lastDoc) {
@@ -126,7 +130,9 @@ export class RecipeService {
       querySnapshot.forEach((doc) => {
         const recipeData = doc.data();
         const recipeWithId = { ...recipeData, id: doc.id };
-        data.push(recipeWithId);
+        if (recipeWithId.public) {
+          data.push(recipeWithId);
+        }
       });
 
       const hasMore = querySnapshot.size === this.paginateNumber;

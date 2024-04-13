@@ -1,7 +1,7 @@
 <main
   class="main"
   [ngClass]="{
-    'main-short': recipes.length === 0 && !isLoadingComments,
+    'main-short': recipes.length === 0,
     'main-long': recipes.length > 0
   }"
 >
@@ -28,12 +28,7 @@
     </div>
 
     <div class="empty" *ngIf="isLoadingComments">
-      <div class="title-wrapper">
-        <h1 class="title">Loading!!!</h1>
-      </div>
-      <div class="logo-svg">
-        <app-logo-svg />
-      </div>
+      <div class="loader"></div>
     </div>
 
     <div *ngIf="recipes.length > 0 && !isLoadingComments" class="wrapper-list">
