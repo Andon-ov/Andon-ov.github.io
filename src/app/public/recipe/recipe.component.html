@@ -1,7 +1,11 @@
 <div class="mainLong">
   <div class="headerImage"></div>
   <div class="wrapper-list">
-    <div class="recipe-container">
+    <div
+      class="recipe-container"
+      appAnimateOnScroll
+      [animationClass]="'fade-in-bottom'"
+    >
       <!-- title require -->
 
       <div>
@@ -50,7 +54,7 @@
           <li *ngFor="let img of recipe?.image_recipe">
             <img [src]="img.image_recipe" alt="Image of a recipe" />
           </li>
-          <div style="font-size: 12px;" >Added by {{ recipe?.author }}</div>
+          <div style="font-size: 12px">Added by {{ recipe?.author }}</div>
         </ul>
 
         <div class="recipe-info">
@@ -63,7 +67,9 @@
           </div>
 
           <div *ngIf="comments && comments.length > 0">
-            <span>{{ comments.length }} comments</span>
+            <span
+              >{{ comments.length }} <i class="fa-solid fa-comment"></i
+            ></span>
           </div>
         </div>
 
@@ -132,8 +138,8 @@
         <br />
 
         <!-- description require -->
-        <p class="recipe-description-text description"
-        >{{ recipe?.description }}
+        <p class="recipe-description-text description">
+          {{ recipe?.description }}
         </p>
         <br />
 
@@ -184,7 +190,7 @@
           <hr />
         </div>
 
-        <section class="comments" *ngIf="comments.length > 0">
+        <section class="comments" *ngIf="comments.length > 0"  appAnimateOnScroll [animationClass]="'fade-in-top'">
           <ul *ngFor="let comment of comments">
             <li>{{ comment.name }}</li>
             <li>{{ comment.comment }}</li>

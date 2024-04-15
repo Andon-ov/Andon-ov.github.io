@@ -1,16 +1,13 @@
 <main class="main-long">
   <div class="headerImage"></div>
-  <div class="wrapper-list">
+  <div class="wrapper-list" appAnimateOnScroll [animationClass]="'fade-in-bottom'">
     <div style="text-align: center" class="header-wrapper">
       <h1 style="font-size: 36px; line-height: 1.2" class="title">Recipes</h1>
       <p>Explore our herbal recipes for vitality and well-being.</p>
     </div>
 
     <div class="recipe-list">
-
-
-
-      <div *ngFor="let recipe of recipes">
+      <div  appAnimateOnScroll [animationClass]="'fade-in-left'" *ngFor="let recipe of recipes">
         <a *ngIf="recipe.public" [routerLink]="['/recipe', recipe.id]">
           <div class="recipe-item">
             <div class="recipe-image">
@@ -23,10 +20,6 @@
           </div>
         </a>
       </div>
-
-
-
-      
     </div>
 
     <div *ngIf="showLoadMoreButton; else allRecipesShown">

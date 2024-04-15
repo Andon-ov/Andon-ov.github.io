@@ -24,6 +24,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { CustomAlertComponent } from './custom-alert/custom-alert.component';
 import { LogoSvgComponent } from './logo-svg/logo-svg.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AnimateOnScrollDirective } from './directives/animate-on-scroll.directive';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     CustomAlertComponent,
     LogoSvgComponent,
     PageNotFoundComponent,
+    AnimateOnScrollDirective,
   ],
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [
