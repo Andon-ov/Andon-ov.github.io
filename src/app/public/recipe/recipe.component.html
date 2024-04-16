@@ -1,11 +1,7 @@
 <div class="mainLong">
   <div class="headerImage"></div>
   <div class="wrapper-list">
-    <div
-      class="recipe-container"
-      appAnimateOnScroll
-      [animationClass]="'fade-in-bottom'"
-    >
+    <div class="recipe-container" data-aos="fade-up" data-aos-duration="3000">
       <!-- title require -->
 
       <div>
@@ -52,12 +48,17 @@
           class="recipe-image"
         >
           <li *ngFor="let img of recipe?.image_recipe">
-            <img [src]="img.image_recipe" alt="Image of a recipe" />
+            <img
+              [src]="img.image_recipe"
+              alt="Image of a recipe"
+              data-aos="fade-up"
+              data-aos-duration="3000"
+            />
           </li>
           <div style="font-size: 12px">Added by {{ recipe?.author }}</div>
         </ul>
 
-        <div class="recipe-info">
+        <div class="recipe-info" data-aos="fade-left" data-aos-duration="3000">
           <div *ngIf="recipe?.likes?.length! > 0">
             <span>
               <!-- <i class="fa-regular fa-thumbs-up"></i> -->
@@ -73,7 +74,12 @@
           </div>
         </div>
 
-        <div *ngIf="userData" class="buttons-grid">
+        <div
+          *ngIf="userData"
+          class="buttons-grid"
+          data-aos="fade-right"
+          data-aos-duration="3000"
+        >
           <button class="" *ngIf="userData" (click)="updateRecipeLikes()">
             <ng-container
               *ngIf="
@@ -130,36 +136,47 @@
           <app-comment-form [recipeId]="recipeId" />
         </div>
 
-        <div class="divider">
-          <hr />
-          <p>&nbsp;&nbsp;Description&nbsp;&nbsp;</p>
-          <hr />
-        </div>
-        <br />
-
-        <!-- description require -->
-        <p class="recipe-description-text description">
-          {{ recipe?.description }}
-        </p>
-        <br />
-
-        <div *ngIf="recipe?.ingredients" class="divider">
-          <hr />
-          <p>&nbsp;&nbsp;Ingredients&nbsp;&nbsp;</p>
-          <hr />
-        </div>
-        <br />
-
-        <ul
-          class="recipe-ingredients"
-          *ngFor="let ingredient of recipe?.ingredients"
+        <div
+          class="description-wrapper"
+          data-aos="fade-left"
+          data-aos-duration="3000"
         >
-          <li *ngIf="recipe?.ingredients">
-            <!-- name, amount, unit require -->
-            {{ ingredient.name }}
-            - {{ ingredient.amount }} {{ ingredient.unit }}
-          </li>
-        </ul>
+          <div class="divider">
+            <hr />
+            <p>&nbsp;&nbsp;Description&nbsp;&nbsp;</p>
+            <hr />
+          </div>
+          <br />
+
+          <!-- description require -->
+          <p class="recipe-description-text description">
+            {{ recipe?.description }}
+          </p>
+          <br />
+        </div>
+        <div
+          class="ingredients-wrapper"
+          data-aos="fade-right"
+          data-aos-duration="3000"
+        >
+          <div *ngIf="recipe?.ingredients" class="divider">
+            <hr />
+            <p>&nbsp;&nbsp;Ingredients&nbsp;&nbsp;</p>
+            <hr />
+          </div>
+          <br />
+
+          <ul
+            class="recipe-ingredients"
+            *ngFor="let ingredient of recipe?.ingredients"
+          >
+            <li *ngIf="recipe?.ingredients">
+              <!-- name, amount, unit require -->
+              {{ ingredient.name }}
+              - {{ ingredient.amount }} {{ ingredient.unit }}
+            </li>
+          </ul>
+        </div>
 
         <div
           class="recipe-videos"
@@ -184,45 +201,51 @@
           </ul>
         </div>
 
-        <div *ngIf="comments.length > 0" class="divider">
-          <hr />
-          <p>&nbsp;&nbsp;Comments&nbsp;&nbsp;</p>
-          <hr />
+        <div
+          class="comments-wrapper"
+          data-aos="fade-up"
+          data-aos-duration="3000"
+        >
+          <div *ngIf="comments.length > 0" class="divider">
+            <hr />
+            <p>&nbsp;&nbsp;Comments&nbsp;&nbsp;</p>
+            <hr />
+          </div>
+
+          <section class="comments" *ngIf="comments.length > 0">
+            <ul *ngFor="let comment of comments">
+              <li>{{ comment.name }}</li>
+              <li>{{ comment.comment }}</li>
+
+              <li class="comments-last">
+                <p>
+                  {{
+                    comment.create_time.toDate() | date : "dd/MM/yyyy HH:mm:ss"
+                  }}
+                </p>
+
+                <div class="commentBtnWrapper">
+                  <span
+                    class="button-img"
+                    *ngIf="userData && comment.uid == userData.uid"
+                    (click)="deleteComment(comment.id)"
+                  >
+                    <i class="fa-solid fa-trash"></i>
+                  </span>
+
+                  <span
+                    class="button-img"
+                    *ngIf="userData && comment.uid == userData.uid"
+                    (click)="navigateToCommentEdit(comment.id)"
+                  >
+                    <i class="fa-regular fa-pen-to-square"></i>
+                  </span>
+                </div>
+              </li>
+              <hr class="hr" />
+            </ul>
+          </section>
         </div>
-
-        <section class="comments" *ngIf="comments.length > 0"  appAnimateOnScroll [animationClass]="'fade-in-top'">
-          <ul *ngFor="let comment of comments">
-            <li>{{ comment.name }}</li>
-            <li>{{ comment.comment }}</li>
-
-            <li class="comments-last">
-              <p>
-                {{
-                  comment.create_time.toDate() | date : "dd/MM/yyyy HH:mm:ss"
-                }}
-              </p>
-
-              <div class="commentBtnWrapper">
-                <span
-                  class="button-img"
-                  *ngIf="userData && comment.uid == userData.uid"
-                  (click)="deleteComment(comment.id)"
-                >
-                  <i class="fa-solid fa-trash"></i>
-                </span>
-
-                <span
-                  class="button-img"
-                  *ngIf="userData && comment.uid == userData.uid"
-                  (click)="navigateToCommentEdit(comment.id)"
-                >
-                  <i class="fa-regular fa-pen-to-square"></i>
-                </span>
-              </div>
-            </li>
-            <hr class="hr" />
-          </ul>
-        </section>
       </div>
     </div>
   </div>

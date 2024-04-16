@@ -38,8 +38,8 @@
         </h1>
       </div>
 
-      <div class="recipe-list">
-        <div class="recipe-list-wrapper" *ngFor="let recipe of recipes">
+      <div class="recipe-list" >
+        <div  class="recipe-list-wrapper" *ngFor="let recipe of recipes">
           <div
             (click)="updateFavoriteRecipes(recipe.id)"
             class="removeIngredientWrapper"

@@ -21,3 +21,4 @@ export class AnimateOnScrollDirective implements AfterViewInit {
     observer.observe(this.elementRef.nativeElement);
   }
 }
+
