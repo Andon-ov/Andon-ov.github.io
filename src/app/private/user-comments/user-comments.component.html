@@ -7,22 +7,27 @@
 >
   <!-- 'main-short': comments.length === 0 && !isLoadingComments, -->
   <div class="headerImage"></div>
-  <div class="wrapper" *ngIf="comments.length >= 0">
+  <div
+    class="wrapper"
+    *ngIf="comments.length >= 0"
+    data-aos="fade-up"
+    data-aos-duration="3000"
+  >
     <div class="empty" *ngIf="comments.length === 0 && !isLoadingComments">
       <div class="title-wrapper">
         <h1 class="title">You have no comments!</h1>
       </div>
-      <div class="logo-svg">
+      <!-- <div class="logo-svg">
         <app-logo-svg />
-      </div>
+      </div> -->
 
       <div class="emptyInfo">
         <p>You can view our recipe and write your first comment &nbsp;&nbsp;</p>
         <a
           routerLink="/recipes-list"
-          class="btn btn-outline-light"
-          style="color: var(--textColor)"
+          class="btn btn-success"
           href=""
+          style="background-color: var(--textColor); border: unset"
           >Recipes</a
         >
       </div>
@@ -35,6 +40,8 @@
     <div
       *ngIf="comments.length > 0 && !isLoadingComments"
       class="wrapper-list"
+      data-aos="fade-up"
+      data-aos-duration="3000"
       style="
         max-width: 600px;
         margin: -50px auto 50px auto;
@@ -53,11 +60,16 @@
       </div>
 
       <div class="comments">
-        <ul *ngFor="let comment of comments">
+        <ul
+          data-aos="flip-up"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="2000"
+          *ngFor="let comment of comments"
+        >
           <li>
             <a
-              class="btn btn-outline-light"
-              style="color: var(--textColor)"
+              class="btn btn-success"
+              style="background-color: var(--textColor); border: unset"
               routerLink="/recipe/{{ comment.recipeId }}"
               >Go to recipe</a
             >

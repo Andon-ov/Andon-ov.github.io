@@ -6,21 +6,21 @@
   }"
 >
   <div class="headerImage"></div>
-  <div class="wrapper" *ngIf="recipes.length >= 0">
+  <div class="wrapper" *ngIf="recipes.length >= 0"  data-aos="fade-up" data-aos-duration="3000">
     <div class="empty" *ngIf="recipes.length === 0 && !isLoadingComments">
       <div class="title-wrapper">
         <h1 class="title">You have no recipes!</h1>
       </div>
-      <div class="logo-svg">
+      <!-- <div class="logo-svg">
         <app-logo-svg />
-      </div>
+      </div> -->
 
       <div class="emptyInfo">
         <p>You can add your first recipe &nbsp;&nbsp;</p>
         <a
           routerLink="/dashboard/recipe-create"
-          class="btn btn-outline-light"
-          style="color: var(--textColor)"
+          class="btn btn-success"
+          style="background-color: var(--textColor); border: unset"
           href=""
           >Add Recipe</a
         >
@@ -31,7 +31,7 @@
       <div class="loader"></div>
     </div>
 
-    <div *ngIf="recipes.length > 0 && !isLoadingComments" class="wrapper-list">
+    <div *ngIf="recipes.length > 0 && !isLoadingComments" class="wrapper-list" data-aos="fade-up" data-aos-duration="3000">
       <div *ngIf="userData" class="title-wrapper">
         <h1 class="title">
           {{ userData.firstName + " " + userData.lastName }} recipes
@@ -39,7 +39,12 @@
       </div>
 
       <div class="recipe-list">
-        <div *ngFor="let recipe of recipes">
+        <div
+          data-aos="flip-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="2000"
+          *ngFor="let recipe of recipes"
+        >
           <a [routerLink]="['/recipe', recipe.id]">
             <div class="recipe-item">
               <div class="recipe-image">

@@ -1,3 +1,5 @@
+
+
 .removeIngredient {
   all: unset;
   color: var(--mainRedColor);
@@ -25,10 +27,11 @@
 
 form {
   max-width: 600px;
-  margin: 0 auto 50px auto;
-  padding: 20px;
+  margin: -50px auto 50px auto;
+  padding: 32px;
   background-color: var(--backgroundColor);
-  border-radius: 10px;
+  border-radius: unset;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3);
 }
 
 @media (max-width: 460px) {

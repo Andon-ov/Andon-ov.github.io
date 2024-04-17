@@ -20,7 +20,7 @@
   bottom: 0;
   right: 50%;
   background-color: var(--mainRGBAColor);
-  background-color: rgba(189, 107, 111, 0.8);
+  /* background-color: rgba(189, 107, 111, 0.8); */
   z-index: 9;
 }
 

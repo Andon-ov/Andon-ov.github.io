@@ -1,14 +1,20 @@
 <div class="main-long">
   <div class="headerImage"></div>
   <div class="wrapper">
-    <div class="form-wrapper">
+    <div class="form-wrapper" data-aos="fade-up" data-aos-duration="3000">
       <div class="title-wrapper">
         <h1 class="title-form">Info</h1>
       </div>
 
       <div *ngIf="user" class="user-details">
         <div *ngIf="user.photoURL" class="detail">
-          <img src="{{ user.photoURL }}" alt="" />
+          <img
+            src="{{ user.photoURL }}"
+            alt=""
+            data-aos="flip-left"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="2000"
+          />
         </div>
 
         <div *ngIf="user.displayName" class="detail">
@@ -44,8 +50,8 @@
         <hr class="hr" />
 
         <span
-          class="btn btn-outline-light"
-          style="color: var(--textColor)"
+          class="btn btn-success"
+          style="background-color: var(--textColor); border: unset"
           *ngIf="showAuthFormEdit"
           (click)="toggleAuthFormEdit()"
         >

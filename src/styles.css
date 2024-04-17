@@ -14,6 +14,7 @@
   --mainRGBColor: 167, 87, 94;
   --mainRGBColor: 66, 110, 85;
   --mainRGBColor: 33, 72, 66;
+  --mainRGBColor:40, 167, 69;
 
   --alpha: 0.8;
   --mainRGBAColor: rgba(var(--mainRGBColor), var(--alpha));
@@ -25,6 +26,7 @@
 
   --textColor: #a7575e;
   --textColor: #426e55;
+  --textColor:#28a745;
 
   --mainColor: #bd6b6f;
   --mainColor: #00a764;
@@ -693,7 +695,7 @@ select:focus {
     background-position: right -40px top 0, center
   }
 }
-
+/* 
 
 .fade-in-right {
   opacity: 0;
@@ -765,7 +767,7 @@ select:focus {
 
 
 
-
+ */
 
 
 
