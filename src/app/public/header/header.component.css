@@ -3,6 +3,8 @@ nav.navbar {
   background-color: var(--aliceBlueColor);
   box-shadow: 1px 5px 15px 0 var(--mainRGBAColor);
   padding: 20px;
+  position: relative;
+  z-index: 10;
 }
 
 .container-fluid {
