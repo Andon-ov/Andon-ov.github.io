@@ -54,30 +54,29 @@
               data-aos="fade-up"
             />
           </li>
-          <div style="font-size: 12px">Added by {{ recipe?.author }}</div>
+          <div style="font-size: 12px; color: var(--mainGreyColor)">
+            Added by {{ recipe?.author }}
+          </div>
         </ul>
 
         <div class="recipe-info">
           <div *ngIf="recipe?.likes?.length! > 0">
-            <span>
-              <!-- <i class="fa-regular fa-thumbs-up"></i> -->
-              <i class="fa-solid fa-thumbs-up"></i>
-              {{ recipe?.likes?.length }}</span
-            >
+            <i class="fa-solid fa-thumbs-up"></i>&nbsp;<span class="badge rounded-pill text-bg-success">{{
+              recipe?.likes?.length
+            }}</span>
           </div>
 
           <div *ngIf="comments && comments.length > 0">
-            <span
-              >{{ comments.length }} <i class="fa-solid fa-comment"></i
-            ></span>
+            <i
+              style="color: var(--mainYellowColor)"
+              class="fa-solid fa-comment"
+            ></i>&nbsp;<span class="badge rounded-pill text-bg-warning">{{
+              comments.length
+            }}</span>
           </div>
         </div>
 
-        <div
-          *ngIf="userData"
-          class="buttons-grid"
-  
-        >
+        <div *ngIf="userData" class="buttons-grid">
           <button class="" *ngIf="userData" (click)="updateRecipeLikes()">
             <ng-container
               *ngIf="
@@ -106,10 +105,16 @@
                 else notLiked
               "
             >
-              <i class="fa-solid fa-heart"></i>
+              <i
+                style="color: var(--mainRedColor)"
+                class="fa-solid fa-heart"
+              ></i>
             </ng-container>
             <ng-template #notLiked
-              ><i class="fa-regular fa-heart"></i
+              ><i
+                style="color: var(--mainRedColor)"
+                class="fa-regular fa-heart"
+              ></i
             ></ng-template>
           </button>
 
@@ -118,7 +123,10 @@
             class=""
             (click)="toggleCommentForm()"
           >
-            <i class="fa-regular fa-comment"></i>
+            <i
+              style="color: var(--mainYellowColor)"
+              class="fa-regular fa-comment"
+            ></i>
           </button>
 
           <button
@@ -126,7 +134,10 @@
             class=""
             (click)="toggleCommentForm()"
           >
-            <i class="fa-solid fa-comment"></i>
+            <i
+              style="color: var(--mainYellowColor)"
+              class="fa-solid fa-comment"
+            ></i>
           </button>
         </div>
 
@@ -147,8 +158,10 @@
           <br />
 
           <!-- description require -->
-          <p class="recipe-description-text description">
-            {{ recipe?.description }}
+          <p
+            class="recipe-description-text description"
+            style="color: var(--mainGreyColor)"
+          >{{ recipe?.description }}
           </p>
           <br />
         </div>
@@ -168,7 +181,7 @@
             class="recipe-ingredients"
             *ngFor="let ingredient of recipe?.ingredients"
           >
-            <li *ngIf="recipe?.ingredients">
+            <li style="color: var(--mainGreyColor)" *ngIf="recipe?.ingredients">
               <!-- name, amount, unit require -->
               {{ ingredient.name }}
               - {{ ingredient.amount }} {{ ingredient.unit }}
@@ -212,7 +225,7 @@
 
           <section class="comments" *ngIf="comments.length > 0">
             <ul *ngFor="let comment of comments">
-              <li>{{ comment.name }}</li>
+              <li style="color: var(--mainGreyColor)">{{ comment.name }}</li>
               <li>{{ comment.comment }}</li>
 
               <li class="comments-last">
