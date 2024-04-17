@@ -27,7 +27,7 @@
 }
 
 .social-icons a {
-  color: var(--mainYellowColor);
+  color: var(--backgroundColor);
   text-decoration: none;
   margin: 0 10px;
   font-size: 22px;

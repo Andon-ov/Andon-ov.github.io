@@ -54,7 +54,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: var(--mainYellowColor);
+  background: var(--backgroundColor);
   color: var(--textColor);
   border-radius: 24px;
   padding: 0 25px;

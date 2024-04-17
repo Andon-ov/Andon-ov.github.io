@@ -94,23 +94,33 @@ form {
   all: unset;
   padding: 0 20px;
   height: 40px;
-  border: 1px solid #c6c6c6;
+  border: 1px solid var(--textColor);
+  border: unset;
   border-radius: 20px;
   background: var(--mainWhiteColor);
+  box-shadow: 0px 0px 5px 0px rgba(40, 167, 69, 1);
 }
 
 .header-user-action {
   border-radius: 50%;
-  background: var(--mainYellowColor);
+  background: var(--textColor);
+  color: var(--mainWhiteColor);
   width: 40px;
   height: 40px;
   border: unset;
 }
 
+
+.search:hover .fa-magnifying-glass {
+  transform: rotate(45deg);
+  transition: 1s ease-in-out;
+}
+
+
 .header-user-action-btn {
   position: absolute;
   right: 0;
-  top: 1px;
+  top: 0;
   bottom: 0;
 }
 
