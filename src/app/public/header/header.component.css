@@ -1,8 +1,8 @@
 nav.navbar {
   min-height: 5vh;
   background-color: var(--aliceBlueColor);
-  box-shadow: 1px 5px 15px 0 var(--mainRGBAColor);
-  padding: 20px;
+  box-shadow: 1px 5px 15px 0 var(--mainGreyColor);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   position: relative;
   z-index: 10;
 }

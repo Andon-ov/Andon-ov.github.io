@@ -6,7 +6,8 @@
 }
 
 .footer-main {
-  background-color: var(--textColor);
+  background-color: var(--mainGreyColor);
+  /* opacity: 0.5; */
   color: var(--mainWhiteColor);
   padding: 20px;
 }
