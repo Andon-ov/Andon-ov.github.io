@@ -8,9 +8,6 @@
 
     <div class="recipe-list">
       <div
-        data-aos="flip-left"
-        data-aos-easing="ease-out-cubic"
-        data-aos-duration="2000"
         *ngFor="let recipe of recipes"
       >
         <a *ngIf="recipe.public" [routerLink]="['/recipe', recipe.id]">

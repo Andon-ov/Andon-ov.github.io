@@ -19,7 +19,7 @@
         (mouseout)="onMouseOut()"
       >
         <span>
-          <i class="fa-solid fa-bars fa-beat-fade"></i>
+          <i class="fa-solid fa-bars"></i>
         </span>
       </button>
 
@@ -186,45 +186,66 @@
           </ul>
         </li>
 
-        <form
-          class="search"
-          role="search"
-          [formGroup]="searchForm"
-          (ngSubmit)="onSubmit()"
-        >
-          <input
-            class="header-user-search"
-            type="search"
-            aria-label="Search"
-            formControlName="search"
-            required
-            minlength="3"
-            placeholder="Search..."
-          />
-
-          <!-- <div *ngIf="searchForm.get('search')?.touched">
-            <div
-              class="errors"
-              *ngIf="searchForm.get('search')?.errors?.['required']"
-            >
-              What are you searching for?
-            </div>
-
-            <div
-              class="errors"
-              *ngIf="searchForm.get('search')?.errors?.['minlength']"
-            >
-              Min length is a 3 char!
-            </div>
-          </div> -->
-
-          <button
-            class="search header-user-action header-user-action-btn"
-            type="submit"
+        <li class="nav-item dropleft">
+          <a
+            appResponsiveClass
+            class="dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
           >
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-        </form>
+            Search
+          </a>
+
+          <ul  class="dropdown-menu">
+          
+            <li>
+              <form
+              class="search"
+              role="search"
+              [formGroup]="searchForm"
+              (ngSubmit)="onSubmit()"
+            >
+              <input
+                class="header-user-search"
+                type="search"
+                aria-label="Search"
+                formControlName="search"
+                required
+                minlength="3"
+                placeholder="Search..."
+              />
+
+              <!-- <div *ngIf="searchForm.get('search')?.touched">
+          <div
+            class="errors"
+            *ngIf="searchForm.get('search')?.errors?.['required']"
+          >
+            What are you searching for?
+          </div>
+
+          <div
+            class="errors"
+            *ngIf="searchForm.get('search')?.errors?.['minlength']"
+          >
+            Min length is a 3 char!
+          </div>
+        </div> -->
+
+              <button
+                class="search header-user-action header-user-action-btn"
+                type="submit"
+              >
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </form>
+
+            </li>
+          </ul>
+        </li>
+
+  
       </ul>
     </div>
   </div>

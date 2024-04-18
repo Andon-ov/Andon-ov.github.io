@@ -15,9 +15,10 @@ import { PrivacyPolicyComponent } from './public/privacy-policy/privacy-policy.c
 import { ContactUsComponent } from './public/contact-us/contact-us.component';
 import { ForgotPasswordComponent } from './public/forgot-password/forgot-password.component';
 import { PageNotFoundComponent } from './public/page-not-found/page-not-found.component';
+import { HeroComponent } from './public/hero/hero.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', component: CarouselComponent },
+  { path: '', pathMatch: 'full', component: HeroComponent },
 
   {
     path: 'register',

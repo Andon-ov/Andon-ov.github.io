@@ -1,11 +1,13 @@
 .carousel {
-  max-height: 93vh;
+  border-radius: 16px;
   overflow: hidden;
 }
 
 .carousel-img {
-  height: 100vh;
+  height: 80vh;
   object-fit: cover;
+  object-position: center;
+
 }
 
 .carousel-control-prev,
@@ -20,25 +22,30 @@
   bottom: 0;
   right: 50%;
   background-color: var(--mainRGBAColor);
-  /* background-color: rgba(189, 107, 111, 0.8); */
   z-index: 9;
 }
 
+
 .info {
+  z-index: 10;
   position: absolute;
-  left: 37%;
-  right: 10%;
-  top: 40%;
-  transform: translate(2%, -27%);
-  color: var(--mainWhiteColor);
+  display: flex;
+  flex-direction: column;
   text-align: left;
+  padding: 50px;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 500px;
+  max-height: 500px;
+  margin: 32px;
+  border-radius: 16px;
+  background-color: var(--mainRGBAColor);
 }
 
 .carousel-title {
   font-size: 30px;
   padding-bottom: 20px;
-  font-weight: 800;
-  color: var(--backgroundColor);
+  font-weight: 900;
   text-align: left;
   box-shadow: unset;
 }
@@ -70,71 +77,53 @@
 }
 
 @media (max-width: 460px) {
-  .overlay {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    background-color: var(--mainRGBAColor);
-    z-index: 9;
+  .carousel {
+    border-radius: 0;
+    height: 93vh;
+  }
+
+  .carousel-img {
+    height: 97vh;
+
   }
 
   .info {
-    position: absolute;
-    left: 10%;
-    right: 10%;
-    top: 30%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     color: var(--mainWhiteColor);
-    text-align: center;
+    justify-content: center;
+
+    max-width: unset;
+    max-height: unset;
+    margin: unset;
+    padding: 16px;
+    border-radius: unset;
   }
 
-  .carousel-title {
-    font-size: 26px;
-    padding-bottom: 10px;
-    font-weight: 900;
-    text-align: center;
+  .subtitle {
+    max-width: 100%;
   }
 }
 
 @media (min-width: 461px) and (max-width: 767px) {
-  .overlay {
+
+  .info {
     position: absolute;
     left: 0;
+    right: 0;
     top: 0;
     bottom: 0;
-    right: 0;
-    background-color: var(--mainRGBAColor);
-    z-index: 9;
-  }
-
-  .info {
-    position: absolute;
-    left: 10%;
-    right: 10%;
-    top: 30%;
     color: var(--mainWhiteColor);
-    text-align: center;
+    max-width: unset;
+    max-height: unset;
+    margin: unset;
   }
 
-
-
-  .carousel-title {
-    font-size: 26px;
-    padding-bottom: 10px;
-    font-weight: 900;
-  }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
-  .info {
-    position: absolute;
-    left: 10%;
-    right: 10%;
-    top: 30%;
-    color: var(--mainWhiteColor);
-  }
-}
+@media (min-width: 768px) and (max-width: 1023px) {}
 
 @media (min-width: 1024px) and (max-width: 1440px) {}
 

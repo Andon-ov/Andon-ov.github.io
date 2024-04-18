@@ -55,7 +55,7 @@ ul.navbar-nav {
 }
 
 .navigation {
-  color: var(--textColor);
+  color: var(--mainBlackColor);
   font-size: 17px;
   font-weight: 700;
 
@@ -75,7 +75,7 @@ a.dropdown-item {
 
 }
 
-.dropdown-item.active,
+/* .dropdown-item.active, */
 .dropdown-item:hover,
 .dropdown-item:focus {
   background-color: var(--textColor);
@@ -84,17 +84,9 @@ a.dropdown-item {
   transition: 0.5s ease-in-out
 }
 
-form {
-  all: unset;
-  position: relative;
-  margin-right: 15px;
-}
-
 .header-user-search {
-  all: unset;
   padding: 0 20px;
   height: 40px;
-  border: 1px solid var(--textColor);
   border: unset;
   border-radius: 20px;
   background: var(--mainWhiteColor);
@@ -102,6 +94,7 @@ form {
 }
 
 .header-user-action {
+  margin-left: -50px;
   border-radius: 50%;
   background: var(--mainYellowColor);
   color: var(--mainWhiteColor);
@@ -117,36 +110,78 @@ form {
 }
 
 
-.header-user-action-btn {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
+
+form {
+  width: 800px;
+  background-color: transparent;
+  display: flex;
+  gap: 10px;
+
 }
 
+ul.navbar-nav,
+ul.dropdown-menu {
+
+  background-color: var(--backgroundColor);
+}
+
+#navbarScroll>ul>li.nav-item.dropleft>ul {
+
+  background-color: transparent;
+}
+
+.dropdown-menu .search {}
+
+form input {
+  width: 100%;
+  padding: 20px;
+}
 
 @media (max-width: 991px) {
 
   .container-fluid {
     justify-content: space-evenly;
+    /* padding: 20px 0 20px 50px; */
   }
 
   .svg-logo {
     display: none;
   }
 
-  .navbar-nav.me-auto.my-2.my-lg-0.navbar-nav-scroll {
-    border-radius: 8px;
-    display: grid;
-    gap: 18px;
-    width: 315px;
-    padding: 20px;
+  .nav-item {
+    width: 100%;
   }
 
+  .navbar-nav.me-auto.my-2.my-lg-0.navbar-nav-scroll {
+    display: flex;
+    /* display: grid; */
+    gap: 18px;
+    /* width: 315px; */
+    padding: 20px;
+    /* justify-content: start; */
+
+
+  }
+
+  form {
+    width: unset;
+  }
+
+  form input {
+    width: 100%;
+    padding: 20px;
+  }
 
   ul.navbar-nav {
     gap: 12px;
   }
+
+  ul.navbar-nav,
+  ul.dropdown-menu {
+
+    background-color: transparent;
+  }
+
 }
 
 @media (min-width: 992px) and (max-width: 1440px) {
@@ -159,14 +194,27 @@ form {
     border: unset;
   }
 
-  form {
-    max-width: unset;
+
+
+  ul.navbar-nav,
+  ul.dropdown-menu {
+
+    background-color: transparent;
+  }
+
+  form input {
+    width: 100%;
+    padding: 20px;
   }
 
   .container-fluid {
     max-width: 1200px;
     padding: 0 3%;
     color: var(--textColor);
+  }
+
+  .header-user-action {
+    margin: unset;
   }
 }
 

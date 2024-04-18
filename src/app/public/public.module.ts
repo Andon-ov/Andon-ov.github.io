@@ -25,6 +25,7 @@ import { CustomAlertComponent } from './custom-alert/custom-alert.component';
 import { LogoSvgComponent } from './logo-svg/logo-svg.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AnimateOnScrollDirective } from './directives/animate-on-scroll.directive';
+import { HeroComponent } from './hero/hero.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { AnimateOnScrollDirective } from './directives/animate-on-scroll.directi
     LogoSvgComponent,
     PageNotFoundComponent,
     AnimateOnScrollDirective,
+    HeroComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [

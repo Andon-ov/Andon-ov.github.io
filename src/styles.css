@@ -54,6 +54,7 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-family: "Montserrat", sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 form {
@@ -162,7 +163,8 @@ input::placeholder {
 
 /* selected button*/
 .navbar-nav .nav-link.active,
-.navbar-nav .nav-link.show {
+.navbar-nav .nav-link.show 
+{
   color: var(--textColor);
   background-image: radial-gradient(100% 100% at 100% 0,
       var(--textColor) 0,
