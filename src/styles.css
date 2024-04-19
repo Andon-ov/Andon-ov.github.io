@@ -163,8 +163,7 @@ input::placeholder {
 
 /* selected button*/
 .navbar-nav .nav-link.active,
-.navbar-nav .nav-link.show 
-{
+.navbar-nav .nav-link.show {
   color: var(--textColor);
   background-image: radial-gradient(100% 100% at 100% 0,
       var(--textColor) 0,
@@ -472,9 +471,9 @@ a.nav-link:focus {
   line-height: 1.2;
   font-weight: 800;
 
-  /* box-shadow: unset;
+  box-shadow: unset;
   color: var(--textColor);
-  text-shadow: -1px -1px 1px rgba(255, 255, 255, .1), 1px 1px 1px rgba(0, 0, 0, .5); */
+  text-shadow: -1px -1px 1px rgba(255, 255, 255, .1), 1px 1px 1px rgba(0, 0, 0, .5);
 }
 
 .title-form {
@@ -500,22 +499,18 @@ a.nav-link:focus {
   color: var(--backgroundColor);
   font-size: 18px;
   border-radius: 4px;
-  /* font-weight: 600; */
   padding: 0 10px;
   margin: 0;
   text-align: center;
   width: 100%;
-  /* text-transform: uppercase; */
   top: 80%;
   height: 30%;
   line-height: 20px;
-  /* font-family: "Caveat", cursive; */
   font-family: Roboto, "Helvetica Neue", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-
   transition: top 1s ease-in-out;
 }
 
@@ -570,8 +565,6 @@ a.nav-link:focus {
 .removeInput:hover {
   color: var(--secondColor);
 }
-
-/* new ---------------------------------------------------------------- */
 
 
 /* checkbox */
@@ -669,7 +662,6 @@ select:checked {
 .checkbox-wrapper input[type="checkbox"] select:active,
 select:focus {
   outline: 1px solid var(--secondColor);
-  /* box-shadow: 0 0 5px var(--animatedTitleBackground);  */
 }
 
 .wrapper-flex {
@@ -681,7 +673,6 @@ select:focus {
 
 }
 
-/* new ---------------------------------------------------------------- */
 
 .loader {
   width: 120px;
@@ -699,88 +690,8 @@ select:focus {
   }
 }
 
-/* 
-
-.fade-in-right {
-  opacity: 0;
-  transform: translateX(20px);
-  animation: fadeInRight 1s ease forwards;
-}
-
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.fade-in-left {
-  opacity: 0;
-  transform: translateX(-20px);
-  animation: fadeInLeft 1s ease forwards;
-}
-
-@keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.fade-in-top {
-  opacity: 0;
-  transform: translateY(-20px);
-  animation: fadeInTop 1s ease forwards;
-}
-
-@keyframes fadeInTop {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-in-bottom {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInBottom 1s ease forwards;
-}
-
-@keyframes fadeInBottom {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-
- */
-
-
-
-/* new ---------------------------------------------------------------- */
-
 @media only screen and (max-width: 460px) {
-  .logo-svg {
-    display: none;
-  }
+
 
   .empty {
     margin: -50px 20px 50px 20px;

@@ -26,6 +26,7 @@ import { LogoSvgComponent } from './logo-svg/logo-svg.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AnimateOnScrollDirective } from './directives/animate-on-scroll.directive';
 import { HeroComponent } from './hero/hero.component';
+import { DropdownHoverDirective } from './header/dropdown-hover.directive';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { HeroComponent } from './hero/hero.component';
     PageNotFoundComponent,
     AnimateOnScrollDirective,
     HeroComponent,
+    DropdownHoverDirective,
   ],
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [

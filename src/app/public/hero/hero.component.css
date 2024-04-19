@@ -1,28 +1,15 @@
 .hero {
+    max-width: 1920px;
+    margin: 0 auto;
     padding: 50px;
     height: 93vh;
-    /* display: grid; */
-    /* grid-template-columns: repeat(2, 1fr); */
-    /* grid-template-columns: repeat(auto-fill, minmax(min(800px,70vw), 1fr)); */
     color: var(--mainWhiteColor);
-    /* align-content: center;
-    justify-content: center;
-    align-items: center; */
 }
 
 
 @media (max-width: 460px) {
-
-
     .hero {
         padding: unset;
     }
 
-
-
-    /* .carousel-title {
-      font-size: 26px;
-      padding-bottom: 10px;
-      font-weight: 900;
-    } */
 }

@@ -93,12 +93,12 @@
     top: 0;
     bottom: 0;
     color: var(--mainWhiteColor);
-    justify-content: center;
-
+    justify-content: flex-start;
+    align-items: center;
     max-width: unset;
     max-height: unset;
     margin: unset;
-    padding: 16px;
+    padding: 100px 16px 16px 16px;
     border-radius: unset;
   }
 
