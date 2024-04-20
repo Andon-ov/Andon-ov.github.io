@@ -21,16 +21,10 @@
         <app-logo-svg />
       </div> -->
 
-      <div class="emptyInfo">
+      <div class="emptyInfo" style="padding-bottom: 10px;" >
         <p>You can view our recipe and write your first comment &nbsp;&nbsp;</p>
-        <a
-          routerLink="/recipes-list"
-          class="btn btn-success"
-          href=""
-          style="background-color: var(--textColor); border: unset"
-          >Recipes</a
-        >
       </div>
+      <a routerLink="/recipes-list" class="button-img">Recipes</a>
     </div>
 
     <div class="empty" *ngIf="isLoadingComments">
@@ -67,12 +61,11 @@
           *ngFor="let comment of comments"
         >
           <li>
-            <a
-              class="btn btn-success"
-              style="background-color: var(--textColor); border: unset"
-              routerLink="/recipe/{{ comment.recipeId }}"
+            <a class="button-img" routerLink="/recipe/{{ comment.recipeId }}"
               >Go to recipe</a
             >
+            <br />
+            <br />
           </li>
           <li>{{ comment.comment }}</li>
 

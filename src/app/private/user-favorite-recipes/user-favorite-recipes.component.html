@@ -20,16 +20,14 @@
         <app-logo-svg />
       </div> -->
 
-      <div class="emptyInfo">
+      <div class="emptyInfo" style="padding-bottom: 10px;">
         <p>You can view our recipe and save your favorite &nbsp;&nbsp;</p>
-        <a
-          routerLink="/recipes-list"
-          class="btn btn-success"
-          style="background-color: var(--textColor); border: unset"
-          href=""
-          >Recipes</a
-        >
       </div>
+      <a
+        routerLink="/recipes-list"
+        class="button-img"
+        >Recipes</a
+      >
     </div>
 
     <div class="empty" *ngIf="isLoadingComments">

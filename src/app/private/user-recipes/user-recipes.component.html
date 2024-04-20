@@ -15,16 +15,14 @@
         <app-logo-svg />
       </div> -->
 
-      <div class="emptyInfo">
+      <div class="emptyInfo" style="margin-bottom: 10px;">
         <p>You can add your first recipe &nbsp;&nbsp;</p>
-        <a
-          routerLink="/dashboard/recipe-create"
-          class="btn btn-success"
-          style="background-color: var(--textColor); border: unset"
-          href=""
-          >Add Recipe</a
-        >
       </div>
+      <a
+        routerLink="/dashboard/recipe-create"
+        class="button-img"
+        >Add Recipe</a
+      >
     </div>
 
     <div class="empty" *ngIf="isLoadingComments">

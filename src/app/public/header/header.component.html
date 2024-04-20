@@ -313,8 +313,6 @@
 
           <span routerLink="/" class="logoText">natural&nbsp;way</span></a
         >
-
-
       </li>
 
       <li class="burger" (click)="toggleMenu()">
@@ -324,20 +322,45 @@
         ></i>
       </li>
 
-
       <li class="menu" [class.is-open]="isMenuOpen">
-        <a appResponsiveClass routerLink="/recipes-list" (click)="closeMenu()" class="navigation">
+        <a
+          appResponsiveClass
+          routerLink="/recipes-list"
+          (click)="closeMenu()"
+          class="navigation"
+        >
           Recipes
         </a>
-        <a class="nav-item navigation" routerLink="/login" (click)="closeMenu()" *ngIf="!userData"></a>
+        <a
+          appResponsiveClass
+          *ngIf="!userData"
+          class="nav-item navigation"
+          routerLink="/login"
+          (click)="closeMenu()"
+          >Login</a
+        >
 
-        <a appResponsiveClass routerLink="/dashboard/user-info" (click)="closeMenu()" class="nav-item dropdown">
+        <a
+          appResponsiveClass
+          *ngIf="userData"
+          routerLink="/dashboard/user-info"
+          (click)="closeMenu()"
+          class="nav-item dropdown"
+        >
           <span>{{ getUserDisplayName() }}</span>
         </a>
 
-        <a appResponsiveClass class="nav-item navigation" (click)="closeMenu()" >
+        <a appResponsiveClass class="nav-item navigation" (click)="closeMenu()">
           Search
         </a>
+
+        <a
+          *ngIf="userData"
+          appResponsiveClass
+          class="nav-item navigation"
+          (click)="logout()"
+          >Logout</a
+        >
       </li>
     </ul>
   </div>
