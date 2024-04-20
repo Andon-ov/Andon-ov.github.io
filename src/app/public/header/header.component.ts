@@ -169,4 +169,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   getUserDisplayName(): string {
     return this.userData ? this.userData.lastName : 'Anonymous';
   }
+
+  // Toggler for mobile menu bar
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  // Close mobile menu after click
+  closeMenu(): void {
+    this.isMenuOpen = false;
+  }
 }
