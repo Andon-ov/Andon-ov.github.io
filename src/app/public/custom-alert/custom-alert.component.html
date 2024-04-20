@@ -1,14 +1,16 @@
 <div class="modal" [ngClass]="{'show': showModal}" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
+
       <div class="modal-header">
-        <h5 class="modal-title">Important Notification!</h5>
+        <h1 class="modal-title">Important Notification!</h1>
 
       </div>
       <div class="modal-body">
-        {{ modalMessage }}
+        <i>{{ modalMessage }}</i>
       </div>
       <div class="modal-footer">
+        <br>
         <button type="button" class="button-img"  (click)="hideModal()">Close</button>
         
       </div>
