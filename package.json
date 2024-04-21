@@ -25,6 +25,7 @@
     "@popperjs/core": "^2.11.6",
     "aos": "^2.3.4",
     "firebase": "^10.8.0",
+    "ngx-owl-carousel-o": "^16.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

@@ -1,4 +1,4 @@
-<div
+<!-- <div
   id="carouselExampleAutoplaying"
   class="carousel slide"
   data-bs-ride="carousel"
@@ -22,6 +22,10 @@
     >
   </div>
   <div class="carousel-inner">
+
+
+
+
     <div class="carousel-item active">
       <img
         src="https://images.pexels.com/photos/1638280/pexels-photo-1638280.jpeg"
@@ -76,77 +80,53 @@
   class="carousel slide"
   data-bs-ride="carousel"
 >
-  <!-- <div class="overlay">
-    <div class="info">
-      <div class="carousel-title" data-aos="fade-down" data-aos-duration="3000">
-        Welcome To Natural Way
-      </div>
-      <div class="subtitle" data-aos="fade-left" data-aos-duration="3000">
-        Explore our curated herbal recipes for vitality and well-being. Register
-        to save favorites, comment, and like recipes. Join us and contribute
-        your own recipes for a community dedicated to herbal remedies!
-      </div>
+ 
+</div>
+ -->
 
-      <a
-        class="infoBtn"
-        routerLink="/recipes-list"
-        data-aos="fade-up"
-        data-aos-duration="3000"
-        >Recipes</a
-      >
+ <div
+  class="carousel"
+>
+  <div class="info">
+    <div class="carousel-title" data-aos="fade-down" data-aos-duration="3000">
+      Welcome!
     </div>
+    <div class="subtitle" data-aos="fade-left" data-aos-duration="3000">
+      Explore our curated herbal recipes for vitality and well-being. Register
+      to save favorites, comment, and like recipes. Join us and contribute your
+      own recipes for a community dedicated to herbal remedies!
+    </div>
+
+    <a
+      class="infoBtn"
+      routerLink="/recipes-list"
+      data-aos="fade-up"
+      data-aos-duration="3000"
+      >Recipes</a
+    >
   </div>
-<div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img
-        src="https://images.pexels.com/photos/1638280/pexels-photo-1638280.jpeg"
-        class="carousel-img d-block w-100"
-        alt="carousel-img"
-      />
- 
-    </div>
-    <div class="carousel-item">
-      <img
-        src="https://imgix-prod.sgs.com/-/media/sgscorp/images/connectivity-and-products/aromatics-pexels.cdn.en-MU.1.jpg"
-        class="carousel-img d-block w-100"
-        alt="carousel-img"
-      />
-    </div>
-    <div class="carousel-item">
-      <img
-      src="https://cf.ltkcdn.net/diet-and-nutrition/natural-health-remedies/images/orig/298512-2096x1397-herbal-medicine.jpg"
-      class="carousel-img d-block w-100"
+
+<owl-carousel-o [options]="customOptions">
+  <ng-template carouselSlide >
+    <img
+    src="https://images.pexels.com/photos/1638280/pexels-photo-1638280.jpeg"
+    alt="carousel-img"
+    class="carousel-img"
+  />
+  </ng-template>  
+  <ng-template carouselSlide>
+    <img
+    src="https://imgix-prod.sgs.com/-/media/sgscorp/images/connectivity-and-products/aromatics-pexels.cdn.en-MU.1.jpg"
+    alt="carousel-img"
+    class="carousel-img"
+  />
+  </ng-template>  
+  <ng-template carouselSlide>
+    <img
+      src="https://www.aveeno.com/sites/aveeno_us_2/files/healingherbswithmortaran_687349.jpg"
       alt="carousel-img"
-    /> 
-     
-    </div>
-    <div class="carousel-item">
- 
-      <img
-        src="https://images.pexels.com/photos/1793035/pexels-photo-1793035.jpeg"
-        class="carousel-img d-block w-100"
-        alt="carousel-img"
-      />
-    </div>
-  </div>
-  <button
-    class="carousel-control-prev"
-    type="button"
-    data-bs-target="#carouselExampleAutoplaying"
-    data-bs-slide="prev"
-  >
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button
-    class="carousel-control-next"
-    type="button"
-    data-bs-target="#carouselExampleAutoplaying"
-    data-bs-slide="next"
-  >
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div> -->
+      class="carousel-img"
+    />
+  </ng-template>  
+</owl-carousel-o>
 </div>

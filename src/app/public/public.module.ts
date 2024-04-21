@@ -28,6 +28,8 @@ import { AnimateOnScrollDirective } from './directives/animate-on-scroll.directi
 import { HeroComponent } from './hero/hero.component';
 import { DropdownHoverDirective } from './header/dropdown-hover.directive';
 
+import { CarouselModule } from 'ngx-owl-carousel-o';
+
 @NgModule({
   declarations: [
     CarouselComponent,
@@ -56,7 +58,11 @@ import { DropdownHoverDirective } from './header/dropdown-hover.directive';
     HeroComponent,
     DropdownHoverDirective,
   ],
-  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule,
+ 
+    // ngx-owl-carousel-o
+    CarouselModule,
+  ],
   exports: [
     CarouselComponent,
     CommentFormComponent,

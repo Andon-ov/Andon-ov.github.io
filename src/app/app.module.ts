@@ -8,6 +8,8 @@ import { environment } from '../environments/environment';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
+
+
 import { CloudinaryModule } from '@cloudinary/ng';
 import { PublicModule } from './public/public.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +23,7 @@ import { StoreModule } from '@ngrx/store';
     PublicModule,
 
     BrowserAnimationsModule,
+
 
     // Cloud Firestore
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
