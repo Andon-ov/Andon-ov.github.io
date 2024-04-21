@@ -15,6 +15,8 @@ export class CarouselComponent {
     touchDrag: false,
     pullDrag: false,
     dots: true,
+    autoplay: true, 
+    autoplayTimeout: 5000,
     navSpeed: 700,
     navText: ['', ''],
     responsive: {
