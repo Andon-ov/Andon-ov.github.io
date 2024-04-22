@@ -41,6 +41,12 @@ import { GlobalErrorHandlerService } from '../services/globalErrorHandler/global
   ],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  isDropdownOpen: boolean = false;
+  isSearchOpen: boolean = false;
+
+  toggleDropdown(open: boolean): void {
+    this.isDropdownOpen = open;
+  }
   // State for the animation
   state = 'normal';
 
@@ -178,5 +184,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   // Close mobile menu after click
   closeMenu(): void {
     this.isMenuOpen = false;
+  }
+
+  toggleSearch() {
+    this.isSearchOpen = !this.isSearchOpen;
   }
 }

@@ -317,48 +317,96 @@
 
       <li class="burger" (click)="toggleMenu()">
         <i
+          style="color: var(--mainBlackColor)"
           class="fa-solid"
-          [ngClass]="{ 'fa-xmark': isMenuOpen, 'fa-bars': !isMenuOpen }"
+          [ngClass]="{ 'fa-x': isMenuOpen, 'fa-bars': !isMenuOpen }"
         ></i>
       </li>
-
-      <li class="menu" [class.is-open]="isMenuOpen">
-        <a
-          appResponsiveClass
-          routerLink="/recipes-list"
-          (click)="closeMenu()"
-          class="navigation"
-        >
+    </ul>
+    <ul class="menu" [class.is-open]="isMenuOpen">
+      <li>
+        <a routerLink="/recipes-list" (click)="closeMenu()" class="navigation">
           Recipes
         </a>
-        <a
-          appResponsiveClass
-          *ngIf="!userData"
-          class="nav-item navigation"
-          routerLink="/login"
-          (click)="closeMenu()"
+      </li>
+      <li *ngIf="!userData">
+        <a class="nav-item navigation" routerLink="/login" (click)="closeMenu()"
           >Login</a
         >
-
+      </li>
+      <li *ngIf="userData">
         <a
-          appResponsiveClass
-          *ngIf="userData"
+          (mouseenter)="toggleDropdown(true)"
+          (mouseleave)="toggleDropdown(false)"
           routerLink="/dashboard/user-info"
           (click)="closeMenu()"
           class="nav-item dropdown"
         >
-          <span>{{ getUserDisplayName() }}</span>
+          <span class="navigation">{{ getUserDisplayName() }}</span>
         </a>
+      </li>
+      <li class="dropdown" (click)="toggleSearch()">
+        <a class="navigation search-btn"> Search </a>
+      </li>
 
-        <a appResponsiveClass class="nav-item navigation" (click)="closeMenu()">
-          Search
-        </a>
+      <div class="search" *ngIf="isSearchOpen">
+        <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+          <div class="input-wrapper">
+            <input
+              class="header-user-search"
+              type="search"
+              aria-label="Search"
+              formControlName="search"
+              required
+              minlength="3"
+              placeholder="Search..."
+            />
+            <button class="search-btn" type="submit">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </form>
+      </div>
 
-        <a
-          *ngIf="userData"
-          appResponsiveClass
-          class="nav-item navigation"
-          (click)="logout()"
+      <!-- <div class="search" *ngIf="isSearchOpen">
+        <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+          <input
+            class="header-user-search"
+            type="search"
+            aria-label="Search"
+            formControlName="search"
+            required
+            minlength="3"
+            placeholder="Search..."
+          />
+
+          <div *ngIf="searchForm.get('search')?.touched">
+              <div
+                class="errors"
+                *ngIf="searchForm.get('search')?.errors?.['required']"
+              >
+                What are you searching for?
+              </div>
+    
+              <div
+                class="errors"
+                *ngIf="searchForm.get('search')?.errors?.['minlength']"
+              >
+                Min length is a 3 char!
+              </div>
+            </div>
+
+          <button
+            class="search header-user-action header-user-action-btn"
+            type="submit"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </div> -->
+
+      <li>
+        <a *ngIf="userData" class="nav-item navigation" (click)="logout()"
           >Logout</a
         >
       </li>

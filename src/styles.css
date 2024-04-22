@@ -28,6 +28,7 @@
   --textColor: #426e55;
   --textColor: #28a745;
 
+
   --mainColor: #bd6b6f;
   --mainColor: #00a764;
 
@@ -40,9 +41,9 @@
 
 
 /* global style */
-body {
+/* body {
   height: 100vh;
-}
+} */
 
 html,
 body {
@@ -52,8 +53,8 @@ body {
 body {
   min-width: 300px;
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  font-family: "Montserrat", sans-serif;
+  /* font-family: Roboto, "Helvetica Neue", sans-serif; */
+  /* font-family: "Montserrat", sans-serif; */
   font-family: "Raleway", sans-serif;
 }
 

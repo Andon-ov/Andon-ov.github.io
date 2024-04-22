@@ -11,10 +11,11 @@ export class CarouselComponent {
 
   customOptions: OwlOptions = {
     loop: true,
+    margin:10,
     mouseDrag: true,
-    touchDrag: false,
+    touchDrag: true,
     pullDrag: false,
-    dots: true,
+    dots: false,
     autoplay: true, 
     autoplayTimeout: 5000,
     navSpeed: 700,
