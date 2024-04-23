@@ -3,14 +3,6 @@ import { FormBuilder } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations';
-
 import { UserService } from 'src/app/public/services/user.service';
 import { FirestoreUser } from '../interfaces/interfaces';
 import { FormErrorCheckService } from '../services/formErrorCheck/form-error-check.service';
@@ -20,36 +12,8 @@ import { GlobalErrorHandlerService } from '../services/globalErrorHandler/global
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  animations: [
-    // Animation to rotate an element on hover
-    trigger('rotate', [
-      state(
-        'normal',
-        style({
-          transform: 'rotate(0deg)',
-        })
-      ),
-      state(
-        'hovered',
-        style({
-          transform: 'rotate(180deg)',
-        })
-      ),
-      transition('normal => hovered', animate('0.5s ease-in-out')),
-      transition('hovered => normal', animate('0.5s ease-in-out')),
-    ]),
-  ],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  isDropdownOpen: boolean = false;
-  isSearchOpen: boolean = false;
-
-  toggleDropdown(open: boolean): void {
-    this.isDropdownOpen = open;
-  }
-  // State for the animation
-  state = 'normal';
-
   // Form group for search input
   searchForm = this.fb.group({
     search: [''],
@@ -57,6 +21,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   // Flag to track whether the menu is open or closed
   isMenuOpen = false;
+
+  // Flag to track whether the search menu is open or closed
+  isSearchOpen: boolean = false;
 
   // User data
   userData: FirestoreUser | null | undefined;
@@ -90,17 +57,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
-  // Mouse over event handler to trigger animation
-  onMouseOver() {
-    this.state = 'hovered';
-  }
-
-  // Mouse out event handler to trigger animation
-  onMouseOut() {
-    this.state = 'normal';
-  }
-
-  ngOnInit(): void {
+   ngOnInit(): void {
     // Subscribe to user data changes from UserService
     this.userService.userData$.subscribe({
       next: (value) => {
@@ -186,6 +143,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.isMenuOpen = false;
   }
 
+  // Toggler for search
   toggleSearch() {
     this.isSearchOpen = !this.isSearchOpen;
   }

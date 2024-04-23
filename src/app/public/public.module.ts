@@ -16,7 +16,6 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
 import { CommentFormComponent } from './comment-form/comment-form.component';
-import { ResponsiveClassDirective } from './header/responsive-class.directive';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
@@ -26,7 +25,6 @@ import { LogoSvgComponent } from './logo-svg/logo-svg.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AnimateOnScrollDirective } from './directives/animate-on-scroll.directive';
 import { HeroComponent } from './hero/hero.component';
-import { DropdownHoverDirective } from './header/dropdown-hover.directive';
 
 import { CarouselModule } from 'ngx-owl-carousel-o';
 
@@ -46,7 +44,6 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     RecipeSearchComponent,
     RegisterComponent,
     ScrollToTopComponent,
-    ResponsiveClassDirective,
     AboutUsComponent,
     PrivacyPolicyComponent,
     ContactUsComponent,
@@ -56,10 +53,13 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     PageNotFoundComponent,
     AnimateOnScrollDirective,
     HeroComponent,
-    DropdownHoverDirective,
   ],
-  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule,
- 
+  imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+
     // ngx-owl-carousel-o
     CarouselModule,
   ],
@@ -80,7 +80,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     ScrollToTopComponent,
     ForgotPasswordComponent,
     CustomAlertComponent,
-    LogoSvgComponent
+    LogoSvgComponent,
   ],
 })
 export class PublicModule {}
