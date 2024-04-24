@@ -1,4 +1,6 @@
 @import url('reset.css');
+@import url('animate.css');
+
 
 
 :root {
@@ -39,12 +41,6 @@
   --titleFont: Georgia, Times, serif;
 }
 
-
-/* global style */
-/* body {
-  height: 100vh;
-} */
-
 html,
 body {
   height: 100%;
@@ -53,9 +49,9 @@ body {
 body {
   min-width: 300px;
   margin: 0;
-  /* font-family: Roboto, "Helvetica Neue", sans-serif; */
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   /* font-family: "Montserrat", sans-serif; */
-  font-family: "Raleway", sans-serif;
+  /* font-family: "Raleway", sans-serif; */
 }
 
 form {
