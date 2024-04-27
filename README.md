@@ -101,3 +101,7 @@ Demo Account:
 
 - Email: test@yahoo.com
 - Password: 123456
+
+## Achievement
+
+The project was ranked in the top 3 of the course "Angular - February 2024 at SoftUni", in which 493 projects participated.
