@@ -10,15 +10,17 @@ export class CarouselComponent implements AfterViewInit {
   autoplayTimeout: number = 7000;
 
   slidesData = [
-    'https://learningherbs.com/wp-content/uploads/2019/08/herbal-first-aid-ointment-01.jpg',
 
-    'https://www.aveeno.com/sites/aveeno_us_2/files/healingherbswithmortaran_687349.jpg',
+    'https://res.cloudinary.com/dsla98vyk/image/upload/v1756528556/vecteezy_nature-floral-background-in-early-summer-colorful-natural_26769733_p9sox6.jpg',
 
-    'https://cf.ltkcdn.net/diet-and-nutrition/natural-health-remedies/images/orig/298512-2096x1397-herbal-medicine.jpg',
+    'https://res.cloudinary.com/dsla98vyk/image/upload/v1756528250/298512-2096x1397-herbal-medicine_ybmf5s.jpg',
 
-    'https://joanmorais.com/wp-content/uploads/2023/03/herbal-extract.jpg',
+    'https://res.cloudinary.com/dsla98vyk/image/upload/v1756528247/aromatics-pexels.cdn.en-MU.1_obqbsi.jpg',
 
-    'https://imgix-prod.sgs.com/-/media/sgscorp/images/connectivity-and-products/aromatics-pexels.cdn.en-MU.1.jpg',
+    'https://res.cloudinary.com/dsla98vyk/image/upload/v1756528247/vecteezy_elegant-white-flowers-with-orange-centers-flourishing-in-a_49092108_x9lgck.jpg',
+
+    'https://res.cloudinary.com/dsla98vyk/image/upload/v1756528245/herbal-extract_dm5cm6.jpg',
+
   ];
 
   backgroundColors = [
